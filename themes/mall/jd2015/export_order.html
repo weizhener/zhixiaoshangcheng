@@ -1,0 +1,81 @@
+{include file=member.header.html}
+<script type="text/javascript">
+$(function(){
+    $('#add_time_from').datepicker({dateFormat: 'yy-mm-dd'});
+    $('#add_time_to').datepicker({dateFormat: 'yy-mm-dd'});
+    $('.checkall_s').click(function(){
+        var if_check = $(this).attr('checked');
+        $('.checkitem').each(function(){
+            if(!this.disabled)
+            {
+                $(this).attr('checked', if_check);
+            }
+        });
+        $('.checkall_s').attr('checked', if_check);
+    });
+    $('a[ectype="batchcancel"]').click(function(){
+        if($('.checkitem:checked').length == 0){
+            return false;
+        }
+        if($(this).attr('presubmit')){
+            if(!eval($(this).attr('presubmit'))){
+                return false;
+            }
+        }
+        var items = '';
+        $('.checkitem:checked').each(function(){
+            items += this.value + ',';
+        });
+        items = items.substr(0, (items.length - 1));
+
+        var uri = $(this).attr('uri');
+        uri = uri + '&' + $(this).attr('name') + '=' + items;
+        var id = 'seller_order_cancel_order';
+        var title = $(this).attr('dialog_title') ? $(this).attr('dialog_title') : '';
+        //var url = $(this).attr('uri');
+        var width = '500';
+        ajax_form(id, title, uri, width);
+    });
+});
+</script>
+<div class="content">
+    {include file=member.menu.html}
+    <div id="right">
+        {include file=member.submenu.html}
+        <div class="wrap">
+            <div class="scarch_order">
+                <form method="get">
+                    <div style="height:150px;">
+                        <span class="title">订单编号:</span>
+                        <input class="text_normal" type="text" name="order_sn" value="{$query.order_sn|escape}" />
+                        <br><br>
+                        <span class="title">{$lang.add_time}:</span>
+                        <input class="text_normal width2" type="text" name="add_time_from" id="add_time_from" value="{$query.add_time_from}" />
+                        &#8211;
+                        <input class="text_normal width2" id="add_time_to" type="text" name="add_time_to" value="{$query.add_time_to}" />
+                        <br><br>
+                        <span class="title">用&nbsp;&nbsp;户&nbsp;&nbsp;名:</span>
+                        <input class="text_normal" type="text" name="buyer_name" value="{$query.buyer_name|escape}" /><br><br>
+                        <span class="title">订单类型:</span>
+                        <select name="type" id="">
+                            <option value="">{$lang.select_pls}</option>
+                            {html_options options=$ztype selected=$query.type}
+                        </select>
+
+                        <input type="hidden" name="app" value="export_excel" />
+                        <input type="hidden" name="act" value="export" />
+                        <input type="submit" class="btn" value="导出" />
+                    </div>
+                    <!--{if $query.buyer_name or $query.add_time_from or $query.add_time_to or $query.order_sn}-->
+                    <a class="detlink" href="{url app=seller_order&type=$query.type}">{$lang.cancel_query}</a>
+                    <!--{/if}--> </form>
+
+            </div>
+            
+            <div class="wrap_bottom"></div>
+        </div>
+    </div>
+</div>
+<div class="clear"></div>
+</div>
+{include file=footer.html}

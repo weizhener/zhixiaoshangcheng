@@ -1,0 +1,46 @@
+{include file=member.header.html}
+<div class="content">
+    {include file=member.menu.html}
+    <div id="right">
+        {include file=member.curlocal.html}
+        {include file=member.submenu.html}
+        <div class="wrap">
+            <div class="public">
+                <div class="public_select table">
+                    <table>
+                        <tbody>
+                            <tr class="gray">
+                                <th width="10%">{$lang.ad_name}</th>
+                                <th width="10%">{$lang.ad_logo}</th>
+                                <th width="10%">{$lang.ad_link}</th>
+                                <th width="10%">{$lang.ad_type}</th>
+                                <th width="10%"><span>操作</span></th>
+                            </tr>
+                            <!--{foreach from=$ads item=ad}-->
+                            <tr class="line">
+                                <td width="10%" class="align2">{$ad.ad_name|escape}</td>
+                                <td width="10%" class="align2"><img src="{$ad.ad_logo|escape}" height="50" /></td>
+                                <td width="10%" class="align2">{$ad.ad_link|escape}</td>
+                                <td width="10%" class="align2">{$ad.ad_type|escape}</td>
+                                <td width="10%" class="align2">
+                                    <a href="index.php?app=my_wapad&amp;act=edit&amp;id={$ad.ad_id}" >编辑</a> | <a href="javascript:drop_confirm('{$lang.drop_confirm}', 'index.php?app=my_wapad&amp;act=drop&amp;id={$ad.ad_id}');" >删除</a>
+                                </td>
+                            </tr>
+                            <!--{foreachelse}-->
+                            <tr class="no_data">
+                                <td colspan="5" class="align2">{$lang.no_data}</td>
+                            </tr>
+                            <!--{/foreach}-->
+                        </tbody>
+                    </table>
+                </div>
+                {include file=member.page.bottom.html}
+                <div class="clear"></div>
+            </div>
+            <div class="wrap_bottom"></div>
+        </div>
+        <div class="clear"></div>
+    </div>
+    <div class="clear"></div>
+</div>
+{include file=footer.html}

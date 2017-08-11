@@ -1,0 +1,93 @@
+{include file="header.html"}
+<script type="text/javascript">
+$(function(){
+    $('#add_time_from').datepicker({dateFormat: 'yy-mm-dd'});
+    $('#add_time_to').datepicker({dateFormat: 'yy-mm-dd'});
+});
+</script>
+
+<div id="rightTop">
+  <h1><p><a href="index.php?act=welcome" style="text-decoration:none;">{$setting.site_name}</a> &nbsp;>&nbsp;{$lang.compile_report}&nbsp;&nbsp;>&nbsp;&nbsp; {$lang.order_stats}</p></h1>
+</div>
+<div class="main-div">
+  <p style="margin: 10px">
+    <strong>{$lang.overall_sum}</strong>:&nbsp;&nbsp;{$total_turnover}&nbsp;&nbsp;&nbsp;
+    <strong>{$lang.overall_choose}</strong>:&nbsp;&nbsp;{$click_count}&nbsp;&nbsp;&nbsp;
+    <strong>{$lang.kilo_buy_amount}</strong>:&nbsp;&nbsp;{$click_ordernum}&nbsp;&nbsp;&nbsp;
+    <strong>{$lang.kilo_buy_sum}</strong>:&nbsp;&nbsp;{$click_turnover}
+  </p>
+</div>
+<div class="mrightTop">
+    <div class="fontl">
+        <form method="get" name="search_form">
+             <div class="left">
+                <input type="hidden" name="app" value="order_stats" />
+                <input type="hidden" name="act" value="index" />
+           	   
+               {$lang.add_time_from}:
+                <input class="queryInput2" type="text" value="{$query.add_time_from}" id="add_time_from" name="add_time_from" class="pick_date" />
+                {$lang.add_time_to}:<input class="queryInput2" type="text" value="{$query.add_time_to}" id="add_time_to" name="add_time_to" class="pick_date" />
+
+				 <a href="JavaScript:void(0);" class="btn-search" onclick="document.search_form.submit()">{$lang.query}</a>
+            </div>
+            <!--{if $filtered}-->
+            <a class="left formbtn1" href="index.php?app=order_stats">{$lang.cancel_query}</a>
+            <!--{/if}-->
+        </form>
+    </div>
+</div>
+<div class="tab-div">
+ <div id="tabbar-div">
+    <p>
+      <span class="tab-front" id="order_circs-tab">{$lang.order_circs}</span><span
+      class="tab-back" id="shipping-tab">{$lang.shipping_name}</span><span
+      class="tab-back" id="pay-tab">{$lang.payment_name}</span>
+    </p>
+ </div>
+<div id="tabbody-div">
+    <table width="90%" cellspacing="0" cellpadding="3" id="order_circs-table">
+      <tr>
+        <td align="center">
+        <OBJECT classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000"  codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,0,0" WIDTH="650" HEIGHT="400" id="OrderGeneral" ALIGN="middle">
+          <PARAM NAME="FlashVars" value="&dataXML={$order_general_xml}">
+          <PARAM NAME="movie" VALUE="templates/images/charts/pie3d.swf?chartWidth=650&chartHeight=400">
+          <PARAM NAME="quality" VALUE="high">
+          <PARAM NAME=bgcolor VALUE="#FFFFFF">
+          <param name="wmode" value="opaque" />
+          <EMBED src="templates/images/charts/pie3d.swf?chartWidth=650&chartHeight=400" FlashVars="&dataXML={$order_general_xml}" quality="high" bgcolor="#FFFFFF" WIDTH="650" HEIGHT="400" wmode="opaque" NAME="OrderGeneral" ALIGN="middle" TYPE="application/x-shockwave-flash" PLUGINSPAGE="http://www.macromedia.com/go/getflashplayer"></EMBED>
+          </OBJECT>
+        </td>
+      </tr>
+    </table>
+	    <table width="90%" cellspacing="0" cellpadding="3" id="shipping-table" style="display:none">
+      <tr>
+        <td align="center">
+          <OBJECT classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000"  codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,0,0" WIDTH="650" HEIGHT="400" id="ShipType" ALIGN="middle">
+          <PARAM NAME="FlashVars" value="&dataXML={$ship_xml}">
+          <PARAM NAME="movie" VALUE="templates/images/charts/pie3d.swf?chartWidth=650&chartHeight=400">
+          <PARAM NAME="quality" VALUE="high">
+          <param name="wmode" value="opaque" />
+          <PARAM NAME="bgcolor" VALUE="#FFFFFF">
+          <EMBED src="templates/images/charts/pie3d.swf?chartWidth=650&chartHeight=400" FlashVars="&dataXML={$ship_xml}" quality="high" bgcolor="#FFFFFF" WIDTH="650" HEIGHT="400" NAME="ShipType" ALIGN="middle" TYPE="application/x-shockwave-flash" PLUGINSPAGE="http://www.macromedia.com/go/getflashplayer" wmode="opaque"></EMBED>
+          </OBJECT>
+        </td>
+      </tr>
+    </table>
+    <table width="90%" cellspacing="0" cellpadding="3" id="pay-table" style="display:none">
+      <tr>
+        <td align="center">
+          <OBJECT classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000"  codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,0,0" WIDTH="650" HEIGHT="400" id="PayMethod" ALIGN="middle">
+          <PARAM NAME="FlashVars" value="&dataXML={$pay_xml}">
+          <PARAM NAME="movie" VALUE="templates/images/charts/pie3d.swf?chartWidth=650&chartHeight=400">
+          <PARAM NAME="quality" VALUE="high">
+          <PARAM NAME="bgcolor" VALUE="#FFFFFF">
+          <param name="wmode" value="opaque" />
+          <EMBED src="templates/images/charts/pie3d.swf?chartWidth=650&chartHeight=400" FlashVars="&dataXML={$pay_xml}" quality="high" bgcolor="#FFFFFF" WIDTH="650" HEIGHT="400" NAME="PayMethod" wmode="opaque" ALIGN="middle" TYPE="application/x-shockwave-flash" PLUGINSPAGE="http://www.macromedia.com/go/getflashplayer"></EMBED>
+        </OBJECT>
+        </td>
+      </tr>
+    </table>
+ </div>
+ </div>
+ <script type="text/javascript" src="{res file=js/tab.js}" charset="utf-8"></script>
+{include file="footer.html"}

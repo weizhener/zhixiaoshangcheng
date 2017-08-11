@@ -1,0 +1,108 @@
+{include file="header.html"}
+
+<link href="{res file=css/egg.css}" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="{res file=js/jquery-1.4.2.min.js}"></script>
+<script type="text/javascript" src="{res file=js/egg.js}"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        //幻灯（奖品展示）
+        $('#example2').bxCarousel({
+            display_num: 1, //显示的内容数量
+            move: 1, //一次移动几个内容
+            auto: true, //加载页面后是否自动滚动
+            controls: false, //是否添加控制元件
+            margin: 10,
+            auto_hover: true //鼠标放上时是否暂停
+        });
+
+        //change_egg
+        $('#egg_type').change(function() {
+            var egg_t = $(this).children('option:selected').val();   //弹出select的值
+            if (egg_t != "0") {
+                $('img[name="egg"]').each(function() {
+                    this.src = "{res file=}images/egg/lock_" + egg_t + ".gif";
+                });
+            }
+        });
+
+    });
+</script>
+<script>
+                                    function ex(t)
+                                    {
+                                        if ($('#user_id').val() == "0") {
+                                            alert("请先登录");
+                                            return;
+                                        } else if ($('#egg_type').val() == "0") {
+                                            alert("请先选择要砸的蛋");
+                                            return;
+                                        } else if ($('#isex').val() == "0") {
+                                            alert("请点下方的 继续砸蛋 ");
+                                            return;
+                                        } else {
+                                        }
+                                        var eggid = $('#egg_type').val();
+                                        //alert(""+eggid);
+                                        $.get('index.php?app=egg&act=eggact_ajax&ajax=1',
+                                                {
+                                                    egg_type: function () {
+                                                        return $('#egg_type').val();
+                                                    }
+                                                },
+                                                function(data) //回传函数  
+                                                {
+                                                    $("#e" + t).children('img').attr("src", "{res file=}images/egg/ege_0" + eggid + ".gif");
+                                                    $("#isex").val("0");
+                                                    $("#goon").show();
+                                                    alert(data);
+                                                }
+                                         );
+                                    }
+                                    function goonegg()
+                                    {
+                                        $("#isex").val("1");
+                                        $("#goon").hide();
+                                        var egg_t = $("#egg_type").children('option:selected').val();
+                                        $('img[name="egg"]').each(function () {
+                                            this.src = "{res file=}images/egg/lock_" + egg_t + ".gif";
+                                        });
+                                    }
+                                </script>
+                                <div class="egg_index">
+                                    <!--{if $visitor.user_id}-->
+                                    <a href="index.php?app=member&act=logout" class="red_btn">用户注销</a>
+                                    <!--{else}-->
+                                    <a href="index.php?app=member&act=login" class="red_btn">用户登录</a>
+                                    <!--{/if}-->
+                                    <input id="user_id" type="hidden" value="{$visitor.user_id}"/>
+
+                                    <select name="areaid" id="egg_type" style="margin-top:20px;">
+                                        <option value="0">=请选择您要砸的蛋=</option>
+                                        <option value="1">=金蛋=</option>
+                                        <option value="2">=银蛋=</option>
+                                        <option value="3">=铜蛋=</option>
+                                    </select>
+
+                                    <div class="egg_select clearfix">
+                                        <input id="isex" type="hidden" value="1"/>
+                                        <div class="d"><a class="da" id="e1" href="javascript:ex(1);"><img name="egg" src="{res file=images/egg/lock_1.gif}"/></a></div>
+                                        <div class="d"><a class="da" id="e2" href="javascript:ex(2);"><img name="egg" src="{res file=images/egg/lock_2.gif}"/></a></div>
+                                        <div class="d" style="margin-right:0px;"><a class="da" id="e3" href="javascript:ex(3);"><img name="egg" src="{res file=images/egg/lock_3.gif}"/></a></div>
+                                    </div>
+                                    <div class="b b1" id="goon"><a href="javascript:goonegg()" class="red_btn">继续砸蛋！</a></div>
+                                    <div class="eggpresentrec_list">1、这里是活动介绍这里是活动介绍这里是活动介绍<br/>
+2、这里是活动介绍这里是活动介绍这里是活动介绍<br/>
+3、这里是活动介绍这里是活动介绍这里是活动介绍</div>
+                                    <div class="eggpresentrec_list">
+                                        <ul>
+                                            <!--{foreach from=$eggpresentrec_list item=eggpresentrec }-->
+                                            <li>
+                                                <div class="name">恭喜用户 {$eggpresentrec.username|truncate:9} 砸中 {$eggpresentrec.presentname|escape}</div>
+                                                <div class="time">{$eggpresentrec.add_time|date:m月d日}</div>
+                                            </li>
+                                            <!--{/foreach}-->
+                                        </ul>
+                                    </div>
+                                </div>
+        
+{include file="footer.html"}

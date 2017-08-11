@@ -1,0 +1,194 @@
+
+{include file=top.html}
+<script language="JavaScript">
+$(function(){
+	var cate_id = '{$smarty.get.cate_id}';
+	if(cate_id)
+	{
+		$("ul[ectype='cate'] a").removeClass('on');
+		$("ul[ectype='cate'] a#"+cate_id).addClass('on');
+	}
+	$("[ectype='cate'] a").click(function(){
+		replaceParam('cate_id', this.id);
+		return false;
+	});
+	var order = '{$smarty.get.order}';
+	if(order)
+	{
+		$(".list-sort a").removeClass("on");
+		$("a#"+order).addClass("on");
+	}
+	$(".list-sort a").click(function(){
+		replaceParam('order', this.id);
+		return false;
+	});
+})
+/* 替换参数 */
+function replaceParam(key, value)
+{
+    var params = location.search.substr(1).split('&');
+    var found  = false;
+    for (var i = 0; i < params.length; i++)
+    {
+        param = params[i];
+        arr   = param.split('=');
+        pKey  = arr[0];
+        if (pKey == 'page')
+        {
+            params[i] = 'page=1';
+        }
+        if (pKey == key)
+        {
+            params[i] = key + '=' + value;
+            found = true;
+        }
+    }
+    if (!found)
+    {
+        value = transform_char(value);
+        params.push(key + '=' + value);
+    }
+    location.assign(SITE_URL + '/index.php?' + params.join('&') + '#module');
+}
+</script>
+<div class="wrapper">
+    <!-- 导航电梯 start -->
+    <div class="ju-ele-nav" id="ju-nav">
+        <div class="top">
+             <h2>
+                <a class="logo" href="{url app=ju}"></a>
+            </h2>
+        </div>
+        <div class="ct">
+            <!--{foreach from=$cate_list item=cate name=fe_cate}-->
+             <h2 ectype="cate">
+                <a href="javascript:;" id="{$cate.id}">{$cate.value}</a>
+            </h2>
+            <ul class="jcategory clearfix" ectype="cate">
+            	<!--{foreach from=$cate.children item=child name=fe_child}-->
+                <li><a href="javascript:;" id="{$child.id}"><span>{$child.value}</span></a>
+                </li>
+                <!--{/foreach}-->
+            </ul>
+            <!--{/foreach}-->
+            <ul class="menu-cate">
+                <li class="jbrand"><a target="_blank" href="{url app=ju_brand}"><i></i>{$lang.ju_brand}</a>
+                </li>
+                <li class="jmp"><a target="_blank" href="{url app=ju_mingpin}"><i></i>{$lang.ju_mingpin}</a>
+                </li>
+                <li class="jzz"><a target="_blank" href="{url app=ju_decoration}"><i></i>{$lang.ju_decoration}</a>
+                </li>
+                <li class="life"><a target="_blank" href="{url app=ju_life}"><i></i>{$lang.ju_life}</a>
+                </li>
+                <li class="tour"><a target="_blank" href="{url app=ju_travel}"><i></i>{$lang.ju_travel}</a>
+            </ul>
+        </div>
+        <div class="bt"></div>
+    </div>
+    <!-- 电梯 end -->
+    <div id="page">
+        <div class="ju-naver">
+            <div class="inner w">
+                <div class="top-search">
+                 <div class="top-search-box clearfix">
+                    <div class="form-fields float-right">
+                        <form method="GET" action="{url app=ju}">
+                            <input type="hidden" name="app" value="ju" />
+                            <input type="hidden" name="act" value="index" />
+                            <input type="text"   name="keyword" value="{if $smarty.get.keyword}{$smarty.get.keyword}{else}搜索其实很容易{/if}" onfocus="if (this.value=='搜索其实很容易') this.value = '';"  class="keyword"  style="color:#999;"/>
+                            <input type="submit" value="搜索" class="submit" hidefocus="true" />
+                        </form>
+                    </div>
+                 </div>
+              </div>
+                <!-- right menu -->
+                <ul class="nav-menu">
+                    <li class="current menu-home"><a class="menu-link" href="{url app=ju}"><span>{$lang.index}</span></a>
+                    </li>
+                    <li class=" menu-brands">
+                        <a class="menu-link" target="_blank" href="{url app=ju_brand}"> <span>{$lang.ju_brand}</span>
+     <em class="btn-dropdown"></em>
+                        </a>
+                    </li>
+                    <li class=" menu-jump"><a class="menu-link" target="_blank" href="{url app=ju_mingpin}"><span>{$lang.ju_mingpin}</span></a>
+                    </li>
+                    <li class=" menu-jiazhuang"><a class="menu-link" target="_blank" href="{url app=ju_decoration}"><span>{$lang.ju_decoration}</span></a>
+                    </li>
+                    <li class=" menu-local">
+                        <a class="menu-link" target="_blank" href="{url app=ju_life}"> <span>{$lang.ju_life}</span>
+     
+                        </a>
+                    </li>
+                    <li class=" menu-travel">
+                        <a class="menu-link" target="_blank" href="{url app=ju_travel}"> <span>{$lang.ju_travel}</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="ju-content">
+            <div class="clearfix mt10">
+            	<div class="index_left" area="index_left" widget_type="area">
+                <!--{widgets page=ju area=index_left}-->
+                </div>
+                <div class="index_right" area="index_right" widget_type="area">
+                <!--{widgets page=ju area=index_right}-->
+                </div>
+            </div>
+            <div class="" area="index_middle" widget_type="area">
+            <!--{widgets page=ju area=index_middle}-->
+            </div>
+            <a name="module"></a>
+            <div class="ju-filter">
+                <div class="ju-list-nav clearfix">
+                    <div class="filter-tit">
+                        <h2 style="">{$lang.today_ju}</h2>
+                    </div>
+                    <div class="list-sort">
+                        <ul>
+                            <li>
+                                <a href="javascript:;" class="on" id=""> <span>{$lang.sort_default}</span></a>
+                            </li>
+                            <li>
+                                <a href="javascript:;" id="sale"> <span>{$lang.sale}</span><i class="sort-sign"></i></a>
+                            </li>
+                            <li>
+                                <a href="javascript:;" id="discount"> <span>{$lang.discount}</span><i class="sort-sign"></i></a>
+                            </li>
+                            <li>
+                                <a href="javascript:;" id="addtime"> <span>{$lang.new}</span><i class="sort-sign"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                    {include file=pageju.top.html}
+                </div>
+            </div>
+            <div class="ju-list clearfix">
+                <ul class="clearfix">
+                	<!--{foreach from=$ju_list item=ju name=fe_ju}-->
+                    <li {if $smarty.foreach.fe_ju.iteration % 3 eq 0} style=" margin-right:0px;"{/if}>
+                        <div class="grts"></div>
+                        <a target="_blank" href="{url app=ju&act=show&id=$ju.group_id}" class="link-box">
+                            <img class="pic" {if $ju.image} src="{$ju.image}"{else} src="{$ju.default_image}"{/if} alt="{$ju.goods_name}"> <i class="soldout-mask"></i> 
+                             <h3 title="{$ju.group_name}">{$ju.group_name|escape}</h3> 
+                            <div class="prices"> <span class="price"><i>￥</i><em>{$ju.group_price}</em></span> 
+                                <div class="dock"> <span class="discount"><em>优惠{$ju.discount}</em>%</span>  <del class="orig-price">{$ju.price|price}</del> 
+                                </div> <span class="sold-num"><em>{if $ju.all_count} {$ju.all_count} {else} 0 {/if}</em>人已买</span> 
+                            </div>
+                        </a>
+                    </li>
+                    <!--{/foreach}-->
+                </ul>
+            </div>
+            <div class="ju-filter filter-bottom">
+                <div class="ju-list-nav clearfix">
+                    {include file=pageju.bottom.html}
+                </div>
+            </div>   
+            <div class="" area="index_bottom" widget_type="area">
+            <!--{widgets page=ju area=index_bottom}-->
+            </div> 
+        </div>
+    </div>
+</div>
+{include file=footer.html}

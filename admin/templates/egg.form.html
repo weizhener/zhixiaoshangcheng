@@ -1,0 +1,93 @@
+{include file="header.html"}
+<script type="text/javascript">
+    $(function () {
+        $('#egg_form').validate({
+            errorPlacement: function (error, element) {
+                $(element).next('.field_notice').hide();
+                $(element).after(error);
+            },
+            success: function (label) {
+                label.addClass('right').text('OK!');
+            },
+            onkeyup: false,
+            rules: {
+                name: {
+                    required: true
+                },
+                noun: {
+                    required: true,
+                    maxlength: 5,
+                    digits: true
+                },
+                rate: {
+                    required: true,
+                    maxlength: 4
+                }
+            },
+            messages: {
+                name: {
+                    required: '{$lang.notnull}'
+                },
+                noun: {
+                    required: '{$lang.notnull}',
+                    maxlength: '{$lang.noun_length}',
+                    digits: '{$lang.digit}'
+                },
+                rate: {
+                    required: '{$lang.notnull}',
+                    maxlength: '{$lang.more_length}'
+                }
+            }
+        });
+    });
+</script>
+<div id="rightTop">
+    <p>{$lang.egg}</p>
+    <ul class="subnav">
+        <li><a class="btn1" href="index.php?app=egg">{$lang.manage}</a></li>
+        {if $egg.egg_id}
+        <li><a class="btn1" href="index.php?app=egg&amp;act=add">{$lang.add}</a></li>
+        {else}
+        <li><span>{$lang.add}</span></li>
+        {/if}
+    </ul>
+</div>
+
+<div class="info">
+    <form method="post" enctype="multipart/form-data" id="egg_form">
+        <table class="infoTable">
+            <tr>
+                <th class="paddingT15">
+                    {$lang.name}:</th>
+                <td class="paddingT15 wordSpacing5">
+                    <input class="infoTableInput2" id="name" type="text" name="name" value="{$egg.name|escape}" />
+                    <label class="field_notice">{$lang.name}</label>
+                </td>
+            </tr>
+            <tr>
+                <th class="paddingT15">
+                    {$lang.noun}:</th>
+                <td class="paddingT15 wordSpacing5">
+                    <input class="infoTableInput2" id="noun" type="text" name="noun" value="{$egg.noun|escape}" />
+                    <label class="field_notice">{$lang.noun}</label>
+                </td>
+            </tr>
+            <tr>
+                <th class="paddingT15">
+                    {$lang.rate}:</th>
+                <td class="paddingT15 wordSpacing5">
+                    <input class="infoTableInput2" id="rate" type="text" name="rate" value="{$egg.rate|escape}" />
+                    <label class="field_notice">{$lang.rate}</label>
+                </td>
+            </tr>
+            <tr>
+                <th></th>
+                <td class="ptb20">
+                    <input class="formbtn" type="submit" name="Submit" value="{$lang.submit}" />
+                    <input class="formbtn" type="reset" name="Submit2" value="{$lang.reset}" />
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+{include file="footer.html"}

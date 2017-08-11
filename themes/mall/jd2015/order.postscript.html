@@ -1,0 +1,16 @@
+﻿<script type="text/javascript">
+function postscript_activation(tt){
+	if (!tt.name){
+		tt.value    = '';
+        tt.name = 'postscript';
+		tt.style.height = '50px';
+    }
+}
+</script>
+<div id="postscript" class="w clearfix">
+   <div class="float-left">{$lang.postscript}{$lang.colon}</div>
+   <div class="content float-left"><textarea  class="f66"id="postscript" onclick="postscript_activation(this);">{$lang.postscript_desc}</textarea></div>
+</div>
+
+                    
+     

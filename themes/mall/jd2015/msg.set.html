@@ -1,0 +1,67 @@
+{include file=member.header.html}
+<div class="content">
+    <div class="totline"></div><div class="botline"></div>
+    {include file=member.menu.html}
+    <div id="right">
+        {include file=member.submenu.html}
+        <div class="wrap margin1">
+            <div class="public table">
+                <div class="information_index">
+                    <div class="info">
+                        <h3 class="margin2">
+                            <span>{$lang.hello}！{$visitor.user_name}</span><br />
+                            <br />
+                            <!--{ if $mobile}-->
+                            您的短信发送量为<em style="color: #FE5400;font-size: 16px;font-weight: bold;"> {$num} </em>条!
+                            <!--{else}-->
+                            您还没有绑定手机，不能使用短信功能，请先绑定手机！
+                            <!--{/if}-->
+                        </h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="wrap">
+            <div class="public table">
+                <form name="set" action="index.php?app=msg&act=set" method="post">
+                    <h3 class="title" style="color:#3E3E3E">帐户设置</h3>
+
+                    <div style="color:#646665;float:left;font-size:12px;font-weight:normal;line-height:30px;">
+                        <span>捆绑手机：</span>
+                        <input type="text" name="mobile" value="{$mobile}">
+                        <br />
+                        <span>是否开启：</span>
+                        <label>
+                            <input type="radio" name="state" value="1"{if $state eq "1"} checked="checked"{/if} />
+                                   {$lang.yes}
+                        </label>
+                        <label>
+                            <input type="radio" name="state" value="0"{if $state eq "0"} checked="checked"{/if} />
+                                   {$lang.no}
+                        </label>
+                        <br />
+                        <span>选择发送：</span>
+                        <!--{if $functions}-->
+                        {foreach from=$functions item=func}
+                        <input type="checkbox" name="functions[]"{if $checked_functions.$func} checked{/if} value="{$func}" id="function_{$func}" /><label for="function_{$func}">&nbsp;{$lang.$func}</label>&nbsp;&nbsp;
+                        {/foreach}
+                        <!--{/if}-->
+                        <br />
+                        <input class="money_btn" type="submit" name="Submit" value="{$lang.submit}" />
+
+                    </div>
+                </form>				  
+
+
+            </div>
+        </div>		
+        <div class="clear"></div>
+        <div class="adorn_right1"></div>
+        <div class="adorn_right2"></div>
+        <div class="adorn_right3"></div>
+        <div class="adorn_right4"></div>
+    </div>
+    <div class="clear"></div>
+</div>
+<div class="clear"></div>
+{include file=footer.html}

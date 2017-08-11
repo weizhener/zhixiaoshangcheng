@@ -1,0 +1,91 @@
+{include file=member.header.html}
+<style>
+    .member_no_records {border-top: 0px !important;}
+    .table td{ padding-left: 5px; }
+</style>
+<div class="content">
+    <div class="totline"></div>
+    <div class="botline"></div>
+    {include file=member.menu.html}
+    <div id="right">
+        {include file=member.submenu.html}
+        <div class="wrap">
+            <div style="clear:both;"></div>
+            <div class="public_select table">
+                <table>
+
+                    <tr class="line_bold">
+                        <th class="align1" colspan="2"></th>
+                        <th colspan="4">
+                    <div class="select_div">
+                        <form method="get">
+                            <!--{if $filtered}-->
+                            <a class="detlink_with_no_bg" style="float:right" href="{url app=seller_mix}">{$lang.cancel_query}</a>
+                            <!--{/if}-->
+                            <div style="float:right">{$lang.mix_name}：
+                                <input style="*position:relative;*top:5px;*z-index:0;" type="text" class="text_normal" name="mix_name" value="{$smarty.get.mix_name|escape}"/>
+
+                                <input type="hidden" name="app" value="seller_mix" />
+                                <input type="hidden" name="act" value="index" />
+                                <input type="submit" class="btn" value="{$lang.search}" />
+                            </div>
+                        </form>
+                    </div>
+                    </th>
+                    </tr>
+                    <!--{if $mix_list}-->
+                    <tr class="gray">
+                        <th width="30"></th>
+                        <th width="160"><span>{$lang.mix_name}</span></th>
+                        <th width="250"><span>{$lang.mix_desc}</span></th>
+                        <th width="150"><span>{$lang.goods_count}</span></th>
+                        <th width="240">{$lang.handle}</th>
+                    </tr>
+                    <!--{/if}-->
+                    <!--{foreach from=$mix_list item=mix name=_mix_f}-->
+                    <tr class="line<!--{if $smarty.foreach._mix_f.last}--> last_line<!--{/if}-->">
+                        <td width="25" class="align2"><input type="checkbox" class="checkitem" value="{$mix.mix_id}"/></td>
+                        <td width="160" align="align2">
+                            <p class="ware_text"><span class="color2">
+                                    <a target="_blank" href="{url app=goods&id=$mix.nav_goods_id}">{$mix.mix_name|escape}</a></span></p>
+                        </td>
+                        <td width="250"><span class="color2">{$mix.mix_desc|escape}</span></td>
+                        <td width="150" class="align2"><span class="color2">{$mix.goods_count|default:0}</span></td>
+                        <td width="240"><div>
+                                <a href="{url app=seller_mix&act=edit&id=$mix.mix_id}" >{$lang.edit}</a> |
+                                <a href="{url app=seller_mix&act=drop&id=$mix.mix_id}" >{$lang.drop}</a> | 
+                                <a href="{url app=seller_mix&act=view_goods&amp;id=$mix.mix_id}">{$lang.view_goods_mix}</a>
+                            </div></td>
+                    </tr>
+                    <!--{foreachelse}-->
+                    <tr>
+                        <td class="align2 member_no_records padding6" colspan="6">{$lang.no_records}</td>
+                    </tr>
+                    <!--{/foreach}-->
+                    <!--{if $mix_list}-->
+                    <tr class="line_bold line_bold_bottom">
+                        <td colspan="5">&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <th><input type="checkbox" id="all2" class="checkall"/></th>
+                        <th colspan="4">
+                    <p class="position1">
+                        <span class="all"><label for="all2">{$lang.checkall}</label></span>
+                        <a href="javascript:;" class="delete" uri="index.php?app=seller_mix&act=drop" name="id" presubmit="confirm('{$lang.drop_confirm}')" ectype="batchbutton">{$lang.drop}</a>                            
+                    </p>
+                    <p class="position2">
+                        {include file=member.page.bottom.html}                            
+                    </p>                        
+                    </th>
+                    </tr>
+                    <!--{/if}-->
+                </table>
+            </div>
+            <div class="wrap_bottom"></div>
+        </div>
+        <div class="clear"></div>
+    </div>
+    <div class="clear"></div>
+</div>
+<iframe name="iframe_post" id="iframe_post" width="0" height="0"></iframe>
+{include file=footer.html}

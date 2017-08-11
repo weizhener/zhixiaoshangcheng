@@ -1,0 +1,130 @@
+{include file=footer_order_notice.html}
+<div id="footer" class="w-full">
+
+    <div id="service-2014" class="clearfix">
+        <div class="slogen">
+            <span class="item fore1">
+                <i></i><b>多</b>品类齐全，轻松购物
+            </span>
+            <span class="item fore2">
+                <i></i><b>快</b>多仓直发，极速配送
+            </span>
+            <span class="item fore3">
+                <i></i><b>好</b>正品行货，精致服务
+            </span>
+            <span class="item fore4">
+                <i></i><b>省</b>天天低价，畅选无忧
+            </span>
+        </div>
+        <div class="w" style="width:1000px">
+           
+           <!--{foreach from=$foot_acategory_list item=acategory name=fe_hot_acategory}-->
+    <dl class="fore1">
+      <dt>{$acategory.cate_name}</dt>
+      <dd> 
+        <!--{foreach from=$acategory.news item=news name=fe_hot_news}-->
+        <div><a style="font-size:16px;line-height:30px" target="_blank" href="index.php?app=article&act=view&article_id={$news.article_id}">{$news.title}</a></div>
+        <!-- {/foreach} --> 
+      </dd>
+    </dl>
+    <!-- {/foreach} --> 
+           
+            
+            <span class="clr"></span>
+        </div>
+    </div>
+
+    <div id="footer-2014" class="w" style="width">
+        <div class="copyright">{$copyright}<br> <!--{if $icp_number}-->{$icp_number}<!--{/if}--> {$statistics_code}</div>
+
+        <div class="authentication">
+			<a href="javascript:;"><img src="static/images/bt_logo_1.png" /></a>
+			<a href="javascript:;"><img src="static/images/bt_logo_2.png" /></a>
+			<a href="javascript:;"><img src="static/images/bt_logo_3.png" /></a>
+        </div>
+    </div>
+
+{$async_sendmail}
+
+    <div class="mui-mbar-tabs clearfix">
+        <div class="mui-mbar-tabs-mask ">
+            <div class="mui-mbar-tab mui-mbar-tab-cart" style="top: 120px;">
+                <div class="mui-mbar-tab-logo mui-mbar-tab-logo-cart"></div>
+                <div class="mui-mbar-tab-txt"><a href="{url app=cart}">购物车</a></div>
+                <div class="mui-mbar-tab-sup">
+                    <div class="mui-mbar-tab-sup-bg">
+                        <div class="mui-mbar-tab-sup-bd">{$cart_goods_kinds}</div>
+                    </div>
+                </div>
+            </div>
+            <div class="mui-mbar-tab mui-mbar-tab-asset" style="top: 260px;">
+                <div class="mui-mbar-tab-logo mui-mbar-tab-logo-asset"></div>
+                <div class="mui-mbar-tab-tip" style="right: 35px;  display: none;">
+                    <a href="{url app=member}">我的资产</a>
+                    <div class="mui-mbar-arr mui-mbar-tab-tip-arr">◆</div>
+                </div>
+            </div>
+            <div class="mui-mbar-tab mui-mbar-tab-brand" style="top: 300px;">
+                <div class="mui-mbar-tab-logo mui-mbar-tab-logo-brand"></div>
+                <div class="mui-mbar-tab-tip" style="right: 35px;  display: none;">
+                    <a href="{url app=my_favorite&type=store}">收藏的店铺</a>
+                    <div class="mui-mbar-arr mui-mbar-tab-tip-arr">◆</div>
+                </div>
+            </div>
+            <div class="mui-mbar-tab mui-mbar-tab-favor" style="top: 340px;">
+                <div class="mui-mbar-tab-logo mui-mbar-tab-logo-favor"></div>
+                <div class="mui-mbar-tab-tip" style="right: 35px;  display: none;">
+                    <a href="{url app=my_favorite}">收藏的产品</a>
+                    <div class="mui-mbar-arr mui-mbar-tab-tip-arr">◆</div>
+                </div>
+            </div>
+            <div class="mui-mbar-tab mui-mbar-tab-foot" style="top: 380px;">
+                <div class="mui-mbar-tab-logo mui-mbar-tab-logo-foot"></div>
+                <div class="mui-mbar-tab-tip" style="right: 35px;  display: none;">
+                    <a href="{url app=history}">我看过的</a>
+                    <div class="mui-mbar-arr mui-mbar-tab-tip-arr">◆</div>
+                </div>
+            </div>
+            <div class="mui-mbar-tab mui-mbar-tab-qrcode" style="top: 420px;">
+                <div class="mui-mbar-tab-logo mui-mbar-tab-logo-qrcode"></div>
+                <div class="mui-mbar-tab-tip mui-mbarp-qrcode-tip" style="right: 35px;  display: none;">
+                    <div class="mui-mbarp-qrcode-hd">
+                        <img src="{$default_qrcode}" width="140" height="140">
+                    </div>
+                </div>
+            </div>
+            <div class="mui-mbar-tab mui-mbar-tab-ue" style="top: 460px;">
+                <div class="mui-mbar-tab-logo mui-mbar-tab-logo-ue"></div>
+                <div class="mui-mbar-tab-tip" style="right: 35px;  display: none;">
+                    <a href="{url app=customer_message&type=1}">用户反馈</a>
+                    <div class="mui-mbar-arr mui-mbar-tab-tip-arr">◆</div>
+                </div>
+            </div>
+            <div class="mui-mbar-tab mui-mbar-tab-top" style="bottom: 180px;" id="gotop">
+                <div class="mui-mbar-tab-logo mui-mbar-tab-logo-top"></div>
+                <div class="mui-mbar-tab-tip" style="right: 35px;  display: none;">
+                    <a href="javascript:void(0)">返回顶部</a>
+                    <div class="mui-mbar-arr mui-mbar-tab-tip-arr">◆</div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <script>
+        $(function() {
+            var screen_height = window.screen.height;
+            $(".mui-mbar-tabs-mask").css("height", screen_height);
+            $('.mui-mbar-tab').hover(function() {
+                $(this).addClass("mui-mbar-tab-hover");
+                $(this).find('.mui-mbar-tab-tip').fadeIn(500);
+            }, function() {
+                $(this).removeClass("mui-mbar-tab-hover");
+                $(this).find('.mui-mbar-tab-tip').fadeOut(500);
+            });
+        });
+
+    </script>
+</div>
+
+</body>
+</html>

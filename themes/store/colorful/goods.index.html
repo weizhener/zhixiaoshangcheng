@@ -1,0 +1,117 @@
+{include file=header.html}
+<div class="w-full col-1" area="top_ad_area" widget_type="area">
+    <!--{widgets page=goodsinfo area=top_ad_area}-->
+</div>
+<div class="w clearfix mt10">
+    <div class="info-left">
+        {include file=goodsinfo.html}
+    </div>
+    <div class="info-right">
+    	<div class="user">
+            <h2>{$store.store_name|escape}</h2>
+            <div class="user_data">
+                <p>
+                    <span>{$lang.store_owner}: </span>{$store.store_owner.user_name|escape}
+                    <a target="_blank" href="{url app=message&act=send&to_id=$store.store_owner.user_id|escape}"><img src="{res file=images/web_mail.gif}" alt="{$lang.send_pm}" /></a>
+                </p>
+                <p>
+                    <span>{$lang.credit_value}: </span><span class="fontColor1">{$store.credit_value}</span>
+                    <!--{if $store.credit_value ge 0}--><img src="{$store.credit_image}" alt="" /><!--{/if}-->
+                </p>
+                <p>{$lang.store_grade}: {$store.sgrade}</p>
+                <p>{$lang.goods_count}: {$store.goods_count}</p>
+                <p>{$lang.region}: {$store.region_name|escape}</p>
+                <p>{$lang.store_add_time}: {$store.add_time|date}</p>
+                <!--{if $store.certifications}-->
+                <p>
+                    <span>{$lang.certification}: </span>
+                    <span>
+                        <!--{foreach from=$store.certifications item=cert}-->
+                        <!--{if $cert eq "autonym"}-->
+                        <a href="{url app=article&act=system&code=cert_autonym}" target="_blank" title="{$lang.cert_autonym}"><img src="{res file=images/cert_autonym.gif}" /></a>
+                        <!--{elseif $cert eq "material"}-->
+                        <a href="{url app=article&act=system&code=cert_material}" target="_blank" title="{$lang.cert_material}"><img src="{res file=images/cert_material.gif}" /></a>
+                        <!--{/if}-->
+                        <!--{/foreach}-->
+                    </span>
+                </p>
+                <!-- {/if} -->
+                <!--{if $store.address}-->
+                <!--<p>{$lang.address}: {$store.address|escape}</p>-->
+                <!--{/if}-->
+                <!--{if $store.tel}-->
+                <!--<p>{$lang.tel}: {$store.tel|escape}</p>-->
+                <!--{/if}-->
+                <!--{if $store.im_qq || $store.im_ww || $store.im_msn}-->
+                <p>
+                    <!--{if $store.im_qq}-->
+                    <a href="http://wpa.qq.com/msgrd?V=1&amp;uin={$store.im_qq|escape}&amp;Site={$store.store_name|escape}&amp;Menu=yes" target="_blank"><img src="http://wpa.qq.com/pa?p=1:{$store.im_qq|escape}:4" alt="QQ"></a>
+                    <!--{/if}-->
+                    <!--{if $store.im_ww}-->
+                    <a target="_blank" href="http://amos.im.alisoft.com/msg.aw?v=2&uid={$store.im_ww|escape:url}&site=cntaobao&s=2&charset={$charset}" ><img border="0" src="http://amos.im.alisoft.com/online.aw?v=2&uid={$store.im_ww|escape:url}&site=cntaobao&s=2&charset={$charset}" alt="Wang Wang" /></a>
+                    <!--{/if}-->
+                    <!--{if $store.im_msn}-->
+                    <a target="_blank" href="http://settings.messenger.live.com/Conversation/IMMe.aspx?invitee={$store.im_msn|escape}"><img src="http://messenger.services.live.com/users/{$store.im_msn|escape}/presenceimage/" alt="status" /></a>
+                    <!--{/if}-->
+                </p>
+                <!--{/if}-->
+            </div>
+            <div class="shop-other">
+            	<a target="_blank" href="{url app=store&id=$store.store_id}">{$lang.enter_the_store}</a>
+    			<a href="javascript:collect_store({$store.store_id})">{$lang.collect_store}</a>
+    		</div>
+            <div class="clear"></div>
+        </div>
+    </div>
+</div>
+<div id="content" class="clearfix">
+    <div id="left">
+        <div class="" area="store_left" widget_type="area">
+            <!--{widgets page=goodsinfo area=store_left}-->
+        </div>
+		 <!--{if $smarty.get.app eq "goods"}-->
+        <div class="history">
+            <div class="title">{$lang.goods_history}</div>
+            <ul>
+                        <!--{foreach from=$goods_history item=gh_goods}-->
+                        <li><a href="{url app=goods&id=$gh_goods.goods_id}"><img src="{$gh_goods.default_image}" width="50" height="50" alt="{$gh_goods.goods_name|truncate:20|escape}" title="{$gh_goods.goods_name|escape}" /></a></li>
+                        <!--{/foreach}-->
+             </ul>
+        </div>
+        <!--{/if}-->
+    </div>
+
+    <div id="right">
+        <a name="module"></a>
+        <ul class="user_menu clearfix">
+            <li class="active"><a  href="{url app=goods&id=$goods.goods_id}#module">{$lang.goods_detail}</a></li>
+            <li><a href="{url app=goods&act=comments&id=$goods.goods_id}#module">{$lang.goods_comment}</a></li>
+            <li><a href="{url app=goods&act=saleslog&id=$goods.goods_id}#module">{$lang.sales_log}</a></li>
+            <li><a href="{url app=goods&act=qa&id=$goods.goods_id}#module">{$lang.qa}</a></li>
+        </ul>
+
+        <div class="option_box">
+            <div class="default">{$goods.description|escape:editor}</div>
+        </div>
+        <!--{if $goods.related_info.count gt 0}-->
+        <div class="module_currency">
+            <h2 class="common_title veins1">
+                <div class="ornament1"></div>
+                <div class="ornament2"></div>
+                <span class="ico1"><span class="ico2">{$lang.related_info}</span></span>
+            </h2>
+            <dl class="related_list">
+                <!--{foreach from=$goods.related_info.list item=app_data}-->
+                <!--{if $app_data.data and $app_data.app_type neq 'ECMALL'}-->
+                <dt><a href="{$app_data.app_url}">{$app_data.app_name}</a></dt>
+                <!--{foreach from=$app_data.data item=item}-->
+                <dd>{$item}</dd>
+                <!--{/foreach}-->
+                <!--{/if}-->
+                <!--{/foreach}-->
+            </dl>
+        </div>
+        <!--{/if}-->
+    </div>
+</div>
+{include file=footer.html}

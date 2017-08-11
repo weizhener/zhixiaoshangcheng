@@ -1,0 +1,15 @@
+
+<script type="text/javascript">
+    $(function() {
+        $('nav#menu-left').mmenu({
+            searchfield: true,
+            counters: true
+        });
+    });
+</script> 
+<div id="header">
+    <a href="#menu-left" class="ico_menu"><img src="{res file=images/nav_2.png}"></a>
+    <a href="{url app=store&id=$store.store_id}" class="logo"><img src="{$store.store_logo}"></a>
+    <a href="{url app=cart}" class="car"><img src="{res file=images/nav_4.png}"></a>
+    <a href="<!--{if $visitor.user_id}-->{url app=buyer_order}<!--{else}-->{url app=member&act=login&ret_url=$ret_url}<!--{/if}-->" class="user"><img src="{res file=images/nav_3.png}"></a>
+</div>

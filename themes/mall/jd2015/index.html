@@ -1,0 +1,41 @@
+{include file=header.html}
+<div  id="main" class="w-full">
+    <div id="page-home" class="w-full mb20">
+        <div class="col-1 relative w">
+            <div class="left" area="col-1-left" widget_type="area">
+                <!--{widgets page=index area=col-1-left}-->
+            </div>
+            <div class="right" area="col-1-right" widget_type="area">
+                <!--{widgets page=index area=col-1-right}-->
+                <div class="jd2015_register_login">
+                    <dl>
+                        <dt><img src="{res file=images/index_member_logo.png}" width="60" height="60"/></dt>
+                        <dd>
+                            <p>Hi! 你好</p>
+                            <p>去<em>会员中心</em>看看</p>
+                        </dd>
+                    </dl>
+                    <!--{if !$visitor.user_id}-->
+                    <a href="{url app=member&act=login&ret_url=$ret_url}">登录</a>
+                    <a href="{url app=member&act=register&ret_url=$ret_url}" class="register">注册</a>
+                    <a href="{url app=apply}">用户开店</a>
+                    <!--{else}-->
+                    <a href="{url app=member}">{$visitor.user_name|escape}</a>
+                    <a href="{url app=member&act=logout}"  class="register">{$lang.logout}</a>
+                    <!--{/if}-->
+                </div>
+            </div>
+        </div>
+        <div class="col-2" area="col-2" widget_type="area">
+            <!--{widgets page=index area=col-2}-->
+        </div>
+        <div class="col-3 w" area="col-3" widget_type="area">
+            <!--{widgets page=index area=col-3}-->
+        </div>
+        <div class="col-4 w" area="col-4" widget_type="area">
+            <!--{widgets page=index area=col-4}-->
+        </div>
+    </div>
+</div>
+
+{include file=footer.html}

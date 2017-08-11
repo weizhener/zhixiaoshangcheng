@@ -1,0 +1,41 @@
+{include file=member.header.html}
+<div class="content">
+    <div class="totline"></div>
+    <div class="botline"></div>
+    {include file=member.menu.html}
+    <div id="right">
+        {include file=member.curlocal.html}
+        <div class="submenu">
+        <ul class="tab">
+        	<li class="active first"><h2><a href="javascript:;">规则列表</a></h2></li>
+            <li class="normal"><h2><a href="index.php?app=my_oauth&act=add">添加规则</a></h2></li>
+        </ul>
+		</div>
+        <div class="wrap">
+            <div class="public_select table">
+                <table>
+                    <tr class="sep-row" height="20"><td colspan="8"></td></tr>
+                    <tr class="gray" >
+                        <th width="10%" style=" text-align:center;">规则名称</th>
+                        <th width="30%">网址</th>
+                        <th width="45%">调用网址</th>
+                        <th width="10%">操作</th>
+                    </tr>
+                    <tr class="sep-row"><td colspan="4"></td></tr>
+                    
+                    <!--{foreach from=$partners  name=_goods_f  item=list}-->
+					<tr class="line line-blue">
+                        <th width="10%">{$list.name}</th>
+                        <th width="30%">{$list.url}</th>
+                        <th width="45%">{$site_url}/index.php?app=wxoauth&store_id={$visitor.user_id}&oid={$list.id}</th>
+                        <th width="10%"><a href="index.php?app=my_oauth&act=add&id={$list.id}" >编辑</a> |  <a  href="index.php?app=my_oauth&act=drop&id={$list.id}" >删除</a></th>
+                    </tr>
+                    <!--{/foreach}-->
+                </table>
+            </div>
+        </div>
+        <div class="clear"></div>
+    </div>
+    <div class="clear"></div>
+</div>
+{include file=footer.html}

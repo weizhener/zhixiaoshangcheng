@@ -1,0 +1,61 @@
+{include file="header.html"}
+<script type="text/javascript" src="{lib file=ajax_tree_prop.js}" charset="utf-8"></script>
+<div id="rightTop">
+    <p>{$lang.goods_props}</p>
+    <ul class="subnav">
+        <li><span>{$lang.prop_list}</span></li>
+        <li><a class="btn1" href="index.php?app=props&amp;act=add">{$lang.add_props}</a></li>
+        <li><a class="btn1" href="index.php?app=gcategory">{$lang.distribute_props}</a></li>
+    </ul>
+</div>
+
+<div class="info2">
+   <form method="get">
+     <input type="hidden" name="app" value="props" />
+     <input type="hidden" name="act" value="batch_drop" />
+    <table  class="distinction">
+        <!--{if $prop_list}-->
+        <thead>
+        <tr class="tatr1">
+            <td class="w30"><input id="checkall_1" type="checkbox" class="checkall" /></td>
+            <td width="50%"><span class="all_checkbox"><label for="checkall_1">{$lang.checkall}</label></span>{$lang.prop_name} / {$lang.prop_value}</td>
+            <td>{$lang.sort_order}</td>
+            <td>{$lang.status}</td>
+            <td class="handler">{$lang.handler}</td>
+        </tr>
+        </thead>
+        <!--{/if}-->
+        <!-- {if $prop_list} --><tbody id="treet1"><!-- {/if} -->
+        <!--{foreach from=$prop_list item=prop}-->
+        <tr>
+            <td class="align_center w30"><input type="checkbox" class="checkitem" value="{$prop.pid}"  name="pid[]"/></td>
+            <td class="node" width="50%"><img src="templates/style/images/treetable/tv-expandable.gif" ectype="flex" status="open" fieldid="{$prop.pid}"><span>{$prop.name|escape}</span></td>
+            <td class="align_center"><span>{$prop.sort_order}</span></td>
+            <td class="align_center"><!--{if $prop.status}--><img src="templates/style/images/positive_enabled.gif" /><!--{else}--><img src="templates/style/images/positive_disabled.gif"/><!--{/if}--></td>
+            <td  width="200"><span><a href="index.php?app=props&amp;act=edit&amp;pid={$prop.pid}">{$lang.edit}</a>
+                |
+                <a href="javascript:if(confirm('{$lang.drop_confirm}'))window.location = 'index.php?app=props&amp;act=drop&amp;pid={$prop.pid}';">{$lang.drop}</a> | <a href="index.php?app=props&amp;act=add_value&amp;pid={$prop.pid}">{$lang.add_prop_value}</a></span>
+            </td>
+        </tr>  
+        <!--{foreachelse}-->
+        <tr class="no_data">
+            <td colspan="5">{$lang.no_data}</td>
+        </tr>
+        <!--{/foreach}-->
+        <!-- {if $prop_list} --></tbody><!-- {/if} -->
+        <tfoot>
+            <tr class="tr_pt10">
+            <!-- {if $prop_list} -->
+                <td class="align_center"><label for="checkall1"><input id="checkall_2" type="checkbox" class="checkall"></label></td>
+                <td colspan="4" id="batchAction">
+                    <span class="all_checkbox"><label for="checkall_2">{$lang.checkall}</label></span>&nbsp;&nbsp;
+                    <input class="formbtn batchButton" type="submit" value="{$lang.drop}" presubmit="confirm('你确定要删除这些数据么？删除后不可恢复');" />
+                </td>
+            <!--{/if}-->
+            </tr>
+        </tfoot>
+    </table>
+    </form>
+</div>
+
+{include file="footer.html"}

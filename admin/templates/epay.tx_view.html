@@ -1,0 +1,53 @@
+{include file="header.html"}
+<div id="rightTop">
+    <ul class="subnav" style="margin:0;">
+        <li><a class="btn1" href="index.php?app=epay">{$lang.epay_user}</a></li>
+        <li><a class="btn1" href="index.php?app=epay&act=money_add">{$lang.add_money}</a></li>
+        <li><a class="btn1" href="index.php?app=epay&act=money_log">{$lang.moneylog}</a></li>
+        <li><a class="btn1" href="index.php?app=epay&act=txlog">{$lang.txlog}</a></li>
+        <li><a class="btn1" href="index.php?app=epay&act=setting">{$lang.setting}</a></li>
+        <li><a class="btn1" href="index.php?app=epay&act=statistics">{$lang.statistics}</a></li>
+    </ul>
+</div>
+
+<div class="info">
+    <form method="post">
+        <table class="infoTable">
+            <tr>        
+                <th class="paddingT15">{$lang.user_name}:</th>
+                <td class="paddingT15 wordSpacing5">{$epaylog.user_name}&nbsp;&nbsp;<a href="index.php?app=epay&act=logs_user_shouru&user_name={$epaylog.user_name}"></a></td>
+            </tr>
+
+            <tr>
+                <th class="paddingT15">{$lang.tx_money}:</th>
+                <td class="paddingT15 wordSpacing5"><font color="#FF0000">{$epaylog.money}{$lang.yuan}</font>
+                    <input name="money" type="hidden" id="money" value="{$epaylog.money}" /></td>
+            </tr>
+            <tr>
+                <th class="paddingT15">{$lang.tx_add_time}:</th>
+                <td class="paddingT15 wordSpacing5">{$epaylog.add_time|date:Y-m-d H:i:s}</td>
+            </tr>
+            <tr>
+                <th class="paddingT15">{$lang.tx_xq_zhuanzhangchenggongjiaoyihao}</th>
+                <td class="paddingT15 wordSpacing5">
+                    <input name="order_id" type="text" id="order_id" value="{$epaylog.order_id}" size="30" />
+                </td>
+            </tr>
+            <tr>
+                <th class="paddingT15">{$lang.log_text}</th>
+                <td class="paddingT15 wordSpacing5">
+                    {$epaylog.log_text}
+                </td>
+            </tr>
+            <tr>
+                <th></th>
+                <td class="ptb20">
+                    <input class="formbtn" type="submit" name="Submit" value="{$lang.tx_xq_shenhe}" />
+                    <input class="formbtn" type="reset" name="Submit2" value="{$lang.reset}" />
+                </td>
+            </tr>
+
+        </table>
+    </form>
+</div>
+{include file="footer.html"}

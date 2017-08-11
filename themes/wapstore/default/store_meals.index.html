@@ -1,0 +1,157 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <base href="{$site_url}/" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+        {$page_seo}
+        <link href="{res file=css/common.css}" rel="stylesheet" type="text/css" />
+        <link href="{res file=css/store_meals.css}" rel="stylesheet" type="text/css" />
+        <script type="text/javascript" src="{res file=js/jquery-1.8.0.min.js}"></script>
+        <script type="text/javascript" src="{lib file=ecmall.js}" charset="utf-8"></script>
+        <script>
+            $(window).load(function() {
+                $('.flexslider').flexslider({
+                    animation: "slide"
+                });
+            });
+        </script>
+    </head>
+
+    <style>
+
+    </style>
+
+
+    <body>
+
+
+
+
+        <header class="meals-header">
+            <a class="header-back" href="{url app=default}">返回</a>
+            <div class="header-title">{$store.store_name|escape}</div>
+        </header>
+
+<script type="text/javascript" src="{lib file=kissy/build/kissy.js}"></script>
+<script type="text/javascript" src="{lib file=kissy/build/switchable/switchable-pkg.js}"></script>
+        <script type="text/javascript">
+            function addToCart(spec_id) {
+                var quantity = $("#cart_amount_input_" + spec_id).val();
+                var store_id = $("#store_id").val();
+
+                if (quantity == "" || quantity == "0" || quantity == null) {
+                    quantity = 1;
+                } else {
+                    quantity = parseInt(quantity) + 1;
+                }
+                change_quantity(store_id, spec_id, quantity);
+            }
+            function reduceToCart(spec_id) {
+                var quantity = $("#cart_amount_input_" + spec_id).val();
+                var store_id = $("#store_id").val();
+
+                if (quantity == "" || quantity == "0" || quantity == null) {
+                    quantity = 0;
+                } else {
+                    quantity = parseInt(quantity) - 1;
+                }
+                change_quantity(store_id, spec_id, quantity);
+            }
+            function change_quantity(store_id, spec_id, quantity)
+            {
+                $.getJSON('index.php?app=cart&act=meals_cart&store_id=' + store_id + '&spec_id=' + spec_id + '&quantity=' + quantity, function(result) {
+                    if (result.done) {
+                        $('#cart_amount_input_' + spec_id).val(quantity);
+
+                        if (result.retval.carts) {
+                            $('#meals_kinds').html(result.retval.carts.kinds);
+                            $('#meals_quantity').html(result.retval.carts.quantity);
+                            $('#meals_amount').html(result.retval.carts.amount);
+                        } else {
+                            $('#meals_kinds').html("0");
+                            $('#meals_quantity').html("0");
+                            $('#meals_amount').html("0");
+                        }
+
+
+                    }
+                    else {
+                        //更新失败
+                        alert(result.msg);
+                    }
+                });
+            }
+            function clearCart()
+            {
+                var store_id = $("#store_id").val();
+                $.getJSON('index.php?app=cart&act=meals_clear&store_id=' + store_id, function(result) {
+                    if (result.done) {
+                        $('#cartShowDiv').html(result.retval.cartShowDiv);
+                        $('.i-num').html(0);
+                    }
+                    else {
+                        //更新失败
+                        alert(result.msg);
+                    }
+                });
+            }
+            
+            
+    KISSY.ready(function (S) {
+        var tabs = new S.Tabs('.meals-content', {
+            aria: false
+        });
+    });
+
+        </script>
+
+
+        <input id="store_id" type="hidden" value="{$store.store_id}" name="store_id"/>
+
+        <div class="meals-content">
+            <ul class="ks-switchable-nav">
+                <!--{foreach from=$waimai item=waimai_info name=fe_waimai_info}-->
+                <li <!--{if $smarty.foreach.fe_waimai_info.first}-->class="ks-active"<!--{/if}-->>{$waimai_info.value|escape}<strong>({$waimai_info.count|escape})</strong></li>
+                <!--{/foreach}-->
+            </ul>
+            <div class="ks-switchable-content">
+                <!--{foreach from=$waimai item=waimai_info name=fe_waimai_info}-->
+                <ul <!--{if $smarty.foreach.fe_waimai_info.first}-->style="display: block;"<!--{/if}-->>
+                    <!--{foreach from=$waimai_info.goods_list item=goods name=fe_goods}-->
+                    <li class="clearfix">
+                        <div class="p_img">
+                            <img src="{$goods.default_image}" />
+                        </div>
+                        <div class="p_main">
+                            <p class="p_name">{$goods.goods_name|escape}</p>
+                            <p class="p_sales"><span>库存:{$goods.stock|escape}</span><span>销量:{$goods.sales|escape}</span></p>
+                            <p class="p_footer">
+                                <span class="p_price">{$goods.price|price}</span>
+                                <span class="count-panel">
+                                    <span class="place-holder"><a href="javascript:void(0);" onclick="reduceToCart({$goods.spec_id});" class="i i-plus"></a></span>
+                                    <input type="text" class="result" onblur="" id="cart_amount_input_{$goods.spec_id|escape}" value="{$goods.quantity|default:0}"/>
+                                    <span class="place-holder"><a href="javascript:void(0);" onclick="addToCart({$goods.spec_id});" class="i i-add"></a></span>
+                                </span>
+                            </p>
+                        </div>
+                    </li>
+                    <!--{/foreach}-->
+                </ul>
+                <!--{/foreach}-->
+            </div>
+        </div>
+        
+        
+
+
+        <div class="meals-footer">
+            <span id="meals_kinds">{$meals_carts.kinds|default:0}</span>类商品,<span id="meals_quantity">{$meals_carts.quantity|default:0}</span>份,总价<span id="meals_amount">{$meals_carts.amount|default:0}元</span>
+            <a href="{url app=order&goods=cart&store_id=$store.store_id}" class="buy_now">确认下单</a>
+        </div>
+
+
+    </body>
+</html>

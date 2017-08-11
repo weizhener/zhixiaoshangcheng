@@ -1,0 +1,71 @@
+<footer id="copyright">
+
+    <section class="footer-t">
+
+        <div class="fl" id="is_login">
+
+            <!--{if !$visitor.user_id}-->
+
+            <a href="{url app=member&act=login&ret_url=$ret_url}">{$lang.login}</a><a href="{url app=member&act=register&ret_url=$ret_url}">{$lang.register}</a>
+
+            <!--{else}-->
+
+            <span class="mr10">{$visitor.user_name|escape}</span><a href="{url app=member&act=logout}">{$lang.logout}</a>
+
+            <!--{/if}--> 
+
+        </div>
+
+        <a href="#" class="retum">回到顶部<b></b></a>
+
+    </section>
+
+    {$async_sendmail}
+
+</footer>
+
+
+
+<div id="footer_nav">
+
+    <ul>
+
+        <li>
+
+            <a href="{url app=default}"><span class="iconfont">&#xf00a0;</span><br/>首页</a>
+
+        </li>
+
+        <li>
+
+            <a href="{url app=category}"><span class="iconfont">&#xf00a6;</span><br/>分类</a>
+
+        </li>
+
+        <li>
+            <a href="{url app=member}"><span class="iconfont">&#xf00a2;</span><br/>我的商城</a>
+            
+
+        </li>
+
+        <li>
+
+            <a href="{url app=cart}"><span class="iconfont">&#xf009f;</span><br/>购物车</a>
+
+        </li>
+
+    </ul>
+
+</div>
+
+<script language="javascript">
+$(document).ready(function() {//
+  window.yutebi.showSource('yutebi'); 
+});
+function setyincang(){
+  $("#footer_nav").hide();
+  $("#copyright").html("");
+}
+</script>
+
+</html>

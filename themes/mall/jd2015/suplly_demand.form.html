@@ -1,0 +1,259 @@
+{include file=member.header.html}
+<style>
+.add_wrap .assort .txt{ float:left; padding:0; line-height:26px;}
+.assort h3,.add_bewrite h3{ width:70px; text-align:right; float:left; padding-right:10px; font-size:12px; font-weight:normal; line-height:26px; color:#646665;}
+.add_wrap{ margin-bottom:0;}
+.add_bewrite{ padding-top:0;}
+.editor{ margin:0;}
+.add_bewrite .add_wrap{float:left; width:668px;}
+</style>
+<script type="text/javascript">
+//<!CDATA[
+function add_uploadedfile(file_data)
+{
+        $('#desc_images').append('<li file_name="'+ file_data.file_name +'" file_path="'+ file_data.file_path +'" ectype="handle_pic" file_id="'+ file_data.file_id +'"><input type="hidden" name="desc_file_id[]" value="'+ file_data.file_id +'"><div class="pic" style="z-index: 2;"><img src="{$site_url}/'+ file_data.file_path +'" width="50" height="50" alt="'+ file_data.file_name +'" /></div><div ectype="handler" class="bg" style="z-index: 3;display:none"><img src="{$site_url}/'+ file_data.file_path +'" width="50" height="50" alt="'+ file_data.file_name +'" /><p class="operation"><a href="javascript:void(0);" class="cut_in" ectype="insert_editor" ecm_title="{$lang.insert_editor}"></a><span class="delete" ectype="drop_image" ecm_title="{$lang.drop}"></span></p><p class="name">'+ file_data.file_name +'</p></div></li>');
+        trigger_uploader();
+        if(EDITOR_SWFU.getStats().files_queued == 0){
+                window.setTimeout(function(){
+                        $('#editor_uploader').hide();
+                },5000);
+        }
+}
+function drop_image(file_id)
+{
+    if (confirm(lang.uploadedfile_drop_confirm))
+        {
+            var url = SITE_URL + '/index.php?app=supply_demand&act=drop_uploadedfile';
+            $.getJSON(url, {'file_id':file_id}, function(data){
+                if (data.done)
+                {
+                    $('*[file_id="' + file_id + '"]').remove();
+                }
+                else
+                {
+                    alert(data.msg);
+                }
+            });
+        }
+}
+
+$(function(){
+	sdcategoryInit("sdcategory");
+	regionInit("region");
+    $('#suplly_demand_form').validate({
+        errorPlacement: function(error, element){
+            $(element).next('.field_notice').hide();
+            $(element).after(error);
+        },
+        success       : function(label){
+            label.addClass('validate_right').text('OK!');
+        },
+        onkeyup : false,
+        rules : {
+			cate_id : {
+                required   : true
+            },
+			title : {
+                required   : true
+            },
+			region_id : {
+                required   : true
+            },
+            phone      : {
+                required     : true
+            },
+            name      : {
+                required   :true
+            }
+        },
+        messages : {
+            cate_id       : {
+                required     : '{$lang.not_null}'
+            },
+            title      : {
+                required:  '{$lang.not_null}'
+            },
+			region_id      : {
+                required:  '{$lang.not_null}'
+            },
+			phone      : {
+                required:  '{$lang.not_null}'
+            },
+			name      : {
+                required:  '{$lang.not_null}'
+            }
+        }
+    });
+	$("[name='type']").change(function(){
+		if(this.value==1){
+			$("[ectype='demand']").hide();
+			$("[ectype='supply']").show();
+		}
+		else{
+			$("[ectype='demand']").show();
+			$("[ectype='supply']").hide();
+		}
+	});
+	
+
+});
+//]]>
+</script>
+{$editor_upload}
+{$build_editor}
+<div class="content">
+  <div class="totline"></div>
+  <div class="botline"></div>
+  {include file=member.menu.html}
+  <div id="right">
+     {include file=member.submenu.html}
+        <div class="wrap">
+            <div class="public">
+                <form method="post" id="suplly_demand_form" enctype="multipart/form-data">
+                    <div class="information_index">
+                        <div class="add_wrap">
+                        	<div class="assort">
+                            	<h3>{$lang.type}:</h3>
+                            	<p class="txt">
+                                <input type="radio" name="type" {if $info.type eq 1 or $info.type eq 0}checked{/if} value="1" />
+          <label>{$lang.supply}</label>&nbsp;&nbsp;
+          <input type="radio" name="type" value="2" {if $info.type eq 2}checked{/if} />
+          <label>{$lang.demand}</label>
+                                <span class="red">*</span>
+                                </p>
+                            </div>
+                            <div class="assort">
+                            	<h3>{$lang.cate}:</h3>
+                            	<p class="select" id="sdcategory">
+                                	<!-- {if $info.cate_id} -->
+                                    <span>{$info.cate_name|escape}</span>
+                                    <input type="button" value="{$lang.edit}" class="edit_gcategory" />
+                                    <select style="display:none">
+                                        <option>{$lang.select_pls}</option>
+                                        {html_options options=$sdcategories}
+                                    </select>
+                                    <!-- {else} -->
+                                    <select>
+                                        <option>{$lang.select_pls}</option>
+                                        {html_options options=$sdcategories}
+                                    </select>
+                                    <!-- {/if} -->
+                                    <input type="hidden" id="cate_id" name="cate_id" value="{$info.cate_id}" class="mls_sdid" />
+                                    <input type="hidden" id="cate_name" name="cate_name" value="{$info.cate_name}" class="mls_sdnames" />
+                                    <span class="red">*</span><span class="field_notice">{$lang.sdcate_desc}</span>
+                                </p>
+                            </div>
+                            <div class="assort" ectype="demand" style="display:none;">
+                            	<h3>{$lang.demand_price}:</h3>
+                                <p class="txt">
+                                <input type="text" class="text width_short" name="price_from" value="{$info.price_from}"/>
+                                -
+                                <input type="text" class="text width_short" name="price_to" value="{$info.price_to}"/>&nbsp;&nbsp;{$lang.yuan}
+                                </p>
+                            </div>
+                            <div class="assort" ectype="supply">
+                            	<h3>{$lang.price}:</h3>
+                                <p class="txt">
+                                <input type="text" name="price" value="{$info.price}" class="text width_short" />&nbsp;&nbsp;{$lang.yuan}</p>
+                            </div>
+                            <div class="assort">
+                            	<h3>{$lang.title}:</h3>
+                                <p class="txt">
+                                <input type="text" name="title" value="{$info.title|escape}" class="text width7" /><span class="red">*</span></p>
+                            </div>
+                            <div class="assort">
+                            	<h3>{$lang.region}:</h3>
+                            	<p class="select" id="region">
+
+                                    <!-- {if $info.region_id} -->
+                                    <span>{$info.region_name|escape}</span>
+                                    <input type="button" value="{$lang.edit}" class="edit_region" />
+                                    <select style="display:none">
+                                      <option>{$lang.select_pls}</option>
+                                      {html_options options=$regions}
+                                    </select>
+                                    <!-- {else} -->
+                                    <select>
+                                      <option>{$lang.select_pls}</option>
+                                      {html_options options=$regions}
+                                    </select>
+                                    <!-- {/if} -->
+                                    <input type="hidden" name="region_id" value="{$info.region_id}" class="mls_id" />
+                                    <input type="hidden" name="region_name" value="{$info.region_name|escape}" class="mls_names" />
+                                    <span class="red">*</span>
+                                </p>
+                            </div>
+                            <div class="assort">
+                            	<h3>{$lang.phone}:</h3>
+                                <p class="txt">
+                                <input type="text" name="phone" value="{$info.phone|escape}" class="text width5" /> <span class="red">*</span></p>
+                            </div>
+                            <div class="assort">
+                            	<h3>{$lang.name}:</h3>
+                                <p class="txt">
+                                <input type="text" name="name" value="{$info.name|escape}" class="text width5" /> <span class="red">*</span></p>
+                            </div>
+                        </div>
+
+                        <div class="add_bewrite">
+                            <h3>{$lang.details}:</h3>
+                            <div class="add_wrap">
+                                <div class="editor">
+                                    <div>
+                                    <textarea name="content" id="description"  style="width:100%; height:300px;">
+                                    {$info.content|escape}
+                                    </textarea>
+                                    </div>
+                                    {if $is_store}
+                                    <div style=" position: relative; top: 10px; z-index: 5;"><a class="btn3" id="open_editor_uploader">{$lang.uploadedfile}</a>
+                                        <div class="upload_con" id="editor_uploader" style="display:none">
+                                            <div class="upload_con_top"></div>
+                                            <div class="upload_wrap">
+
+                                                <ul>
+                                                    <li>
+                                                        <div id="divSwfuploadContainer">
+                                                            <div id="divButtonContainer">
+                                                                <span id="editor_upload_button"></span>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                    <li><iframe src="index.php?app=comupload&act=view_iframe&id={$id}&belong={$belong}&instance=desc_image" width="86" height="30" scrolling="no" frameborder="0"></iframe></li>
+                                                    <li id="open_editor_remote" class="btn2">{$lang.rem_upload}</li>
+                                                </ul>
+                                                <div id="editor_remote" class="upload_file" style="display:none">
+                                                <iframe src="index.php?app=comupload&act=view_remote&id={$id}&belong={$belong}&instance=desc_image" width="272" height="39" scrolling="no" frameborder="0"></iframe>
+                                                </div>
+                                                <div id="editor_upload_progress"></div>
+                                                <div class="upload_txt">
+                                                    <span>{$lang.note_for_upload}</span>
+                                                </div>
+
+                                            </div>
+                                            <div class="upload_con_bottom"></div>
+                                        </div>
+                                    </div>
+                                    <ul id="desc_images" class="preview">
+                                        
+                                    </ul>
+                                    {/if}
+                                    <div class="clear"></div>
+                                </div>
+                                <div class="issuance"><input type="submit" class="btn" value="{$lang.submit}" /></div>
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="wrap_bottom"></div>
+        </div>
+        <div class="clear"></div>
+        <div class="adorn_right1"></div>
+        <div class="adorn_right2"></div>
+        <div class="adorn_right3"></div>
+        <div class="adorn_right4"></div>
+    </div>
+    <div class="clear"></div>
+</div>
+{include file=footer.html}

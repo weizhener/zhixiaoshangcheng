@@ -1,0 +1,121 @@
+{include file=header.html}
+<script language="JavaScript">
+$(function(){
+	var cate_id = '{$smarty.get.cate_id}';
+	if(cate_id)
+	{
+		$("ul[ectype='cate'] a").removeClass('selected');
+		$("ul[ectype='cate'] a#"+cate_id).addClass('selected');
+	}
+	
+	$("ul[ectype='cate'] a").click(function(){
+			replaceParam('cate_id', this.id);
+			return false;
+		});
+	$("ul[ectype='cate'] a.all").click(function(){
+			dropParam('cate_id');
+			return false;
+		});
+	})
+/* 替换参数 */
+function replaceParam(key, value)
+{
+    var params = location.search.substr(1).split('&');
+    var found  = false;
+    for (var i = 0; i < params.length; i++)
+    {
+        param = params[i];
+        arr   = param.split('=');
+        pKey  = arr[0];
+        if (pKey == 'page')
+        {
+            params[i] = 'page=1';
+        }
+        if (pKey == key)
+        {
+            params[i] = key + '=' + value;
+            found = true;
+        }
+    }
+    if (!found)
+    {
+        value = transform_char(value);
+        params.push(key + '=' + value);
+    }
+    location.assign(SITE_URL + '/index.php?' + params.join('&'));
+}
+
+/* 删除参数 */
+function dropParam(key)
+{
+    var params = location.search.substr(1).split('&');
+    for (var i = 0; i < params.length; i++)
+    {
+        param = params[i];
+        arr   = param.split('=');
+        pKey  = arr[0];
+        if (pKey == 'page')
+        {
+            params[i] = 'page=1';
+        }
+        if (pKey == key)
+        {
+            params.splice(i, 1);
+        }
+    }
+    location.assign(SITE_URL + '/index.php?' + params.join('&'));
+}
+</script>
+<div class="groupbuylist warp-all clearfix">
+	<div class="inner mb20">
+         <div area="top_banner" widget_type="area">
+			<!--{widgets page=ju area=top_banner}-->
+         </div>
+      </div>
+      <div class="group-nav">
+            <!-- 分类过滤列表 -->
+            <ul ectype="cate" class="clearfix">
+              <li><a href="javascript:;" class="all selected">{$lang.all_groupbuy}</a></li>
+              <!--{foreach from=$cate_list item=cate}-->
+              <li><a href="javascript:;" id="{$cate.cate_id}">{$cate.cate_name}</a> </li>
+              <!--{/foreach}-->
+           </ul>
+      </div>  
+    <!--{if !$smarty.get.cate_id}-->
+    <div>
+        {include file=page.group.html}
+    </div>
+    <!--{/if}-->
+	<div class="warp-all group-list clearfix">
+          <ul class="clearfix">
+                <!--{foreach from=$groupbuy_list item=groupbuy name=group}-->
+                <li {if $smarty.foreach.group.iteration % 4 eq 0} style=" margin-right:2px;"{/if}>
+                	<h2><a title="{$groupbuy.group_name}" href="{url app=ju&amp;act=show&amp;id=$groupbuy.group_id}" target="_blank">{$groupbuy.group_name}</a></h2>
+                    <div class="box">
+                      <div class="pic">
+                        <span>
+                            <a title="{$groupbuy.group_name}" href="{url app=ju&amp;act=show&amp;id=$groupbuy.group_id}" target="_blank">
+                                <img {if $groupbuy.image} src="{$groupbuy.image}" width="285" height="190" {else} src="{$groupbuy.default_image}" width="190" height="190"{/if} alt="{$groupbuy.goods_name}" />
+                            </a>
+                        </span>
+                      </div>
+                      <div class="intro"><span class="l">原价:&nbsp;<del>{$groupbuy.price|price}</del>&nbsp;&nbsp;&nbsp;优惠:&nbsp;{$groupbuy.discount}%</span><span class="r">已购买<em><strong>{if $groupbuy.all_count} {$groupbuy.all_count} {else} 0 {/if}</strong></em>件</span></div>
+                      <div class="intro-bg"></div>
+                    </div>
+                            <div class="buy-now"> <span class="price">{$groupbuy.group_price|price}</span> <a href="{url app=ju&amp;act=show&amp;id=$groupbuy.group_id}" style="cursor:pointer" target="_blank"><span></span></a> </div>
+                </li>
+                <!--{/foreach}-->
+           </ul>
+   <!--{if !$groupbuy_list}-->
+   <div class="no_groupbuy">
+        <p class="pic">没有团购信息</p>
+    </div>
+   <!--{/if}-->
+</div>
+    <!--{if !$smarty.get.cate_id}-->
+    <div class="warp-all" style="display:block; overflow:hidden;">
+         {include file=page.group.html}
+    </div>
+    <!--{/if}-->
+</div>
+{include file=footer.html}

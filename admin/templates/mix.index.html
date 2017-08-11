@@ -1,0 +1,68 @@
+{include file="header.html"}
+<div id="rightTop">
+    <p>{$lang.mix}</p>
+</div>
+
+<div class="mrightTop">
+    <div class="fontl">
+        <form method="get" style="float:left;" name="search_form">
+            <div style="float:left;">
+                <input type="hidden" name="app" value="mix" />
+                {$lang.mix_name}:
+                <input class="queryInput" type="text" name="mix_name" value="{$smarty.get.mix_name|escape}" />
+                {$lang.store_name}:
+                <input class="queryInput" type="text" name="store_name" value="{$smarty.get.store_name|escape}" />
+            </div>
+            <div style="float:left;">
+
+                <input type="submit" class="formbtn" value="{$lang.query}" />
+                <!--{if $query.mix_name or $query.store_name}-->
+                <a class="formbtn1" href="index.php?app=mix">{$lang.cancel_query}</a>
+                <!--{/if}-->
+            </div>
+        </form>
+    </div>
+    <div class="fontr">{include file=page.top.html}</div>
+</div>
+<div class="tdare">
+    <table width="100%" cellspacing="0" class="dataTable">
+        <!--{if $mix_list}-->
+        <tr class="tatr1">
+            <td width="20" class="firstCell"><input type="checkbox" class="checkall" /></td>
+            <td width="15%">{$lang.mix_name}</td>
+            <td width="20%">{$lang.store_name}</td>
+            <td width="30%">{$lang.mix_desc}</td>
+            <td width="10%" class="table-center">{$lang.goods_count}</td>
+            <td class="table-center">{$lang.handler}</td>
+        </tr>
+        <!--{/if}-->
+        <!--{foreach from=$mix_list item=mix}-->
+        <tr class="tatr2">
+            <td class="firstCell"><input type="checkbox" class="checkitem" value="{$mix.mix_id}"/></td>
+            <td>{$mix.mix_name|escape}</td>
+            <td>{$mix.store_name|escape}</td>
+            <td>{$mix.mix_desc|nl2br}</td>
+            <td class="table-center">{$mix.goods_count|default:0}</td>
+            <td class="table-center">
+                <a href="{url app=mix&act=drop&id=$mix.mix_id}" >{$lang.drop}</a> |
+                <a href="{url app=mix&act=view_goods&amp;id=$mix.mix_id}">{$lang.view_goods_mix}</a>
+            </td>
+        </tr>
+        <!--{foreachelse}-->
+        <tr class="no_data info">
+            <td colspan="8">{$lang.no_data}</td>
+        </tr>
+        <!--{/foreach}-->
+    </table>
+    <!--{if $mix_list}-->
+    <div id="dataFuncs">
+        <div id="batchAction" class="left paddingT15">
+            <input class="formbtn batchButton" type="button" value="{$lang.drop}" name="id" uri="index.php?app=mix&act=drop&ret_page={$page_info.curr_page}" presubmit="confirm('{$lang.drop_confirm}')" />
+        </div>
+        <div class="pageLinks">{include file=page.bottom.html}</div>
+    </div>
+    <!--{/if}-->
+    <div class="clear"></div>
+</div>
+{include file="footer.html"}
+

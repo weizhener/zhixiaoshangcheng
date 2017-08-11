@@ -1,0 +1,131 @@
+{include file=member.header.html}
+<link href="{res file=css/callcenter.css}" rel="stylesheet" type="text/css" />
+<script>
+    $(function() {
+        $('#callcenter_form').find('a[nctype="del"]').live('click', function() {
+            $(this).parents('div:first').remove();
+        });
+    });
+    function add_service(param) {
+        if (param == 'pre') {
+            var text = '售前';
+        } else if (param == 'after') {
+            var text = '售后';
+        }
+        obj = $('dl[nctype="' + param + '"]').children('dd').find('p');
+        len = $('dl[nctype="' + param + '"]').children('dd').find('div').length;
+        key = 'k' + len + Math.floor(Math.random() * 100);
+        $('<div class="ncs-message-list"></div>').append('<span class="name tip" title="使用默认值或修改您自己的客服名称"><input type="text" class="text w60" value="' + text + len + '" name="' + param + '[' + key + '][name]" /></span>')
+                .append('<span class="tool tip" title="请选择即时通讯工具类型"><select name="' + param + '[' + key + '][type]"><option class="" value="0">-请选择-</option><option value="1">QQ</option><option value="2">旺旺</option></select></span>')
+                .append('<span class="number tip" title="根据您所选择的即时通讯工具类型输入正确的用户账号"><input class="text w180" type="text" name="' + param + '[' + key + '][num]" /></span>')
+                .append('<span class="del"><a nctype="del" href="javascript:void(0);" class="ncu-btn2">删除</a></span>')
+                .insertBefore(obj);
+    }
+</script>
+<div class="content">
+    <div class="totline"></div><div class="botline"></div>
+    {include file=member.menu.html}
+    <div id="right">
+        {include file=member.submenu.html}
+        <div class="wrap">
+            <div class='callcenter'>
+                <div class="ncu-form-style">
+                    <div class="ncm-notes">
+                        <h3>说明：</h3>
+                        <ul>
+                            <li>客服信息需要填写完整，不完整信息将不会被保存。</li>
+                        </ul>
+                    </div>
+                    <form method="post"  id="callcenter_form"  class="ncs-message">
+                        <dl nctype="pre" class="pb20">
+                            <dt>售前客服：</dt>
+                            <dd>
+                                <div class="ncs-message-title"><span class="name">客服名称</span><span class="tool">客服工具</span><span class="number">客服账号</span></div>
+                                <!--{foreach from=$store.pre_connects item=pre_connect name=fe_pre_connect}-->
+                                <div class="ncs-message-list">
+                                    <span class="name tip" title="使用默认值或修改您自己的客服名称">
+                                        <input type="text" class="text w60" value="{$pre_connect.name|escape}" name="pre[{$smarty.foreach.fe_pre_connect.iteration}][name]" maxlength="10">
+                                    </span><span class="tool tip" title="请选择即时通讯工具类型">
+                                        <select name="pre[{$smarty.foreach.fe_pre_connect.iteration}][type]">
+                                            <option value="0">-请选择-</option>
+                                            <option value="1" {if $pre_connect.type eq '1'}selected{/if}>QQ</option>
+                                            <option value="2" {if $pre_connect.type eq '2'}selected{/if}>旺旺</option>
+                                        </select>
+                                    </span><span class="number tip" title="根据您所选择的即时通讯工具类型输入正确的用户账号">
+                                        <input name="pre[{$smarty.foreach.fe_pre_connect.iteration}][num]" type="text" class="text w180" maxlength="25" value="{$pre_connect.num|escape}">
+                                    </span><span class="del"><a nctype="del" href="javascript:void(0);" class="ncu-btn2">删除</a></span>
+                                </div>
+                                <!-- {foreachelse} -->
+                                <div class="ncs-message-list">
+                                    <span class="name tip" title="使用默认值或修改您自己的客服名称">
+                                        <input type="text" class="text w60" value="售前1" name="pre[1][name]" maxlength="10">
+                                    </span><span class="tool tip" title="请选择即时通讯工具类型">
+                                        <select name="pre[1][type]">
+                                            <option value="0">-请选择-</option>
+                                            <option value="1">QQ</option>
+                                            <option value="2">旺旺</option>
+                                        </select>
+                                    </span><span class="number tip" title="根据您所选择的即时通讯工具类型输入正确的用户账号">
+                                        <input name="pre[1][num]" type="text" class="text w180" maxlength="25">
+                                    </span><span class="del"><a nctype="del" href="javascript:void(0);" class="ncu-btn2">删除</a></span>
+                                </div>
+                                <!-- {/foreach} -->
+                                
+                                
+                                <p><span><a href="javascript:void(0);" onclick="add_service('pre');" class="ncu-btn6 mt10">添加客服</a></span></p>
+                            </dd>
+                        </dl>
+                        <dl nctype="after" class="mt20 pb20">
+                            <dt>售后客服：</dt>
+                            <dd>
+                                <div class="ncs-message-title"><span class="name">客服名称</span><span class="tool">客服工具</span><span class="number">客服账号</span></div>
+                                
+                                <!--{foreach from=$store.after_connects item=after_connect name=fe_after_connect}-->
+                                <div class="ncs-message-list">
+                                    <span class="name tip" title="使用默认值或修改您自己的客服名称">
+                                        <input type="text" class="text w60" value="{$after_connect.name|escape}" name="after[{$smarty.foreach.fe_after_connect.iteration}][name]" maxlength="10">
+                                    </span><span class="tool tip" title="请选择即时通讯工具类型">
+                                        <select name="after[{$smarty.foreach.fe_after_connect.iteration}][type]">
+                                            <option value="0">-请选择-</option>
+                                            <option value="1" {if $after_connect.type eq '1'}selected{/if}>QQ</option>
+                                            <option value="2" {if $after_connect.type eq '2'}selected{/if}>旺旺</option>
+                                        </select>
+                                    </span><span class="number tip" title="根据您所选择的即时通讯工具类型输入正确的用户账号">
+                                        <input type="text" class="text w180" name="after[{$smarty.foreach.fe_after_connect.iteration}][num]" maxlength="25" value='{$after_connect.num|escape}'>
+                                    </span><span><a nctype="del" href="javascript:void(0);" class="ncu-btn2">删除</a></span> 
+                                </div>
+                                <!-- {foreachelse} -->
+                                <div class="ncs-message-list">
+                                    <span class="name tip" title="使用默认值或修改您自己的客服名称">
+                                        <input type="text" class="text w60" value="售后1" name="after[1][name]" maxlength="10">
+                                    </span><span class="tool tip" title="请选择即时通讯工具类型">
+                                        <select name="after[1][type]">
+                                            <option value="0">-请选择-</option>
+                                            <option value="1">QQ</option>
+                                            <option value="2">旺旺</option>
+                                        </select>
+                                    </span><span class="number tip" title="根据您所选择的即时通讯工具类型输入正确的用户账号">
+                                        <input type="text" class="text w180" name="after[1][num]" maxlength="25">
+                                    </span><span><a nctype="del" href="javascript:void(0);" class="ncu-btn2">删除</a></span> 
+                                </div>
+                                <!-- {/foreach} -->
+                                
+                                <p><span><a href="javascript:void(0);" onclick="add_service('after');" class="ncu-btn6 mt10">添加客服</a></span></p>
+                            </dd>
+                        </dl>
+                        <dl class="bottom">
+                            <dt>&nbsp;</dt>
+                            <dd>
+                                <input type="submit" class="submit" value="提交">
+                            </dd>
+                        </dl>
+                    </form>
+                </div>
+            </div>
+            <div class="wrap_bottom"></div>
+        </div>
+        <div class="clear"></div>
+    </div>
+    <div class="clear"></div>
+</div>
+{include file=footer.html}

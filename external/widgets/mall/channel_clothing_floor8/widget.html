@@ -1,0 +1,76 @@
+<div class="channel_clothing_floor8 w clearfix">
+    <div class="mt">
+        <span>{$options.model_name}</span>
+    </div>
+    <div class="mc w">
+        <div class="left">
+            <a href="{$options.ad1_link_url}" class="img0" target="_blank">
+                <img src="{$options.ad1_image_url}" width="239" height="482">
+            </a>
+            <a href="{$options.ad2_link_url}" class="img1" target="_blank">
+                <img src="{$options.ad2_image_url}" width="239" height="241">
+            </a>
+            <a href="{$options.ad3_link_url}" class="img2" target="_blank">
+                <img src="{$options.ad3_image_url}" width="239" height="241">
+            </a>
+            <a href="{$options.ad4_link_url}" class="img3" target="_blank">
+                <img src="{$options.ad4_image_url}" width="239" height="241">
+            </a>
+            <div class="goods">
+                <div class="tag-list">
+                    <dl class="fore1">
+                        <dt>
+                            <strong>{$options.subtitle1_name}</strong>
+                        </dt>
+                        <dd>
+                            <!--{foreach from=$widget_data.cates_1 item=cate name=fe_cate}-->
+                            <!--{if $smarty.foreach.fe_cate.iteration le 10}-->                
+                                 <a href="{url app=search&cate_id=$cate.cate_id}" target="_blank">{$cate.cate_name}</a>
+                            <!--{/if}-->
+                            <!--{/foreach}-->
+                        </dd>
+                    </dl>
+                    <dl class="fore2">
+                        <dt>
+                            <strong>{$options.subtitle2_name}</strong>
+                        </dt>
+                        <dd>
+                            <!--{foreach from=$widget_data.cates_2 item=cate name=fe_cate}-->
+                            <!--{if $smarty.foreach.fe_cate.iteration le 9}-->                
+                                 <a href="{url app=search&cate_id=$cate.cate_id}" target="_blank">{$cate.cate_name}</a>
+                            <!--{/if}-->
+                            <!--{/foreach}-->
+                            
+                        </dd>
+                    </dl>
+                </div>
+            </div>
+        </div>
+            
+        <div class="mid">
+            <a href="{$options.ad5_link_url}" class="img4" target="_blank">
+                <img src="{$options.ad5_image_url}" width="239" height="482">
+            </a>
+            <a href="{$options.ad6_link_url}" class="img5" target="_blank">
+                <img src="{$options.ad6_image_url}" width="239" height="482">
+            </a>
+            <a href="{$options.ad7_link_url}" class="img6" target="_blank">
+                <img src="{$options.ad7_image_url}" width="480" height="241">
+            </a>
+            
+        </div>
+        
+        <div class="right">
+            <a href="{$options.ad8_link_url}" class="img7" target="_blank">
+                <img src="{$options.ad8_image_url}" width="239" height="241">
+            </a>
+            <a href="{$options.ad9_link_url}" class="img8" target="_blank">
+                <img src="{$options.ad9_image_url}" width="239" height="241">
+            </a>
+            <a href="{$options.ad10_link_url}" class="img9" target="_blank">
+                <img src="{$options.ad10_image_url}" width="239" height="241">
+            </a>
+            
+        </div>
+    </div>
+</div>

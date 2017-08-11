@@ -1,0 +1,27 @@
+{include file="header.html"}    
+<div class="mb-head">
+    <a href="{url app=default}" class="l_b">首页</a>
+    <div class="tit">店铺</div>
+    <a href="javascript" class="r_b"></a>
+</div>            
+<div class="radius">
+    <ul>
+        <!--{foreach from=$stores item=store}-->
+        <li style="padding: 10px;border-top: none;overflow: hidden;{if $smarty.foreach.fe_goods.iteration neq 1}border-top: 1px solid #DED6C9;{/if}line-height: 1.6em;">
+            <a href="{url app=store&id=$store.store_id}" style="display: block;overflow: hidden;lear: both;padding: .22em 0;">
+                <span class="mu-tmb" style="float:left;margin-right:8px;">
+                    <img src="{$store.store_logo}" alt="{$store.store_name|escape}" width="100" height="100"/>
+                </span>
+                <span>{$store.store_name|escape}</span>
+                <span class="red" style="display: block;">{$store.user_name|escape}</span>
+                <span>{$store.region_name|escape}<img src="{$store.credit_image}"/></span>
+            </a>
+        </li>
+        <!--{foreachelse}-->
+        暂无此类商品
+        <!--{/foreach}-->
+    </ul>
+</div>
+{include file='page.bottom.html'}
+
+{include file="footer.html"}

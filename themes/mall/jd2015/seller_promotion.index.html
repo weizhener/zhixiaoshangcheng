@@ -1,0 +1,94 @@
+{include file=member.header.html}
+<style>
+.member_no_records {border-top: 0px !important;}
+.table td{ padding-left: 5px; }
+</style>
+<div class="content">
+  <div class="totline"></div>
+  <div class="botline"></div>
+  {include file=member.menu.html}
+  <div id="right">
+  	{include file=member.curlocal.html}
+    {include file=member.submenu.html}
+        <div class="wrap">
+            <div class="public_select table">
+                <table>
+                    <tr class="line_bold">
+                        <th class="align1" colspan="2"></th>
+                        <th colspan="6">
+                            <div class="select_div">
+                            <form method="get">
+                            <!--{if $filtered}-->
+                            <a class="detlink_with_no_bg" style="float:right" href="{url app=seller_promotion}">{$lang.cancel_query}</a>
+                            <!--{/if}-->
+                            <div style="float:right">
+                            <input type="text" class="text_normal" name="pro_name" value="{$smarty.get.pro_name|escape}"/>
+                            <input type="hidden" name="app" value="seller_promotion" />
+                            <input type="hidden" name="act" value="index" />
+                            <input type="submit" class="btn" value="{$lang.search}" />
+                            </div>
+                            </form>
+                            </div>
+                        </th>
+                    </tr>
+                    <!--{if $promotion_list}-->
+                    <tr class="gray">
+                        <th width="50">{$lang.goods_image}</th>
+                        <th width="160"><span>{$lang.promotion_name}</span></th>
+                        <th width="100"><span>{$lang.start_time}</span></th>
+                        <th width="100"><span>{$lang.end_time}</span></th>
+                        <th width="80"><span>{$lang.price}</span></th>
+                        <th width="80"><span>{$lang.promotion_price}</span></th>
+                        <th ><span>{$lang.status}</span></th>
+                        <th width="140"><span>{$lang.handle}</span></th>
+                    </tr>
+                    <!--{/if}-->
+                    <!--{foreach from=$promotion_list item=promotion name=_promotion_f}-->
+                    <tr class="line<!--{if $smarty.foreach._promotion_f.last}--> last_line<!--{/if}-->">
+                        <td width="50" class="align2">
+                        <a href="{url app=goods&id=$promotion.goods_id}" target="_blank"><img src="{$site_url}/{$promotion.default_image}" width="50" height="50"  /></a></td>
+                        <td width="160" align="align2">
+                          <p class="ware_text"><span class="color2" ectype="editobj">
+                            <a target="_blank" href="{url app=goods&id=$promotion.goods_id}">{$promotion.pro_name|escape}</a></span></p>
+                        </td>
+                        <td width="100"><span class="color2">{$promotion.start_time|date:Y-m-d}</span></td>
+                        <td width="100" class="align2"><span class="color2" ectype="editobj">{$promotion.end_time|date:Y-m-d}</span></td>
+                        <td width="80" class="align2">{$promotion.price}</td>
+                        <td width="80" class="align2">{$promotion.pro_price}</td>
+                        <td width="80" class="align2">{if $promotion.pro_price gt 0 and $promotion.end_time >= $time_now}{$lang.going}{else}<span style="color:red">{$lang.wait_edit}</span>{/if}</td>
+                        <td width="140" class="align2">
+                           <div><a href="{url app=seller_promotion&act=edit&id=$promotion.pro_id}" style="color:#3e3e3e; text-decoration:none">{$lang.edit_promotion}</a> | 
+                           <a href="{url app=seller_promotion&act=drop&id=$promotion.pro_id}" style="color:#3e3e3e; text-decoration:none">{$lang.dele_promotion}</a>
+                           </div>
+                        </td>
+                    </tr>
+                    <!--{foreachelse}-->
+                    <tr>
+                        <td class="align2 member_no_records padding6" colspan="8">{$lang.no_records}</td>
+                    </tr>
+                    <!--{/foreach}-->
+                    <!--{if $promotion_list}-->
+                    <tr class="line_bold line_bold_bottom">
+                        <td colspan="8"></td>
+                    </tr>
+                    <tr>
+                        <th colspan="8">
+                            <p class="position2">
+                                {include file=member.page.bottom.html}
+                            </p>
+                        </th>
+                    </tr>
+                    <!--{/if}-->
+                </table>
+            </div>
+        </div>
+        <div class="clear"></div>
+        <div class="adorn_right1"></div>
+        <div class="adorn_right2"></div>
+        <div class="adorn_right3"></div>
+        <div class="adorn_right4"></div>
+    </div>
+    <div class="clear"></div>
+</div>
+<iframe name="iframe_post" id="iframe_post" width="0" height="0"></iframe>
+{include file=footer.html}

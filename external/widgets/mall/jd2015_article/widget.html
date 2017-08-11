@@ -1,0 +1,13 @@
+<div class="jd2015_article">
+    <div class="mt">
+        <h2>{$widget_data.model_name|escape}</h2>
+        <div class="extra"><a target="_blank" href="{url app=article}">更多 &gt;</a></div>
+    </div>
+    <div class="mc">
+        <ul class="clearfix">
+            <!--{foreach from=$widget_data.articles item=article name=fe_article}-->
+            <li><a href="{url app=article&act=view&article_id=$article.article_id}" title="{$article.title|escape}" target="_blank">{$article.title|escape|truncate:30}</a></li>
+            <!--{/foreach}-->
+        </ul>
+    </div>
+</div>

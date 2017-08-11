@@ -1,0 +1,97 @@
+{include file="header.html"}
+<style>
+select,input{ vertical-align:middle}
+</style>
+<div id="rightTop">
+    <p>{$lang.refund_manage}</p>
+    <ul class="subnav">
+        <li><span>{$lang.manage}</span></li>
+    </ul>
+</div>
+<div class="mrightTop">
+    <div class="fontl">
+        <form method="get">
+             <div class="left">
+                <input type="hidden" name="app" value="refund" />
+                <input type="hidden" name="act" value="index" />
+                <label>是否要求客服介入</label>
+                <select name="ask_customer">
+                	<option value="yes" {if $smarty.get.ask_customer eq 'yes'} selected="selected"{/if}>是</option>
+                	<option value="all" {if $smarty.get.ask_customer eq 'all'} selected="selected"{/if}>全部</option>
+                    <option value="no" {if $smarty.get.ask_customer eq 'no'} selected="selected"{/if}>否</option>
+                </select>
+                <label>排序</label>
+                 <select name="sort_order">
+                	<option value="created_desc" {if $smarty.get.sort_order eq 'created_desc'} selected="selected"{/if}>申请时间倒序</option>
+                    <option value="created_asc" {if $smarty.get.sort_order eq 'created_asc'} selected="selected"{/if}>申请时间顺序</option>
+                </select>
+                <input type="submit" class="formbtn" value="{$lang.query}" />
+            </div>
+            <!--{if $filtered}-->
+            <a class="left formbtn1" href="index.php?app=refund">{$lang.cancel_query}</a>
+            <!--{/if}-->
+        </form>
+    </div>
+    <div class="fontr">
+        {if $refunds}{include file=page.top.html}{/if}
+    </div>
+</div>
+<div class="tdare">
+    <table width="100%" cellspacing="0" class="dataTable">
+        <!--{if $refunds}-->
+        <tr class="tatr1">
+            <td width="100" class="firstCell"><span>退款编号</span></td>
+            <td width="150">订单编号/宝贝信息</td>
+            <td width="100">买家</td>
+            <td width="100">卖家</td>
+            <td width="100">交易金额</td>
+            <td width="100">退款金额</td>
+            <td width="100">退运费</td>
+            <td width="100">申请时间</td>
+            <td width="100">退款状态</td>
+            <td width="100">客服介入</td>
+            <td width="100">{$lang.handler}</td>
+        </tr>
+        <!--{/if}-->
+        <!--{foreach from=$refunds item=refund}-->
+        <tr class="tatr2">
+            <td class="firstCell">{$refund.refund_sn}</td>
+            <td>{$refund.order_sn}<br /><a href="{$site_url}/index.php?app=goods&id={$refund.goods_id}" target="_blank">{$refund.goods_name}</a></td>
+            <td>{$refund.buyer_name}</td>
+            <td><a href="{$site_url}/index.php?app=store&id={$refund.seller_id}" target="_blank">{$refund.store_name}</a><br />{$refund.seller_name}</td>
+            <td>{$refund.total_fee|price}</td>
+            <td>{$refund.refund_goods_fee|price}</td>
+            <td>{$refund.refund_shipping_fee|price}</td>
+            <td>{$refund.created|date:Y-m-d H:i:s}</td>
+            <td>
+            	{if $refund.status=='CLOSED'}
+                <span style="color:gray">退款关闭</span>
+                {elseif $refund.status=='SUCCESS'}
+                <span style="color:#62B44B">退款成功</span>
+                {elseif $refund.status=='WAIT_SELLER_AGREE'}
+                买家已经申请退款，等待卖家同意
+                {elseif $refund.status=='SELLER_REFUSE_BUYER'}
+                卖家拒绝退款，等待买家修改中
+                {elseif $refund.status=='WAIT_ADMIN_AGREE'}
+                 卖家已经同意退款，等待管理员审核
+                {elseif $refund.status=='WAIT_SELLER_CONFIRM'}
+                退款申请等待卖家确认中
+                {/if}
+            </td>
+            <td>{if $refund.ask_customer==1}是{else}否{/if}</td>
+            <td><a href="{url app=refund&amp;act=view&refund_id=$refund.refund_id}">{$lang.view}</a></td>
+        </tr>
+        <!--{foreachelse}-->
+        <tr class="no_data">
+            <td colspan="11">{$lang.no_data}</td>
+        </tr>
+        <!--{/foreach}-->
+    </table>
+    <div id="dataFuncs">
+        <div class="pageLinks">
+            {if $refunds}{include file=page.bottom.html}{/if}
+        </div>
+    </div>
+    <div class="clear"></div>
+</div>
+{include file="footer.html"}

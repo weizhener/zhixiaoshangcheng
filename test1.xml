@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<root>	
+	<beijing type="0">img/bk1.png</beijing>
+
+	<zhuanpan x="203" y="203">img/zp2.png</zhuanpan>
+	<zhizhen x="203" y="203">img/arrow.png</zhizhen>
+	<kaishi x="161" y="161">img/kaishi.png</kaishi>
+	<zhuandong type="2" quan="6" time="8"></zhuandong>
+	<wenzibeijing type="0" x="40" y="175" time="9000">img/ts.png</wenzibeijing>
+	<sound time="9000">sund/1.mp3</sound>
+	<wenzi x="80" y="190" height="60" width="300" color="0xff5d5c" font="微软雅黑" size="24" time="0" time2="4000"></wenzi>
+
+
+</root>

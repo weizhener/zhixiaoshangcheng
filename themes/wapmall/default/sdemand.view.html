@@ -1,0 +1,60 @@
+{include file=header.html}
+<div id="main" class="w-full">
+<div id="page-sdemand" class="w mb20 mt10 clearfix">
+    <div class="col-sub">
+        <div class="title">{$lang.acategory}</div>
+		<ul class="content mb10">
+			<!-- {foreach from=$acategories item=acategory} -->
+			<li><a href="{url app=sdemand&cate_id=$acategory.cate_id}">{$acategory.cate_name|escape}</a></li>
+			<!-- {/foreach} -->
+		</ul>
+		<div class="title">{$lang.new_article}</div>
+		<ul class="content">
+			<!-- {foreach from=$new_articles item=new_article} -->
+			<li><a  href="{url app=sdemand&act=view&id=$new_article.id}">{$new_article.title|escape}</a></li>
+			<!-- {foreachelse} -->
+			<li>{$lang.no_new_article}</li>
+			<!-- {/foreach} -->
+		</ul>
+    </div>
+
+    <div class="col-main">
+    	{include file=curlocal.html}
+        
+        
+        <div class="sdemand-detail">
+            <div class="article_con">
+            	<div class="title">
+                	<h1>{$article.title|escape}</h1>
+                    <div class="time">
+                        {$lang.add_time}:{$article.add_time|date:Y-m-d H:i}&nbsp;&nbsp;{$lang.view}{$article.views}{$lang.item}
+                    </div>
+                </div>
+                <div class="other">
+                    <p>{if $article.type eq 1}{$lang.supply}{else}{$lang.demand}{/if}&nbsp;&nbsp; |&nbsp;&nbsp; <em>{if $article.price neq 0}{$article.price|price}{elseif $article.price_from neq 0 and $article.price_to neq 0}{$article.price_from|price} - {$article.price_to|price}{else}{$lang.asktoface}{/if}</em> &nbsp;&nbsp;|&nbsp;&nbsp; {$article.region_name|escape}</p>
+                    <p>{$lang.name}:{$article.name}</p>
+                    <p>{$lang.phone}:<i>{$article.phone}</i></p>
+                </div>
+                <div class="default">
+                    <!-- {if $article.store_id} -->
+                    {$article.content|escape:editor}
+                    <!-- {else} -->
+                    {$article.content}
+                    <!-- {/if} -->
+                </div>
+
+                <div class="more">
+                    <h3>{$lang.pre_article}: <!--{if $pre_article}--><a href="{url app=sdemand&act=view&id=$pre_article.id}">{$pre_article.title|escape}</a> <span>{$pre_article.add_time|date:Y-m-d H:i}</span><!--{else}-->{$lang.no_records}<!--{/if}--></h3>
+                    <h3>{$lang.next_article}: <!--{if $next_article}--><a href="{url app=sdemand&act=view&id=$next_article.id}">{$next_article.title|escape}</a> <span>{$next_article.add_time|date:Y-m-d H:i}</span><!--{else}-->{$lang.no_records}<!--{/if}--></h3>
+                </div>
+            </div>
+        </div>
+        
+        
+        
+        
+    </div>
+</div>
+</div>
+</div>
+{include file=footer.html}

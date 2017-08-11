@@ -1,0 +1,51 @@
+{include file="header.html"}
+<div id="rightTop">
+    <p>{$lang.groupbuy_manage}</p>
+    <ul class="subnav">
+        <li><a class="btn1" href="index.php?app=ju">{$lang.groupbuy_template}</a></li>
+       	<li><a class="btn1" href="index.php?app=ju&amp;act=add_template">{$lang.add_template}</a></li>
+        <li><span>{$lang.groupbuy_cate}</span></li>
+        <li><a class="btn1" href="index.php?app=ju&amp;act=add_cate">{$lang.add_cate}</a></li>
+        <li><a class="btn1" href="index.php?app=ju&amp;act=goods_list">{$lang.groupbuy_cate}</a></li>
+    </ul>
+</div>
+	<div class="groupbuy">
+            <div class="title">
+                操作提示
+            </div>
+			<ul>
+               <li>团购商品的类别，供商家申请选择</li>
+            </ul>
+    </div>
+<div class="tdare">
+    <table width="100%" cellspacing="0" class="dataTable">
+        <tr class="tatr1">
+            <td width="50" class="firstCell"><input type="checkbox" class="checkall" /></td>
+            <td align="center">{$lang.cate_name}</td>
+            <td align="center">{$lang.sort_order}</td>
+            <td class="handler">{$lang.handler}</td>
+        </tr>
+        <!--{foreach from=$cate_list item=cate}-->
+        <tr class="tatr2">
+            <td class="firstCell"><input value="{$cate.cate_id}" class='checkitem' type="checkbox" /></td>
+            <td align="center">{$cate.cate_name}</td>
+            <td align="center">{$cate.sort_order}</td>
+            <td class="handler"><a href="{$site_url}/admin/index.php?app=ju&amp;act=edit_cate&amp;id={$cate.cate_id}">{$lang.edit}</a> | <a name="drop" href="javascript:drop_confirm('{$lang.drop_confirm}', 'index.php?app=ju&amp;act=drop_cate&amp;id={$cate.cate_id}');">{$lang.drop}</a> </td>
+        </tr>
+        <!--{/foreach}-->
+        <!--{if !$cate_list}-->
+        <tr class="no_data">
+            <td colspan="10">{$lang.no_data}</td>
+        </tr>
+        <!--{/if}-->
+    </table>
+    <div id="dataFuncs">
+        <div id="batchAction" class="left paddingT15"> &nbsp;&nbsp;
+            <input class="formbtn batchButton" type="button" value="{$lang.drop}" name="id" uri="index.php?app=ju&act=drop_cate" presubmit="confirm('{$lang.drop_confirm}');" />
+        </div>
+
+    </div>
+    <div class="pageLinks">{if $groupbuys} {include file=page.bottom.html} {/if} </div>
+    <div class="clear"></div>
+</div>
+{include file="footer.html"}

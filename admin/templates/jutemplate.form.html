@@ -1,0 +1,367 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset={$charset}" />
+
+<title> ykt.anduowang.com </title>
+
+<link href="templates/style/admin.css" rel="stylesheet" type="text/css" />
+
+<link href="templates/style/ju.css" rel="stylesheet" type="text/css" />
+
+<script type="text/javascript">
+
+//<!CDATA[
+
+var SITE_URL = "{$site_url}";
+
+//]]>
+
+</script>
+
+<script type="text/javascript" src="{lib file=jquery.js}" charset="utf-8"></script>
+
+<script type="text/javascript" src="{lib file=ecmall.js}" charset="utf-8"></script>
+
+<script type="text/javascript" src="{res file=js/admin.js}" charset="utf-8"></script>
+
+<script type="text/javascript" src="index.php?act=jslang"></script>
+
+<script src="http://a.tbcdn.cn/s/kissy/1.2.0/kissy-min.js" language="javascript"></script>
+
+<style type="text/css">
+
+<!--
+
+body {background: #fcfdff}
+
+-->
+
+</style>
+
+{$_head_tags}
+
+</head>
+
+<body>
+
+<script language="javascript">
+
+    var S=KISSY;
+
+    S.log(S.Calendar);
+
+    S.log(S.Date);
+
+
+
+	var c = {};
+
+	var d = {};
+
+	var e = {};
+
+    KISSY.use('node,calendar,calendar/assets/base.css', function(S, Node, Calendar) {
+
+        var S_Date = S.Date;
+
+        var i = 0;
+
+        //Popup日历,默认点击触发
+
+        c = new Calendar('#start_time', {
+
+            popup:true,
+
+            triggerType:['focus'],
+
+            //closable:true,
+
+			showTime:true,
+
+        }).on('timeSelect', function(e) {
+
+            //Node.one('#J_Popup').val(S_Date.format(e.date, 'localFullDate'));
+
+			Node.one('#start_time').val(S_Date.format(e.date, 'yyyy-mm-dd HH:MM:ss'));
+
+			c.hide();
+
+        });
+
+        S.log(++i);
+
+		
+
+		d = new Calendar('#end_time', {
+
+            popup:true,
+
+            triggerType:['focus'],
+
+            //closable:true,
+
+			showTime:true,
+
+        }).on('timeSelect', function(e) {
+
+            //Node.one('#J_Popup').val(S_Date.format(e.date, 'localFullDate'));
+
+			Node.one('#end_time').val(S_Date.format(e.date, 'yyyy-mm-dd HH:MM:ss'));
+
+			d.hide();
+
+        });
+
+        S.log(++i);
+
+		
+
+		j = new Calendar('#join_end_time', {
+
+            popup:true,
+
+            triggerType:['focus'],
+
+            //closable:true,
+
+			showTime:true,
+
+        }).on('timeSelect', function(e) {
+
+            //Node.one('#J_Popup').val(S_Date.format(e.date, 'localFullDate'));
+
+			Node.one('#join_end_time').val(S_Date.format(e.date, 'yyyy-mm-dd HH:MM:ss'));
+
+			j.hide();
+
+        });
+
+        S.log(++i);
+
+    });
+
+</script>
+
+<script type="text/javascript">
+
+$(function(){
+
+    $('#addtem_form').validate({
+
+        errorPlacement: function(error, element){
+
+            $(element).next('.field_notice').hide();
+
+            $(element).after(error);
+
+        },
+
+        success       : function(label){
+
+            label.addClass('right').text('OK!');
+
+        },
+
+        rules : {    
+
+            template_name :{
+
+                required : true
+
+            },
+
+            start_time    :{
+
+                required : true
+
+            },
+
+            join_end_time:{
+
+               required : true
+
+            },
+
+			end_time:{
+
+               required : true
+
+            }
+
+        },
+
+        messages : {
+
+            template_name :{
+
+                required : '{$lang.not_empty}'
+
+            },
+
+            start_time    :{
+
+                required : '{$lang.not_empty}'
+
+            },
+
+            join_end_time:{
+
+               required : '{$lang.not_empty}'
+
+            },
+
+			end_time:{
+
+               required : '{$lang.not_empty}'
+
+            }
+
+        }
+
+    });
+
+});
+
+</script>
+
+<div id="rightTop">
+
+    <p>{$lang.ju_template}</p>
+
+    <ul class="subnav">
+
+        <li><a class="btn1" href="index.php?app=jutemplate">{$lang.manage}</a></li>
+
+        <li><span>{if $smarty.get.act eq 'add'}{$lang.add}{else}{$lang.edit}{/if}</span></li>
+
+    </ul>
+
+</div>
+
+	<div class="groupbuy">
+
+            <div class="title">
+
+                {$lang.handle_notice}
+
+            </div>
+
+			<ul>
+
+            	  <li></li>
+
+            	  <li>{$lang.ju_index_desc1}</li>
+
+                  <li>{$lang.ju_index_desc2}</li>
+
+          </ul>
+
+    </div>
+
+<div class="info">
+
+    <form method="post" enctype="multipart/form-data" id="addtem_form">
+
+        <table class="infoTable">
+
+            <tr>
+
+                <th class="paddingT15">
+
+                    {$lang.ju_channel}:</th>
+
+                <td class="paddingT15 wordSpacing5">
+
+                	<span style="float:left;">
+
+                    {html_radios options=$channel checked=$template.channel name=channel}
+
+                    </span>
+
+                </td>
+
+            </tr>
+
+            <tr>
+
+                <th class="paddingT15">
+
+                    {$lang.template_name}:</th>
+
+                <td class="paddingT15 wordSpacing5">
+
+                    <input class="infoTableInput3" type="text" name="template_name" value="{$template.template_name|escape}" />
+
+                </td>
+
+            </tr>
+
+            <tr>
+
+                <th class="paddingT15">
+
+                    {$lang.start_time}:</th>
+
+                <td class="paddingT15 wordSpacing5">
+
+                    <input  id="start_time" type="text"  name="start_time" value="{$template.start_time|date:complete}" />
+
+                </td>
+
+            </tr>
+
+            <tr>
+
+                <th class="paddingT15">
+
+                    {$lang.join_end_time}:</th>
+
+                <td class="paddingT15 wordSpacing5">
+
+                    <input  id="join_end_time" type="text"  name="join_end_time" value="{$template.join_end_time|date:complete}" />
+
+                </td>
+
+            </tr>
+
+            <tr>
+
+                <th class="paddingT15">
+
+                    {$lang.end_time}:</th>
+
+                <td class="paddingT15 wordSpacing5">
+
+                    <input  id="end_time" type="text"  name="end_time" value="{$template.end_time|date:complete}" />
+
+                </td>
+
+            </tr>
+
+            
+
+        <tr>
+
+            <th></th>
+
+            <td class="ptb20">
+
+                <input class="formbtn" type="submit" name="Submit" value="{$lang.submit}" />
+
+                <input class="formbtn" type="reset" name="Submit2" value="{$lang.reset}" />
+
+            </td>
+
+        </tr>
+
+        </table>
+
+    </form>
+
+</div>
+
+{include file="footer.html"}

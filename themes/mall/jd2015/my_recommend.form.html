@@ -1,0 +1,55 @@
+<script type="text/javascript">
+//<!CDATA[
+$(function(){
+	$(".ok").mouseover(function(){
+        $(this).next("div").show();
+    });
+    $(".ok").mouseout(function(){
+        $(this).next("div").hide();
+    });
+    $('#my_recommend_form').validate({
+         errorLabelContainer: $('#warning'),
+        invalidHandler: function(form, validator) {
+           var errors = validator.numberOfInvalids();
+           if(errors)
+           {
+               $('#warning').show();
+           }
+           else
+           {
+               $('#warning').hide();
+           }
+        },
+        rules : {
+            recommend_name : {
+                required : true,
+                byteRange: ['',100,'{$charset}']
+            }
+        },
+        messages : {
+            recommend_name : {
+                required : '{$lang.recom_empty}. ',
+                byteRange: '{$lang.recommend_name_maxlength_error}. '
+            }
+        }
+    });
+});
+//]]>
+</script>
+<ul class="tab">
+    <li class="active"><!--{if $smarty.get.act eq edit}-->{$lang.recommend_edit}<!--{else}-->{$lang.recommend_add}<!--{/if}--></li>
+</ul>
+<div class="eject_con">
+    <div class="adds">
+        <div id="warning"></div>
+        <form method="post" action="index.php?app=my_recommend&amp;act={$smarty.get.act}<!--{if $smarty.get.id neq ''}-->&amp;id={$smarty.get.id}<!--{/if}-->" target="my_recommend" enctype="multipart/form-data" id="my_recommend_form">
+        <ul>
+            <li>
+                <h3>{$lang.recommend_name}:</h3>
+                <p><input type="text" class="text width14" name="recommend_name" value="{$recommend.recom_name|escape}" id="recommend_name" /><b class="strong">*</b></p>
+            </li>
+        </ul>
+        <div class="submit"><input type="submit" class="btn" value="{$lang.submit}" /></div>
+        </form>
+    </div>
+</div>

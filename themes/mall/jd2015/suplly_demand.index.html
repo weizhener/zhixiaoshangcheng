@@ -1,0 +1,67 @@
+{include file=member.header.html}
+<div class="content">
+    <div class="totline"></div><div class="botline"></div>
+    {include file=member.menu.html}
+    <div id="right">
+
+        {include file=member.submenu.html}
+
+        <div class="wrap">
+            <div class="eject_btn" title="{$lang.add_info_free}"><b class="ico1" onclick="go('index.php?app=supply_demand&amp;act=add');">{$lang.add_info_free}</b></div>
+
+            <div class="public table">
+                <table class="table_head_line">
+                    <!--{if $sdinfo}-->
+                    <tr class="line_bold">
+                        <th colspan="8"></th>
+                    </tr>
+                    <tr class="line tr_color">
+                        <th>{$lang.title}</th>
+                        <th>{$lang.cate}</th>
+                        <th>{$lang.price}</th>
+                        <th>{$lang.name}</th>
+                        <th>{$lang.phone}</th>
+                        <th>{$lang.verify}</th>
+                        <th>{$lang.verify_desc}</th>
+                        <th>{$lang.handle}</th>
+                    </tr>
+                    <!--{/if}-->
+                    <!--{foreach from=$sdinfo item=info name=v}-->
+                    <!--{if $smarty.foreach.v.last}--><tr class="line_bold tr_align"><!--{else}--><tr class="line tr_align"><!--{/if}-->
+                        <td><a href="{url app=sdemand&act=view&id=$info.id}" target="_blank">{$info.title|escape}</a></td>
+                        <td>{$info.cate_name|escape}</td>
+                        <td>{if $info.type eq 2}{if $info.price_from eq 0 and $info.price_to eq 0}{$lang.asktoface}{else}{$info.price_from|price} - {$info.price_to|price}{/if}{else}{if $info.price eq 0}{$lang.asktoface}{else}{$info.price|price}{/if}{/if}</td>
+                        <td>{$info.name|escape}</td>
+                        <td>{$info.phone}</td>
+                        <td class="align2">
+                            <!--{if $info.verify eq 1}-->
+                            <font color="#006633">{$lang.verified}</font>
+                            <!--{elseif $info.verify eq 2}-->
+                            <font color="red">{$lang.verify_no_pass}</font>
+                            <!--{else}-->
+                            <font color="#FF6666">{$lang.verifying}</font>
+                            <!--{/if}-->
+                        </td>
+                        <td class="align2"><font color="#999">{$info.verify_desc}</font></td>
+                        <td> <a href="index.php?app=supply_demand&act=edit&id={$info.id}" class="edit1 float_none">{$lang.edit}</a>
+                            <a href="javascript:drop_confirm('{$lang.drop_confirm}', 'index.php?app=supply_demand&amp;act=drop&id={$info.id}');" class="delete float_none">{$lang.drop}</a></td>
+                        </td>
+                    </tr>
+                    <!--{foreachelse}-->
+                    <tr>
+                        <td colspan="8" class="member_no_records padding6">{$lang.$smarty.get.act}{$lang.no_records}</td>
+                    </tr>
+                    <!--{/foreach}-->
+                </table>
+            </div>
+            <div class="wrap_bottom"></div>
+        </div>
+        <div class="clear"></div>
+        <div class="adorn_right1"></div>
+        <div class="adorn_right2"></div>
+        <div class="adorn_right3"></div>
+        <div class="adorn_right4"></div>
+    </div>
+    <div class="clear"></div>
+</div>
+{include file=footer.html}

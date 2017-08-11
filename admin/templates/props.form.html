@@ -1,0 +1,66 @@
+{include file="header.html"}
+<div id="rightTop">
+    <p>{$lang.goods_props}</p>
+    <ul class="subnav">
+        <li><a class="btn1" href="index.php?app=props">{$lang.prop_list}</a></li>
+        {if $smarty.get.act eq 'add'}
+        <li><span>{$lang.add_props}</span>
+        {else}
+        <li><a class="btn1" href="index.php?app=props&amp;act=add">{$lang.add_props}</a></li>
+        <li><span>{$lang.edit_props}</span></li>
+        {/if}
+        <li><a class="btn1" href="index.php?app=gcategory">{$lang.distribute_props}</a></li>     
+    </ul>
+</div>
+<style>
+.prop_input{border:1px #ddd solid; height:22px; line-height:22px;color:#3e3e3e;}
+</style>
+<div class="info">
+    <form method="post">
+        <table class="infoTable">
+            <tr>
+                <th class="paddingT15">
+                    {$lang.prop_name}:</th>
+                <td class="paddingT15 wordSpacing5">
+                    <input name="name" value="{$props.name}" class="prop_input" />
+                </td>
+            </tr>
+            {if $smarty.get.act eq 'add'}
+            <tr>
+                <th class="paddingT15">
+                    {$lang.prop_value}:</th>
+                <td class="paddingT15 wordSpacing5">
+                    <input class="prop_input" style="width:300px;" type="text" name="prop_value" value="{$props.prop_value|escape}" />
+                    <label class="gray">{$lang.prop_value_note}</label>
+                </td>
+            </tr>
+            {/if}
+            <tr>
+                <th class="paddingT15">
+                    {$lang.sort_order}:</th>
+                <td class="paddingT15 wordSpacing5">
+                    <input class="sort_order prop_input" id="sort_order" type="text" name="sort_order" value="{$props.sort_order}" />
+                </td>
+            </tr>
+            <tr>
+              <th class="paddingT15">{$lang.status}:</th>
+              <td class="paddingT15 wordSpacing5"><p>
+                <label>
+                  <input type="radio" name="status" value="1" {if $props.status}  checked="checked" {/if}/>
+                  {$lang.yes}</label>
+                <label>
+                  <input type="radio" name="status" value="0" {if !$props.status} checked="checked"{/if}/>
+                  {$lang.no}</label>
+              </p></td>
+            </tr>
+
+          <tr>
+            <th></th>
+            <td class="ptb20">
+                <input class="formbtn" type="submit" name="Submit" value="{$lang.submit}" />
+                <input class="formbtn" type="reset" name="reset" value="{$lang.reset}" />            </td>
+        </tr>
+        </table>
+    </form>
+</div>
+{include file="footer.html"}

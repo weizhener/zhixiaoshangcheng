@@ -1,0 +1,62 @@
+{include file="member.header.html"}
+<div class="mb-head">
+    <a href="javascript:history.back(-1)" class="l_b">返回</a>
+    <div class="tit">商品管理</div>
+    <a href="javascript" class="r_b"></a>
+</div>
+<div style="overflow-x:hidden;">
+
+<!---------个人中心头部--------------->
+<div class="user_header">
+    <div class="user_photo">
+        <a href="{url app=member}"><img src="{res file=images/user.jpg}" /></a>
+    </div>
+    <span class="user_name">
+        您好,欢迎{$visitor.user_name|escape}<br/>
+        <a href="index.php?app=member&act=logout" style="color:#999;">退出</a>
+    </span>
+    <div class="order_panel">
+        <ul class="orders">
+            <a href="{url app=my_goods}">
+                <li  style="width:43%;">
+                    <span class="num  on"></span>
+                    <span>全部商品</span>
+                </li>
+            </a>
+            <a href="{url app=my_goods&act=add}">
+                <li  style="width:43%;">
+                    <span class="num"></span>
+                    <span>新增商品</span>
+                    <b></b>
+                </li>
+            </a>
+        </ul>
+    </div>
+</div>
+<!------------订单页--------------------------->
+<div class="u_order">
+    <!--{foreach from=$goods_list item=goods name=_goods_f}-->
+    <div class="orderbox">
+        <div class="detail">
+            <a href="{url app=goods&id=$goods.goods_id}"> <img src="{$site_url}/{$goods.default_image}" /></a>
+            <p class="title">{$goods.goods_name|escape}</p>
+            <p>​{$lang.gcategory}：{$goods.cate_name}</p>​
+            <p>{$lang.price}：{$goods.price}<span> {$lang.stock}：{$goods.stock}</span></p>
+        </div>
+        <p class="opr">
+            <a href="{url app=my_goods&act=edit&id=$goods.goods_id}"  class="white_btn">{$lang.edit}</a>
+            <a href="index.php?app=my_goods&amp;act=drop&id={$goods.goods_id}"  class="white_btn">{$lang.drop}</a>
+        </p>
+    </div>
+    <!--{foreachelse}-->
+    <div class="null" style="display:none; margin-top:120px;">
+        <p>你没有添加商品~</p>
+    </div>
+    <!--{/foreach}-->
+</div>
+
+<div class="page">
+    {include file=member.page.bottom.html}
+</div>
+</div>
+{include file="member.footer.html"}

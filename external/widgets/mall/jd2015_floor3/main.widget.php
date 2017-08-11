@@ -1,0 +1,122 @@
+<?php
+
+class jd2015_floor3Widget extends BaseWidget {
+
+    var $_name = 'jd2015_floor3';
+    var $_ttl = 86400;
+    var $_num = 6;
+
+    function _get_data() {
+        $cate_id_1 = empty($this->options['cate_id_1']) ? 0 : $this->options['cate_id_1'];
+        $cate_id_2 = empty($this->options['cate_id_2']) ? 0 : $this->options['cate_id_2'];
+        $data = array(
+            'model_id' => mt_rand(),
+            'cates_1' => $this->get_cate($cate_id_1),
+            'cates_2' => $this->get_cate($cate_id_2),
+            'num_name' => $this->options['num_name'],
+            'model_name' => $this->options['model_name'],
+            'sub_title_name1' => $this->options['sub_title_name1'],
+            'sub_title_name1_link_url' => $this->options['sub_title_name1_link_url'],
+            'sub_title_name2' => $this->options['sub_title_name2'],
+            'sub_title_name2_link_url' => $this->options['sub_title_name2_link_url'],
+            'sub_title_name3' => $this->options['sub_title_name3'],
+            'sub_title_name3_link_url' => $this->options['sub_title_name3_link_url'],
+            'sub_title_name4' => $this->options['sub_title_name4'],
+            'sub_title_name4_link_url' => $this->options['sub_title_name4_link_url'],
+            //
+            'ad1_image_url' => $this->options['ad1_image_url'],
+            'ad1_link_url' => $this->options['ad1_link_url'],
+            //
+            'ad2_image_url' => $this->options['ad2_image_url'],
+            'ad2_link_url' => $this->options['ad2_link_url'],
+            //
+            'ad3_image_url' => $this->options['ad3_image_url'],
+            'ad3_link_url' => $this->options['ad3_link_url'],
+            //
+            'ad4_image_url' => $this->options['ad4_image_url'],
+            'ad4_link_url' => $this->options['ad4_link_url'],
+            //
+            'ad5_image_url' => $this->options['ad5_image_url'],
+            'ad5_link_url' => $this->options['ad5_link_url'],
+            //
+            'ad6_image_url' => $this->options['ad6_image_url'],
+            'ad6_link_url' => $this->options['ad6_link_url'],
+            //
+            'ad7_image_url' => $this->options['ad7_image_url'],
+            'ad7_link_url' => $this->options['ad7_link_url'],
+            //
+            'ad8_image_url' => $this->options['ad8_image_url'],
+            'ad8_link_url' => $this->options['ad8_link_url'],
+            //
+            'ad9_image_url' => $this->options['ad9_image_url'],
+            'ad9_link_url' => $this->options['ad9_link_url'],
+            //
+            'ad10_image_url' => $this->options['ad10_image_url'],
+            'ad10_link_url' => $this->options['ad10_link_url'],
+            //
+            'ad11_image_url' => $this->options['ad11_image_url'],
+            'ad11_link_url' => $this->options['ad11_link_url'],
+            //
+            'ad12_image_url' => $this->options['ad12_image_url'],
+            'ad12_link_url' => $this->options['ad12_link_url'],
+            //
+            'ad13_image_url' => $this->options['ad13_image_url'],
+            'ad13_link_url' => $this->options['ad13_link_url'],
+            //
+            'ad14_image_url' => $this->options['ad14_image_url'],
+            'ad14_link_url' => $this->options['ad14_link_url'],
+            //
+            'ad15_image_url' => $this->options['ad15_image_url'],
+            'ad15_link_url' => $this->options['ad15_link_url'],
+            //
+            'ad16_image_url' => $this->options['ad16_image_url'],
+            'ad16_link_url' => $this->options['ad16_link_url'],
+        );
+        return $data;
+    }
+
+//获取设定分类下的子分类
+    function get_cate($cate_id) {
+        $mod_gcage = &bm('gcategory');
+        $cates = $mod_gcage->get_children($cate_id, true);
+        return $cates;
+    }
+
+    function get_config_datasrc() {
+        // 取得推荐类型
+        $this->assign('recommends', $this->_get_recommends());
+        // 取得一级商品分类
+        $this->assign('gcategories', $this->_get_gcategory_options());
+    }
+
+    function parse_config($input) {
+        $images = $this->_upload_image();
+        if ($images) {
+            foreach ($images as $key => $image) {
+                $input['ad' . $key . '_image_url'] = $image;
+            }
+        }
+
+        return $input;
+    }
+
+    function _upload_image() {
+        import('uploader.lib');
+        $images = array();
+        for ($i = 1; $i <= 16; $i++) {
+            $file = $_FILES['ad' . $i . '_image_file'];
+            if ($file['error'] == UPLOAD_ERR_OK) {
+                $uploader = new Uploader();
+                $uploader->allowed_type(IMAGE_FILE_TYPE);
+                $uploader->addFile($file);
+                $uploader->root_dir(ROOT_PATH);
+                $images[$i] = $uploader->save('data/files/mall/template', $uploader->random_filename());
+            }
+        }
+
+        return $images;
+    }
+
+}
+
+?>

@@ -1,0 +1,60 @@
+{include file=header.html}
+
+<div id="main" class="w-full">
+
+<div id="page-apply" class="w mt10 mb20">
+
+   <div class="title padding5 strong fs14">{$lang.i_want_open_store}</div>
+   <div class="content border padding10 border-t-0 linehei20">
+      <!--{foreach from=$sgrades item=sgrade name=fe_sgrade}-->
+	  <!--{if $sgrade.grade_id!=6}-->
+      <dl class="clearfix mb10" {if $smarty.foreach.fe_sgrade.last} style="border-bottom:0;"{/if}>
+         <dt class="float-left strong">{$sgrade.grade_name}</dt>
+         <dd class="float-left">
+            <p>{$lang.goods_limit}{$lang.colon}<span>{$sgrade.goods_limit}</span></p>
+
+            <p>{$lang.charge}{$lang.colon}<span>{$sgrade.charge}</span></p>
+
+         </dd>
+
+         <dd class="float-left">
+
+            <p>{$lang.add_use}{$lang.colon}</p>
+
+            <p>
+               <!--{foreach from=$sgrade.functions item=functions key=k name=v}-->
+
+               <!--{if $domain && $k eq 'subdomain'}-->
+
+               <span>{$lang.domain}</span>
+
+               <!--{else}-->
+
+               <span>{$lang.$k}</span>
+
+               <!--{/if}-->
+
+               <!--{if !$smarty.foreach.v.last}-->
+
+               <!--{/if}-->
+
+               <!--{/foreach}-->
+            </p>
+
+         </dd>
+         <dd class="float-left" style="width:100px;"><a href="{url app=renew&step=2&id=$sgrade.grade_id}" class="btn-apply fs14 strong fff center">{$lang.soon_open}</a></dd>
+
+      </dl>
+	  <!--{/if}-->
+
+      <!--{/foreach}-->
+
+   </div>
+
+</div>
+
+</div>
+
+{include file=server.html}
+
+{include file=footer.html}

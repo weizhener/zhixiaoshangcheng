@@ -1,0 +1,251 @@
+{include file="member.header.html"}
+<div class="mb-head">
+    <a href="javascript:history.back(-1)" class="l_b">返回</a>
+    <div class="tit">店铺设置</div>
+    <a href="javascript" class="r_b"></a>
+</div>
+<script type="text/javascript">
+//<!CDATA[
+$(function(){
+        $('input[ectype="change_store_logo"]').change(function(){
+            var src = getFullPath($(this)[0]);
+            $('img[ectype="store_logo"]').attr('src', src);
+            $('input[ectype="change_store_logo"]').removeAttr('name');
+            $(this).attr('name', 'store_logo');
+        });
+        $('input[ectype="change_store_banner"]').change(function(){
+            var src = getFullPath($(this)[0]);
+            $('img[ectype="store_banner"]').attr('src', src);
+            $('input[ectype="change_store_banner"]').removeAttr('name');
+            $(this).attr('name', 'store_banner');
+        });
+
+        $('#my_store_form').validate({
+            errorPlacement: function(error, element){
+                $(element).next('.field_notice').hide();
+                if($(element).parent().parent().is('b'))
+                {
+                    $(element).parent().parent('b').next('.explain').hide();
+                    $(element).parent().parent('b').after(error);
+                }
+                else
+                {
+                    $(element).after(error);
+                }
+            },
+            success       : function(label){
+                if($(label).attr('for') != 'store_logo' && $(label).attr('for') != 'store_banner'  ){
+                    label.addClass('validate_right').text('OK!');
+                    }
+            },
+            rules : {
+                store_name : {
+                    required   : true,
+                    remote : {
+                        url  : 'index.php?app=apply&act=check_name&ajax=1',
+                        type : 'get',
+                        data : {
+                            store_name : function(){
+                                return $('#store_name').val();
+                            },
+                            store_id : {$store.store_id}
+                        }
+                    },
+                    maxlength: 20
+                },
+                tel      : {
+                    required     : true,
+                    checkTel     : true
+                },
+                store_banner : {
+                    accept   : 'png|jpe?g|gif'
+                },
+                store_logo   : {
+                    accept   : 'png|jpe?g|gif'
+                }
+            },
+            messages : {
+                store_name  : {
+                    required   : '{$lang.not_empty}',
+                    remote: '{$lang.name_exist}',
+                    maxlength: '{$lang.note_for_store_name}'
+                },
+                tel      : {
+                    required   : '{$lang.not_empty}',
+                    checkTel   : '{$lang.allow_tel}'
+                },
+                store_banner : {
+                    accept  : '{$lang.pic_limit}'
+                },
+                store_logo  : {
+                    accept : '{$lang.pic_limit}'
+                }
+            }
+    });
+   regionInit("region");
+        $(".right").mouseover(function(){
+            $(this).next("div").show();
+        });
+        $(".right").mouseout(function(){
+            $(this).next("div").hide();
+        });
+});
+function add_uploadedfile(file_data)
+{
+        $('#desc_images').append('<li file_name="'+ file_data.file_name +'" file_path="'+ file_data.file_path +'" ectype="handle_pic" file_id="'+ file_data.file_id +'"><input type="hidden" name="desc_file_id[]" value="'+ file_data.file_id +'"><div class="pic" style="z-index: 2;"><img src="{$site_url}/'+ file_data.file_path +'" width="50" height="50" alt="'+ file_data.file_name +'" /></div><div ectype="handler" class="bg" style="z-index: 3;display:none"><img src="{$site_url}/'+ file_data.file_path +'" width="50" height="50" alt="'+ file_data.file_name +'" /><p class="operation"><a href="javascript:void(0);" class="cut_in" ectype="insert_editor" ecm_title="{$lang.insert_editor}"></a><span class="delete" ectype="drop_image" ecm_title="{$lang.drop}"></span></p><p class="name">'+ file_data.file_name +'</p></div></li>');
+        trigger_uploader();
+        if(EDITOR_SWFU.getStats().files_queued == 0){
+                window.setTimeout(function(){
+                        $('#editor_uploader').hide();
+                },5000);
+        }
+}
+function drop_image(file_id)
+{
+    if (confirm(lang.uploadedfile_drop_confirm))
+        {
+            var url = SITE_URL + '/index.php?app=my_store&act=drop_uploadedfile';
+            $.getJSON(url, {'file_id':file_id}, function(data){
+                if (data.done)
+                {
+                    $('*[file_id="' + file_id + '"]').remove();
+                }
+                else
+                {
+                    alert(data.msg);
+                }
+            });
+        }
+}
+
+//]]>
+
+</script>
+{$editor_upload}
+{$build_editor}
+<style>
+    .my_store{margin:10px 16px;}
+    .form_content .edit_region {width: 100%;height: 38px;display: block;text-align: center;background: #fefefe;background: linear-gradient(to bottom,#fefefe,#f5f5f5);background: -moz-linear-gradient(top, #fefefe,#f5f5f5);background: -webkit-gradient(linear, 0 0, 0 100%, from(#fefefe), to(#f5f5f5));border: #ddd solid 1px;border-radius: 3px;color: #333;}
+</style>
+<div class="my_store">
+    <form name="my_store" method="post"  enctype="multipart/form-data" id="my_store_form">
+        <ul class="form_content">
+            <li>
+                <h3>{$lang.store_name}:</h3>
+                <p><input id="store_name" type="text"   name="store_name" value="{$store.store_name|escape}" /></p>
+            </li>
+            <li>
+                <h3>{$lang.store_name}:</h3>
+                <p>
+                    <img src="<!--{if $store.store_logo neq ''}-->{$store.store_logo}<!--{else}-->data/system/default_store_logo.gif<!--{/if}-->" width="120" height="120" ectype="store_logo" />
+                    <input name="store_logo" type="file"/>
+                </p>
+                <p></p>
+            </li>
+            <li>
+                <h3>{$lang.region}:</h3>
+                <p id="region">
+                    <input type="hidden" name="region_id" value="{$store.region_id}" class="mls_id" />
+                    <input type="hidden" name="region_name" value="{$store.region_name|escape}" class="mls_names" />
+                    <!-- {if $store.store_id} -->
+                    <span>{$store.region_name|escape}</span>
+                    <input type="button" value="{$lang.edit}" class="edit_region" />
+                    <select style="display:none">
+                        <option>{$lang.select_pls}</option>
+                        {html_options options=$regions}
+                    </select>
+                    <!-- {else} -->
+                    <select class="select">
+                        <option>{$lang.select_pls}</option>
+                        {html_options options=$regions}
+                    </select>
+                    <!-- {/if} -->
+                </p>
+            </li>
+            <li>
+                <h3>{$lang.address}:</h3>
+                <p><input id="address" type="text"   name="address" value="{$store.address|escape}" /></p>
+            </li>
+            <li>
+                <h3>{$lang.tel}:</h3>
+                <p><input id="tel" type="text"   name="tel" value="{$store.tel|escape}" /></p>
+            </li>
+            
+            <li>
+                <h3>{$lang.im_qq}:</h3>
+                <p><input id="im_qq" type="text"   name="im_qq" value="{$store.im_qq|escape}" /></p>
+            </li>
+            <li>
+                <h3>{$lang.im_ww}:</h3>
+                <p><input id="im_ww" type="text"   name="im_ww" value="{$store.im_ww|escape}" /></p>
+            </li>
+            <li>
+                <h3>{$lang.amount_for_free_fee}:</h3>
+                <p><input name="amount_for_free_fee" type="text" id="amount_for_free_fee" value="{$store.amount_for_free_fee|escape}" /></p>
+            </li>
+            <li>
+                <h3>{$lang.acount_for_free_fee}:</h3>
+                <p><input name="acount_for_free_fee" type="text" id="acount_for_free_fee" value="{$store.acount_for_free_fee|escape}" /></p>
+            </li>
+            
+            
+            <li>
+                <h3>{$lang.description}:</h3>
+                <p>
+                <div class="editor"><div  style="width:100%;overflow: scroll">
+                        <textarea name="description" id="description" style="width:100%; height:350px;">{$store.description|escape}</textarea></div>
+                    <div style=" position: relative; top: 10px; z-index: 5;"><a class="btn3" id="open_editor_uploader">{$lang.uploadedfile}</a>
+                        <div class="upload_con" id="editor_uploader" style="display:none">
+                            <div class="upload_con_top"></div>
+                            <div class="upload_wrap">
+                                <ul>
+                                    <li>
+                                        <div id="divSwfuploadContainer">
+                                            <div id="divButtonContainer">
+                                                <span id="editor_upload_button"></span>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li><iframe src="index.php?app=comupload&act=view_iframe&id={$id}&belong={$belong}&instance=desc_image" width="86" height="30" scrolling="no" frameborder="0"></iframe></li>
+                                    <li id="open_editor_remote" class="btn4">{$lang.rem_upload}</li>
+                                </ul>
+                                <div id="editor_remote" class="upload_file" style="display:none">
+                                    <iframe src="index.php?app=comupload&act=view_remote&id={$id}&belong={$belong}&instance=desc_image" width="272" height="39" scrolling="no" frameborder="0"></iframe>
+                                </div>
+                                <div id="editor_upload_progress"></div>
+                                <div class="upload_txt">
+                                    <span>{$lang.note_for_upload}</span>
+                                </div>
+
+                            </div>
+                            <div class="upload_con_bottom"></div>
+                        </div>
+                    </div>
+                    <ul id="desc_images" class="preview">
+                        <!--{foreach from=$files_belong_store item=file}-->
+                        <li ectype="handle_pic" file_name="{$file.file_name|escape}" file_path="{$file.file_path}" file_id="{$file.file_id}">
+                            <input type="hidden" name="file_id[]" value="{$file.file_id}">
+                            <div class="pic">
+                                <img src="{$site_url}/{$file.file_path}" width="50" height="50" alt="{$file.file_name|escape}" title="{$file.file_name|escape}" /></div>
+                            <div ectype="handler" class="bg">
+                                <img src="{$site_url}/{$file.file_path}" width="50" height="50" alt="{$file.file_name|escape}" title="{$file.file_name|escape}" />
+                                <p class="operation">
+                                    <a href="javascript:void(0);" class="cut_in" ectype="insert_editor" ecm_title="{$lang.insert_editor}"></a>
+                                    <span class="delete" ectype="drop_image" ecm_title="{$lang.drop}"></span>
+                                </p>
+                                <p title="{$file.file_name|escape}" class="name">{$file.file_name|escape}</p>
+                            </div>
+                        </li>
+                        <!--{/foreach}-->
+                    </ul>
+                    <div class="clear"></div>
+                </div>
+                </p>
+            </li>
+            
+        </ul>
+        <input class="red_btn" type="submit" value="{$lang.submit}" />
+    </form>
+</div>
+
+{include file="member.footer.html"}

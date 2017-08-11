@@ -1,0 +1,64 @@
+{include file=member.header.html}
+<script language = "JavaScript">
+    function tousers()
+    {
+        if (document.to_users.to_user.value == "")
+        {
+            alert("{$lang.zhuanyideyonghubunengweikong}！");
+            document.to_users.to_user.focus();
+            return false;
+        }
+        if (document.to_users.to_money.value == "")
+        {
+            alert("{$lang.tianxiezhuanyidejine}！");
+            document.to_users.to_money.focus();
+            return false;
+        }
+        return true;
+    }
+</script>
+<div class="content">
+    {include file=member.menu.html}
+    <div id="right">
+        {include file=member.submenu.html}
+        <div class="wrap">
+            <div class="public table epay">
+                <div class="notice-word">将您的账户余额转出到另外的预存款账户上，请慎重填写。</div>
+                <form name="to_users" onSubmit="return tousers();" method="post">
+                    <div class="title clearfix">
+                        <h2 class="float-left">转账</h2>
+                        <p class="float-left">余额：<strong>{$epay.money}</strong> 元</p>
+                        <div class="float-right link">
+                            <a  href="{url app=epay&act=logall&type=50}">转账记录</a>
+                        </div>
+                    </div>
+                    <div class="form">
+                        <dl class="clearfix">
+                            <dt>{$lang.mubiaoyonghu}：</dt>
+                            <dd><input name="to_user" type="text" id="to_user" size="10" /></dd>
+                        </dl>
+                        <dl class="clearfix">
+                            <dt>{$lang.zhuanchujine}：</dt>
+                            <dd> <input name="to_money" type="text" id="to_money" size="10" /></dd>
+                        </dl>
+                        <dl class="clearfix">
+                            <dt>{$lang.zhifumima}：</dt>
+                            <dd><input name="zf_pass" type="password" id="zf_pass"  size="16" maxlength="16"/></dd>
+                        </dl>
+                        <dl class="clearfix">
+                            <dt>&nbsp;</dt>
+                            <dd class="submit">
+                                <span class="epay_btn">
+                                    <input type="submit" value="提交" />
+                                </span>
+                            </dd>
+                        </dl>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="clear"></div>
+    </div>
+    <div class="clear"></div>
+</div>
+{include file=footer.html}

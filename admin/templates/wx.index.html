@@ -1,0 +1,111 @@
+{include file="header.html"}
+<div class="main">
+
+    
+    <div id="rightTop">
+  <p>{$lang.user}</p>
+  <ul class="subnav">
+    <li><a class="btn1" href="index.php?app=user">{$lang.manage}</a></li>
+    	<li><span> 微信会员 </span></li>
+    <li><a class="btn1" href="index.php?app=user&amp;act=add">{$lang.add}</a></li>
+  </ul>
+</div>
+	<div class="fixed-empty"></div>
+    
+    
+    
+	<div class="mrightTop">
+	  <div class="fontl">
+		<form method="get" name="search_form">
+		   <div class="left">
+			  <input type="hidden" name="app" value="user" />
+			  <input type="hidden" name="act" value="weixin" />
+			  <select class="querySelect" name="field_name">{html_options options=$query_fields selected=$smarty.get.field_name}
+			  </select>
+			  <input class="queryInput" type="text" name="field_value" value="{$smarty.get.field_value|escape}" />
+			  {$lang.sort_order}:
+			  <select class="querySelect" name="sort">{html_options options=$sort_options selected=$smarty.get.sort}
+			  </select>
+			   <a href="JavaScript:void(0);" class="btn-search" onclick="document.search_form.submit()">{$lang.query}</a>
+		  </div>
+		  <!--{if $filtered}-->
+		  <a class="left formbtn1" href="index.php?app=user">{$lang.cancel_query}</a>
+		  <!--{/if}-->
+		</form>
+	  </div>
+	  <div class="fontr">{include file=page.top.html}</div>
+	</div>
+	<div class="tdare">
+	  <table width="100%" cellspacing="0" class="dataTable">
+		<!--{if $users}-->
+		<tr class="tatr1">
+		  <td width="20" class="firstCell"><input type="checkbox" class="checkall" /></td>
+		  <td>{$lang.user_name} | {$lang.real_name}</td>
+		
+	 <td>性别</td>
+         <td>头像</td>
+         
+           <td>地区</td>
+		  <td>关注时间</td>
+
+		  <td>操作</td>
+		</tr>
+		<!--{/if}-->
+		<!--{foreach from=$users item=user}-->
+		<tr class="tatr2">
+		  <td class="firstCell"><input type="checkbox" class="checkitem" value="{$user.user_id}" /></td>
+		  <td>{$user.user_name|escape} | {$user.nickname|escape}</td>
+	
+         <td>
+         {if  $user.subscribe}
+         
+         男
+         {else}
+         女
+         {/if}
+         </td>
+    
+        
+
+        <td>
+        
+      {if  $user.headimgurl}
+     
+         <img width="50" height="50" src="{$user.headimgurl}"  />
+       {else}
+        
+             <img width="50" height="50" src="../data/files/mall/settings/default_user_portrait.gif?600906552"  />
+       {/if}
+        
+        
+        
+        
+        </td>
+        
+             <td>{$user.country|escape} &nbsp;{$user.city|escape}</td>
+      <td>{$user.subscribe_time|date:Y.m.d H:i:s}</td>
+   
+		
+	      <td><a href="index.php?app=user&act=view&wxid={$user.wxid}" > 查看消息</a> | <a href="index.php?app=user&act=send&wxid={$user.wxid}">回复消息</a></td>
+
+
+		
+		</tr>
+		<!--{foreachelse}-->
+		<tr class="no_data">
+		  <td colspan="10">{$lang.no_data}</td>
+		</tr>
+		<!--{/foreach}-->
+	  </table>
+	  <!--{if $users}-->
+	  <div id="dataFuncs">
+		<div id="batchAction" class="left paddingT15"> &nbsp;&nbsp;
+			<a href="javaScript:void(0);" class="formbtn batchButton" name="id" uri="index.php?app=user&act=drop" presubmit="confirm('{$lang.drop_confirm}')"><span>{$lang.drop}</span></a>
+		</div>
+		<div class="pageLinks">{include file=page.bottom.html}</div>
+		<div class="clear"></div>
+	  </div>
+	  <!--{/if}-->
+	</div>
+</div>
+{include file="footer.html"}

@@ -1,0 +1,41 @@
+<script type="text/javascript">
+var _d = DialogManager.get('config_dialog');
+_d.setWidth(350);
+_d.setPosition('center');
+$('#add').click(function(){
+    $(this).before('<div class="field_item"> ' +
+						'<label>标题:</label> '+
+						'<p><input type="text" name="title[]" value="{$nav.title}" /></p>'+
+						'<label>链接:</label>'+
+						'<p style="overflow:hidden;"><input type="text" name="link[]" value="{$nav.link}" />'+
+						'<input  type="button" value="删除" onclick="drop(this)" /></p></div>');
+});
+function drop(btnObj)
+{
+    $(btnObj).parents('.field_item').remove();
+}
+</script>
+<div class="field_item">
+    <label>背景颜色:</label>
+    <p><input type="text" name="color" value="{$options.color}" /></p>
+</div>
+<!-- {if $options.navs} -->
+<!-- {foreach from=$options.navs item=nav} -->
+<div class="field_item">
+    <label>标题:</label>
+    <p><input type="text" name="title[]" value="{$nav.title}" /></p>
+    <label>链接:</label>
+    <p style="overflow:hidden;"><input type="text" name="link[]" value="{$nav.link}" />
+    <input  type="button" value="删除" onclick="drop(this)" /></p>
+</div>
+<!-- {/foreach} -->
+<!-- {else} -->
+<div class="field_item">
+    <label>标题:</label>
+    <p><input type="text" name="title[]" value="{$nav.title}" /></p>
+    <label>链接:</label>
+    <p style="overflow:hidden;"><input type="text" name="link[]" value="{$nav.link}" />
+    <input  type="button" value="删除" onclick="drop(this)" /></p>
+</div>
+<!-- {/if} -->
+<input type="button" id="add" value="新增" />

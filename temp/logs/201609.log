@@ -1,0 +1,161 @@
+Fri, 02 Sep 2016 10:48:55 +0800	[2]session_start() [<a href='function.session-start'>function.session-start</a>]: Cannot send session cache limiter - headers already sent (output started at /data/home/qxu1192040223/htdocs/app/buyer_order.app.php:1199)	/includes/libraries/session.lib.php	396
+Fri, 02 Sep 2016 10:48:58 +0800	[2]session_start() [<a href='function.session-start'>function.session-start</a>]: Cannot send session cache limiter - headers already sent (output started at /data/home/qxu1192040223/htdocs/app/buyer_order.app.php:1199)	/includes/libraries/session.lib.php	396
+Fri, 02 Sep 2016 10:49:00 +0800	[2]session_start() [<a href='function.session-start'>function.session-start</a>]: Cannot send session cache limiter - headers already sent (output started at /data/home/qxu1192040223/htdocs/app/buyer_order.app.php:1199)	/includes/libraries/session.lib.php	396
+Fri, 02 Sep 2016 10:49:02 +0800	[2]session_start() [<a href='function.session-start'>function.session-start</a>]: Cannot send session cache limiter - headers already sent (output started at /data/home/qxu1192040223/htdocs/app/buyer_order.app.php:1199)	/includes/libraries/session.lib.php	396
+Fri, 02 Sep 2016 10:49:10 +0800	[2]session_start() [<a href='function.session-start'>function.session-start</a>]: Cannot send session cache limiter - headers already sent (output started at /data/home/qxu1192040223/htdocs/app/buyer_order.app.php:1199)	/includes/libraries/session.lib.php	396
+Fri, 02 Sep 2016 10:50:12 +0800	[2]session_start() [<a href='function.session-start'>function.session-start</a>]: Cannot send session cache limiter - headers already sent (output started at /data/home/qxu1192040223/htdocs/app/buyer_order.app.php:1199)	/includes/libraries/session.lib.php	396
+Fri, 02 Sep 2016 10:52:07 +0800	[2]session_start() [<a href='function.session-start'>function.session-start</a>]: Cannot send session cache limiter - headers already sent (output started at /data/home/qxu1192040223/htdocs/app/buyer_order.app.php:1199)	/includes/libraries/session.lib.php	396
+Fri, 02 Sep 2016 10:52:30 +0800	[2]session_start() [<a href='function.session-start'>function.session-start</a>]: Cannot send session cache limiter - headers already sent (output started at /data/home/qxu1192040223/htdocs/app/buyer_order.app.php:1199)	/includes/libraries/session.lib.php	396
+Fri, 02 Sep 2016 10:58:43 +0800	[2]session_start() [<a href='function.session-start'>function.session-start</a>]: Cannot send session cache limiter - headers already sent (output started at /data/home/qxu1192040223/htdocs/app/buyer_order.app.php:1199)	/includes/libraries/session.lib.php	396
+Fri, 02 Sep 2016 10:59:13 +0800	[2]session_start() [<a href='function.session-start'>function.session-start</a>]: Cannot send session cache limiter - headers already sent (output started at /data/home/qxu1192040223/htdocs/app/buyer_order.app.php:1199)	/includes/libraries/session.lib.php	396
+Fri, 02 Sep 2016 10:59:16 +0800	[2]session_start() [<a href='function.session-start'>function.session-start</a>]: Cannot send session cache limiter - headers already sent (output started at /data/home/qxu1192040223/htdocs/app/buyer_order.app.php:1199)	/includes/libraries/session.lib.php	396
+Sat, 03 Sep 2016 11:44:24 +0800	[2]file_get_contents(http://ip.taobao.com/service/getIpInfo.php?ip=121.35.150.27) [<a href='function.file-get-contents'>function.file-get-contents</a>]: failed to open stream: HTTP request failed! 	/includes/models/region.model.php	150
+Sat, 03 Sep 2016 12:13:56 +0800	[2]file_get_contents(http://ip.taobao.com/service/getIpInfo.php?ip=121.35.150.27) [<a href='function.file-get-contents'>function.file-get-contents</a>]: failed to open stream: HTTP request failed! 	/includes/models/region.model.php	150
+Sat, 03 Sep 2016 12:14:24 +0800	[2]file_get_contents(http://ip.taobao.com/service/getIpInfo.php?ip=121.35.150.27) [<a href='function.file-get-contents'>function.file-get-contents</a>]: failed to open stream: HTTP request failed! 	/includes/models/region.model.php	150
+Sat, 03 Sep 2016 12:19:02 +0800	[2]filemtime() [<a href='function.filemtime'>function.filemtime</a>]: stat failed for /data/home/qxu1192040223/htdocs/data/crond.lock	/includes/libraries/cron.lib.php	132
+Sat, 03 Sep 2016 14:02:49 +0800	[2]filemtime() [<a href='function.filemtime'>function.filemtime</a>]: stat failed for /data/home/qxu1192040223/htdocs/data/crond.lock	/includes/libraries/cron.lib.php	132
+Sat, 03 Sep 2016 16:20:36 +0800	[2]filemtime() [<a href='function.filemtime'>function.filemtime</a>]: stat failed for /data/home/qxu1192040223/htdocs/data/crond.lock	/includes/libraries/cron.lib.php	132
+Sat, 03 Sep 2016 16:22:06 +0800	[2]filemtime() [<a href='function.filemtime'>function.filemtime</a>]: stat failed for /data/home/qxu1192040223/htdocs/data/crond.lock	/includes/libraries/cron.lib.php	132
+Sat, 03 Sep 2016 16:23:11 +0800	[2]filemtime() [<a href='function.filemtime'>function.filemtime</a>]: stat failed for /data/home/qxu1192040223/htdocs/data/crond.lock	/includes/libraries/cron.lib.php	132
+Sat, 03 Sep 2016 16:31:27 +0800	[2]filemtime() [<a href='function.filemtime'>function.filemtime</a>]: stat failed for /data/home/qxu1192040223/htdocs/data/crond.lock	/includes/libraries/cron.lib.php	132
+Sat, 03 Sep 2016 19:55:08 +0800	[2]file_get_contents(http://ip.taobao.com/service/getIpInfo.php?ip=114.241.163.158) [<a href='function.file-get-contents'>function.file-get-contents</a>]: failed to open stream: HTTP request failed! 	/includes/models/region.model.php	150
+Sat, 03 Sep 2016 23:11:20 +0800	[256]MySQL Error[1054]: Unknown column 'status' in 'field list'
+MySQL Query:UPDATE ecm_goods SET status='1' WHERE goods_id = 262
+Wrong File:  /data/home/qxu1192040223/htdocs/eccore/model/model.base.php[523]	/eccore/model/mysql.php	278
+Sat, 03 Sep 2016 23:11:20 +0800	[256]MySQL Error[1054]: Unknown column 'status' in 'field list'
+MySQL Query:UPDATE ecm_goods SET status='1' WHERE goods_id = 262
+Wrong File:  /data/home/qxu1192040223/htdocs/eccore/model/model.base.php[523]	/eccore/model/mysql.php	278
+Sat, 03 Sep 2016 23:11:21 +0800	[256]MySQL Error[1054]: Unknown column 'status' in 'field list'
+MySQL Query:UPDATE ecm_goods SET status='1' WHERE goods_id = 262
+Wrong File:  /data/home/qxu1192040223/htdocs/eccore/model/model.base.php[523]	/eccore/model/mysql.php	278
+Sat, 03 Sep 2016 23:11:21 +0800	[256]MySQL Error[1054]: Unknown column 'status' in 'field list'
+MySQL Query:UPDATE ecm_goods SET status='1' WHERE goods_id = 262
+Wrong File:  /data/home/qxu1192040223/htdocs/eccore/model/model.base.php[523]	/eccore/model/mysql.php	278
+Sat, 03 Sep 2016 23:11:21 +0800	[256]MySQL Error[1054]: Unknown column 'status' in 'field list'
+MySQL Query:UPDATE ecm_goods SET status='1' WHERE goods_id = 262
+Wrong File:  /data/home/qxu1192040223/htdocs/eccore/model/model.base.php[523]	/eccore/model/mysql.php	278
+Sat, 03 Sep 2016 23:11:22 +0800	[256]MySQL Error[1054]: Unknown column 'status' in 'field list'
+MySQL Query:UPDATE ecm_goods SET status='1' WHERE goods_id = 262
+Wrong File:  /data/home/qxu1192040223/htdocs/eccore/model/model.base.php[523]	/eccore/model/mysql.php	278
+Sat, 03 Sep 2016 23:18:16 +0800	[256]MySQL Error[1054]: Unknown column 'status' in 'field list'
+MySQL Query:UPDATE ecm_goods SET status='1' WHERE goods_id = 262
+Wrong File:  /data/home/qxu1192040223/htdocs/eccore/model/model.base.php[523]	/eccore/model/mysql.php	278
+Sat, 03 Sep 2016 23:18:16 +0800	[256]MySQL Error[1054]: Unknown column 'status' in 'field list'
+MySQL Query:UPDATE ecm_goods SET status='1' WHERE goods_id = 262
+Wrong File:  /data/home/qxu1192040223/htdocs/eccore/model/model.base.php[523]	/eccore/model/mysql.php	278
+Sat, 03 Sep 2016 23:18:17 +0800	[256]MySQL Error[1054]: Unknown column 'status' in 'field list'
+MySQL Query:UPDATE ecm_goods SET status='1' WHERE goods_id = 262
+Wrong File:  /data/home/qxu1192040223/htdocs/eccore/model/model.base.php[523]	/eccore/model/mysql.php	278
+Sat, 03 Sep 2016 23:18:17 +0800	[256]MySQL Error[1054]: Unknown column 'status' in 'field list'
+MySQL Query:UPDATE ecm_goods SET status='1' WHERE goods_id = 262
+Wrong File:  /data/home/qxu1192040223/htdocs/eccore/model/model.base.php[523]	/eccore/model/mysql.php	278
+Sat, 03 Sep 2016 23:19:27 +0800	[256]MySQL Error[1054]: Unknown column 'status' in 'field list'
+MySQL Query:UPDATE ecm_goods SET status='1' WHERE goods_id = 260
+Wrong File:  /data/home/qxu1192040223/htdocs/eccore/model/model.base.php[523]	/eccore/model/mysql.php	278
+Sat, 03 Sep 2016 23:19:27 +0800	[256]MySQL Error[1054]: Unknown column 'status' in 'field list'
+MySQL Query:UPDATE ecm_goods SET status='1' WHERE goods_id = 260
+Wrong File:  /data/home/qxu1192040223/htdocs/eccore/model/model.base.php[523]	/eccore/model/mysql.php	278
+Sat, 03 Sep 2016 23:19:28 +0800	[256]MySQL Error[1054]: Unknown column 'status' in 'field list'
+MySQL Query:UPDATE ecm_goods SET status='1' WHERE goods_id = 260
+Wrong File:  /data/home/qxu1192040223/htdocs/eccore/model/model.base.php[523]	/eccore/model/mysql.php	278
+Sat, 03 Sep 2016 23:19:28 +0800	[256]MySQL Error[1054]: Unknown column 'status' in 'field list'
+MySQL Query:UPDATE ecm_goods SET status='1' WHERE goods_id = 260
+Wrong File:  /data/home/qxu1192040223/htdocs/eccore/model/model.base.php[523]	/eccore/model/mysql.php	278
+Sat, 03 Sep 2016 23:19:29 +0800	[256]MySQL Error[1054]: Unknown column 'status' in 'field list'
+MySQL Query:UPDATE ecm_goods SET status='1' WHERE goods_id = 260
+Wrong File:  /data/home/qxu1192040223/htdocs/eccore/model/model.base.php[523]	/eccore/model/mysql.php	278
+Sat, 03 Sep 2016 23:19:29 +0800	[256]MySQL Error[1054]: Unknown column 'status' in 'field list'
+MySQL Query:UPDATE ecm_goods SET status='1' WHERE goods_id = 260
+Wrong File:  /data/home/qxu1192040223/htdocs/eccore/model/model.base.php[523]	/eccore/model/mysql.php	278
+Sat, 03 Sep 2016 23:19:29 +0800	[256]MySQL Error[1054]: Unknown column 'status' in 'field list'
+MySQL Query:UPDATE ecm_goods SET status='1' WHERE goods_id = 260
+Wrong File:  /data/home/qxu1192040223/htdocs/eccore/model/model.base.php[523]	/eccore/model/mysql.php	278
+Sat, 03 Sep 2016 23:19:33 +0800	[256]MySQL Error[1054]: Unknown column 'status' in 'field list'
+MySQL Query:UPDATE ecm_goods SET status='1' WHERE goods_id = 260
+Wrong File:  /data/home/qxu1192040223/htdocs/eccore/model/model.base.php[523]	/eccore/model/mysql.php	278
+Sat, 03 Sep 2016 23:19:33 +0800	[256]MySQL Error[1054]: Unknown column 'status' in 'field list'
+MySQL Query:UPDATE ecm_goods SET status='1' WHERE goods_id = 260
+Wrong File:  /data/home/qxu1192040223/htdocs/eccore/model/model.base.php[523]	/eccore/model/mysql.php	278
+Sat, 03 Sep 2016 23:19:36 +0800	[256]MySQL Error[1054]: Unknown column 'status' in 'field list'
+MySQL Query:UPDATE ecm_goods SET status='1' WHERE goods_id = 260
+Wrong File:  /data/home/qxu1192040223/htdocs/eccore/model/model.base.php[523]	/eccore/model/mysql.php	278
+Sat, 03 Sep 2016 23:19:37 +0800	[256]MySQL Error[1054]: Unknown column 'status' in 'field list'
+MySQL Query:UPDATE ecm_goods SET status='1' WHERE goods_id = 260
+Wrong File:  /data/home/qxu1192040223/htdocs/eccore/model/model.base.php[523]	/eccore/model/mysql.php	278
+Sat, 03 Sep 2016 23:19:37 +0800	[256]MySQL Error[1054]: Unknown column 'status' in 'field list'
+MySQL Query:UPDATE ecm_goods SET status='1' WHERE goods_id = 260
+Wrong File:  /data/home/qxu1192040223/htdocs/eccore/model/model.base.php[523]	/eccore/model/mysql.php	278
+Sun, 04 Sep 2016 15:47:08 +0800	[2]filemtime() [<a href='function.filemtime'>function.filemtime</a>]: stat failed for /data/home/qxu1192040223/htdocs/data/crond.lock	/includes/libraries/cron.lib.php	132
+Sun, 04 Sep 2016 15:57:11 +0800	[2]file_get_contents(http://ip.taobao.com/service/getIpInfo.php?ip=123.232.145.217) [<a href='function.file-get-contents'>function.file-get-contents</a>]: failed to open stream: HTTP request failed! HTTP/1.1 500 Internal Server Error
+	/includes/models/region.model.php	150
+Sun, 04 Sep 2016 16:11:07 +0800	[2]file_get_contents(http://ip.taobao.com/service/getIpInfo.php?ip=123.120.223.157) [<a href='function.file-get-contents'>function.file-get-contents</a>]: failed to open stream: HTTP request failed! HTTP/1.1 500 Internal Server Error
+	/includes/models/region.model.php	150
+Sun, 04 Sep 2016 16:16:16 +0800	[2]file_get_contents(http://ip.taobao.com/service/getIpInfo.php?ip=123.120.223.157) [<a href='function.file-get-contents'>function.file-get-contents</a>]: failed to open stream: HTTP request failed! 	/includes/models/region.model.php	150
+Sun, 04 Sep 2016 16:18:01 +0800	[2]filemtime() [<a href='function.filemtime'>function.filemtime</a>]: stat failed for /data/home/qxu1192040223/htdocs/data/crond.lock	/includes/libraries/cron.lib.php	132
+Sun, 04 Sep 2016 16:21:42 +0800	[2]Invalid argument supplied for foreach()	/includes/ordertypes/normal.otype.php	72
+Sun, 04 Sep 2016 16:22:07 +0800	[2]Invalid argument supplied for foreach()	/includes/ordertypes/normal.otype.php	72
+Sun, 04 Sep 2016 16:22:42 +0800	[2]filemtime() [<a href='function.filemtime'>function.filemtime</a>]: stat failed for /data/home/qxu1192040223/htdocs/data/crond.lock	/includes/libraries/cron.lib.php	132
+Sun, 04 Sep 2016 16:23:48 +0800	[2]Invalid argument supplied for foreach()	/includes/ordertypes/normal.otype.php	72
+Sun, 04 Sep 2016 16:25:05 +0800	[2]session_start() [<a href='function.session-start'>function.session-start</a>]: Cannot send session cache limiter - headers already sent (output started at /data/home/qxu1192040223/htdocs/app/order.app.php:1002)	/includes/libraries/session.lib.php	396
+Sun, 04 Sep 2016 16:25:27 +0800	[2]session_start() [<a href='function.session-start'>function.session-start</a>]: Cannot send session cache limiter - headers already sent (output started at /data/home/qxu1192040223/htdocs/app/order.app.php:1002)	/includes/libraries/session.lib.php	396
+Sun, 04 Sep 2016 16:26:01 +0800	[2]Invalid argument supplied for foreach()	/includes/ordertypes/normal.otype.php	72
+Sun, 04 Sep 2016 16:26:08 +0800	[2]Invalid argument supplied for foreach()	/includes/ordertypes/normal.otype.php	72
+Sun, 04 Sep 2016 16:26:14 +0800	[2]Invalid argument supplied for foreach()	/includes/ordertypes/normal.otype.php	72
+Sun, 04 Sep 2016 16:26:35 +0800	[2]filemtime() [<a href='function.filemtime'>function.filemtime</a>]: stat failed for /data/home/qxu1192040223/htdocs/data/crond.lock	/includes/libraries/cron.lib.php	132
+Sun, 04 Sep 2016 16:27:40 +0800	[2]session_start() [<a href='function.session-start'>function.session-start</a>]: Cannot send session cache limiter - headers already sent (output started at /data/home/qxu1192040223/htdocs/app/order.app.php:1002)	/includes/libraries/session.lib.php	396
+Sun, 04 Sep 2016 16:28:20 +0800	[2]session_start() [<a href='function.session-start'>function.session-start</a>]: Cannot send session cache limiter - headers already sent (output started at /data/home/qxu1192040223/htdocs/app/order.app.php:1002)	/includes/libraries/session.lib.php	396
+Sun, 04 Sep 2016 16:28:48 +0800	[2]session_start() [<a href='function.session-start'>function.session-start</a>]: Cannot send session cache limiter - headers already sent (output started at /data/home/qxu1192040223/htdocs/app/order.app.php:1002)	/includes/libraries/session.lib.php	396
+Sun, 04 Sep 2016 16:30:15 +0800	[2]session_start() [<a href='function.session-start'>function.session-start</a>]: Cannot send session cache limiter - headers already sent (output started at /data/home/qxu1192040223/htdocs/app/order.app.php:1002)	/includes/libraries/session.lib.php	396
+Sun, 04 Sep 2016 16:30:58 +0800	[2]session_start() [<a href='function.session-start'>function.session-start</a>]: Cannot send session cache limiter - headers already sent (output started at /data/home/qxu1192040223/htdocs/app/order.app.php:1002)	/includes/libraries/session.lib.php	396
+Sun, 04 Sep 2016 16:30:59 +0800	[2]session_start() [<a href='function.session-start'>function.session-start</a>]: Cannot send session cache limiter - headers already sent (output started at /data/home/qxu1192040223/htdocs/app/order.app.php:1002)	/includes/libraries/session.lib.php	396
+Sun, 04 Sep 2016 16:31:00 +0800	[2]session_start() [<a href='function.session-start'>function.session-start</a>]: Cannot send session cache limiter - headers already sent (output started at /data/home/qxu1192040223/htdocs/app/order.app.php:1002)	/includes/libraries/session.lib.php	396
+Sun, 04 Sep 2016 16:31:01 +0800	[2]session_start() [<a href='function.session-start'>function.session-start</a>]: Cannot send session cache limiter - headers already sent (output started at /data/home/qxu1192040223/htdocs/app/order.app.php:1002)	/includes/libraries/session.lib.php	396
+Sun, 04 Sep 2016 16:31:02 +0800	[2]session_start() [<a href='function.session-start'>function.session-start</a>]: Cannot send session cache limiter - headers already sent (output started at /data/home/qxu1192040223/htdocs/app/order.app.php:1002)	/includes/libraries/session.lib.php	396
+Sun, 04 Sep 2016 16:34:51 +0800	[2]filemtime() [<a href='function.filemtime'>function.filemtime</a>]: stat failed for /data/home/qxu1192040223/htdocs/data/crond.lock	/includes/libraries/cron.lib.php	132
+Sun, 04 Sep 2016 16:38:17 +0800	[2]filemtime() [<a href='function.filemtime'>function.filemtime</a>]: stat failed for /data/home/qxu1192040223/htdocs/data/crond.lock	/includes/libraries/cron.lib.php	132
+Sun, 04 Sep 2016 16:42:09 +0800	[2]filemtime() [<a href='function.filemtime'>function.filemtime</a>]: stat failed for /data/home/qxu1192040223/htdocs/data/crond.lock	/includes/libraries/cron.lib.php	132
+Sun, 04 Sep 2016 17:00:48 +0800	[2]filemtime() [<a href='function.filemtime'>function.filemtime</a>]: stat failed for /data/home/qxu1192040223/htdocs/data/crond.lock	/includes/libraries/cron.lib.php	132
+Sun, 04 Sep 2016 17:08:46 +0800	[2]session_start() [<a href='function.session-start'>function.session-start</a>]: Cannot send session cache limiter - headers already sent (output started at /data/home/qxu1192040223/htdocs/app/order.app.php:1002)	/includes/libraries/session.lib.php	396
+Sun, 04 Sep 2016 17:16:59 +0800	[2]filemtime() [<a href='function.filemtime'>function.filemtime</a>]: stat failed for /data/home/qxu1192040223/htdocs/data/crond.lock	/includes/libraries/cron.lib.php	132
+Sun, 04 Sep 2016 17:20:00 +0800	[2]filemtime() [<a href='function.filemtime'>function.filemtime</a>]: stat failed for /data/home/qxu1192040223/htdocs/data/crond.lock	/includes/libraries/cron.lib.php	132
+Sun, 04 Sep 2016 18:06:46 +0800	[2]filemtime() [<a href='function.filemtime'>function.filemtime</a>]: stat failed for /data/home/qxu1192040223/htdocs/data/crond.lock	/includes/libraries/cron.lib.php	132
+Sun, 04 Sep 2016 18:40:57 +0800	[2]file_get_contents(http://ip.taobao.com/service/getIpInfo.php?ip=123.120.223.157) [<a href='function.file-get-contents'>function.file-get-contents</a>]: failed to open stream: HTTP request failed! 	/includes/models/region.model.php	150
+Sun, 04 Sep 2016 20:27:06 +0800	[2]filemtime() [<a href='function.filemtime'>function.filemtime</a>]: stat failed for /data/home/qxu1192040223/htdocs/data/crond.lock	/includes/libraries/cron.lib.php	132
+Mon, 12 Sep 2016 15:36:51 +0800	[2]filemtime() [<a href='function.filemtime'>function.filemtime</a>]: stat failed for /data/home/qxu1192040223/htdocs/data/crond.lock	/includes/libraries/cron.lib.php	132
+Mon, 12 Sep 2016 15:37:11 +0800	[2]filemtime() [<a href='function.filemtime'>function.filemtime</a>]: stat failed for /data/home/qxu1192040223/htdocs/data/crond.lock	/includes/libraries/cron.lib.php	132
+Mon, 12 Sep 2016 20:15:09 +0800	[2]file_get_contents(http://ip.taobao.com/service/getIpInfo.php?ip=114.241.162.90) [<a href='function.file-get-contents'>function.file-get-contents</a>]: failed to open stream: HTTP request failed! HTTP/1.1 500 Internal Server Error
+	/includes/models/region.model.php	150
+Mon, 12 Sep 2016 21:55:55 +0800	[2]filemtime() [<a href='function.filemtime'>function.filemtime</a>]: stat failed for /data/home/qxu1192040223/htdocs/data/crond.lock	/includes/libraries/cron.lib.php	132
+Mon, 12 Sep 2016 22:18:30 +0800	[2]filemtime() [<a href='function.filemtime'>function.filemtime</a>]: stat failed for /data/home/qxu1192040223/htdocs/data/crond.lock	/includes/libraries/cron.lib.php	132
+Tue, 13 Sep 2016 22:11:09 +0800	[256]MySQL Error[1062]: Duplicate entry 'cb297d37980baf23c6371d013fc0ef9d' for key 'PRIMARY'
+MySQL Query:INSERT INTO ecm_sessions SET sesskey = 'cb297d37980baf23c6371d013fc0ef9d', expiry = '1473748509', ip = '114.241.162.13', userid = '0', adminid = '0', data = ''
+Wrong File:  /data/home/qxu1192040223/htdocs/eccore/model/mysql.php[263]	/eccore/model/mysql.php	278
+Tue, 13 Sep 2016 22:18:01 +0800	[2]filemtime() [<a href='function.filemtime'>function.filemtime</a>]: stat failed for /data/home/qxu1192040223/htdocs/data/crond.lock	/includes/libraries/cron.lib.php	132
+Tue, 13 Sep 2016 22:30:46 +0800	[2]filemtime() [<a href='function.filemtime'>function.filemtime</a>]: stat failed for /data/home/qxu1192040223/htdocs/data/crond.lock	/includes/libraries/cron.lib.php	132
+Tue, 13 Sep 2016 22:39:46 +0800	[2]filemtime() [<a href='function.filemtime'>function.filemtime</a>]: stat failed for /data/home/qxu1192040223/htdocs/data/crond.lock	/includes/libraries/cron.lib.php	132
+Tue, 20 Sep 2016 15:18:33 +0800	[2]file_get_contents(http://ip.taobao.com/service/getIpInfo.php?ip=183.133.105.195) [<a href='function.file-get-contents'>function.file-get-contents</a>]: failed to open stream: HTTP request failed! 	/includes/models/region.model.php	150
+Sun, 25 Sep 2016 23:35:06 +0800	[2]file_get_contents(http://ip.taobao.com/service/getIpInfo.php?ip=113.97.219.135) [<a href='function.file-get-contents'>function.file-get-contents</a>]: failed to open stream: HTTP request failed! 	/includes/models/region.model.php	150
+Sun, 25 Sep 2016 23:40:43 +0800	[2]file_get_contents(http://ip.taobao.com/service/getIpInfo.php?ip=113.97.219.135) [<a href='function.file-get-contents'>function.file-get-contents</a>]: failed to open stream: HTTP request failed! 	/includes/models/region.model.php	150
+Mon, 26 Sep 2016 00:04:30 +0800	[2]filemtime() [<a href='function.filemtime'>function.filemtime</a>]: stat failed for /data/home/qxu1192040223/htdocs/data/crond.lock	/includes/libraries/cron.lib.php	132
+Mon, 26 Sep 2016 00:32:33 +0800	[2]filemtime() [<a href='function.filemtime'>function.filemtime</a>]: stat failed for /data/home/qxu1192040223/htdocs/data/crond.lock	/includes/libraries/cron.lib.php	132
+Mon, 26 Sep 2016 00:37:45 +0800	[2]filemtime() [<a href='function.filemtime'>function.filemtime</a>]: stat failed for /data/home/qxu1192040223/htdocs/data/crond.lock	/includes/libraries/cron.lib.php	132
+Mon, 26 Sep 2016 00:46:51 +0800	[2]filemtime() [<a href='function.filemtime'>function.filemtime</a>]: stat failed for /data/home/qxu1192040223/htdocs/data/crond.lock	/includes/libraries/cron.lib.php	132
+Mon, 26 Sep 2016 01:45:30 +0800	[2]filemtime() [<a href='function.filemtime'>function.filemtime</a>]: stat failed for /data/home/qxu1192040223/htdocs/data/crond.lock	/includes/libraries/cron.lib.php	132
+Mon, 26 Sep 2016 02:01:29 +0800	[2]filemtime() [<a href='function.filemtime'>function.filemtime</a>]: stat failed for /data/home/qxu1192040223/htdocs/data/crond.lock	/includes/libraries/cron.lib.php	132
+Mon, 26 Sep 2016 02:09:09 +0800	[2]filemtime() [<a href='function.filemtime'>function.filemtime</a>]: stat failed for /data/home/qxu1192040223/htdocs/data/crond.lock	/includes/libraries/cron.lib.php	132
+Mon, 26 Sep 2016 02:12:25 +0800	[2]filemtime() [<a href='function.filemtime'>function.filemtime</a>]: stat failed for /data/home/qxu1192040223/htdocs/data/crond.lock	/includes/libraries/cron.lib.php	132
+Mon, 26 Sep 2016 02:23:32 +0800	[2]filemtime() [<a href='function.filemtime'>function.filemtime</a>]: stat failed for /data/home/qxu1192040223/htdocs/data/crond.lock	/includes/libraries/cron.lib.php	132
+Mon, 26 Sep 2016 02:33:30 +0800	[2]filemtime() [<a href='function.filemtime'>function.filemtime</a>]: stat failed for /data/home/qxu1192040223/htdocs/data/crond.lock	/includes/libraries/cron.lib.php	132
+Mon, 26 Sep 2016 02:43:38 +0800	[2]filemtime() [<a href='function.filemtime'>function.filemtime</a>]: stat failed for /data/home/qxu1192040223/htdocs/data/crond.lock	/includes/libraries/cron.lib.php	132
+Mon, 26 Sep 2016 22:34:48 +0800	[2]file_get_contents(http://ip.taobao.com/service/getIpInfo.php?ip=115.220.153.252) [<a href='function.file-get-contents'>function.file-get-contents</a>]: failed to open stream: HTTP request failed! 	/includes/models/region.model.php	150
+Wed, 28 Sep 2016 16:48:59 +0800	[2]file_get_contents(http://ip.taobao.com/service/getIpInfo.php?ip=115.220.153.252) [<a href='function.file-get-contents'>function.file-get-contents</a>]: failed to open stream: HTTP request failed! 	/includes/models/region.model.php	150
+Wed, 28 Sep 2016 16:53:14 +0800	[2]file_get_contents(http://ip.taobao.com/service/getIpInfo.php?ip=115.220.153.252) [<a href='function.file-get-contents'>function.file-get-contents</a>]: failed to open stream: HTTP request failed! 	/includes/models/region.model.php	150
+Wed, 28 Sep 2016 16:58:19 +0800	[2]file_get_contents(http://ip.taobao.com/service/getIpInfo.php?ip=115.220.153.252) [<a href='function.file-get-contents'>function.file-get-contents</a>]: failed to open stream: HTTP request failed! 	/includes/models/region.model.php	150
+Wed, 28 Sep 2016 17:00:34 +0800	[2]file_get_contents(http://ip.taobao.com/service/getIpInfo.php?ip=115.220.153.252) [<a href='function.file-get-contents'>function.file-get-contents</a>]: failed to open stream: HTTP request failed! 	/includes/models/region.model.php	150
+Wed, 28 Sep 2016 17:03:28 +0800	[2]file_get_contents(http://ip.taobao.com/service/getIpInfo.php?ip=115.220.153.252) [<a href='function.file-get-contents'>function.file-get-contents</a>]: failed to open stream: HTTP request failed! 	/includes/models/region.model.php	150
+Wed, 28 Sep 2016 17:06:34 +0800	[2]file_get_contents(http://ip.taobao.com/service/getIpInfo.php?ip=115.220.153.252) [<a href='function.file-get-contents'>function.file-get-contents</a>]: failed to open stream: HTTP request failed! 	/includes/models/region.model.php	150
+Wed, 28 Sep 2016 17:21:54 +0800	[2]file_get_contents(http://ip.taobao.com/service/getIpInfo.php?ip=115.220.153.252) [<a href='function.file-get-contents'>function.file-get-contents</a>]: failed to open stream: HTTP request failed! 	/includes/models/region.model.php	150
+Wed, 28 Sep 2016 17:42:12 +0800	[2]file_get_contents(http://ip.taobao.com/service/getIpInfo.php?ip=115.220.153.252) [<a href='function.file-get-contents'>function.file-get-contents</a>]: failed to open stream: HTTP request failed! 	/includes/models/region.model.php	150
+Wed, 28 Sep 2016 17:51:39 +0800	[2]file_get_contents(http://ip.taobao.com/service/getIpInfo.php?ip=115.220.153.252) [<a href='function.file-get-contents'>function.file-get-contents</a>]: failed to open stream: HTTP request failed! 	/includes/models/region.model.php	150
+Wed, 28 Sep 2016 17:57:54 +0800	[2]file_get_contents(http://ip.taobao.com/service/getIpInfo.php?ip=115.220.153.252) [<a href='function.file-get-contents'>function.file-get-contents</a>]: failed to open stream: HTTP request failed! 	/includes/models/region.model.php	150
+Wed, 28 Sep 2016 17:58:32 +0800	[2]file_get_contents(http://ip.taobao.com/service/getIpInfo.php?ip=115.220.153.252) [<a href='function.file-get-contents'>function.file-get-contents</a>]: failed to open stream: HTTP request failed! 	/includes/models/region.model.php	150

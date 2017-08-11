@@ -1,0 +1,27 @@
+<div class="slide_goods sg{$widget_data.model_id} mb10">
+	<div class="content">
+        <ul class="ks-content ks-switchable-content">
+            <!--{foreach from=$widget_data.goods_list item=goods name=fe_hot_goods}-->
+            <li>
+                <a href="{url app=goods&id=$goods.goods_id}" target="_blank" style="background:url({$goods.default_image}) no-repeat center 0;"></a>
+            </li>
+            <!-- {/foreach} -->
+        </ul>
+    </div>
+    <ul class="title ks-switchable-nav clearfix">
+      <!--{foreach from=$widget_data.goods_list item=nav name=fe_nav}-->
+      <li {if $smarty.foreach.fe_nav.first}class="ks-active"{/if}><a href="{url app=goods&id=$nav.goods_id}"><img width="123" height="133" src="{$nav.default_image}"/></a></li>
+      <!--{/foreach}-->
+   </ul>
+   <!--{if $widget_data.goods_list}-->
+   <script>
+      KISSY.use('switchable', function(S) {
+         S.Slide('.sg{$widget_data.model_id}', {
+         effect: 'scrolly',
+         easing: 'easeOutStrong',
+         autoplay: false
+      });
+   });
+   </script>
+   <!--{/if}-->
+</div>

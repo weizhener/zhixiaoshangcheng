@@ -1,0 +1,85 @@
+/* CSS Document */
+*{margin:0;padding:0;}
+body{font:12px \5b8b\4f53,Tahoma, Arial,sans-serif; font-family:"微软雅黑", Arial; min-width:320px; }
+.gray{ background:#e8e8e8;}
+ul,ol,li{list-style:none;}
+img{ border:0; vertical-align:middle;}
+.clear{ clear:both;}
+a{ color:#666; text-decoration:none; }
+a:active{color:#1B5A24;}
+
+/* 按钮 */
+.white_btn{
+background:#fefefe;
+background:linear-gradient(to bottom,#fefefe,#f5f5f5);
+background: -ms-gradient(top, #fefefe,#f5f5f5);
+background: -moz-linear-gradient(top, #fefefe,#f5f5f5);
+background: -webkit-gradient(linear, 0 0, 0 100%, from(#fefefe), to(#f5f5f5));
+border:#ddd solid 1px;border-radius:3px; color:#333;
+}
+.white_btn:active{
+background:linear-gradient(to bottom,#f5f5f5,#fefefe);
+background: -moz-linear-gradient(top, #f5f5f5,#fefefe);
+background: -ms-gradient(top, #f5f5f5,#fefefe);
+background: -webkit-gradient(linear, 0 0, 0 100%, from(#f5f5f5), to(#fefefe));
+border:#ddd solid 1px;border-radius:3px; color:#333;
+}
+.red_btn{
+background:#272C40;
+background:linear-gradient(to bottom,#F93F51,#E62C3E);
+background: -moz-linear-gradient(top, #F93F51,#E62C3E);
+background: -ms-gradient(top, #F93F51,#E62C3E);
+background: -webkit-gradient(linear, 0 0, 0 100%, from(#F93F51), to(#E62C3E));
+border:#E02638 solid 1px;border-radius:3px;
+color:#fff;
+}
+.red_btn:active{
+background:#272C40;
+background:linear-gradient(to bottom,#E62C3E,#F93F51);
+background: -ms-gradient(top, #E62C3E,#F93F51);
+background: -moz-linear-gradient(top,#E62C3E,#F93F51);
+background: -webkit-gradient(linear, 0 0, 0 100%, from(#E62C3E), to(#F93F51));
+border:#E02638 solid 1px;border-radius:3px;
+color:#fff;
+}
+
+/* 店铺信息 */
+.shop_info{ background:#333;padding:10px; display:none; left:100%;}
+.shop_info .shop_code{ width:140px; height:140px; float:left; margin-right:10px;}
+.shop_info .shop_name{ color:#fff; padding:0 0 5px 0; font-size:18px;}
+.shop_info .shop_detail{ overflow:hidden; width:140px;}
+.shop_info .shop_detail span{ color:#fff; display:block;  float:left; font-size:14px; line-height:28px;}
+.shop_info .shop_detail span strong{ color:#c00; font-size:16px;}
+.shop_info .back{ background:#fff; border:#ccc solid 3px; display:block; width:132px; float:left; padding:5px; text-align:center; margin-top:10px;}
+.fav_msg{display:none;position:fixed;  top:25%; left:25%;  background:rgba(0,0,0,0.2); overflow:hidden; color:#fff; padding:3%;border-radius:10px; font-size:18px; height:39px; line-height:39px; vertical-align:middle; text-align:center; z-index:12345;}
+.fav_msg img{ margin-right:5px;}
+
+/* 轮播 */
+.slider{ margin:0 auto; width:100%;}
+
+/* 分类 */
+.sort{ margin:0 auto 15px; width:100%; overflow:hidden; border-bottom:#ccc solid 1px; padding-bottom:10px;}
+.sort li{ float:left; width:25%; margin-bottom:5px;}
+.sort li img{ width:100%;}
+.sort li span{ display:block; text-align:center;}
+
+
+/* 翻页 */
+.page{ overflow:hidden; text-align:center;}
+.page a{ display:inline-block; padding:8px 20px; font-size:14px; cursor:pointer; }
+.page select{ width:84px; height:38px; opacity:0; position:absolute; left:0; top:0;  }
+.page .selected{z-index:99;position:relative;}
+.page .page_hover{color:#B20005;}
+/* 列表页 */
+.paixu{ height:30px; background:#fff;box-shadow: 0 2px 4px rgba(0,0,0,0.3); position:absolute; top:40px; left:0; z-index:990; width:96%; padding:10px 2%; min-width:320px;}
+.paixu span{ display:block; padding:5px 10px;  float:left; margin-right:5px; height:20px;}
+.paixu a{display:block; padding:5px;  float:left;margin-right:5px; width:48px; height:20px; line-height:20px; }
+.paixu a i{background:url(../images/paixu.png) no-repeat -20px 0; background-size:41px 19px; display:block;height:20px; line-height:20px; width:20px; float:right;}
+.paixu a.cur i{background-position:3px 0}
+.paixu a:active i{background-position:3px 0;}
+.lists1{margin-top:90px;}
+/* 购物车，订单空时 */
+.submit_btn{ display:block; text-align:center; background:#b20005; color:#fff; margin:0 10px; font-size:16px; height:40px; line-height:40px; border-radius:5px;}
+.null{ margin-top:75px;}
+.null p{ text-align:center; color:#aaa; font-size:20px; margin-bottom:20px;}
+.null .white_btn{ padding:8px 20px;border-radius:5px;}

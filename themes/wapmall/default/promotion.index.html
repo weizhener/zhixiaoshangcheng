@@ -1,0 +1,32 @@
+{include file="header.html"}    
+<div class="mb-head">
+    <a href="{url app=default}" class="l_b">首页</a>
+    <div class="tit">促销产品</div>
+    <a href="{url app=category}" class="r_b">分类</a>
+</div>
+
+
+<section class="search_goods">
+    <!--{if !$goods_list_order}-->
+    <ul class="list">
+        <!--{foreach from=$goods_list item=goods name=fe_goods}-->
+        <a href="{url app=goods&id=$goods.goods_id}">
+            <li>
+                <img src="{$goods.default_image}" alt="{$goods.name}"/>
+                <div class="detail">
+                    <p class="title">{$goods.goods_name|escape}</p>
+                    <p class="price">{$goods.pro_price|price}</p>
+                </div>
+            </li>
+        </a>
+        <!--{/foreach}-->
+    </ul>
+    <!--{else}-->
+    <center style="font-size:16px;">没有找到相关的商品！</center>
+    <!--{/if}-->
+    {include file='page.bottom.html'}
+</section>
+
+
+
+{include file="footer.html"}

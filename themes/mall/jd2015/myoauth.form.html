@@ -1,0 +1,49 @@
+{include file=member.header.html}
+<div class="content">
+    <div class="totline"></div>
+    <div class="botline"></div>
+    {include file=member.menu.html}
+    <div id="right">
+        <div class="submenu">
+        <ul class="tab">
+        	<li class="normal"><h2><a href="index.php?app=my_oauth">规则列表</a></h2></li>
+            <li class="active"><h2><a href="javascript:;">添加规则</a></h2></li>
+        </ul>
+		</div>
+        <div class="wrap">
+            <div class="public">
+                <div class="information">
+                    <div class="setup info shop">
+                        <form action="" method="post">
+                            <table style="width: 100%">
+                                <tr>
+                                    <th class="width2">规则名称：</th>
+                                    <td>
+                                        <p class="td_block"><input type="text" name="name" value="{$partner.name}"  /></p>
+                                        
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>网址：</th>
+                                    <td>
+                                        <p class="td_block"><input type="text" name="url" value="{$partner.url}" style=" width:300px;"/> 网址前面带 http://</p>
+                                    </td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>
+                                        <div class="issuance"><input type="submit" class="btn" value="{$lang.submit}" /></div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="wrap_bottom"></div>
+        </div>
+        <div class="clear"></div>
+    </div>
+    <div class="clear"></div>
+</div>
+{include file=footer.html}

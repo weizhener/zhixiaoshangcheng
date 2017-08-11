@@ -1,0 +1,176 @@
+{include file="header.html"}
+<script>
+$(function(){
+	$("#refund_form").submit(function(){
+		var re = /^[0-9]+.?[0-9]*$/;   //判断字符串是否为数字  
+     	if (($('input[name="refund_goods_fee"]').val() !='' && !re.test($('input[name="refund_goods_fee"]').val())) || ($('input[name="refund_shipping_fee"]').val() !='' && !re.test($('input[name="refund_shipping_fee"]').val())))
+    	{
+        	alert("{$lang.price_error}");
+        	return false;
+     	}
+		if($('input[name="refund_goods_fee"]').val()<0 || $('input[name="refund_goods_fee"]').val()==''){
+			alert('{$lang.refund_fee_ge0}');
+			return false;
+		} else if($('input[name="refund_goods_fee"]').val() > {$refund.goods_fee}){
+			alert('{$lang.refund_fee_gt_total_fee}:{$refund.goods_fee}');
+			return false;
+		}
+		if($('input[name="refund_shipping_fee"]').val()<0){
+			alert('{$lang.refund_shipping_fee_ge0}');
+			return false;
+		} else if($('input[name="refund_shipping_fee"]').val() > {$refund.shipping_fee}){
+			alert('{$lang.refund_shipping_fee_error}:{$refund.shipping_fee}');
+			return false;
+		}
+	});	
+});
+</script>
+<style type="text/css">
+.refund_form{ margin:0 auto;width:100%;}
+.clearfix:after{ content:'\20'; display:block; height:0; overflow:hidden; clear:both}
+.float_right {float: right;}
+.datafuncs{float:left;width:768px;}
+.refund_info{border:1px #ddd solid;padding:10px; line-height:20px;border-bottom:0;margin-top:20px;width:746px;}
+.refund_btn{border:1px #ddd solid;border-top:0;border-bottom:0;padding:10px;width:746px;}
+ul{ line-height:none}
+.refund_form input{ vertical-align:middle}
+.refund_message{ background:#FFF7EB;padding:20px;border:1px #ddd solid;width:726px; clear:both}
+.refund_message form{height:220px; line-height:20px;}
+.message_form{margin-bottom:10px; height:100px;}
+.message_form textarea{vertical-align:middle;width:660px; height:40px;margin-top:10px;}
+.message_form .refund-submit{margin-top:8px;margin-left:644px;}
+.messge_list{border:1px #ddd solid;}
+.message_list .title{border:1px #ddd solid; line-height:30px; height:30px; background:#fff;}
+.message_list .title h3{float:left;width:300px;font-size:12px;padding-left:5px;}
+.message_list .title span{float:right;padding-right:5px;}
+.message_list .content{ background:#fff;padding:10px;border:1px #ddd solid;border-top:0;width:704px;border-bottom:0;}
+.refund_btn a,.refund_message_btn{ display:inline-block; background:url('{res file=style/images/refund_btn.jpg}') no-repeat; width:83px; height:30px; line-height:30px; text-align:center;color:#fff; text-decoration:none;font-weight:bold;border:0; cursor:pointer}
+.refund_btn a.blue{ background-position:-102px 0}
+.curr_refund_goods{position:absolute;top:18px;left:130px;}
+.order_info{float:left;border:1px #ddd solid;margin-top:20px;margin-left:10px;width:305px;}
+.order_info h3{height:25px; line-height:25px; background:#E0E0E0;border-bottom:1px #ddd solid;padding-left:5px;width:300px;}
+.order_info ul{padding:10px; line-height:20px;}
+.order_info a{ text-decoration:none;color:#06C}
+.refund-order-goods{padding:5px;width:290px;}
+.refund-order-goods .each{width:290px;margin-bottom:5px;}
+.refund-order-goods .each .pic{border:1px #ddd solid;width:60px;height:60px;float:left;}
+.refund-order-goods .each .goodsinfo{float:left;margin-left:5px; line-height:18px; position:relative; width:222px;}
+</style>
+<div id="rightTop">
+    <p>{$lang.refund_manage}</p>
+    <ul class="subnav">
+        <li><span>{$lang.manage}</span></li>
+    </ul>
+</div>
+<div class="mrightTop">
+    <div class="fontl">
+        
+    </div>
+</div>
+<div class="tdare clearfix">
+    
+    <div id="dataFuncs" class="datafuncs">
+    	<div class="public refund_form clearfix">
+            <ul class="refund_info">
+                	<li>退款编号：{$refund.refund_sn}</li>
+                    <li>申请时间：{$refund.created|date:Y-m-d H:i:s}</li>
+                    <li>退款状态：{if $refund.status=='CLOSED'}退款关闭
+                        {elseif $refund.status=='SUCCESS'}退款成功
+                        {elseif $refund.status=='WAIT_SELLER_AGREE'}买家已经申请退款，等待卖家同意
+                        {elseif $refund.status=='SELLER_REFUSE_BUYER'}卖家拒绝退款，等待买家修改中
+                        {elseif $refund.status=='WAIT_ADMIN_AGREE'}
+                        卖家已经同意退款，等待管理员审核
+                        {elseif $refund.status=='WAIT_SELLER_CONFIRM'}退款申请等待卖家确认中
+                        {/if}	
+                    </li>
+                    <li>商品总额：{$refund.total_fee|price} <span class="gray">(含分摊的运费)</span></li>
+                    <li>退款金额：{$refund.refund_goods_fee|price} <span class="gray">(商品金额：{$refund.goods_fee|price})</span></li>
+                    <li>退&nbsp;&nbsp;运&nbsp;&nbsp;费：{$refund.refund_shipping_fee|price} <span class="gray">(分摊的运费：{$refund.shipping_fee|price})</span></li>
+                    <li>收货情况：{$refund.shipped_text}</li>
+                    <li>退款原因：{$refund.refund_reason}</li>
+                    <li>退款说明：{$refund.refund_desc}</li>
+            </ul>
+            <div class="refund_message clearfix">
+                	<!--{if $refund.status neq 'SUCCESS' && $refund.status neq 'CLOSED'}-->
+                	<form method="post" id="refund_form">
+                    <input type="hidden" name="refund_id" value="{$refund.refund_id}" />
+                	<ul class="message_form clearfix">
+                    	<li>退款金额：<input type="text" name="refund_goods_fee" value="{$refund.refund_goods_fee}" class="text" /><span class="gray">最多{$refund.goods_fee}元，客服与买卖双方协商后的商品退款金额。</span></li>
+                        <li>退&nbsp;&nbsp;运&nbsp;&nbsp;费：<input type="text" name="refund_shipping_fee" value="{$refund.refund_shipping_fee}" /><span class="gray">最多{$refund.shipping_fee}元，如果不是商品质量问题，买家承担寄送运费，则建议为&yen;0元。（注：如果一个订单中有多个商品，买家只退其中一个或几个商品，那么需要计算分摊运费，所以，至于退多少，管理员与买卖双方协商。）</span></li>
+                    	<li>客服留言：<textarea name="content" class="text"></textarea></li>
+                        <li class="refund-submit"><input onclick="return confirm('{$lang.note_for_submit}')" type="submit" name=""  value="提交" class="refund_message_btn"/></li>
+                    </ul>
+                    </form>
+                    <!--{/if}-->
+                	<div class="message_list">
+                    	<!--{foreach from=$refund.message item=message name=fe_message}-->
+                    	<div class="title clearfix">
+                        	<h3>
+                            {if $message.owner_id==$visitor.user_id}
+                            自己
+                            {elseif $message.owner_role eq 'buyer'}
+                            买家
+                            {elseif $message.owner_role eq 'seller'}
+                            卖家
+                            {elseif $message.owner_role eq 'admin'}
+                            商家客服
+                            {/if}
+                            </h3>
+                            <span>{$message.created|date:Y-m-d H:i:s}</span>
+                        </div>
+                        <div class="content" {if $smarty.foreach.fe_message.last} style="border-bottom:1px #ddd solid"{/if}>
+                        	{$message.content}
+                            <!--{if $message.pic_url}-->
+                            <p style="margin-top:10px;"><img src="{$site_url}/{$message.pic_url}" width="200" /></p>
+                            <!--{/if}-->
+                        </div>      
+                        <!--{/foreach}-->              
+                    </div>
+                    <div class="pageLinks clearfix">
+            		{if $refund.message}{include file=page.bottom.html}{/if}
+        			</div>
+                </div>
+        </div>
+    </div>
+    <div class="order_info">
+    	<h3>订单信息</h3>
+    	<ul>
+        	<li>订单编号：{$order.order_sn}</li>
+            <li>支付方式：{$order.payment_name}</li>
+            <li>订单总额：{$order.order_amount|price}</li>
+            <li>商品总额：{$order.goods_amount|price}</li>
+            <li>商品优惠：{$order.discount|price}</li>
+            <li>下单时间：{$order.add_time|date:Y-m-d H:i:s}</li>
+            <li>物流方式：{$order.shipping.shipping_name}</li>
+            <li>物流费用：{$order.shipping.shipping_fee|price}</li>
+            <li>运送地点：{$order.shipping.region_name}{$order.shipping.address}</li>
+            
+            <li>卖家信息：<a href="{$site_url}/index.php?app=store&id={$order.seller_id}" target="_blank">{$order.seller_name}</a></li>
+            <li>买家昵称：{$order.buyer_name}</li>
+            <li>收货人姓名：{$order.shipping.consignee}</li>
+            <li>收货人电话：{$order.shipping.phone_tel}</li>
+            <li>收货人手机：{$order.shipping.phone_mob}</li>
+        </ul>
+        <h3>订单商品</h3>
+        <div class="refund-order-goods">
+       		<!--{foreach from=$order.items item=goods}-->
+            <div class="each clearfix">
+            	<div class="pic"><a href=""><img src="{$site_url}/{$goods.goods_image}" width="60" height="60" /></a></div>
+            	<div class="goodsinfo">
+            		<a href="{$site_url}/index.php?app=goods&id={$goods.goods_id}" target="_blank">{$goods.goods_name|escape|truncate:60}</a>
+                	<br />
+                	规格：{if $goods.specification}{$goods.specification}{else}默认规格{/if}
+                	<br />
+                	价格：{$goods.price|price} X {$goods.quantity} 件
+                    {if $refund.goods_id==$goods.goods_id && $refund.spec_id==$goods.spec_id}
+                    <span class="gray curr_refund_goods">当前退款商品</span>
+                    {/if}
+            	</div>
+            </div>
+       		<!--{/foreach}-->
+       </div>
+    </div>
+    
+    <div class="clear"></div>
+</div>
+{include file="footer.html"}

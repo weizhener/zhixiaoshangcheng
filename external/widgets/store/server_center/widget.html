@@ -1,0 +1,30 @@
+<div class="server_center mb10">
+	<div class="title">
+    
+    </div>
+    <ul class="content">
+    	<!--{foreach from=$widget_data item=im name=fe_im}-->
+        <li>
+        	<h3>{$im.title}</h3>
+        	<div class="im_list">
+                <div class="row clearfix">
+                	<a name="im">
+                	<!--{foreach from=$im.im item=i name=fe_i}-->
+                    <div class="each_im">
+                        <div class="logo" {if $smarty.foreach.fe_i.iteration % 3 == 0}style="margin-right:0px;"{/if}>
+                            <a class="user_logo" href="{if $i.type == 'WW'}http://www.taobao.com/webww/ww.php?ver=3&touid={$i.acount}&siteid=cntaobao&status=2&charset=utf-8{else}http://wpa.qq.com/msgrd?v=3&uin={$i.acount}&site=qq&menu=yes{/if}"><img width="47" height="47" src="{$i.ad_image_url}" /></a>
+                            {if $i.type == 'WW'}
+                            <a class="im_logo" target='_blank' href='http://www.taobao.com/webww/ww.php?ver=3&touid={$i.acount}&siteid=cntaobao&status=2&charset=utf-8' ><img border='0' src='http://amos.alicdn.com/online.aw?v=2&uid={$i.acount}&site=cntaobao&s=2&charset=utf-8' alt='点击这里给我发消息' /></a>
+                            {else}
+                            <a class="im_logo" target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin={$i.acount}&site=qq&menu=yes"><img border='0' src='http://wpa.qq.com/pa?p=2:{$i.acount}:52' alt='点击这里给我发消息' title='点击这里给我发消息'/></a>
+                            {/if}
+                        </div>
+                        <p title="{$i.acount_name}">{$i.acount_name}</p>
+                    </div>
+                	<!--{/foreach}-->	                    
+                </div>
+            </div>
+        </li>
+        <!--{/foreach}-->
+    </ul>
+</div>

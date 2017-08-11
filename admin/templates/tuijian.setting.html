@@ -1,0 +1,99 @@
+{include file="header.html"}
+
+<div id="rightTop">
+    <p>{$lang.tuijian}</p>
+    <ul class="subnav">
+        <!--
+        <li><a class="btn1" href="index.php?app=setting&amp;act=base_setting">{$lang.base_setting}</a></li>
+        -->
+        <li><span>{$lang.tuijian_setting}</span></li>
+    </ul>
+</div>
+
+<div class="info">
+    <form method="post" enctype="multipart/form-data">
+        <table class="infoTable">
+            <tr>
+                <th class="paddingT15">设置提示</th>
+                <td class="paddingT15">分成比例分为三级,分成的金额为总价的百分比,(建议默认设置1级为5%,2级为2%,3级为1%)<br/>注意：总和不能大于100</td>
+            </tr>
+            <tr>
+                <th class="paddingT15">{$lang.tuijian_seller_status}:</th>
+                <td class="paddingT15">
+                    <input type="radio" name="tuijian_seller_status" {if $setting.tuijian_seller_status eq 0}checked{/if} value="0" />
+                           <label>{$lang.no}</label>
+                    <input type="radio" name="tuijian_seller_status" {if $setting.tuijian_seller_status eq 1}checked{/if} value="1" />
+                           <label>{$lang.yes}</label>        
+                </td>
+            </tr>
+            <tr>
+                <th class="paddingT15">
+                    {$lang.tuijian_seller_ratio1}:</th>
+                <td class="paddingT15 wordSpacing5">
+                    <input class="infoTableInput" id="tuijian_seller_ratio1" type="text" name="tuijian_seller_ratio1" value="{$setting.tuijian_seller_ratio1}"/>
+                    <label class="field_notice">%</label>
+                </td>
+            </tr>
+            <tr>
+                <th class="paddingT15">
+                    {$lang.tuijian_seller_ratio2}:</th>
+                <td class="paddingT15 wordSpacing5">
+                    <input class="infoTableInput" id="tuijian_seller_ratio2" type="text" name="tuijian_seller_ratio2" value="{$setting.tuijian_seller_ratio2}"/>
+                    <label class="field_notice">%</label>
+                </td>
+            </tr>
+            <tr>
+                <th class="paddingT15">
+                    {$lang.tuijian_seller_ratio3}:</th>
+                <td class="paddingT15 wordSpacing5">
+                    <input class="infoTableInput" id="tuijian_seller_ratio3" type="text" name="tuijian_seller_ratio3" value="{$setting.tuijian_seller_ratio3}"/>
+                    <label class="field_notice">%</label>
+                </td>
+            </tr>
+            
+            
+            <tr>
+                <th class="paddingT15">{$lang.tuijian_buyer_status}:</th>
+                <td class="paddingT15">
+                    <input type="radio" name="tuijian_buyer_status" {if $setting.tuijian_buyer_status eq 0}checked{/if} value="0" />
+                           <label>{$lang.no}</label>
+                    <input type="radio" name="tuijian_buyer_status" {if $setting.tuijian_buyer_status eq 1}checked{/if} value="1" />
+                           <label>{$lang.yes}</label>        
+                </td>
+            </tr>
+            <tr>
+                <th class="paddingT15">
+                    {$lang.tuijian_buyer_ratio1}:</th>
+                <td class="paddingT15 wordSpacing5">
+                    <input class="infoTableInput" id="tuijian_buyer_ratio1" type="text" name="tuijian_buyer_ratio1" value="{$setting.tuijian_buyer_ratio1}"/>
+                    <label class="field_notice">%</label>
+                </td>
+            </tr>
+            <tr>
+                <th class="paddingT15">
+                    {$lang.tuijian_buyer_ratio2}:</th>
+                <td class="paddingT15 wordSpacing5">
+                    <input class="infoTableInput" id="tuijian_buyer_ratio2" type="text" name="tuijian_buyer_ratio2" value="{$setting.tuijian_buyer_ratio2}"/>
+                    <label class="field_notice">%</label>
+                </td>
+            </tr>
+            <tr>
+                <th class="paddingT15">
+                    {$lang.tuijian_buyer_ratio3}:</th>
+                <td class="paddingT15 wordSpacing5">
+                    <input class="infoTableInput" id="tuijian_buyer_ratio3" type="text" name="tuijian_buyer_ratio3" value="{$setting.tuijian_buyer_ratio3}"/>
+                    <label class="field_notice">%</label>
+                </td>
+            </tr>
+            
+            <tr>
+                <th></th>
+                <td class="ptb20">
+                    <input class="formbtn" type="submit" name="Submit" value="{$lang.submit}" />
+                    <input class="formbtn" type="reset" name="Submit2" value="{$lang.reset}" />
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+{include file="footer.html"}

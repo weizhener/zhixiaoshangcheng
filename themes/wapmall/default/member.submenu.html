@@ -1,0 +1,11 @@
+<div class="submenu">
+    <ul class="tab">
+        <!--{foreach from=$_member_submenu item=_s_m name=member_submenu}-->
+        <!--{if $_curmenu eq $_s_m.name}-->
+        <a href="javascript:;"><li class="active {if $smarty.foreach.member_submenu.first}first{/if}">{$_s_m.text}<span></span></li></a>
+        <!--{else}-->
+        <a href="{$_s_m.url}"><li class="normal {if $smarty.foreach.member_submenu.first}first{/if}">{$_s_m.text}<span></span></li></a>
+        <!--{/if}-->
+        <!--{/foreach}-->
+    </ul>
+</div>

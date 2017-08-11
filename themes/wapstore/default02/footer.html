@@ -1,0 +1,9 @@
+</div>
+<div class="footer">
+    <p>
+        <a href="{url app=default}">商城首页</a>|
+        <a href="{url app=store&id=$store.store_id}">商铺首页</a>|
+        <a href="{url app=member}">会员中心</a>
+    </p>
+    <p>{if $store.functions.copyright}{$store.copyright|escape}{ else} Copyright &copy;2014 {$site_title}{/if}</p>
+</div> 

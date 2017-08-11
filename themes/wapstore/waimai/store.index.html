@@ -1,0 +1,27 @@
+{include file="header.html"}
+{assign var="curr_name" value=$store.store_name}
+{include file="top.html"}
+ 
+
+<!--shop info-->    
+    <div class="box">
+        <div class="box-tit"><h2>店铺信息</h2></div>
+        <div class="box-txt">
+            <ul class="list">
+                <li><a href="{url app=store&id=$store.store_id}"><img src="{$store.store_logo}" width="80" /></a><font size=4 color=red>{$lang.operate_time}&nbsp&nbsp&nbsp&nbsp{$store.operate_time|escape}</font></li>                
+                <li>{$lang.store_owner}: {$store.store_owner.user_name|escape}</li>
+                <li>{$lang.credit_value}:{$store.credit_value}</li>
+                <li>{$lang.store_grade}: {$store.sgrade}</li>
+                <li>{$lang.address}: {$store.address|escape}</li>
+                <li>{$lang.tel}: {$store.tel|escape} <a href="tel:{$store.tel|escape}"><img src="{res file=images/btn-dell.jpg}" width="" height="20" /></li>
+                <li>{$lang.store_add_time}: {$store.add_time|date}</li>
+                <li>{$lang.region}: {$store.region_name|escape}</li>
+                <li>查看地图：<a href="{url app=store&id=$store.store_id&act=map}"> <img src="{res file=images/btn-map.jpg}" width="" height="20" /></a></li>
+            </ul>
+        </div>
+    </div>
+<!--shop info END-->
+
+
+    <div class="space" style="padding:4em 0;"></div>
+{include file="footer.html"}

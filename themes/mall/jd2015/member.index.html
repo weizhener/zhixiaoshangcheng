@@ -1,0 +1,285 @@
+{include file=member.header.html}
+
+<div class="content">
+
+    {include file=member.menu.html}
+
+    <div id="right">
+
+        {include file=member.curlocal.html}
+
+
+
+        <div class="profile clearfix">
+
+            <div class="photo">
+
+                <p><img src="{$user.portrait}" width="80" height="80" alt="" /></p>
+
+            </div>
+
+            <div class="info clearfix">
+
+                <dl class="col-1 fleft">
+
+                    <dt>
+                       <span>{$lang.welcome}</span><strong>{$user.user_name|escape}</strong>     
+					   <!--{if $yesstore eq '1'}-->
+					   
+					   <!--{if $storetime eq '1'}-->
+					   <span class="epay_btn" style="vertical-align:middle;"><a href="{url app=store&act=coupon}">签到</a></span>
+					   <!--{else}-->           
+                       <span class="epay_btn" style="vertical-align:middle;"><a href="{url app=renew}">店铺续费</a></span>
+					   <!--{/if}-->
+					   
+					   
+					   
+					   <!--{else}-->           
+                       <span class="epay_btn" style="vertical-align:middle;"><a href="{url app=apply}">开通店铺</a></span>
+					   <!--{/if}-->
+                    
+                    </dt>
+
+                    <dd>
+
+                        <span>{$lang.last_login}{$lang.colon}{$user.last_login|date:complete}</span>
+
+                        <span>{$lang.last_ip}{$lang.colon}{$user.last_ip}</span>
+
+                    </dd>
+
+                    <dd>{sprintf lang=you_have_pm var1=new_message}</dd>
+                    
+                    
+                    <dd>
+                        <!--{foreach from=$epay item=val}-->
+                        余额：<span style="font-size:16px;font-weight:bold;color:#FE5400; padding-right:0;">{$val.money}</span> <span class="epay_btn" style="vertical-align:middle;"><a href="{url app=epay&act=withdraw}">{$lang.tixian}</a></span> 
+                        <!--{/foreach}-->
+                    </dd>
+
+                    <dd>
+		
+		                积分：<span style="font-size:16px;font-weight:bold;color:#FE5400; padding-right:0;">{$user.integral}</span>
+
+                    </dd>
+					
+
+                    <!--<dd>
+		
+		                星币：<span style="font-size:16px;font-weight:bold; color:#FE5400;">{$user.shopmoney}</span>
+
+                    </dd>-->
+					
+
+                </dl>
+
+                <!--{if $store && $member_role eq 'seller_admin'}-->
+
+                <dl class="col-2 fleft">
+
+                    <dt><strong>{$lang.store_rate}</strong></dt>
+
+                    <dd>{$lang.credit_value}{$lang.colon}<a href="{url app=store&act=credit&id=$store.store_id}" target="_blank">{$store.credit_value}</a>{if $store.credit_value ge 0 } <img src="{$store.credit_image}" align="absmiddle" /> {/if}
+
+                    </dd>
+
+                    <dd>{$lang.praise_rate}{$lang.colon}{$store.praise_rate}%</dd>
+
+                </dl>
+
+                <!--{/if}-->
+
+            </div>
+
+        </div>
+
+
+
+        <div class="platform clearfix">
+
+            <div class="col-1">
+
+                <div class="buyer-notice box-notice box">
+
+                    <div class="hd clearfix"><h2>{$lang.buyer_remind}</h2></div>
+
+                    <div class="bd dealt">
+
+                        <div class="list">
+
+                            <h4>{$lang.dealt_immediately}{$lang.colon}</h4>
+
+                            <dl class="clearfix">
+
+                                <dt>{$lang.order_remind}{$lang.colon}</dt>
+
+                                <dd>
+
+                                    <span>{sprintf lang=order_for_pay_remind var1=buyer_stat.pending}</span>
+
+                                    <span>{sprintf lang=order_for_confirm_remind var1=buyer_stat.shipped}</span>
+
+                                    <span>{sprintf lang=order_for_evaluate_remind var1=buyer_stat.finished}</span>
+
+                                </dd>
+
+                            </dl>
+
+                            <dl class="clearfix">
+
+                                <dt>{$lang.groupbuy_remind}{$lang.colon}</dt>
+
+                                <dd>
+
+                                    <span>{sprintf lang=groupbuy_for_finished_remind var1=buyer_stat.groupbuy_finished}</span>
+
+                                    <span>{sprintf lang=groupbuy_for_canceled_remind var1=buyer_stat.groupbuy_canceled}</span>
+
+                                </dd>
+
+                            </dl>
+
+                        </div>
+
+                        <div class="extra"></div>
+
+                    </div>
+
+                </div>
+
+                <!--{if $store && $member_role eq 'seller_admin'}-->
+
+                <div class="seller-notice box-notice box">
+
+                    <div class="hd clearfix">
+
+                        <h2>{$lang.seller_remind}</h2>
+
+                        <p></p>
+
+                    </div>
+
+                    <div class="bd">
+
+                        <div class="list">
+
+                            <dl class="clearfix">
+
+                                <dt>{$lang.order_remind}{$lang.colon}</dt>
+
+                                <dd>
+
+                                    <span>{sprintf lang=order_for_settle_remind var1=seller_stat.submitted}</span>
+
+                                    <span>{sprintf lang=order_for_ship_remind var1=seller_stat.accepted}</span>
+
+                                </dd>
+
+                            </dl>
+
+                            <dl class="clearfix">
+
+                                <dt>{$lang.groupbuy_remind}{$lang.colon}</dt>
+
+                                <dd>
+
+                                    <span>{sprintf lang=groupbuy_for_end_remind var1=seller_stat.groupbuy_end}</span>
+
+                                </dd>
+
+                            </dl>
+
+                        </div>
+
+                        <div class="extra">
+
+                            <span>{$lang.store_grade}{$lang.colon}{$sgrade.grade_name}</span>
+
+                            <span>{$lang.expire_time}{$lang.colon}<!--{if $sgrade.add_time}-->{sprintf lang=leaving_day var1=sgrade.add_time}<!--{else}-->{$lang.no_limit}<!--{/if}--></span>
+
+                            <span>{$lang.goods_put}{$lang.colon}{$sgrade.goods.used}/<!--{if $sgrade.goods.total}-->{$sgrade.goods.total}<!--{else}-->{$lang.no_limit}<!--{/if}--></span>
+
+                            <span>{$lang.space_use}{$lang.colon}{$sgrade.space.used}M/<!--{if $sgrade.space.total}-->{$sgrade.space.total}M<!--{else}-->{$lang.no_limit}<!--{/if}--></span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!--{/if}-->
+
+                <!--{if $_member_menu.overview}-->
+
+                <div class="apply-notice box-notice box">
+
+                    <div class="hd clearfix"><h2>{$lang.apply_remind}</h2></div>
+
+                    <div class="bd">
+
+                        <div class="extra">
+
+                            <!--{if $applying}-->
+
+                            {sprintf lang=store_applying var1=user.sgrade}
+
+                            <!--{else}-->
+
+                            {$lang.not_seller}{$lang.colon}<a href="{$_member_menu.overview.url}" title="{$_member_menu.overview.text}">{$_member_menu.overview.text}</a>
+
+                            <!--{/if}-->
+
+                        </div> 
+
+                    </div>
+
+                </div>
+
+                <!--{/if}-->
+
+            </div>
+
+            <div class="col-2">
+
+                <div class="mall-notice box">
+
+                    <div class="hd clearfix"><h2>商城公告</h2></div>
+
+                    <ul class="bd">
+
+                        <!--{foreach from=$system_notice item=article}-->
+
+                        <li><a href="{url app=article&act=view&article_id=$article.article_id}" target="_blank">{$article.title|escape|truncate:30}</a></li>
+
+                        <!--{/foreach}-->
+
+                    </ul>
+
+                </div>
+
+                <div class="mall-customer box">
+
+                    <div class="hd"><h2>平台客服联系方式</h2></div>
+
+                    <ul class="bd">
+
+                        <li>联系电话：{$site_phone_tel}</li>
+
+                        <li>电子邮件：{$site_email}</li>
+
+                    </ul>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="clear"></div>
+
+</div>
+
+{include file=footer.html}
+

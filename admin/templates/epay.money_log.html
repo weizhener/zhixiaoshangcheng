@@ -1,0 +1,84 @@
+{include file="header.html"}
+<script type="text/javascript">
+    $(function () {
+        $('#add_time_from').datepicker({dateFormat: 'yy-mm-dd'});
+        $('#add_time_to').datepicker({dateFormat: 'yy-mm-dd'});
+    });
+</script>
+
+<div id="rightTop">
+    <ul class="subnav" style="margin:0;">
+        <li><a class="btn1" href="index.php?app=epay">{$lang.epay_user}</a></li>
+        <li><a class="btn1" href="index.php?app=epay&act=money_add">{$lang.add_money}</a></li>
+        <li><span>{$lang.moneylog}</span></li>
+        <li><a class="btn1" href="index.php?app=epay&act=txlog">{$lang.txlog}</a></li>
+        <li><a class="btn1" href="index.php?app=epay&act=setting">{$lang.setting}</a></li>
+        <li><a class="btn1" href="index.php?app=epay&act=statistics">{$lang.statistics}</a></li>
+    </ul>
+</div>
+
+<div class="mrightTop">
+    <div class="fontl">
+        <form method="get">
+            <div class="left">
+                <input name="app" type="hidden" id="app" value="epay" />
+                <input name="act" type="hidden" id="act" value="money_log" />
+                <select class="querySelect" name="field">
+                    {html_options options=$search_options selected=$smarty.get.field}
+                </select>
+                <input class="queryInput" type="text" name="search_name" value="{$query.search_name|escape}" />
+                <select class="querySelect" name="type">
+                    <option value="">{$lang.search_status}</option>
+                    {html_options options=$epay_type_list selected=$smarty.get.type}
+                </select>
+                {$lang.add_time_from}:<input class="queryInput2" type="text" value="{$query.add_time_from}" id="add_time_from" name="add_time_from" class="pick_date" />
+                {$lang.add_time_to}:<input class="queryInput2" type="text" value="{$query.add_time_to}" id="add_time_to" name="add_time_to" class="pick_date" />
+                {$lang.order_amount_from}:<input class="queryInput2" type="text" value="{$query.order_amount_from}" name="order_amount_from" />
+                {$lang.order_amount_to}:<input class="queryInput2" type="text" style="width:60px;" value="{$query.order_amount_to}" name="order_amount_to" class="pick_date" />
+                <input type="submit" class="formbtn" value="{$lang.query}" />
+            </div>
+            <!--{if $filtered}-->
+            <a class="left formbtn1" href="index.php?app=epay&act=money_log">{$lang.cancel_query}</a>
+            <!--{/if}-->
+        </form>
+    </div>
+    <div class="fontr">
+        {include file=page.top.html}
+    </div>
+</div>
+
+<div class="tdare">
+    <table width="100%" cellspacing="0">
+
+        <tr class="tatr1">
+            <td width="20" class="firstCell">&nbsp;</td>
+            <td align="left">{$lang.user_name}</td>
+            <td>{$lang.log_text}</td>
+            <td>{$lang.money}</td>
+            <td width="120">{$lang.order_sn}</td>
+            <td width="120">{$lang.time}</td>
+        </tr>
+
+        <!--{foreach from=$index item=val key=key}-->
+        <tr class="tatr2">
+            <td width="20" class="firstCell">&nbsp;</td>
+            <td align="left"><b>{$val.user_name}</b></td>
+            <td align="left">{$val.log_text}</td>
+            <td><font color="#FF0000">{$val.money}</font></td>
+            <td>{$val.order_sn}</td>
+            <td>{$val.add_time|date:y-m-d H:i:s}</td>
+        </tr>
+        <!--{foreachelse}-->
+        <tr class="no_data">
+            <td colspan="8">{$lang.no_data}</td>
+        </tr>
+        <!--{/foreach}-->
+    </table>
+    <!--{if $index}-->
+    <div id="dataFuncs">
+        <div class="pageLinks">{include file=page.bottom.html}</div>
+        <div class="clear"></div>
+    </div>
+    <!--{/if}-->
+</div>
+{include file="footer.html"}

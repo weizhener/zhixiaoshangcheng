@@ -1,0 +1,36 @@
+{include file=header.html}
+<div id="main" class="w-full">
+<div id="page-brand" class="w mb20 mt10">
+    {include file=curlocal.html}
+    <div class="rec-brands">
+    	<div class="title border padding5 mt10 strong fs14">
+        	{$lang.recommended_brands}
+        </div>
+        <div class="content border border-t-0 clearfix">
+           <!--{foreach from=$recommended_brands item=brand name=brand}-->
+           <dl  class="float-left">
+           		<dt class="pic"><a href="{url app=search&brand=$brand.brand_name|escape:url}" target="_blank"><img src="{$brand.brand_logo}" width="100" height="50" alt="{$brand.brand_name}" /></a></dt>
+                <dd class="desc"><a href="{url app=search&brand=$brand.brand_name|escape:url}" target="_blank">{$brand.brand_name}</a></dd>
+           </dl>
+           <!--{/foreach}-->
+        </div>
+    </div>
+    <!--{foreach from=$brand_list item=list}-->
+    <div class="all-brands mt10">
+    	<div class="title border padding5 strong fs14">
+        	<!--{if $list.tag eq ''}-->{$lang.other}<!--{else}-->{$list.tag}<!--{/if}-->({$list.count})
+        </div>
+        <div class="content border border-t-0 clearfix">
+            <!--{foreach from=$list.brands item=brand name=brand}-->
+            <dl  class="float-left">
+           		<dt class="pic"><a href="{url app=search&brand=$brand.brand_name|escape:url}" target="_blank"><img src="{$brand.brand_logo}" width="100" height="50" alt="{$brand.brand_name}" /></a></dt>
+                <dd class="desc"><a href="{url app=search&brand=$brand.brand_name|escape:url}" target="_blank">{$brand.brand_name}</a></dd>
+            </dl>
+            <!--{/foreach}-->
+        </div>
+    </div>
+    <!--{/foreach}-->
+</div>
+</div>
+{include file=server.html}
+{include file=footer.html}

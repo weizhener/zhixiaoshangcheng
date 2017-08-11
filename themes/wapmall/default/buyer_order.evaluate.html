@@ -1,0 +1,37 @@
+{include file="member.header.html"}
+<div class="mb-head">
+    <a href="javascript:history.back(-1)" class="l_b">返回</a>
+    <div class="tit">{$lang.credit_evaluate}</div>
+    <a href="javascript" class="r_b"></a>
+</div>
+
+<div class="w320">
+    <form method="POST">
+        <!---------评价----------->
+        <div class="comment">
+            <!--{foreach from=$goods_list item=goods}-->
+            <div class="goods_info">
+                <img src="{$goods.goods_image}" />
+                <p class="title">{$goods.goods_name|escape}</p>
+                <p>{$goods.specification|escape}</p>
+                <p>{$lang.quantity}:{$goods.quantity}</p>
+                <p>{$lang.price}:{$goods.price|price}</p>
+                <p>卖家：<a href="{url app=store&id=$order.seller_id}">{$order.seller_name|escape}</a></p>
+            </div>
+            <!--{/foreach}-->
+            <div class="comment_box">
+                <p>
+                    <label><input type="radio" id="g{$goods.rec_id}_op1" name="evaluations[{$goods.rec_id}][evaluation]" value="3" checked/><i class="good"></i>好评</label>
+                    <label><input type="radio" id="g{$goods.rec_id}_op2" name="evaluations[{$goods.rec_id}][evaluation]" value="2" /><i class="mid"></i>中评</label>
+                    <label><input type="radio" id="g{$goods.rec_id}_op3" name="evaluations[{$goods.rec_id}][evaluation]" value="1"/><i class="bad"></i>差评</label>
+                </p>
+                <textarea  name="evaluations[{$goods.rec_id}][comment]" class="com_text"></textarea>
+            </div>
+            <input type="submit" value="提交评论" class="red_btn" style="width:100%" />
+
+        </div>
+    </form>
+</div>
+<!------底部-------->
+
+{include file="member.footer.html"}

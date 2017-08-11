@@ -1,0 +1,75 @@
+{include file="header.html"}
+<div id="rightTop">
+    <p>{$lang.dazhuanpan_call}</p>
+    <ul class="subnav">
+        <li><span>{$lang.dazhuanpan_manage}</span></li>
+        <li><a class="btn3" href="index.php?module=dazhuanpan&act=dazhuanpan_jiangpin">{$lang.dazhuanpan_jiangpin}</a></li>
+        <li><a class="btn3" href="index.php?module=dazhuanpan&act=add">{$lang.dazhuanpan_jiangpin_add}</a></li>
+         <li><a class="btn3" href="index.php?module=dazhuanpan&act=dazhuanpan_log">{$lang.dazhuanpan_log}</a></li>
+    </ul>
+</div>
+
+<div class="info">
+    <form method="post">
+        <table class="infoTable">
+             
+          <!--  <tr>
+                <th class="paddingT15">
+                    {$lang.dazhuanpan_power}:</th>
+                <td class="paddingT15 wordSpacing5">
+                    <input  id="dazhuanpan_power" type="radio" name="dazhuanpan_power" 
+                    value="TRUE"/>
+                    开启
+                    <input id="dazhuanpan_power" type="radio" name="dazhuanpan_power"  value="FALSE"/>
+                    关闭
+                <span class="grey">{$lang.dazhuanpan_power_note}</span>
+                </td>
+            </tr>-->
+            <tr>
+                <th class="paddingT15">
+                    {$lang.dazhuanpan_jifen}:</th>
+                <td class="paddingT15 wordSpacing5">
+                    <input class="infoTableInput" id="dazhuanpan_jifen" type="text" name="dazhuanpan_jifen" value="{$setting.dazhuanpan_jifen}"/>
+                <span class="grey">{$lang.dazhuanpan_jifen_note}</span>
+                </td>
+            </tr>
+            <tr>
+                <th class="paddingT15">
+                    {$lang.dazhuanpan_gailv}:</th>
+                <td class="paddingT15 wordSpacing5">
+                    <input class="infoTableInput" id="dazhuanpan_gailv" type="text" name="dazhuanpan_gailv" value="{$setting.dazhuanpan_gailv}"/>
+                    <span class="grey">{$lang.dazhuanpan_gailv_note}</span>
+                </td>
+            </tr>
+            
+            <tr>
+                <th class="paddingT15">
+                    大转盘空指针角度:</th>
+                <td class="paddingT15 wordSpacing5">
+                    <input class="infoTableInput" id="kongzhizhen" type="text" name="kongzhizhen" value="{$setting.kongzhizhen}"/>
+                    <span class="grey">未登陆或者没中奖的角度</span>
+                </td>
+            </tr>
+            
+            <tr>
+                <th class="paddingT15">
+                    没中奖提示:</th>
+                <td class="paddingT15 wordSpacing5">
+                    <input class="infoTableInput" id="meizhongtishi" type="text" name="meizhongtishi" value="{$setting.meizhongtishi}"/>
+                    <span class="grey">没中奖提示语</span>
+                </td>
+            </tr>
+            
+           
+            
+            <tr>
+            <th></th>
+            <td class="ptb20">
+                <input class="formbtn" type="submit" name="Submit" value="{$lang.submit}" />
+                <input class="formbtn" type="reset" name="Submit2" value="{$lang.reset}" />
+            </td>
+        </tr>
+        </table>
+    </form>
+</div>
+{include file="footer.html"}

@@ -1,0 +1,214 @@
+<script>
+    $(document).ready(function(){
+        $(".J_RateInfoTrigger").mouseenter(function(){
+            $(".J_RateInfoTrigger").each(function(){
+                $(this).removeClass("selected");
+            });
+            $(this).addClass("selected");
+        });
+    });
+</script>
+<!--為了避免每個店鋪模版都需要就把此板塊獨立出來了 begin-->
+<link href="{res file=evaluation/evaluation.css}" rel="stylesheet" type="text/css" />
+<div class="evaluation-shadow evaluation">
+    <div class="bd">
+        <div class="con">
+            
+            <h4 >店铺动态评分</h4>
+            <div class="seller-rate-info">
+                <ul>
+                    <li class="J_RateInfoTrigger  selected">
+                        <div class="item-scrib">
+                            <span class="title">宝贝与描述相符：</span>
+                            <em title="{$store.store_evaluation.evaluation_desc.average_score}分" class="count">{$store.store_evaluation.evaluation_desc.average_score}</em>分 
+                            <!--{if $store.store_evaluation.evaluation_speed.total.state}--><em><strong class="percent {$store.store_evaluation.evaluation_desc.total.state}">{$store.store_evaluation.evaluation_desc.total.count}%</strong></em><!--{/if}-->
+                        </div>
+
+                        <div class="box rate-info-box">
+                            <span class="rc-tp"><span></span></span>
+                            <div class="bd">
+                                <div class="total">
+                                    <span class="star-value-no  star-value-{$store.store_evaluation.evaluation_desc.ico}"></span>
+                                    <em title="{$store.store_evaluation.evaluation_desc.average_score}分" class="h">{$store.store_evaluation.evaluation_desc.average_score}</em>分
+                                    共<span>{$store.store_evaluation.count}</span>人
+                                </div>
+                                <div class="count count5">
+                                    <span class="small-star-no5"></span>
+                                    <!--{if $store.store_evaluation.evaluation_desc.5 neq 0}-->
+                                    <span style="width: {$store.store_evaluation.evaluation_desc.5}px;" class="rate-stat"></span>
+                                    <em class="h">{$store.store_evaluation.evaluation_desc.5}%</em>
+                                    <!--{else}-->
+                                    暂无人打分
+                                    <!--{/if}-->
+                                </div>
+                                <div class="count count4">
+                                    <span class="small-star-no4"></span>
+                                    <!--{if $store.store_evaluation.evaluation_desc.4 neq 0}-->
+                                    <span style="width: {$store.store_evaluation.evaluation_desc.4}px;" class="rate-stat"></span>
+                                    <em class="h">{$store.store_evaluation.evaluation_desc.4}%</em>
+                                    <!--{else}-->
+                                    暂无人打分
+                                    <!--{/if}-->
+                                </div>
+                                <div class="count count3">
+                                    <span class="small-star-no3"></span>
+                                    <!--{if $store.store_evaluation.evaluation_desc.3 neq 0}-->
+                                    <span style="width: {$store.store_evaluation.evaluation_desc.3}px;" class="rate-stat"></span>
+                                    <em class="h">{$store.store_evaluation.evaluation_desc.3}%</em>
+                                    <!--{else}-->
+                                    暂无人打分
+                                    <!--{/if}-->
+                                </div>
+                                <div class="count count2">
+                                    <span class="small-star-no2"></span>
+                                    <!--{if $store.store_evaluation.evaluation_desc.2 neq 0}-->
+                                    <span style="width: {$store.store_evaluation.evaluation_desc.2}px;" class="rate-stat"></span>
+                                    <em class="h">{$store.store_evaluation.evaluation_desc.2}%</em>
+                                    <!--{else}-->
+                                    暂无人打分
+                                    <!--{/if}-->
+                                </div>
+                                <div class="count count1">
+                                    <span class="small-star-no1"></span>
+                                    <!--{if $store.store_evaluation.evaluation_desc.1 neq 0}-->
+                                    <span style="width: {$store.store_evaluation.evaluation_desc.1}px;" class="rate-stat"></span>
+                                    <em class="h">{$store.store_evaluation.evaluation_desc.1}%</em>
+                                    <!--{else}-->
+                                    暂无人打分
+                                    <!--{/if}-->
+                                </div>
+                            </div>
+                            <span class="rc-bt"><span></span></span>
+                        </div>
+                    </li>
+                    <li class="J_RateInfoTrigger">
+                        <div class="item-scrib">
+                            <span class="title">卖家的服务态度：</span>
+                            <em title="{$store.store_evaluation.evaluation_service.average_score}分" class="count">{$store.store_evaluation.evaluation_service.average_score}</em>分 
+                            <!--{if $store.store_evaluation.evaluation_speed.total.state}--><em><strong class="percent {$store.store_evaluation.evaluation_service.total.state}">{$store.store_evaluation.evaluation_service.total.count}%</strong></em><!--{/if}-->
+                        </div>
+                        <div class="box rate-info-box">
+                            <span class="rc-tp"><span></span></span>
+                            <div class="bd">
+                                <div class="total">
+                                    <span class="star-value-no  star-value-{$store.store_evaluation.evaluation_service.ico}"></span>
+                                    <em title="{$store.store_evaluation.evaluation_service.average_score}分" class="h">{$store.store_evaluation.evaluation_service.average_score}</em>分
+                                    共<span>{$store.store_evaluation.count}</span>人
+                                </div>
+                                <div class="count count5">
+                                    <span class="small-star-no5"></span>
+                                    <!--{if $store.store_evaluation.evaluation_service.5 neq 0}-->
+                                    <span style="width: {$store.store_evaluation.evaluation_service.5}px;" class="rate-stat"></span>
+                                    <em class="h">{$store.store_evaluation.evaluation_service.5}%</em>
+                                    <!--{else}-->
+                                    暂无人打分
+                                    <!--{/if}-->
+                                </div>
+                                <div class="count count4">
+                                    <span class="small-star-no4"></span>
+                                    <!--{if $store.store_evaluation.evaluation_service.4 neq 0}-->
+                                    <span style="width: {$store.store_evaluation.evaluation_service.4}px;" class="rate-stat"></span>
+                                    <em class="h">{$store.store_evaluation.evaluation_service.4}%</em>
+                                    <!--{else}-->
+                                    暂无人打分
+                                    <!--{/if}-->
+                                </div>
+                                <div class="count count3">
+                                    <span class="small-star-no3"></span>
+                                    <!--{if $store.store_evaluation.evaluation_service.3 neq 0}-->
+                                    <span style="width: {$store.store_evaluation.evaluation_service.3}px;" class="rate-stat"></span>
+                                    <em class="h">{$store.store_evaluation.evaluation_service.3}%</em>
+                                    <!--{else}-->
+                                    暂无人打分
+                                    <!--{/if}-->
+                                </div>
+                                <div class="count count2">
+                                    <span class="small-star-no2"></span>
+                                    <!--{if $store.store_evaluation.evaluation_service.2 neq 0}-->
+                                    <span style="width: {$store.store_evaluation.evaluation_service.2}px;" class="rate-stat"></span>
+                                    <em class="h">{$store.store_evaluation.evaluation_service.2}%</em>
+                                    <!--{else}-->
+                                    暂无人打分
+                                    <!--{/if}-->
+                                </div>
+                                <div class="count count1">
+                                    <span class="small-star-no1"></span>
+                                    <!--{if $store.store_evaluation.evaluation_service.1 neq 0}-->
+                                    <span style="width: {$store.store_evaluation.evaluation_service.1}px;" class="rate-stat"></span>
+                                    <em class="h">{$store.store_evaluation.evaluation_service.1}%</em>
+                                    <!--{else}-->
+                                    暂无人打分
+                                    <!--{/if}-->
+                                </div>
+                            </div>
+                            <span class="rc-bt"><span></span></span>
+                        </div>
+                    </li>
+                    <li class="J_RateInfoTrigger">
+                        <div class="item-scrib">
+                            <span class="title">卖家的发货速度：</span>
+                            <em title="{$store.store_evaluation.evaluation_speed.average_score}分" class="count">{$store.store_evaluation.evaluation_speed.average_score}</em>分 
+                            <!--{if $store.store_evaluation.evaluation_speed.total.state}--><em><strong class="percent {$store.store_evaluation.evaluation_speed.total.state}">{$store.store_evaluation.evaluation_speed.total.count}%</strong></em><!--{/if}-->
+                        </div>
+                        <div class="box rate-info-box">
+                            <span class="rc-tp"><span></span></span>
+                            <div class="bd">
+                                <div class="total">
+                                    <span class="star-value-no  star-value-{$store.store_evaluation.evaluation_speed.ico}"></span>
+                                    <em title="{$store.store_evaluation.evaluation_speed.average_score}分" class="h">{$store.store_evaluation.evaluation_speed.average_score}</em>分
+                                    共<span>{$store.store_evaluation.count}</span>人
+                                </div>
+                                <div class="count count5">
+                                    <span class="small-star-no5"></span>
+                                    <!--{if $store.store_evaluation.evaluation_speed.5 neq 0}-->
+                                    <span style="width: {$store.store_evaluation.evaluation_speed.5}px;" class="rate-stat"></span>
+                                    <em class="h">{$store.store_evaluation.evaluation_speed.5}%</em>
+                                    <!--{else}-->
+                                    暂无人打分
+                                    <!--{/if}-->
+                                </div>
+                                <div class="count count4">
+                                    <span class="small-star-no4"></span>
+                                    <!--{if $store.store_evaluation.evaluation_speed.4 neq 0}-->
+                                    <span style="width: {$store.store_evaluation.evaluation_speed.4}px;" class="rate-stat"></span>
+                                    <em class="h">{$store.store_evaluation.evaluation_speed.4}%</em>
+                                    <!--{else}-->
+                                    暂无人打分
+                                    <!--{/if}-->
+                                </div>
+                                <div class="count count3">
+                                    <span class="small-star-no3"></span>
+                                    <!--{if $store.store_evaluation.evaluation_speed.3 neq 0}-->
+                                    <span style="width: {$store.store_evaluation.evaluation_speed.3}px;" class="rate-stat"></span>
+                                    <em class="h">{$store.store_evaluation.evaluation_speed.3}%</em>
+                                    <!--{else}-->
+                                    暂无人打分
+                                    <!--{/if}-->
+                                </div>
+                                <div class="count count2">
+                                    <span class="small-star-no2"></span>
+                                    <!--{if $store.store_evaluation.evaluation_speed.2 neq 0}-->
+                                    <span style="width:{$store.store_evaluation.evaluation_speed.2}px;" class="rate-stat"></span>
+                                    <em class="h">{$store.store_evaluation.evaluation_speed.2}%</em>
+                                    <!--{else}-->
+                                    暂无人打分
+                                    <!--{/if}-->
+                                </div>
+                                <div class="count count1">
+                                    <span class="small-star-no1"></span>
+                                    <!--{if $store.store_evaluation.evaluation_speed.1 neq 0}-->
+                                    <span style="width: {$store.store_evaluation.evaluation_speed.1}px;" class="rate-stat"></span>
+                                    <em class="h">{$store.store_evaluation.evaluation_speed.1}%</em>
+                                    <!--{else}-->
+                                    暂无人打分
+                                    <!--{/if}-->
+                                </div>
+                            </div>
+                            <span class="rc-bt"><span></span></span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

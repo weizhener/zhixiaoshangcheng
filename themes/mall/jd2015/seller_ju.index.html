@@ -1,0 +1,111 @@
+{include file=member.header.html}
+<style>
+    .member_no_records {border-top: 0px !important;}
+    .table td{ padding-left: 5px; }
+</style>
+<div class="content">
+    <div class="totline"></div>
+    <div class="botline"></div>
+    {include file=member.menu.html}
+    <div id="right">
+        {include file=member.submenu.html}
+        <div class="wrap">
+            <div class="eject_btn_two eject_pos1" title="{$lang.add}"><b class="ico2" onclick="go('index.php?app=seller_ju&amp;act=add');">{$lang.add_groupbuy}</b></div>
+            <div class="public_select table">
+                <table align="center">
+
+                    <tr class="line_bold">
+                        <th colspan="7">
+                    <div class="select_div clearfix" style="padding-top:0;margin-bottom:20px;">
+                        <form method="get">
+                            <div style="float:left;">
+                                <input type="text" class="text_normal" name="group_name" value="{$smarty.get.group_name|escape}"/>
+                                <select name="status">
+                                    {html_options options=$status selected=$smarty.get.status}
+                                </select>
+                                <input type="hidden" name="app" value="seller_ju" />
+                                <input type="hidden" name="act" value="index" />
+                                <input type="submit" class="btn" value="{$lang.search}" />
+                            </div>
+                            <!--{if $filtered}-->
+                            <a class="detlink_with_no_bg" href="{url app=seller_ju}">{$lang.cancel_query}</a>
+                            <!--{/if}-->
+                        </form>
+                    </div>
+
+                    </th>
+                    </tr>
+                    <!--{if $groupbuy_list}-->
+                    <tr class="gray">
+                        <th width="50"> </th>
+                        <th width="200"><span>{$lang.group_name}</span></th>
+                        <th width="150"><span>{$lang.select_groupbuy}</span></th>
+                        <th width="80"><span>{$lang.buy}</span></th>
+                        <th width="100"><span>{$lang.status}</span></th>
+                        <th width="100"><span>{$lang.status_desc}</span></th>
+                        <th width="100">{$lang.handle}</th>
+                    </tr>
+                    <!--{/if}-->
+                    <!--{foreach from=$groupbuy_list item=group name=_group_f}-->
+                    <tr class="line<!--{if $smarty.foreach._group_f.last}--> last_line<!--{/if}-->">
+                        <td width="50" class="align2">
+                            <a  href="{if $group.status eq 1}{url app=ju&act=show&id=$group.group_id}{else}{url app=goods&id=$group.goods_id}{/if}" target="_blank"><img {if $group.image}src="{$site_url}/{$group.image}" width="75" height="50"{else}src="{$site_url}/{$group.default_image}" width="50" height="50"{/if}  /></a></td>
+                        <td width="200" align="center">
+                            <p class="ware_text"><span class="color2" ectype="editobj">
+                                    <a target="_blank" href="{if $group.status eq 1}{url app=ju&act=show&id=$group.group_id}{else}{url app=goods&id=$group.goods_id}{/if}">{$group.group_name|escape}</a></span></p>
+                        </td>
+                        <td align="center">
+                            <span  style="color:#555555; font-weight: 600;line-height: 20px; font-size:14px;">{$group.template_name}({$group.state|modifier:group_state})</span>
+                            <p class="color2" style="color:#999999;">{$group.start_time|date}~{$group.end_time|date}</p>
+                        </td>
+
+                        <td class="align2"><!--{if $goods.spec_qty}--><span ectype="dialog" dialog_width="430" uri="index.php?app=my_goods&amp;act=spec_edit&amp;id={$goods.goods_id}" dialog_id="my_goods_spec_edit" class="cursor_pointer">
+                                <!--{else}--><span class="color2" ectype="editobj"><!--{/if}-->{$group.quantity}</span></td>
+                        <td class="align2">
+                            <!--{if $group.status eq 1}-->
+                            <font title="{$group.status_desc}" color="#006633">{$lang.verified}</font>
+                            <!--{elseif $group.status eq 2}-->
+                            <font title="{$group.status_desc}" color="#999999">{$lang.verify_no_pass}</font>
+                            <!--{elseif $group.status eq 3}-->
+                            <font title="{$group.status_desc}" color="#CC9900">{$lang.wait_edit}</font>
+                            <!--{else}-->
+                            <font title="{$group.status_desc}" color="#FF6600">{$lang.verifying}</font>
+                            <!--{/if}-->
+                        </td>
+                        <td class="align2"><font color="#999">{$group.status_desc}</font></td>
+                        <td width="200" align="center"><div>
+                                <a style="float:none" href="{url app=seller_ju&act=edit&id=$group.group_id}" class="edit">{$lang.edit}</a>
+                                <a style="float:none" href="javascript:drop_confirm('{$lang.drop_confirm}', 'index.php?app=seller_ju&amp;act=drop&id={$group.group_id}');" class="delete">{$lang.drop}</a>
+                            </div></td>
+                    </tr>
+                    <!--{foreachelse}-->
+                    <tr>
+                        <td class="align2 member_no_records padding6" colspan="6">{$lang.no_records}</td>
+                    </tr>
+                    <!--{/foreach}-->
+                    <!--{if $groupbuy_list}-->
+                    <tr class="line_bold line_bold_bottom">
+                        <td colspan="7"></td>
+                    </tr>
+                    <tr>
+                        <th colspan="7">
+                    <p class="position2">
+                        {include file=member.page.bottom.html}
+                    </p>
+                    </th>
+                    </tr>
+                    <!--{/if}-->
+                </table>
+            </div>
+            <div class="wrap_bottom"></div>
+        </div>
+        <div class="clear"></div>
+        <div class="adorn_right1"></div>
+        <div class="adorn_right2"></div>
+        <div class="adorn_right3"></div>
+        <div class="adorn_right4"></div>
+    </div>
+    <div class="clear"></div>
+</div>
+<iframe name="iframe_post" id="iframe_post" width="0" height="0"></iframe>
+{include file=footer.html}

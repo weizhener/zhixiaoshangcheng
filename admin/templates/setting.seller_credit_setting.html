@@ -1,0 +1,123 @@
+{include file="header.html"}
+<div id="rightTop">
+    <p>{$lang.setting}</p>
+    <ul class="subnav">
+        <li><a class="btn1" href="index.php?app=setting&amp;act=base_setting">{$lang.base_setting}</a></li>
+        <li><a class="btn1" href="index.php?app=setting&amp;act=base_information">{$lang.base_information}</a></li>
+        <li><a class="btn1" href="index.php?app=setting&amp;act=email_setting">{$lang.email_setting}</a></li>
+        <li><a class="btn1" href="index.php?app=setting&amp;act=captcha_setting">{$lang.captcha_setting}</a></li>
+        <li><a class="btn1" href="index.php?app=setting&amp;act=store_setting">{$lang.store_setting}</a></li>
+        <li><a class="btn1" href="index.php?app=setting&amp;act=buyer_credit_setting">{$lang.buyer_credit_setting}</a></li>
+        <li><span>{$lang.seller_credit_setting}</span></li>
+        <li><a class="btn1" href="index.php?app=setting&amp;act=subdomain_setting">{$lang.subdomain_setting}</a></li>
+    </ul>
+</div>
+
+<div class="info">
+    <form method="post" enctype="multipart/form-data">
+        <table class="infoTable">
+            <tr>
+                <th class="paddingT15">等级</th>
+                <td class="paddingT15">信用介于</td>
+            </tr>
+            <tr>
+                <th class="paddingT15"><img src='{$site_url}/data/system/seller_evaluation/heart_1.gif'/></th>
+                <td class="paddingT15">
+                    <input size="1" type="text" name="s_level_1_from" value="{$setting.s_level_1_from}" />&nbsp;-&nbsp;<input size="1" type="text" name="s_level_1_to" value="{$setting.s_level_1_to}"/>
+                </td>
+            </tr>
+            <tr>
+                <th class="paddingT15"><img src='{$site_url}/data/system/seller_evaluation/heart_2.gif'/></th>
+                <td class="paddingT15">
+                    <input size="1" type="text" name="s_level_2_from" value="{$setting.s_level_2_from}" />&nbsp;-&nbsp;<input size="1" type="text" name="s_level_2_to" value="{$setting.s_level_2_to}"/>
+                </td>
+            </tr>
+            <tr>
+                <th class="paddingT15"><img src='{$site_url}/data/system/seller_evaluation/heart_3.gif'/></th>
+                <td class="paddingT15">
+                    <input size="1" type="text" name="s_level_3_from" value="{$setting.s_level_3_from}" />&nbsp;-&nbsp;<input size="1" type="text" name="s_level_3_to" value="{$setting.s_level_3_to}"/>
+                </td>
+            </tr>
+            <tr>
+                <th class="paddingT15"><img src='{$site_url}/data/system/seller_evaluation/heart_4.gif'/></th>
+                <td class="paddingT15">
+                    <input size="1" type="text" name="s_level_4_from" value="{$setting.s_level_4_from}" />&nbsp;-&nbsp;<input size="1" type="text" name="s_level_4_to" value="{$setting.s_level_4_to}"/>
+                </td>
+            </tr>
+            <tr>
+                <th class="paddingT15"><img src='{$site_url}/data/system/seller_evaluation/heart_5.gif'/></th>
+                <td class="paddingT15">
+                    <input size="1" type="text" name="s_level_5_from" value="{$setting.s_level_5_from}" />&nbsp;-&nbsp;<input size="1" type="text" name="s_level_5_to" value="{$setting.s_level_5_to}"/>
+                </td>
+            </tr>
+            <tr>
+                <th class="paddingT15"><img src='{$site_url}/data/system/seller_evaluation/diamond_1.gif'/></th>
+                <td class="paddingT15">
+                    <input size="1" type="text" name="s_level_6_from" value="{$setting.s_level_6_from}" />&nbsp;-&nbsp;<input size="1" type="text" name="s_level_6_to" value="{$setting.s_level_6_to}"/>
+                </td>
+            </tr>
+            <tr>
+                <th class="paddingT15"><img src='{$site_url}/data/system/seller_evaluation/diamond_2.gif'/></th>
+                <td class="paddingT15">
+                    <input size="1" type="text" name="s_level_7_from" value="{$setting.s_level_7_from}" />&nbsp;-&nbsp;<input size="1" type="text" name="s_level_7_to" value="{$setting.s_level_7_to}"/>
+                </td>
+            </tr>
+            <tr>
+                <th class="paddingT15"><img src='{$site_url}/data/system/seller_evaluation/diamond_3.gif'/></th>
+                <td class="paddingT15">
+                    <input size="1" type="text" name="s_level_8_from" value="{$setting.s_level_8_from}" />&nbsp;-&nbsp;<input size="1" type="text" name="s_level_8_to" value="{$setting.s_level_8_to}"/>
+                </td>
+            </tr>
+            <tr>
+                <th class="paddingT15"><img src='{$site_url}/data/system/seller_evaluation/diamond_4.gif'/></th>
+                <td class="paddingT15">
+                    <input size="1" type="text" name="s_level_9_from" value="{$setting.s_level_9_from}" />&nbsp;-&nbsp;<input size="1" type="text" name="s_level_9_to" value="{$setting.s_level_9_to}"/>
+                </td>
+            </tr>
+            <tr>
+                <th class="paddingT15"><img src='{$site_url}/data/system/seller_evaluation/diamond_5.gif'/></th>
+                <td class="paddingT15">
+                    <input size="1" type="text" name="s_level_10_from" value="{$setting.s_level_10_from}" />&nbsp;-&nbsp;<input size="1" type="text" name="s_level_10_to" value="{$setting.s_level_10_to}"/>
+                </td>
+            </tr>
+            <tr>
+                <th class="paddingT15"><img src='{$site_url}/data/system/seller_evaluation/crown_1.gif'/></th>
+                <td class="paddingT15">
+                    <input size="1" type="text" name="s_level_11_from" value="{$setting.s_level_11_from}" />&nbsp;-&nbsp;<input size="1" type="text" name="s_level_11_to" value="{$setting.s_level_11_to}"/>
+                </td>
+            </tr>
+            <tr>
+                <th class="paddingT15"><img src='{$site_url}/data/system/seller_evaluation/crown_2.gif'/></th>
+                <td class="paddingT15">
+                    <input size="1" type="text" name="s_level_12_from" value="{$setting.s_level_12_from}" />&nbsp;-&nbsp;<input size="1" type="text" name="s_level_12_to" value="{$setting.s_level_12_to}"/>
+                </td>
+            </tr>
+            <tr>
+                <th class="paddingT15"><img src='{$site_url}/data/system/seller_evaluation/crown_3.gif'/></th>
+                <td class="paddingT15">
+                    <input size="1" type="text" name="s_level_13_from" value="{$setting.s_level_13_from}" />&nbsp;-&nbsp;<input size="1" type="text" name="s_level_13_to" value="{$setting.s_level_13_to}"/>
+                </td>
+            </tr>
+            <tr>
+                <th class="paddingT15"><img src='{$site_url}/data/system/seller_evaluation/crown_4.gif'/></th>
+                <td class="paddingT15">
+                    <input size="1" type="text" name="s_level_14_from" value="{$setting.s_level_14_from}" />&nbsp;-&nbsp;<input size="1" type="text" name="s_level_14_to" value="{$setting.s_level_14_to}"/>
+                </td>
+            </tr>
+            <tr>
+                <th class="paddingT15"><img src='{$site_url}/data/system/seller_evaluation/crown_5.gif'/></th>
+                <td class="paddingT15">
+                    <input size="1" type="text" name="s_level_15_from" value="{$setting.s_level_15_from}" />&nbsp;-&nbsp;<input size="1" type="text" name="s_level_15_to" value="{$setting.s_level_15_to}"/>
+                </td>
+            </tr>
+            <tr>
+                <th></th>
+                <td class="ptb20">
+                    <input class="formbtn" type="submit" name="Submit" value="{$lang.submit}" />
+                    <input class="formbtn" type="reset" name="Submit2" value="{$lang.reset}" />
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+{include file="footer.html"}

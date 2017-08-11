@@ -1,0 +1,51 @@
+<div class="footer" id="copyright1111">
+
+    <p>
+
+        <a href="{url app=store&id=$store.store_id}">商铺首页</a>|
+
+        <a href="<!--{if $visitor.user_id}-->{url app=buyer_order}<!--{else}-->{url app=member&act=login&ret_url=$ret_url}<!--{/if}-->">会员中心</a>|
+
+    </p>
+
+    <p>版权所有 {$icp_number}</p>
+
+</div> 
+
+<!--{if $kmenus.status==0 or $kmenus.status==''}-->
+
+<link type="text/css" rel="stylesheet" href="{res file=css/kmenus.css}">
+
+<div class="flo_btn_<!--{if $kmenus.stypeinfo==''}-->1<!--{else}-->{$kmenus.stypeinfo}<!--{/if}-->" id="footer_nav1111">
+
+    <ul>
+
+        <!--{foreach from=$kmenusinfo item=info}-->
+
+        <li>
+
+            <a style="background-color:#{$info.color};" href="<!--{if $info.title=='导航'}-->http://map.baidu.com/?newmap=1&ie=utf-8&s=s%26wd%3D{$info.loadurl}<!--{else}-->{$info.loadurl}<!--{/if}-->"><span style="background:url('{$info.imgurl}') scroll no-repeat center center transparent;background-size:60%; bottom:0; left:0;"></span></a>
+
+        </li>
+
+        <!--{/foreach}-->
+
+    </ul>
+
+</div>
+
+<!--{/if}-->
+
+<script language="javascript">
+$(document).ready(function() {//
+  window.yutebi.showSource('yutebi');	 
+});
+function setyincang(){
+  $("#footer_nav1111").hide();
+  $("#copyright1111").html("");
+}
+</script>
+
+{$store.statistics_url}
+
+{$async_sendmail}

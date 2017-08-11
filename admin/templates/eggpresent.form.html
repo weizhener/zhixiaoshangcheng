@@ -1,0 +1,166 @@
+{include file="header.html"}
+
+<script type="text/javascript">
+
+    $(function () {
+
+        $('#eggpresent_form').validate({
+
+            errorPlacement: function (error, element) {
+
+                $(element).next('.field_notice').hide();
+
+                $(element).after(error);
+
+            },
+
+            success: function (label) {
+
+                label.addClass('right').text('OK!');
+
+            },
+
+            onkeyup: false,
+
+            rules: {
+
+                name: {
+
+                    required: true
+
+                },
+
+                eggpresent_logo: {
+
+                    accept: 'gif|png|jpe?g'
+
+                }
+
+            },
+
+            messages: {
+
+                name: {
+
+                    required: '{$lang.notnull}'
+
+                },
+
+                eggpresent_logo: {
+
+                    accept: 'gif|png|jpeg'
+
+                }
+
+            }
+
+        });
+
+    });
+
+</script>
+
+<div id="rightTop">
+
+    <p>{$lang.eggpresent}</p>
+
+    <ul class="subnav">
+
+        <li><a class="btn1" href="index.php?app=eggpresent">{$lang.manage}</a></li>
+
+        {if $eggpresent.eggpresent_id}
+
+        <li><a class="btn1" href="index.php?app=eggpresent&amp;act=add">{$lang.add}</a></li>
+
+        {else}
+
+        <li><span>{$lang.add}</span></li>
+
+        {/if}
+
+    </ul>
+
+</div>
+
+
+
+<div class="info">
+
+    <form method="post" enctype="multipart/form-data" id="eggpresent_form">
+
+        <table class="infoTable">
+
+            <tr>
+
+                <th class="paddingT15">
+
+                    {$lang.name}:</th>
+
+                <td class="paddingT15 wordSpacing5">
+
+                    <input class="infoTableInput2" id="name" type="text" name="name" value="{$eggpresent.name|escape}" />
+
+                    <label class="field_notice">{$lang.name}</label>
+
+                </td>
+
+            </tr>
+
+            <tr>
+
+                <th class="paddingT15">
+
+                    赠送积分:</th>
+
+                <td class="paddingT15 wordSpacing5">
+
+                    <input class="infoTableInput2" id="money" type="text" name="money" value="{$eggpresent.money|escape}" />
+
+                    <label class="field_notice">赠送积分</label>
+
+                </td>
+
+            </tr>
+
+
+
+            <tr>
+
+                <th class="paddingT15">
+
+                    {$lang.byeggname}:</th>
+
+                <td class="paddingT15 wordSpacing5">
+
+                    <select name="egg" id="egg">
+
+                        {html_options options=$eggs selected=$eggpresent.egg}
+
+                    </select>
+
+                </td>
+
+            </tr>
+
+            <tr>
+
+                <th></th>
+
+                <td class="ptb20">
+
+                    <input class="formbtn" type="submit" name="Submit" value="{$lang.submit}" />
+
+                    <input class="formbtn" type="reset" name="Submit2" value="{$lang.reset}" />
+
+                </td>
+
+            </tr>
+
+        </table>
+
+    </form>
+
+</div>
+
+{include file="footer.html"}
+

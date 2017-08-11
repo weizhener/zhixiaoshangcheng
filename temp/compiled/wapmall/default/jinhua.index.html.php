@@ -1,0 +1,81 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>购物砸金花</title>
+<link href="<?php echo $this->res_base . "/" . 'css/jinhua.css'; ?>" rel="stylesheet" type="text/css" />
+<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+</head>
+<script type="text/javascript" src="<?php echo $this->res_base . "/" . 'js/jquery-1.4.2.min.js'; ?>"></script>
+<script type="text/javascript" src="<?php echo $this->res_base . "/" . 'js/jinhua.js'; ?>"></script>
+<body>
+<div class="wrapper">
+<input type="hidden" name="id" id="id" value="<?php echo $this->_var['jinhua']['id']; ?>" />
+    <h1 style="text-align:center; font-size:1.6em; height:4em; line-height:3em;">购物即可开金花，积分疯狂赚</h1>
+    <div class="integral">
+	
+	   <div class="aaaa">
+          <div class="d"><a class="da" id="e1" href="javascript:ex(1);"><img width="100%" name="egg" src="<?php echo $this->res_base . "/" . 'images/egg/lock_1.jpg'; ?>"/></a><span id="s1"></span></div>
+          <div class="d"><a class="da" id="e2" href="javascript:ex(2);"><img width="100%" name="egg" src="<?php echo $this->res_base . "/" . 'images/egg/lock_1.jpg'; ?>"/></a><span id="s2"></span></div>
+		  <div style="clear:both;"></div>
+	  </div>
+	   <div class="aaaa">
+          <div class="d"><a class="da" id="e3" href="javascript:ex(3);"><img width="100%" name="egg" src="<?php echo $this->res_base . "/" . 'images/egg/lock_1.jpg'; ?>"/></a><span id="s3"></span></div>
+          <div class="d"><a class="da" id="e4" href="javascript:ex(4);"><img width="100%" name="egg" src="<?php echo $this->res_base . "/" . 'images/egg/lock_1.jpg'; ?>"/></a><span id="s4"></span></div>
+		  <div style="clear:both;"></div>
+	  </div>
+	  <div style="clear:both;"></div>
+    </div>
+    <div style="text-align:center; height:3em; line-height:3em; font-size:1.6em;" id="haiyou">你共有<?php echo $this->_var['v']; ?>次开金花机会</div>
+    <div style="display:none; text-align:center; height:3em; line-height:3em; font-size:1.6em;" id="you">还有<span id="jihui">0</span>次机会，<a href="index.php?app=jinhua">点击继续</a></div>
+    <div style="display:none; text-align:center; height:3em; line-height:3em; font-size:1.6em;" id="meiyou">没有机会了，<a href="index.php">点击返回</a></div>
+</div>
+<script language="javascript">
+                                   function ex(t)
+
+                                    {
+
+
+                                        var id = $('#id').val();
+										
+										if(id=="") return false;
+
+                                        //alert(""+eggid);
+
+                                        $.getJSON('index.php?app=jinhua&act=xmlh&id='+id+'&t='+t,
+
+                                        function (data) //回传函数  
+
+                                        {
+											if(data.error=='0'){
+											  $('#id').val("");
+											  $(".da").children('img').attr("src", "<?php echo $this->res_base . "/" . ''; ?>images/egg/nozhong3.jpg");
+                                              $("#e" + t).children('img').attr("src", "<?php echo $this->res_base . "/" . ''; ?>images/egg/ege_011.gif");
+											  
+											  
+											  
+											  $("#s1").html(data[1]+"积分");
+											  $("#s2").html(data[2]+"积分");
+											  $("#s3").html(data[3]+"积分");
+											  $("#s4").html(data[4]+"积分");
+											  $("#s5").html(data[5]+"积分");
+											  $("#haiyou").hide();
+											  if(data.n>0){
+												 $("#you").show();
+												 $("#jihui").html(data.n);
+											  }else{
+												 $("#meiyou").show();  
+											  }
+											}else{
+											  alert(data.error);	
+											}
+
+
+                                        }
+
+                                        );
+
+                                    }
+</script>
+</body>
+</html>

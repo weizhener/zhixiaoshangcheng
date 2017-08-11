@@ -1,0 +1,206 @@
+{include file=top.html}
+<script language="JavaScript">
+$(function(){
+	$(".brand-conts li").click(function(){
+		replaceParam('brand_id', this.id);
+		return false;
+	});
+	$(window).scroll(function(){
+		if($(window).scrollTop()>210){
+			$(".brands-list").css("position","fixed");
+			$(".brands-list").addClass("cssfix");
+		}else{
+			$(".brands-list").css("position","static");
+			$(".brands-list").removeClass("cssfix");
+		}
+	});
+})
+/* 替换参数 */
+function replaceParam(key, value)
+{
+    var params = location.search.substr(1).split('&');
+    var found  = false;
+    for (var i = 0; i < params.length; i++)
+    {
+        param = params[i];
+        arr   = param.split('=');
+        pKey  = arr[0];
+        if (pKey == 'page')
+        {
+            params[i] = 'page=1';
+        }
+        if (pKey == key)
+        {
+            params[i] = key + '=' + value;
+            found = true;
+        }
+    }
+    if (!found)
+    {
+        value = transform_char(value);
+        params.push(key + '=' + value);
+    }
+    location.assign(SITE_URL + '/index.php?' + params.join('&') + '#module');
+}
+</script>
+<div class="wrapper channel">
+    <!-- 导航电梯 start -->
+    <div class="ju-ele-nav">
+        <div class="top">
+             <h2>
+                <a class="logo" href="{url app=ju}"></a>
+            </h2>
+        </div>
+        <div class="ct">
+            <!--{foreach from=$cate_list item=cate name=fe_cate}-->
+             <h2 ectype="cate">
+                <a href="javascript:;">{$cate.value}</a>
+            </h2>
+            <ul class="jcategory" ectype="cate">
+            	<!--{foreach from=$cate.children item=child name=fe_child}-->
+                <li><a href="{url app=ju&cate_id=$child.id}#module"><span>{$child.value}</span></a>
+                </li>
+                <!--{/foreach}-->
+            </ul>
+            <!--{/foreach}-->
+        </div>
+        <div class="bt"></div>
+    </div>
+    <!-- 电梯 end -->
+    <div id="page">
+        <div class="ju-naver">
+            <div class="inner w">
+                <div class="top-search">
+                 <div class="top-search-box clearfix">
+                    <div class="form-fields float-right">
+                        <form method="GET" action="{url app=ju}">
+                            <input type="hidden" name="app" value="ju" />
+                            <input type="hidden" name="act" value="index" />
+                            <input type="text"   name="keyword" value="{if $smarty.get.keyword}{$smarty.get.keyword}{else}搜索其实很容易{/if}" onfocus="if (this.value=='搜索其实很容易') this.value = '';"  class="keyword"  style="color:#999;"/>
+                            <input type="submit" value="搜索" class="submit" hidefocus="true" />
+                        </form>
+                    </div>
+                 </div>
+              </div>
+                <!-- right menu -->
+                <ul class="nav-menu">
+                    <li class="menu-home"><a class="menu-link" href="{url app=ju}"><span>{$lang.index}</span></a>
+                    </li>
+                    <li class="current menu-brands">
+                        <a class="menu-link"  href="{url app=ju_brand}"> <span>{$lang.ju_brand}</span>
+     <em class="btn-dropdown"></em>
+                        </a>
+                    </li>
+                    <li class=" menu-jump"><a class="menu-link"  href="{url app=ju_mingpin}"><span>{$lang.ju_mingpin}</span></a>
+                    </li>
+                    <li class=" menu-jiazhuang"><a class="menu-link"  href="{url app=ju_decoration}"><span>{$lang.ju_decoration}</span></a>
+                    </li>
+                    <li class=" menu-local">
+                        <a class="menu-link"  href="{url app=ju_life}"> <span>{$lang.ju_life}</span>
+     
+                        </a>
+                    </li>
+                    <li class=" menu-travel">
+                        <a class="menu-link"  href="{url app=ju_travel}"> <span>{$lang.ju_travel}</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="top-b">
+            <div class="top-b-ct">
+                <span class="left"></span>
+                <span class="right"></span>
+            </div>
+        </div>
+        <div class="content">
+            <!-- 商品列表顶部banner -->
+            <div class="" area="brand_top" widget_type="area">
+            <!--{widgets page=ju_brand area=brand_top}-->
+            </div>
+            <a name="module"></a>
+            <div class="logos-ct mt10">
+            	<div class="brands-list">
+                	<ul class="brand-tabs clearfix ks-switchable-nav">
+                        <li class="ks-active"><span class="brands-tab tab-all">所有品牌 ({$brands_allcount})</span></li>
+                        <!--{foreach from=$brands_arr item=brand}-->
+                        <li><span class="brands-tab">{$brand.tag} ({$brand.count})</span></li>
+                        <!--{/foreach}-->
+                    </ul>
+            		<div class="brand-conts ks-switchable-content">
+                        <div class="first all-content tab-content expandble" style="display: block; overflow: hidden; height:168px;"> 
+                        	<ul class="clearfix">
+                            	<!--{foreach from=$brands_all item=brand}-->
+                            	<li id="{$brand.brand_id}">
+                                	<div class="flipper">
+                                    	<div class="front">
+                                        	<a href="javascript:;" title="{$brand.brand_name|escape}" >
+                                            	<img width="90" height="37" src="{$brand.brand_logo}">
+                                            </a>
+                                        </div>
+                                        <div class="back"><span>{$brand.brand_name|escape}</span></div>
+                                     </div>
+                                </li>
+                                <!--{/foreach}-->
+                             </ul>
+                             <span class="collapse"></span>
+                         </div>
+                         <!--{foreach from=$brands_arr item=arr}-->
+                        <div class="all-content tab-content" style=" display:none;"> 
+                        	<ul class="clearfix">
+                            	<!--{foreach from=$arr.brands item=brand}-->
+                            	<li id="{$brand.brand_id}">
+                                    	<div class="front">
+                                        	<a href="javascript:;" title="{$brand.brand_name|escape}">
+                                            	<img width="90" height="37" src="{$brand.brand_logo}">
+                                            </a>
+                                        </div>
+                                        <div class="back"><span>{$brand.brand_name|escape}</span></div>
+                                </li>
+                                <!--{/foreach}-->
+                             </ul>
+                         </div>
+                         <!--{/foreach}-->
+                     </div>
+                 </div>
+            </div>
+            <div class="" area="brand_middle" widget_type="area">
+            <!--{widgets page=ju_brand area=brand_middle}-->
+            </div>
+            <div class="ju-list" style=" min-height:100px;">
+                <ul class="clearfix">
+                	<!--{foreach from=$ju_list item=ju name=fe_ju}-->
+                    <li {if $smarty.foreach.fe_ju.iteration % 3 eq 0} style=" margin-right:0px;"{/if}>
+                        <div class="grts"></div>
+                        <a target="_blank" href="{url app=ju&act=show&id=$ju.group_id}" class="link-box">
+                            <img class="pic" {if $ju.image} src="{$ju.image}"{else} src="{$ju.default_image}"{/if} alt="{$ju.goods_name}"> <i class="soldout-mask"></i> 
+                             <h3 title="{$ju.group_name}">{$ju.group_name|escape}</h3> 
+                            <div class="prices"> <span class="price"><i>￥</i><em>{$ju.group_price}</em></span> 
+                                <div class="dock"> <span class="discount"><em>{$ju.discount}</em>折</span>  <del class="orig-price">{$ju.price|price}</del> 
+                                </div> <span class="sold-num"><em>{if $ju.all_count} {$ju.all_count} {else} 0 {/if}</em>人已买</span> 
+                            </div>
+                        </a>
+                    </li>
+                    <!--{/foreach}-->
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    KISSY.ready(function(S) {
+        var tabs = new S.Tabs('.brands-list',{
+             aria:false
+        });
+    });
+	$(function(){
+		$(".brands-list .first").hover(function(){
+			$(this).css({"height":"auto","min-height":"168px"});
+			$(".collapse").css("background-position","0 -57px");
+		},function(){
+			$(this).css("height","168px");
+			$(".collapse").css("background-position","0 5px");
+		})
+	})
+</script>
+{include file=footer.html}

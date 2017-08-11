@@ -1,0 +1,80 @@
+{include file=member.header.html}
+<style>
+.member_no_records {border-top: 0px !important;}
+.table td{ padding-left: 5px; }
+</style>
+<div class="content">
+  <div class="totline"></div>
+  <div class="botline"></div>
+  {include file=member.menu.html}
+  <div id="right">
+    {include file=member.submenu.html}
+        <div class="wrap">
+            <div class="public_select table">
+                <table>
+
+                    <tr class="line_bold">
+                        <th class="align1" colspan="2"></th>
+                        <th colspan="7">
+                            <div class="select_div"> {$lang.mix_name}:
+    <select class="infoTableSelect" onchange="location='index.php?app=seller_mix&act=view_goods&id=' + this.value">{html_options options=$mixs selected=$smarty.get.id}
+
+    </select>
+                            </div>
+                        </th>
+                    </tr>
+                    <!--{if $goods_list}-->
+                    <tr class="gray">
+					  <td width="20" class="firstCell"><input type="checkbox" class="checkall" /></td>
+					  <td width="30%">{$lang.goods_name}</td>
+					  <td width="100">{$lang.sort_order}</td>
+					  <td width="10%">{$lang.store_name}</td>
+					  <td>{$lang.cate_name}</td>
+					  <td>{$lang.if_show}</td>
+					  <td>{$lang.closed}</td>
+					  <td>{$lang.views}</td>
+                    </tr>
+                    <!--{/if}-->
+                    <!--{foreach from=$goods_list item=goods name=_goods_f}-->
+                   <tr class="line<!--{if $smarty.foreach._goods_f.last}--> last_line<!--{/if}-->" ectype="table_item" idvalue="{$goods.goods_id}">
+					 <td width="25" class="align2"><input type="checkbox" class="checkitem" value="{$goods.goods_id}"/></td>
+					  <td>{$goods.goods_name|escape}</td>
+					  <td><span>{$goods.sort_order}</span></td>
+					  <td>{$goods.store_name|escape}</td>
+					  <td>{$goods.cate_name|nl2br}</td>
+					  <td><!--{if $goods.if_show}--><img src="{res file=images/positive_enabled.gif}" /><!--{else}--><img src="{res file=images/positive_disabled.gif}" /><!--{/if}--></td>
+					  <td><span style="width:10px;" <!--{if $goods.closed}-->class="no_ico"<!--{else}-->class="no_ico_disable"<!--{/if}-->></span></td>
+					  <td>{$goods.views|default:0}</td>
+                    </tr>
+                    <!--{foreachelse}-->
+                    <tr>
+                        <td class="align2 member_no_records padding6" colspan="9">{$lang.no_records}</td>
+                    </tr>
+                    <!--{/foreach}-->
+                    <!--{if $goods_list}-->
+                    <tr class="line_bold line_bold_bottom">
+                        <td colspan="11">&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <th><input type="checkbox" id="all2" class="checkall"/></th>
+                        <th colspan="10">
+                            <p class="position1">
+                                <span class="all"><label for="all2">{$lang.checkall}</label></span>
+                                <a href="javascript:;" ectype="batchbutton" uri="index.php?app=seller_mix&act=drop_goods_from&id={$smarty.get.id}" name="goods_id">{$lang.drop_goods_from}</a>
+                            </p>
+                            <p class="position2">
+                                {include file=member.page.bottom.html}                            
+							</p>
+						</th>
+                    </tr>
+                    <!--{/if}-->
+                </table>
+            </div>
+            <div class="wrap_bottom"></div>
+        </div>
+        <div class="clear"></div>
+    </div>
+    <div class="clear"></div>
+</div>
+<iframe name="iframe_post" id="iframe_post" width="0" height="0"></iframe>
+{include file=footer.html}

@@ -1,0 +1,60 @@
+{include file="member.header.html"}
+<div class="content">
+  <div class="totline"></div>
+  <div class="botline"></div>
+  {include file=member.menu.html}
+  <div id="right">
+    {include file=member.submenu.html}
+        <div class="wrap">
+            <div class="eject_btn_two eject_pos1" title="{$lang.delivery_add}"><b class="ico1" onclick="go('index.php?app=my_delivery&amp;act=add');">{$lang.delivery_add}</b></div>
+            <!--<div class="eject_btn_two eject_pos2" title="{$lang.delivery_add}"><b class="ico2" onclick="go('index.php?app=my_delivery&amp;act=add');">{$lang.delivery_add}</b></div>-->
+            <div class="public_select table">
+
+<div class="info2">
+    <!--{foreach from=$deliverys item=delivery}-->
+    <div  class="section">
+    	<div class="tbl-prefix clearfix" >
+        	<span class="meta">
+            	<span>添加时间：{$delivery.created|date:Y-m-d H:i:s}</span>
+                <a href="{url app=my_delivery&act=copy_tpl&id=$delivery.template_id}" onclick="return confirm('{$lang.copy_template_confirm}');">复制模板</a>
+                <a href="{url app=my_delivery&act=edit&id=$delivery.template_id}">修改</a>
+                <a href="{url app=my_delivery&act=drop&id=$delivery.template_id}" onclick="return confirm('{$lang.drop_template_confirm}');">删除</a>
+            </span>
+            <h3 class="name"><strong>{$delivery.name}</strong></h3>
+         </div>
+         <div class="tbl-entity">
+		 	<table border="0" cellpadding="0" cellspacing="0">
+            	<!--{foreach from=$delivery.area_fee item=item name=fe_item}-->
+                <!--{if $smarty.foreach.fe_item.first}-->
+                <tr class="tbl-head">
+            		<th>运送方式</th>
+                	<th class="cell-area">运送到</th>
+					<th>首件(个)</th>
+                	<th>运费(元)</th>
+					<th>续件(个)</th>
+                	<th>运费(元)</th>
+             	</tr>
+                <!--{/if}-->
+        		<tr class="tbl-col">
+					<td>{$lang.$item.type}</td>
+                	<td class="cell-area">{$item.dests}</td>
+                	<td>{$item.start_standards}</td>
+                	<td>{$item.start_fees}</td>
+                	<td>{$item.add_standards}</td>
+                	<td>{$item.add_fees}</td>
+            	</tr>
+                <!--{/foreach}-->
+         	</table>
+       </div>
+	</div>
+    <!--{foreachelse}-->
+    <div class="notice-word">{$lang.no_records}</div>
+    <!--{/foreach}-->
+    <!--{if $deliverys}--><div class="pageLinks">{include file=page.bottom.html}</div><!--{/if}-->
+</div>
+</div>
+</div>
+</div>
+  <div class="clear"></div>
+</div>
+{include file="footer.html"}

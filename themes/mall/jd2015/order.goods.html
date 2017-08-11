@@ -1,0 +1,32 @@
+﻿<div class="cartbox w mt20 mb10">
+   <div class="title clearfix mb10">
+      <span class="col-desc">{$lang.store_goods}</span>
+      <span>{$lang.price}</span>
+      <span>{$lang.quantity}</span>
+      <span>{$lang.subtotal}</span>
+      <span>{$lang.handle}</span>
+   </div>
+   <div class="content">
+      <div class="store-each">
+            <div class="store-name pb10">
+               {$lang.store}{$lang.colon}<a href="{url app=store&id=$goods_info.store_id}">{$goods_info.store_name|escape}</a>
+               <!--{if $goods_info.store_im_qq}-->
+               <a href="http://wpa.qq.com/msgrd?V=1&amp;uin={$goods_info.store_im_qq|escape}&amp;Site={$goods_info.store_name|escape}&amp;Menu=yes" target="_blank"><img align="absmiddle" src="http://wpa.qq.com/pa?p=1:{$goods_info.store_im_qq|escape}:4" alt="qq"></a>
+               <!--{/if}-->
+            </div>
+            <!--{foreach from=$goods_info.items item=goods name=fe_goods}-->
+            <dl class="goods-each clearfix" {if !$smarty.foreach.fe_goods.first} style="border-top:0;"{/if}>
+               <dd class="pic"><a class="block" href="{url app=goods&id=$goods.goods_id}" target="_blank"><img src="{$goods.goods_image}" alt="{$goods.goods_name|escape}" width="80" height="80" /></a></dd>
+               <dd class="desc">
+                  <p><a href="{url app=goods&id=$goods.goods_id}" target="_blank">{$goods.goods_name|escape}</a></p>
+                  <span class="f66">{$goods.specification|escape}</span>
+               </dd>
+               <dd class="price">{$goods.price|price}</dd>
+               <dd class="quantity">{$goods.quantity}</dd>
+               <dd class="subtotal fs14 strong">{$goods.subtotal|price}</dd>
+               <dd class="handle"></dd>
+            </dl>
+            <!-- {/foreach} -->
+         </div>
+   </div>
+</div>

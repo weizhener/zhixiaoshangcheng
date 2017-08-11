@@ -1,0 +1,24 @@
+<div class="mp_slide">
+    <!--{if $widget_data}-->
+    <ul class="ks-switchable-content ks-content">
+        <!-- {foreach from=$widget_data.ads item=image name=fe_image} -->
+        <li style="background-image: url('{$image.ad_image_url}');"><a href="{$image.ad_link_url}" target="_blank" title="{$image.ad_title}"></a></li>
+        <!-- {/foreach} -->
+    </ul>
+    <div class="cbwrap">
+        <ul class="c-tabnav ks-switchable-nav">
+        	<!-- {foreach from=$widget_data.ads item=image name=fe_image} -->
+            <a {if $smarty.foreach.fe_image.first} class="ks-active"{/if} href="{$image.ad_link_url}" target="_blank" title="{$image.ad_title}" style="width:{$widget_data.width}px">{$image.ad_title}</a>
+            <!-- {/foreach} -->
+		</ul>
+    </div>
+    <!--{/if}-->
+</div>
+<script>
+KISSY.use('switchable', function(S) {
+   S.Slide('.mp_slide', {
+   effect: 'fade',
+   easing: 'easeOutStrong'
+   });
+});
+</script>

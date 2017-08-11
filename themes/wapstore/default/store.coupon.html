@@ -1,0 +1,77 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <base href="{$site_url}/" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+        {$page_seo}
+        <link href="{res file=css/common.css}" rel="stylesheet" type="text/css" />
+        <link href="{res file=css/flexslider.css}" rel="stylesheet" type="text/css" />
+        <script type="text/javascript" src="{res file=js/jquery-1.8.0.min.js}"></script>
+        <script type="text/javascript" src="{res file=js/jquery.flexslider.js}"></script>
+        <script type="text/javascript" src="{res file=js/sub_menu.js}"></script>
+        <script type="text/javascript" src="{lib file=ecmall.js}" charset="utf-8"></script>
+    </head>
+    <body>
+        {include file=header.html}
+
+        <script type="text/javascript">
+            //<!CDATA[
+            var SITE_URL = "{$site_url}";
+            var REAL_SITE_URL = "{$real_site_url}";
+            var PRICE_FORMAT = '{$price_format}';
+
+            //]]>
+        </script>
+        <style>
+            .coupon{ margin-top:50px;}
+            .coupon li{margin: 0 auto;position: relative;height:150px;text-align: left;width:100%;float:left;margin:10px 0;}
+            .coupon li p{background-color:#fff; opacity:0.8;filter:alpha(opacity=80); }
+            .coupon li .cardbg {height:150px;width:100%;position: absolute;border-radius: 8px;-webkit-border-radius: 8px;-moz-border-radius: 8px;box-shadow: 0 0 4px rgba(0, 0, 0, 0.6);-moz-box-shadow: 0 0 4px rgba(0, 0, 0, 0.6);-webkit-box-shadow: 0 0 8px rgba(0, 0, 0, 0.6);top: 0;left: 0;z-index: 1;}
+            .coupon li .name{position: absolute;right: 10px;top: 0px;text-align: center;z-index:22;font-size: 12px;font-weight: bold;}
+            .coupon li .price{position: absolute;right: 10px;top:20px;text-align: center;z-index:22;font-size:16px;font-weight: bold;color: red;}
+            .coupon li .time{position: absolute;right: 10px;top:40px;text-align: center;z-index:22;font-size: 12px;font-weight: bold;}
+        </style>
+
+
+        <script>
+            function add_coupon(coupon_id) {
+
+<!--{if !$visitor.user_id}-->
+                alert('请先登录');
+                return;
+<!--{/if}-->
+
+                var url = SITE_URL + '/index.php?app=my_coupon&act=add';
+                $.getJSON(url, {'coupon_id': coupon_id}, function(data) {
+                    if (data.done)
+                    {
+                        alert(data.retval);
+                    }
+                    else
+                    {
+                        alert(data.msg);
+                    }
+                });
+            }
+        </script>
+
+        <div id="content">
+            <ul class="coupon">
+                <!--{foreach from=$coupons item=coupon name=fe_coupon}-->
+                <li onclick="add_coupon({$coupon.coupon_id})">
+                    <img class="cardbg" src="{$coupon.coupon_bg|escape}" height="150"/>
+                        <p class="name" >{$coupon.coupon_name}</p>
+                        <p class="price" ><!--{if $coupon.coupon_value}-->{$coupon.coupon_value|price}<!--{else}-->{$lang.no_limit}<!--{/if}--></p>
+                        <p class="time" >{$coupon.start_time|date} 至 <!--{if $coupon.end_time}-->{$coupon.end_time|date}<!--{else}-->{$lang.no_limit}<!--{/if}--></p>
+                </li>
+                <!--{/foreach}-->
+            </ul>
+{include file='page.bottom.html'}
+        </div>
+
+
+{include file=footer.html}

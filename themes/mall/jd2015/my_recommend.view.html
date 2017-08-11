@@ -1,0 +1,77 @@
+{include file=member.header.html}
+<style>
+.member_no_records {border-top: 0px !important;}
+.table td{ padding-left: 5px; }
+.table .ware_text { width: 155px; }
+</style>
+<div class="content">
+  <div class="totline"></div>
+  <div class="botline"></div>
+  {include file=member.menu.html}
+  <div id="right">
+    {include file=member.submenu.html}
+        <div class="wrap">
+            <div class="public_select table">
+                <table id="my_goods">
+                    <!--{if $goods_list}-->
+                    <tr class="gray"  ectype="table_header">
+                        <th width="30"></th>
+                        <th width="55"></th>
+                        <th>{$lang.goods_name}</th>
+                        <th>{$lang.gcategory}</th>
+                        <th width="100">{$lang.brand}</th>
+                        <th width="30">{$lang.if_show}</th>
+                        <th width="30">{$lang.closed}</th>
+                        <th width="50">{$lang.views}</th>
+                    </tr>
+                    <!--{/if}-->
+                    <!--{foreach from=$goods_list item=goods name=_goods_f}-->
+                    <tr class="line<!--{if $smarty.foreach._goods_f.last}--> last_line<!--{/if}-->" ectype="table_item" idvalue="{$goods.goods_id}">
+                        <td width="25" class="align2"><input type="checkbox" class="checkitem" value="{$goods.goods_id}"/></td>
+                        <td width="50" class="align2"><a href="{url app=goods&id=$goods.goods_id}" target="_blank"><img src="{$site_url}/{$goods.default_image}" width="50" height="50"  /></a></td>
+                        <td width="160" align="center">
+                          <p class="ware_text"><span class="color2">{$goods.goods_name|escape}</span></p>
+                        </td>
+                        <td  align="center">{$goods.cate_name}</td>
+                        <td  class="align2"><span class="color2">{$goods.brand|escape}</span></td>
+                        <td  class="align2"><span style="margin:0px 5px;" <!--{if $goods.if_show}-->class="right_ico" status="on"<!--{else}-->class="wrong_ico" stauts="off"<!--{/if}-->></span></td>
+                        
+                        <td class="align2"><span style="margin:0px 5px;" <!--{if $goods.closed}-->class="no_ico"<!--{else}-->class="no_ico_disable"<!--{/if}-->></span></td>
+                        <td class="align2">{$goods.views}</td>
+                    </tr>
+                    <!--{foreachelse}-->
+                    <tr>
+                        <td class="align2 member_no_records padding6" colspan="10">{$lang.$smarty.get.act}{$lang.no_records}</td>
+                    </tr>
+                    <!--{/foreach}-->
+                    <!--{if $goods_list}-->
+                    <tr class="line_bold line_bold_bottom">
+                        <td colspan="11"> </td>
+                    </tr>
+                    <tr>
+                        <th><input type="checkbox" id="all2" class="checkall"/></th>
+                        <th colspan="10">
+                            <p class="position1">
+                                <span class="all"><label for="all2">{$lang.checkall}</label></span>
+                                <a href="javascript:void(0);" class="edit" ectype="batchbutton" uri="index.php?app=my_recommend&amp;act=drop_goods_from&ret_page={$page_info.curr_page}&id={$smarty.get.id}" name="goods_id">{$lang.unrecommend}</a>
+                            </p>
+                            <p class="position2">
+                                {include file=member.page.bottom.html}
+                            </p>
+                        </th>
+                    </tr>
+                    <!--{/if}-->
+                </table>
+            </div>
+            <div class="wrap_bottom"></div>
+        </div>
+        <div class="clear"></div>
+        <div class="adorn_right1"></div>
+        <div class="adorn_right2"></div>
+        <div class="adorn_right3"></div>
+        <div class="adorn_right4"></div>
+    </div>
+    <div class="clear"></div>
+</div>
+<iframe name="iframe_post" id="iframe_post" width="0" height="0"></iframe>
+{include file=footer.html}

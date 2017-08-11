@@ -1,0 +1,72 @@
+{include file=member.header.html}
+<div class="content">
+    {include file=member.menu.html}
+    <div id="right">
+        {include file=member.submenu.html}
+        <script type="text/javascript" src="{lib file=jquery.plugins/jquery.validate.js}" charset="{$charset}"></script>
+        <div class="wrap">
+            <div class="eject_btn_two eject_pos1" ><b class="ico4"><a uri="index.php?app=my_recommend&amp;act=add" ectype="dialog" dialog_id="my_recommend_add" dialog_width="460" dialog_title="{$lang.recommend_add}">{$lang.recommend_add}</a></b></div>
+            <div class="public table">
+                <table class="table_head_line">
+                    <!--{if $recommends}-->
+                    <tr class="line_bold">
+                        <th class="width1"><input id="all" type="checkbox" class="checkall" /></th>
+                        <th class="align1" colspan="5">
+                            <span class="all"><label for="all">{$lang.checkall}</label></span>
+                            <a href="javascript:void(0);" class="delete" uri="index.php?app=my_recommend&act=drop" name="id" presubmit="confirm('{$lang.drop_confirm}')" ectype="batchbutton">{$lang.drop}</a>
+                        </th>
+                    </tr>
+                    <tr class="gray">
+                        <th></th>
+                        <th align="left">{$lang.recommend_name}</th>
+                        <th>{$lang.goods_count}</th>
+                        <th>{$lang.handle}</th>
+                    </tr>
+                    <!--{/if}-->
+                    <!-- {foreach from=$recommends item=recom name=v} -->
+                    <!--{if $smarty.foreach.v.last}--><tr class="line_bold"><!--{else}--><tr class="line"><!--{/if}-->
+                        <td class="align2"><input type="checkbox" class="checkitem" value="{$recom.recom_id}" /></td>
+                        <td>{$recom.recom_name|escape}</td>
+                        <td align="center">{$recom.goods_count|default:0}</td>
+                        <td width="200">
+                        <div style="width:200px;">
+                            <a href="javascript:void(0);" uri="index.php?app=my_recommend&amp;act=edit&id={$recom.recom_id}" dialog_id="my_recommend_edit" dialog_title="{$lang.edit}" dialog_width="460" ectype="dialog" class="edit1">{$lang.edit}</a>
+                            <a href="javascript:drop_confirm('{$lang.drop_confirm}', 'index.php?app=my_recommend&amp;act=drop&id={$recom.recom_id}');" class="delete">{$lang.drop}</a>
+                            <a href="index.php?app=my_recommend&act=view_goods&id={$recom.recom_id}" class="log">{$lang.view_recommended_goods}</a>
+                        </div>
+                        </td>
+                    </tr>
+                    <!-- {foreachelse} -->
+                    <tr>
+                        <td colspan="6" class="member_no_records padding6">{$lang.no_records}</td>
+                    </tr>
+                    <!--{/foreach}-->
+                    <!--{if $recommends}-->
+                    <tr>
+                        <th><input id="all2" type="checkbox" class="checkall" /></th>
+                        <th colspan="5">
+                        <p class="position1">
+                            <span class="all"><label for="all2">{$lang.checkall}</label></span>
+                            <a href="javascript:void(0);" class="delete" uri="index.php?app=my_recommend&act=drop" name="id" presubmit="confirm('{$lang.drop_confirm}')" ectype="batchbutton">{$lang.drop}</a>
+
+                        </p>
+                        <p class="position2">
+                            {include file=member.page.bottom.html}
+                        </p>
+                        </th>
+                    </tr>
+                    <!--{/if}-->
+                </table>
+            </div>
+            <div class="wrap_bottom"></div>
+        </div>
+        <iframe name="my_recommend" style="display:none"></iframe>
+        <div class="clear"></div>
+        <div class="adorn_right1"></div>
+        <div class="adorn_right2"></div>
+        <div class="adorn_right3"></div>
+        <div class="adorn_right4"></div>
+    </div>
+    <div class="clear"></div>
+</div>
+{include file=footer.html}

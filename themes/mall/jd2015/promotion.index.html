@@ -1,0 +1,40 @@
+{include file="header.html"}
+<div id="main" class="w-full">
+    <div id="page-search-promotion" class="w mt10 mb20">
+        {include file=curlocal.html}
+        <div class="w mt10">
+            <!--
+            <div class="search-type clearfix">
+                <div class="float-left btn-type">
+                    <a href="javascript:;" class="current">{$lang.promotion_list}</a>
+                </div>
+                {include file=page.top.html}                              
+            </div>
+            -->
+            <div class="group-list mt10 mb10 clearfix">
+                <ul class="clearfix">
+                    <!-- {foreach from=$goods_list item=goods name=fe_goods} -->
+                    <a target="_blank" href="{url app=goods&id=$goods.goods_id}">
+                    <li class="item mb20" {if $smarty.foreach.fe_goods.iteration % 4 eq 0} style="margin-right:0"{/if}>
+                        <img src="{$goods.default_image}" alt="{$goods.goods_name|escape}" />
+                        <h3>{$goods.goods_name|escape|truncate:60}</h3>
+                        <div class="item-prices">
+                            <span class="price">{$goods.pro_price|price}</span><em>{$goods.price|price}</em>
+                            <div class="action">马上抢</div>
+                        </div>   
+                        
+                        <!--
+                        <div class="buy"><span class="price"></span><del>{$goods.price}</del><a href="{url app=goods&id=$goods.goods_id}"></a></div>
+                        -->
+                    </li>
+                    </a>
+                    <!--{foreachelse}-->
+                    <div>{$lang.no_promotion_goods}</div>
+                    <!-- {/foreach} -->
+                </ul>
+                {include file=page.bottom.html}
+            </div>    
+        </div>
+    </div>
+</div>
+{include file="footer.html"}

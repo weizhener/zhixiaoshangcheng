@@ -1,0 +1,39 @@
+{include file="header.html"}
+<style type="text/css">
+.mall-nav{ display:none}
+</style>
+<div id="main" class="w-full">
+<div id="page-cart" class="cart-empty w">
+   <div class="step step1 mt10 clearfix">
+      <span class="fs14 strong fff">{$lang.ckgwc}</span>
+      <span class="fs14 strong">{$lang.qrddxx}</span>
+      <span class="fs14 strong">{$lang.fk}</span>
+      <span class="fs14 strong">{$lang.qrsh}</span>
+      <span class="fs14 strong">{$lang.pj}</span>
+   </div>
+   <div class="empty-notice w clearfix">
+      <div class="empty-ico"></div>
+      <div class="empty-text">
+         <p class="fs14 strong">{$lang.cart_empty_notice}</p>
+         <a href="index.php">{$lang.choice_goods}>></a>
+         <a href="{url app=buyer_order}">{$lang.view_orders}>></a>
+      </div>
+   </div>
+   
+   <div class="interest mt20 mb10">
+      <div class="title border fs14 padding5 f66 strong"><span class="arr"></span>{$lang.interest_note}</div>
+      <div class="content border border-t-0 clearfix">
+         <!--{foreach from=$interest item=goods}-->
+         <dl class="float-left">
+           <dt><a href="{url app=goods&id=$goods.goods_id}" target="_blank"><img width="160" height="160" src="{$goods.default_image}" /></a></dt>
+           <dd class="desc"><a href="{url app=goods&id=$goods.goods_id}" target="_blank">{$goods.goods_name|escape|truncate:42}</a></dd>
+           <dd class="price clearfix"><em>{$goods.price}</em><span>{$lang.zjcj}{$goods.sales}{$lang.bi}</span></dd>
+           <dd class="service"></dd>
+         </dl> 
+         <!--{/foreach}-->
+      </div>
+   </div>
+</div>
+</div>
+{include file=server.html}
+{include file="footer.html"}

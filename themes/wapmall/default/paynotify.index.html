@@ -1,0 +1,22 @@
+{include file="member.header.html"}
+<div class="mb-head">
+    <a href="javascript:history.back(-1)" class="l_b">返回</a>
+    <div class="tit">{$lang.head_msg}</div>
+    <a href="javascript" class="r_b"></a>
+</div>
+
+<div class="mark"> 
+    <div class="bm_con">
+        <div class="marklist">
+            <ul>
+                <br/>
+                <li style="text-align:center;">
+                    <p>{$lang.pay_successed_desc} </p>
+                    <p><a href='{url app=default}'>商城首页</a>&nbsp;&nbsp;<a href="{url app=buyer_order&act=view&order_id=$order.order_id}">{$lang.view_order}</a></p>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+{include file="member.footer.html"}

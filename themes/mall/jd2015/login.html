@@ -1,0 +1,113 @@
+{include file="header.html"}
+<script type="text/javascript">
+    $(function () {
+        $('#login_form').validate({
+            errorPlacement: function (error, element) {
+                var error_td = element.parent('dd');
+                error_td.find('label').hide();
+                error_td.append(error);
+            },
+            success: function (label) {
+                label.addClass('validate_right').text('OK!');
+            },
+            onkeyup: false,
+            rules: {
+                user_name: {
+                    required: true
+                },
+                password: {
+                    required: true
+                },
+                captcha: {
+                    required: true,
+                    remote: {
+                        url: 'index.php?app=captcha&act=check_captcha',
+                        type: 'get',
+                        data: {
+                            captcha: function () {
+                                return $('#captcha1').val();
+                            }
+                        }
+                    }
+                }
+            },
+            messages: {
+                user_name: {
+                    required: '{$lang.user_name_required}'
+                },
+                password: {
+                    required: '{$lang.password_required}'
+                },
+                captcha: {
+                    required: '{$lang.captcha_required}',
+                    remote: '{$lang.captcha_error}'
+                }
+            }
+        });
+    });
+</script>
+<div id="main" class="w-full">
+    <div id="page-login" class="w login-register mt20 mb20">
+        <div class="w clearfix">
+            <div class="col-main">
+                <div class="login-edit-field" area="login_left" widget_type="area">
+                    <!--{widgets page=login area=login_left}-->
+                </div>
+            </div>
+            <div class="col-sub">
+                <div class="form">
+                    <div class="title">{$lang.user_login}</div>
+                    <div class="content">
+                        <form method="post" id="login_form">
+                            <dl class="clearfix">
+                                <dt>{$lang.user_name}</dt>
+                                <dd>
+                                    <input class="input" type="text" name="user_name"  />
+                                    <div class="clr"></div><label></label>
+                                </dd>
+                            </dl>
+                            <dl class="clearfix">
+                                <dt>{$lang.password}</dt>
+                                <dd>
+                                    <input class="input" type="password" name="password"/>
+                                    <div class="clr"></div><label></label>
+                                </dd>
+                            </dl>
+
+                            <!--{if $captcha}-->
+                            <dl class="clearfix">
+                                <dt>{$lang.captcha}</dt>
+                                <dd class="captcha clearfix">
+                                    <input type="text" class="input float-left" name="captcha" id="captcha1" />
+                                    <img height="26" id="captcha" src="index.php?app=captcha&amp;{$random_number}" class="float-left" />
+                                    <a href="javascript:change_captcha($('#captcha'));" class="float-left">{$lang.next_captcha}</a>
+                                    <div class="clr"></div><label></label>
+                                </dd>
+                            </dl>
+                            <!--{/if}-->
+                            <dl class="clearfix">
+                                <dt>&nbsp;</dt>
+                                <dd class="clearfix">
+                                    <input type="submit" class="login-submit" name="Submit" value="{$lang.login}" title="{$lang.login}" />
+                                    <a href="{url app=find_password}" class="find-password">{$lang.forget_password}</a>
+                                    <input type="hidden" name="ret_url" value="{$ret_url}" />
+                                </dd>
+                            </dl>
+                            <dl class="clearfix">
+                                <dt>&nbsp;</dt>
+                                <dd class="register-now">
+                                    {$lang.not_member}<a href="{url app=member&act=register&ret_url=$ret_url}" title="{$lang.register}">{$lang.register}</a>
+                                </dd>
+                            </dl>                            <!-- 
+                            <div class="partner-login">
+                                <h3>{$lang.use_partner_account_login}</h3>
+                                <p><a class="qq-login" href="{url app=third_login&act=qq}"></a><a class="weibo-login" href="{url app=third_login&act=sina}"></a></p>
+                            </div>                                                        -->
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{include file="footer.html"}

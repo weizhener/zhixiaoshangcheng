@@ -1,0 +1,90 @@
+{include file=header.html}
+
+<style>
+    .binding{border: 1px solid #CDCDCD;background: #FFF;min-height: 300px;margin: 10px 0;padding: 50px 200px;font-family: microsoft yahei;}
+    .binding h2{padding:10px;}
+    .binding-tit{border-bottom: 1px solid #CCC;display: block;height: 30px;padding-left: 50px;}
+    .binding-tit li{float: left;margin: 0 3px -1px 0;}
+    .binding-tit li a{line-height: 30px;padding: 0 20px;border: 1px solid #CDCDCD;display: block;background: #F6F6F6;text-decoration: none;color: #999}
+    .binding-tit li a.current {border-bottom-color: #FFF;font-weight: 700;background: #fff;}
+    .binding-content {padding-left: 50px;line-height:30px;}
+    .binding-content td{padding-top: 20px;}
+</style>
+<div class="w">
+    <div class="binding">
+        <h2><img src="{$portrait}"/>Hi,{$nickname}, 请先使用账户进行绑定</h2>
+        <ul class="binding-tit">
+            <li><a class="tab_1 current" href="javascript:void(0)" onclick="connect_switch(1);this.blur();">创建新帐号</a></li>
+            <li><a class="tab_2" href="javascript:void(0)" onclick="connect_switch(2);this.blur();">已有本站帐号</a></li>
+        </ul>
+
+        <div class="binding-content">
+            <form id="binding_form_regiest" method="post">
+                <table>
+                    <tr>
+                        <td width="100">用户名:</td>
+                        <td><input type="text" id="user_name" name="user_name" class="text width10"  ></td>
+                    </tr>
+                    <tr>
+                        <td>您的密码:</td>
+                        <td><input type="password" id="password" name="password" class="text width10" ></td>
+                    </tr>
+                    <tr>
+                        <td>确认密码:</td>
+                        <td><input type="password" id="password_confirm" name="password_confirm" class="text width10" ></td>
+                    </tr>
+                    <tr>
+                        <td>邮箱:</td>
+                        <td><input type="text" id="email" name="email" class="text width10" ></td>
+                    </tr>
+                    
+                    <tr>
+                        <td></td>
+                        <td colspan="2"><input type="submit" name="Submit" value="立即注册" class="login_btn" title="立即注册"><input type="hidden" name="binding_type" value="register"/></td>
+                    </tr>
+                    
+                </table>
+            </form>
+            
+            
+            <form id="binding_form_login" method="post" style="display:none">
+                <table class="login_con">
+                    <tr>
+                        <td width="100">用户名:</td>
+                        <td><input type="text" id="user_name" name="user_name" class="text width10"  ></td>
+                    </tr>
+                    <tr>
+                        <td>您的密码:</td>
+                        <td><input type="password" id="password" name="password" class="text width10" ></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td colspan="2"><input type="submit" name="Submit" value="登录" class="enter"><input type="hidden" name="binding_type" value="login"/></td>
+                    </tr>
+                    
+                </table>
+            </form>
+            
+            
+            
+        </div>
+    </div>
+</div>
+<script>
+    function connect_switch(op) {
+        if (op == 1) {
+            $('#binding_form_regiest').show();
+            $('#binding_form_login').hide();
+            $('.tab_1').addClass("current");
+            $('.tab_2').removeClass("current");
+        } else {
+            $('#binding_form_regiest').hide();
+            $('#binding_form_login').show();
+            $('.tab_1').removeClass("current");
+            $('.tab_2').addClass("current");
+        }
+    }
+</script>
+
+
+{include file=footer.html}

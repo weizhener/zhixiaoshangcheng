@@ -1,0 +1,112 @@
+{include file="header.html"}
+<div id="rightTop">
+    <p>{$lang.goods_verify}</p>
+    <ul class="subnav">
+    	{if $smarty.get.wait_verify}
+        <li><a class="btn1" href="index.php?app=ju&amp;act=goods_list">{$lang.all_goods}</a></li>
+        <li><span>{$lang.wait_verify}</span></li>
+        {else}
+        <li><span>{$lang.all_goods}</span></li>
+        <li><a class="btn1" href="index.php?app=ju&amp;act=goods_list&amp;wait_verify=1">{$lang.wait_verify}</a></li>
+        {/if}
+    </ul>
+</div>
+<div class="groupbuy">
+	<div class="title">{$lang.handle_notice}</div>
+    <ul>
+    	<li>{$lang.ju_index_desc4}</li>
+	</ul>
+</div>
+<div class="mrightTop">
+    <div class="fontl">
+        <form method="get">
+            <div class="left">
+                <input type="hidden" name="app" value="ju" />
+                <input type="hidden" name="act" value="goods_list" />
+                {$lang.groupbuy_name}:
+                <input class="queryInput" type="text" name="group_name" value="{$query.group_name|escape}" />
+                {$lang.store_name}:
+                <input class="queryInput" type="text" name="store_name" value="{$query.store_name|escape}" />
+                <select name="template_id">
+                	<option value="">{$lang.group_all}</option>
+                	<!--{foreach from=$template_list item=template}-->
+                    <option value="{$template.template_id}" {if $smarty.get.template_id eq $template.template_id} selected="selected"{/if}>{$template.template_name}</option>
+                    <!--{/foreach}-->
+                </select>
+                <select name="status">
+					{html_options options=$status selected=$smarty.get.status}
+				</select>
+                <input type="submit" class="formbtn" value="{$lang.query}" />
+            </div>
+            <!--{if $filtered}-->
+            <a class="left formbtn1" href="index.php?app=ju&amp;act=goods_list">{$lang.cancel_query}</a>
+            <!--{/if}-->
+            <span> </span>
+        </form>
+    </div>
+    <div class="fontr"> {if $groupbuy_list}{include file=page.top.html}{/if} </div>
+</div>
+<div class="tdare">
+    <table width="100%" cellspacing="0" class="dataTable">
+        <!--{if $groupbuy_list}-->
+        <tr class="tatr1">
+            <td width="20" class="firstCell"><input type="checkbox" class="checkall" /></td>
+            <td align="left">{$lang.groupbuy_name}</td>
+            <td align="left">{$lang.store_name}</td>
+            <td align="left" class="table-center">{$lang.ju_template}</td>
+            <!--<td class="table-center">{$lang.join}</td>-->
+            <td class="handler">{$lang.views}</td>
+            <td class="table-center">{$lang.recommend}</td>
+            <td class="table-center">{$lang.status}</td>
+            <td class="table-center">{$lang.handler}</td>
+        </tr>
+        <!--{/if}-->
+        <!--{foreach from=$groupbuy_list item=groupbuy}-->
+        <tr class="tatr2">
+            <td class="firstCell"><input value="{$groupbuy.group_id}" class='checkitem' type="checkbox" /></td>
+            <td align="left"><a href="index.php?app=ju&amp;act=view&amp;id={$groupbuy.group_id}">{$groupbuy.group_name|escape}</a></td>
+            <td align="left"><a href="{$site_url}/index.php?app=store&amp;id={$groupbuy.store_id}" target="_blank">{$groupbuy.store_name|escape}</a></td>
+            <td align="left" class="table-center">{$groupbuy.template_name}</td>
+            <!--<td class="table-center">{$groupbuy.count}</td>-->
+            <td class="table-center">{$groupbuy.views}</td>
+            <td class="table-center">
+				<!--{if $groupbuy.recommend}-->
+				<img src="templates/style/images/positive_enabled.gif" ectype="inline_edit" fieldname="recommend" fieldid="{$groupbuy.group_id}" fieldvalue="1" title="{$lang.editable}"/>
+				<!--{else}-->
+				<img src="templates/style/images/positive_disabled.gif" ectype="inline_edit" fieldname="recommend" fieldid="{$groupbuy.group_id}" fieldvalue="0" title="{$lang.editable}" />
+				<!--{/if}-->
+            </td>
+            <td class="table-center">
+            	<!--{if $groupbuy.status eq 1}-->
+               	<font title="{$groupbuy.status_desc}" color="#006633">{$lang.verified}</font>
+                <!--{elseif $groupbuy.status eq 2}-->
+                <font title="{$groupbuy.status_desc}" color="#666666">{$lang.verify_no_pass}</font>
+                <!--{elseif $groupbuy.status eq 3}-->
+                <font title="{$groupbuy.status_desc}" color="#CC9900">{$lang.wait_edit}</font>
+                <!--{else}-->
+                <font title="{$groupbuy.status_desc}" color="#FF6600">{$lang.verifying}</font>
+                <!--{/if}-->
+            </td>
+            <td class="table-center"><a href="{if $groupbuy.status eq 3}javascript:alert('{$lang.wait_seller_edit}');{else}{url app=ju&amp;act=verify&amp;id=$groupbuy.group_id}{/if}">{$lang.verify}</a> | <a href="index.php?app=ju&amp;act=view&amp;id={$groupbuy.group_id}">{$lang.view}</a> | <a name="drop" href="javascript:drop_confirm('{$lang.drop_confirm}', 'index.php?app=ju&amp;act=drop_goods&amp;id={$groupbuy.group_id}');">{$lang.drop}</a> </td>
+        </tr>
+        <!--{foreachelse}-->
+        <tr class="no_data">
+            <td colspan="10">{$lang.no_data}</td>
+        </tr>
+        <!--{/foreach}-->
+    </table>
+    <!--{if $groupbuy_list}-->
+    <div id="dataFuncs">
+        <div id="batchAction" class="left paddingT15"> 
+        <input class="formbtn batchButton" type="button" value="{$lang.drop}" name="id" uri="index.php?app=ju&amp;act=drop_goods" presubmit="confirm('{$lang.drop_confirm}');" />
+            &nbsp;&nbsp;
+            <input class="formbtn batchButton" type="button" value="{$lang.batch_verify}" name="id" uri="index.php?app=ju&act=verify" />
+            &nbsp;&nbsp; 
+            <input class="formbtn batchButton" type="button" value="{$lang.batch_recommend}" name="id" uri="index.php?app=ju&act=recommend" /></div>
+
+    </div>
+    <!--{/if}-->
+    <div class="pageLinks">{if $groupbuy_list} {include file=page.bottom.html} {/if} </div>
+    <div class="clear"></div>
+</div>
+{include file="footer.html"}

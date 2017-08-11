@@ -1,0 +1,27 @@
+<div class="normal_slide mb10 s{$widget_data.model_id}" style="width:{$widget_data.width}px;height:{$widget_data.height}px;overflow:hidden;">
+    <!--{if !$widget_data.ads}-->
+    <div class="padding10 center">请配置</div>
+    <!--{else}-->
+   <div class="scroller" style="width:{$widget_data.width}px;height:{$widget_data.height}px;">
+      <ul class="ks-content ks-switchable-content">
+      <!--{foreach from=$widget_data.ads item=ad}-->
+      <li><a href="{$ad.ad_link_url}" target="_blank"><img width="{$widget_data.width}" height="{$widget_data.height}" src="{$ad.ad_image_url}" /></a></li>
+      <!--{/foreach}-->
+      </ul>
+   </div>
+   <ul class="title ks-switchable-nav clearfix">
+      <!--{foreach from=$widget_data.ads item=ad name=fe_ad}-->
+      <li {if $smarty.foreach.fe_ad.first}class="ks-active"{/if}>{$smarty.foreach.fe_ad.iteration}</li>
+      <!--{/foreach}-->
+   </ul>
+   <script>
+      KISSY.use('switchable', function(S) {
+         S.Slide('.s{$widget_data.model_id}', {
+         effect: '{$widget_data.effect}',
+         easing: 'easeOutStrong',
+         autoplay: {$widget_data.autoplay}
+      });
+   });
+   </script>
+   <!--{/if}-->
+</div>

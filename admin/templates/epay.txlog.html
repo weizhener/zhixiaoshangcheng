@@ -1,0 +1,103 @@
+{include file="header.html"}
+<script type="text/javascript">
+    $(function () {
+        $('#add_time_from').datepicker({dateFormat: 'yy-mm-dd'});
+        $('#add_time_to').datepicker({dateFormat: 'yy-mm-dd'});
+    });
+</script>
+
+<div id="rightTop">
+    <ul class="subnav" style="margin:0;">
+        <li><a class="btn1" href="index.php?app=epay">{$lang.epay_user}</a></li>
+        <li><a class="btn1" href="index.php?app=epay&act=money_add">{$lang.add_money}</a></li>
+        <li><a class="btn1" href="index.php?app=epay&act=money_log">{$lang.moneylog}</a></li>
+        <li><span>{$lang.txlog}</span></li>
+        <li><a class="btn1" href="index.php?app=epay&act=setting">{$lang.setting}</a></li>
+        <li><a class="btn1" href="index.php?app=epay&act=statistics">{$lang.statistics}</a></li>
+    </ul>
+</div>
+
+<div class="mrightTop">
+    <div class="fontl">
+        <form method="get">
+            <div class="left">
+                <input name="app" type="hidden" id="app" value="epay" />
+                <input name="act" type="hidden" id="act" value="txlog" />
+                <select class="querySelect" name="field">{html_options options=$search_options selected=$smarty.get.field}
+                </select>:<input class="queryInput" type="text" name="search_name" value="{$query.search_name|escape}" />
+                <select class="querySelect" name="status">
+                    <option value="">{$lang.shenhe_status}</option>
+                    {html_options options=$tx_status_list selected=$query.status}
+                </select>
+                {$lang.shenqing}{$lang.add_time_from}:<input class="queryInput2" type="text" value="{$query.add_time_from}" id="add_time_from" name="add_time_from" class="pick_date" />
+                {$lang.add_time_to}:<input class="queryInput2" type="text" value="{$query.add_time_to}" id="add_time_to" name="add_time_to" class="pick_date" />
+                {$lang.order_amount_from}:<input class="queryInput2" type="text" value="{$query.order_amount_from}" name="order_amount_from" />
+                {$lang.order_amount_to}:<input class="queryInput2" type="text" style="width:60px;" value="{$query.order_amount_to}" name="order_amount_to" class="pick_date" />
+                <input type="submit" class="formbtn" value="{$lang.query}" />
+            </div>
+            <!--{if $filtered}-->
+            <a class="left formbtn1" href="index.php?app=epay&act=txlog">{$lang.cancel_query}</a>
+            <!--{/if}-->
+        </form>
+    </div>
+    <div class="fontr">
+
+    </div>
+</div>
+
+<div class="tdare">
+    <table width="100%" cellspacing="0">
+
+        <tr class="tatr1">
+            <td width="20" class="firstCell">&nbsp;</td>
+            <td width="140">{$lang.order_sn}</td>
+            <td>{$lang.user_name}</td>
+            <td>{$lang.tx_money}</td>
+            <td width="120">{$lang.tx_add_time}</td>
+
+
+            <td width="120">{$lang.tx_admin_time}</td>
+            <td>{$lang.tx_states}</td>
+            <td>{$lang.tx_out_sn}</td>
+            <td class="handler">{$lang.admin_edit}</td>
+        </tr>
+
+        <!--{foreach from=$index item=val key=key}-->
+        <tr class="tatr2">
+            <td width="20" class="firstCell">&nbsp;</td>
+            <td>{$val.order_sn}</td>
+            <td><b>{$val.user_name}</b></td>
+            <td><font color="#FF0000">{$val.money}</font></td>
+            <td>{$val.add_time|date:y-m-d H:i}</td>        
+            <td><!--{if $val.add_time}-->{$val.add_time|date:y-m-d H:i}<!--{else}-->{$lang.tx_weishenhe}<!--{/if}--></td>
+            <td class="table_center">
+                <!--{if $val.states==71}-->
+                <img src="{res file=style/images/positive_enabled.gif}">
+                <!--{/if}-->
+                <!--{if $val.states==70}-->
+                <img src="{res file=style/images/positive_disabled.gif}">
+                <!--{/if}-->
+            </td>
+            <td>{$val.to_id}</td>  
+            <td class="handler">
+                <!--{if $val.states==70}-->
+                <a href="index.php?app=epay&act=tx_view&user_id={$val.user_id}&log_id={$val.id}">{$lang.tx_xq_shenhe}</a>
+                <!--{else}-->
+                {$lang.tx_yishenhe}
+                <!--{/if}-->
+            </td>
+        </tr>
+        <!--{foreachelse}-->
+        <tr class="no_data">
+            <td colspan="8">{$lang.no_data}</td>
+        </tr>
+        <!--{/foreach}-->
+    </table>
+    <!--{if $index}-->
+    <div id="dataFuncs">
+        <div class="pageLinks">{include file=page.bottom.html}</div>
+        <div class="clear"></div>
+    </div>
+    <!--{/if}-->
+</div>
+{include file="footer.html"}

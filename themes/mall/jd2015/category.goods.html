@@ -1,0 +1,70 @@
+{include file=header.html}
+<div id="main" class="w-full">
+    <div id="page-category-goods" class="w mt10">
+        {include file=curlocal.html}
+        <div class="w" area="top" widget_type="area">
+            <!--{widgets page=gcategory area=top}-->
+        </div>
+        <div class="gcategory w mt10">
+            <div class="search-type mb10 clearfix">
+                <div class="float-left btn-type">
+                    <a href="{url app=category}" class="current">{$lang.gcategory}</a>
+                    <a href="{url app=category&act=store}">{$lang.scategory}</a>	
+                </div>                       
+            </div>
+            <div class="float-left">
+                <!--{foreach from=$gcategorys item=gcategory name=fe_category}-->
+                <!--{if $smarty.foreach.fe_category.iteration % 2 eq '1'}-->
+                <div class="m">
+                    <div class="mt">
+                        <h2><a href="{url app=search&cate_id=$gcategory.id}">{$gcategory.value|escape}</a></h2>
+                    </div>
+                    <div class="mc">
+                        <!--{foreach from=$gcategory.children item=child name=fe_child}-->
+                        <dl <!--{if $smarty.foreach.fe_child.first}-->class="first"<!--{/if}-->>
+                            <dt><a href="{url app=search&cate_id=$child.id}">{$child.value|escape}</a></dt>
+                            <dd>
+                                <!--{foreach from=$child.children item=child2 name=fe_child2}-->
+                                <a href="{url app=search&cate_id=$child2.id}">{$child2.value|escape}</a>
+                                <!--{/foreach}-->
+                            </dd>
+                        </dl>
+                        <!--{/foreach}-->
+                    </div>
+                </div>
+                <!--{/if}-->
+                <!--{/foreach}-->
+            </div>
+
+            <div class="float-right">
+                <!--{foreach from=$gcategorys item=gcategory name=fe_category}-->
+                <!--{if $smarty.foreach.fe_category.iteration % 2 eq '0'}-->
+                <div class="m">
+                    <div class="mt">
+                        <h2><a href="{url app=search&cate_id=$gcategory.id}">{$gcategory.value|escape}</a></h2>
+                    </div>
+                    <div class="mc">
+                        <!--{foreach from=$gcategory.children item=child name=fe_child}-->
+                        <dl <!--{if $smarty.foreach.fe_child.first}-->class="first"<!--{/if}-->>
+                            <dt><a href="{url app=search&cate_id=$child.id}">{$child.value|escape}</a></dt>
+                            <dd>
+                                <!--{foreach from=$child.children item=child2 name=fe_child2}-->
+                                <a href="{url app=search&cate_id=$child2.id}">{$child2.value|escape}</a>
+                                <!--{/foreach}-->
+                            </dd>
+                        </dl>
+                        <!--{/foreach}-->
+                    </div>
+                </div>
+                <!--{/if}-->
+                <!--{/foreach}-->
+            </div>
+
+        </div>
+        <div class="w mb20" area="bottom" widget_type="area">
+            <!--{widgets page=gcategory area=bottom}-->
+        </div>
+    </div>
+</div>
+{include file=server.html}
+{include file=footer.html}

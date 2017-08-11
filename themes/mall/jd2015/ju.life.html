@@ -1,0 +1,122 @@
+{include file=top.html}
+<script language="JavaScript">
+$(function(){
+	$(window).scroll(function(){
+		if($(window).scrollTop()>390){
+			$(".ju-category").css({"position":"fixed","top":"-20px","z-index":"1000"});
+		}else{
+			$(".ju-category").css("position","static");
+		}
+	});
+})
+</script>
+<div class="wrapper channel nbg">
+    <!-- 导航电梯 start -->
+    <div class="ju-ele-nav">
+        <div class="top">
+             <h2>
+                <a class="logo" href="{url app=ju}"></a>
+            </h2>
+        </div>
+        <div class="ct">
+            <!--{foreach from=$cate_list item=cate name=fe_cate}-->
+             <h2 ectype="cate">
+                <a href="javascript:;" id="{$cate.id}">{$cate.value}</a>
+            </h2>
+            <ul class="jcategory" ectype="cate">
+            	<!--{foreach from=$cate.children item=child name=fe_child}-->
+                <li><a href="{url app=ju&cate_id=$child.id}"><span>{$child.value}</span></a>
+                </li>
+                <!--{/foreach}-->
+            </ul>
+            <!--{/foreach}-->
+        </div>
+        <div class="bt"></div>
+    </div>
+    <!-- 电梯 end -->
+    <div id="page" class="life">
+        <div class="ju-naver">
+            <div class="inner w">
+                <div class="top-search">
+                 <div class="top-search-box clearfix">
+                    <div class="form-fields float-right">
+                        <form method="GET" action="{url app=ju}">
+                            <input type="hidden" name="app" value="ju" />
+                            <input type="hidden" name="act" value="index" />
+                            <input type="text"   name="keyword" value="{if $smarty.get.keyword}{$smarty.get.keyword}{else}搜索其实很容易{/if}" onfocus="if (this.value=='搜索其实很容易') this.value = '';"  class="keyword"  style="color:#999;"/>
+                            <input type="submit" value="搜索" class="submit" hidefocus="true" />
+                        </form>
+                    </div>
+                 </div>
+              </div>
+                <!-- right menu -->
+                <ul class="nav-menu">
+                    <li class="menu-home"><a class="menu-link" href="{url app=ju}"><span>{$lang.index}</span></a>
+                    </li>
+                    <li class=" menu-brands">
+                        <a class="menu-link"  href="{url app=ju_brand}"> <span>{$lang.ju_brand}</span>
+     <em class="btn-dropdown"></em>
+                        </a>
+                    </li>
+                    <li class="menu-jump"><a class="menu-link"  href="{url app=ju_mingpin}"><span>{$lang.ju_mingpin}</span></a>
+                    </li>
+                    <li class="menu-jiazhuang"><a class="menu-link"  href="{url app=ju_decoration}"><span>{$lang.ju_decoration}</span></a>
+                    </li>
+                    <li class="current menu-local">
+                        <a class="menu-link"  href="{url app=ju_life}"> <span>{$lang.ju_life}</span>
+     
+                        </a>
+                    </li>
+                    <li class="menu-travel">
+                        <a class="menu-link"  href="{url app=ju_travel}"> <span>{$lang.ju_travel}</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="homebg">
+        	<div class="w990 clearfix">
+            	<div area="life_top" widget_type="area" class="top">
+                    <!--{widgets page=ju_life area=life_top}-->
+                </div>
+                <div class="clearfix">
+                    <div area="life_left" widget_type="area" class="left">
+                        <!--{widgets page=ju_life area=life_left}-->
+                    </div>
+                    <div area="life_right" widget_type="area" class="right">
+                        <!--{widgets page=ju_life area=life_right}-->
+                    </div>
+                </div>
+            </div>
+            <div class="w990 clearfix">
+                <div class="ju-category">
+                     <div class="filter-cat clearfix">
+                        <h2><a href="javascript:void(0);">分类<i></i></a></h2>
+                        <ul ectype="cate">
+                             <li><a href="{url app=ju_life&act=search}" class="all on">全部&nbsp;{$ju_count}</a></li>
+                             <!--{foreach from=$cate_child item=cate}-->
+                             <li><a href="{url app=ju_life&act=search&cate_id=$cate.cate_id}">{$cate.cate_name}&nbsp;<span>{$cate.count}</span></a></li>
+                             <!--{/foreach}-->
+                        </ul>
+                     </div>
+                                           
+                    <div class="filter-cat clearfix" style="border:none;">
+                    	<h2><a href="javascript:void(0);">区域<i></i></a></h2>
+                        <ul>
+                        	<li><a class="all on" href="{url app=ju_life&act=search}">全部&nbsp;</a></li>
+                            <!--{foreach from=$region item=reg}-->
+                            <li><a href="{url app=ju_life&act=search&region_id=$reg.region_id}">{$reg.region_name|escape}</a></li>
+                            <!--{/foreach}-->
+                        </ul>
+                    </div>
+                </div>
+			</div>
+        
+            <div class="content">
+                 <div area="life_floor" widget_type="area">
+                    <!--{widgets page=ju_life area=life_floor}-->
+                 </div>
+            </div>
+        </div>
+</div>
+{include file=footer.html}

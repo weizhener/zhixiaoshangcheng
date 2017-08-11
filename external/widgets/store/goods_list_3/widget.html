@@ -1,0 +1,26 @@
+<div class="goods_list_3 mb10">
+	<!--{if $widget_data.ad_image_url}-->
+    <div style="overflow:hidden;" class="title ">
+        <a href="{$widget_data.link}"><img width="{$widget_data.ad_width}" height="{$widget_data.ad_height}" src="{$widget_data.ad_image_url}" /></a>
+    </div>
+    <!--{else}-->
+	<div style="background:{$widget_data.model_color}" class="title clearfix">
+    	<h3><a href="{$widget_data.link}">{$widget_data.model_name}</a></h3>
+        <p><a href="{$widget_data.link}">MORE</a></p>
+    </div>
+    <!--{/if}-->
+	<ul class="content clearfix">
+		<!--{foreach from=$widget_data.goods_list item=goods name=fe_hot_goods}-->
+        <li {if $smarty.foreach.fe_hot_goods.iteration % 4 eq 0}style="margin-right:0px;"{/if}>
+           <div class="pic"><a href="{url app=goods&id=$goods.goods_id}" target="_blank"><img width="178" height="180" src="{$goods.default_image}" /></a></div>
+           <div class="detail">
+               <h3><a href="{url app=goods&id=$goods.goods_id}" target="_blank">{$goods.goods_name|escape}</a></h3>
+               <div class="attr clearfix">
+               		<p><i>&yen;</i>{$goods.price}</p>
+                    <div class="sales">已售<span>{$goods.sales}</span>件</div>
+               </div>
+           </div>
+        </li>
+        <!-- {/foreach} -->
+	</ul>
+</div>

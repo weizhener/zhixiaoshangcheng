@@ -1,0 +1,72 @@
+Fri, 29 Jul 2016 14:45:42 +0800	[256]MySQL Error[1146]: Table '729.ecm_ugrade' doesn't exist
+MySQL Query:SELECT COUNT(*) as c FROM ecm_ugrade ugrade WHERE 1=1
+Wrong File:  D:\WWW\xiaomai\729\eccore\model\mysql.php[450]	\eccore\model\mysql.php	278
+Fri, 29 Jul 2016 14:45:43 +0800	[256]MySQL Error[1146]: Table '729.ecm_ugrade' doesn't exist
+MySQL Query:SELECT COUNT(*) as c FROM ecm_ugrade ugrade WHERE 1=1
+Wrong File:  D:\WWW\xiaomai\729\eccore\model\mysql.php[450]	\eccore\model\mysql.php	278
+Fri, 29 Jul 2016 16:22:27 +0800	[2]Invalid argument supplied for foreach()	\admin\app\goods.app.php	171
+Fri, 29 Jul 2016 16:22:52 +0800	[2]Invalid argument supplied for foreach()	\admin\app\goods.app.php	171
+Fri, 29 Jul 2016 17:09:26 +0800	[256]MySQL Error[1054]: Unknown column 'pass' in 'where clause'
+MySQL Query:SELECT COUNT(*) as c FROM ecm_goods g LEFT JOIN ecm_goods_spec gs ON g.default_spec = gs.spec_id LEFT JOIN ecm_store s ON g.store_id = s.store_id LEFT JOIN ecm_goods_pvs gp ON g.goods_id=gp.goods_id LEFT JOIN ecm_goods_statistics gst ON g.goods_id = gst.goods_id  WHERE 1 = 1 AND pass = 1 AND gs.spec_id IS NOT NULL AND s.store_id IS NOT NULL 
+Wrong File:  D:\WWW\xiaomai\729\eccore\model\mysql.php[450]	\eccore\model\mysql.php	278
+Fri, 29 Jul 2016 17:28:21 +0800	[2]Missing argument 2 for GoodsModel::edit(), called in D:\WWW\xiaomai\729\admin\app\goods.app.php on line 163 and defined	\includes\models\goods.model.php	335
+Fri, 29 Jul 2016 19:13:49 +0800	[256]MySQL Error[1054]: Unknown column 'fengcheng' in 'field list'
+MySQL Query:UPDATE ecm_goods_spec SET fengcheng='0.32' WHERE goods_id = 97
+Wrong File:  D:\WWW\xiaomai\729\eccore\model\model.base.php[523]	\eccore\model\mysql.php	278
+Fri, 29 Jul 2016 19:14:07 +0800	[256]MySQL Error[1054]: Unknown column 'fengcheng' in 'field list'
+MySQL Query:UPDATE ecm_goods_spec SET fengcheng='0.3' WHERE goods_id = 97
+Wrong File:  D:\WWW\xiaomai\729\eccore\model\model.base.php[523]	\eccore\model\mysql.php	278
+Fri, 29 Jul 2016 19:15:20 +0800	[256]MySQL Error[1054]: Unknown column 'fengcheng' in 'field list'
+MySQL Query:UPDATE ecm_goods_spec SET fengcheng='0.3' WHERE goods_id = 97
+Wrong File:  D:\WWW\xiaomai\729\eccore\model\model.base.php[523]	\eccore\model\mysql.php	278
+Fri, 29 Jul 2016 19:15:27 +0800	[256]MySQL Error[1054]: Unknown column 'fengcheng' in 'field list'
+MySQL Query:UPDATE ecm_goods_spec SET fengcheng='0.3' WHERE goods_id = 97
+Wrong File:  D:\WWW\xiaomai\729\eccore\model\model.base.php[523]	\eccore\model\mysql.php	278
+Sat, 30 Jul 2016 15:42:02 +0800	[256]MySQL Error[1136]: Column count doesn't match value count at row 1
+MySQL Query:INSERT INTO ecm_stats  ( ip_address, visit_times, browser, system, language, area, referer_domain, referer_path, access_url, access_time,data) VALUES ('127.0.0.1', '7', 'Safari 537.36', 'Windows NT', 'zh-CN,zh', 'LAN', 'http://www.xiaomai.com', '/729/', '/729/index.php', '', '2016-07-30', '1469835722')
+Wrong File:  D:\WWW\xiaomai\729\app\frontend.base.php[1195]	\eccore\model\mysql.php	278
+Sat, 30 Jul 2016 15:42:47 +0800	[256]MySQL Error[1136]: Column count doesn't match value count at row 1
+MySQL Query:INSERT INTO ecm_stats  ( ip_address, visit_times, browser, system, language, area, referer_domain, referer_path, access_url,data,access_time) VALUES ('127.0.0.1', '8', 'Safari 537.36', 'Windows NT', 'zh-CN,zh', 'LAN', 'http://www.xiaomai.com', '/729/', '/729/index.php', '', '2016-07-30', '1469835767')
+Wrong File:  D:\WWW\xiaomai\729\app\frontend.base.php[1195]	\eccore\model\mysql.php	278
+Sat, 30 Jul 2016 15:43:37 +0800	[256]MySQL Error[1136]: Column count doesn't match value count at row 1
+MySQL Query:INSERT INTO ecm_stats  ( ip_address, visit_times, browser, system, language, area, referer_domain, referer_path, access_url,data,access_time) VALUES ('127.0.0.1', '9', 'Safari 537.36', 'Windows NT', 'zh-CN,zh', 'LAN', 'http://www.xiaomai.com', '/729/', '/729/index.php', '','2016-07-30','1469835817')
+Wrong File:  D:\WWW\xiaomai\729\app\frontend.base.php[1195]	\eccore\model\mysql.php	278
+Sat, 30 Jul 2016 16:18:37 +0800	[256]MySQL Error[1054]: Unknown column 'stat.user_id' in 'where clause'
+MySQL Query:SELECT store_name,s.store_id FROM ecm_store s WHERE  stat.user_id=2
+Wrong File:  D:\WWW\xiaomai\729\eccore\model\mysql.php[526]	\eccore\model\mysql.php	278
+Sat, 30 Jul 2016 16:19:43 +0800	[256]MySQL Error[1054]: Unknown column 'store_name' in 'field list'
+MySQL Query:SELECT store_name,stat.statistics_id FROM ecm_statistics stat WHERE  stat.user_id=2
+Wrong File:  D:\WWW\xiaomai\729\eccore\model\mysql.php[526]	\eccore\model\mysql.php	278
+Sat, 30 Jul 2016 16:20:09 +0800	[256]MySQL Error[1054]: Unknown column 'stat.user_id' in 'where clause'
+MySQL Query:SELECT store_name,s.store_id FROM ecm_store s WHERE  stat.user_id=2
+Wrong File:  D:\WWW\xiaomai\729\eccore\model\mysql.php[526]	\eccore\model\mysql.php	278
+Sat, 30 Jul 2016 16:20:11 +0800	[256]MySQL Error[1054]: Unknown column 'stat.user_id' in 'where clause'
+MySQL Query:SELECT store_name,s.store_id FROM ecm_store s WHERE  stat.user_id=2
+Wrong File:  D:\WWW\xiaomai\729\eccore\model\mysql.php[526]	\eccore\model\mysql.php	278
+Sat, 30 Jul 2016 16:22:08 +0800	[256]MySQL Error[1054]: Unknown column 'stat.user_id' in 'where clause'
+MySQL Query:SELECT store_name,s.store_id FROM ecm_store s WHERE  stat.user_id=2
+Wrong File:  D:\WWW\xiaomai\729\eccore\model\mysql.php[526]	\eccore\model\mysql.php	278
+Sat, 30 Jul 2016 16:22:53 +0800	[256]MySQL Error[1054]: Unknown column 'stat.user_id' in 'where clause'
+MySQL Query:SELECT store_name,s.store_id FROM ecm_store s WHERE  stat.user_id=2
+Wrong File:  D:\WWW\xiaomai\729\eccore\model\mysql.php[526]	\eccore\model\mysql.php	278
+Sat, 30 Jul 2016 16:23:10 +0800	[256]MySQL Error[1054]: Unknown column 'stat.user_id' in 'where clause'
+MySQL Query:SELECT store_name,s.store_id FROM ecm_store s WHERE  stat.user_id=2
+Wrong File:  D:\WWW\xiaomai\729\eccore\model\mysql.php[526]	\eccore\model\mysql.php	278
+Sat, 30 Jul 2016 16:23:12 +0800	[256]MySQL Error[1054]: Unknown column 'stat.user_id' in 'where clause'
+MySQL Query:SELECT store_name,s.store_id FROM ecm_store s WHERE  stat.user_id=2
+Wrong File:  D:\WWW\xiaomai\729\eccore\model\mysql.php[526]	\eccore\model\mysql.php	278
+Sat, 30 Jul 2016 16:23:13 +0800	[256]MySQL Error[1054]: Unknown column 'stat.user_id' in 'where clause'
+MySQL Query:SELECT store_name,s.store_id FROM ecm_store s WHERE  stat.user_id=2
+Wrong File:  D:\WWW\xiaomai\729\eccore\model\mysql.php[526]	\eccore\model\mysql.php	278
+Sat, 30 Jul 2016 17:29:01 +0800	[2]filemtime() [<a href='function.filemtime'>function.filemtime</a>]: stat failed for D:\WWW\xiaomai\729/data/crond.lock	\includes\libraries\cron.lib.php	132
+Sat, 30 Jul 2016 17:31:29 +0800	[256]MySQL Error[1062]: Duplicate entry '5' for key 'PRIMARY'
+MySQL Query:INSERT INTO ecm_order_extm(consignee,region_id,region_name,address,zipcode,phone_tel,phone_mob,shipping_id,shipping_name,shipping_fee,order_id) VALUES('超级买家','1','中国','请如实填写收货人详细地址','','','8888888','1','快递','0.1','5')
+Wrong File:  D:\WWW\xiaomai\729\eccore\model\mysql.php[263]	\eccore\model\mysql.php	278
+Sat, 30 Jul 2016 17:32:13 +0800	[256]MySQL Error[1146]: Table '729.ecm_order_extm' doesn't exist
+MySQL Query:INSERT INTO ecm_order_extm(consignee,region_id,region_name,address,zipcode,phone_tel,phone_mob,shipping_id,shipping_name,shipping_fee,order_id) VALUES('超级买家','1','中国','请如实填写收货人详细地址','','','8888888','1','快递','0.1','6')
+Wrong File:  D:\WWW\xiaomai\729\eccore\model\model.base.php[299]	\eccore\model\mysql.php	278
+Sat, 30 Jul 2016 17:33:40 +0800	[2]Invalid argument supplied for foreach()	\app\buyer_order.app.php	571
+Sat, 30 Jul 2016 17:40:09 +0800	[2]filemtime() [<a href='function.filemtime'>function.filemtime</a>]: stat failed for D:\WWW\xiaomai\729/data/crond.lock	\includes\libraries\cron.lib.php	132
+Sat, 30 Jul 2016 17:43:23 +0800	[2]filemtime() [<a href='function.filemtime'>function.filemtime</a>]: stat failed for D:\WWW\xiaomai\729/data/crond.lock	\includes\libraries\cron.lib.php	132
+Sat, 30 Jul 2016 19:01:43 +0800	[2]filemtime() [<a href='function.filemtime'>function.filemtime</a>]: stat failed for D:\WWW\xiaomai\729/data/crond.lock	\includes\libraries\cron.lib.php	132
+Sat, 30 Jul 2016 22:27:58 +0800	[2]filemtime() [<a href='function.filemtime'>function.filemtime</a>]: stat failed for D:\WWW\xiaomai\729/data/crond.lock	\includes\libraries\cron.lib.php	132

@@ -1,0 +1,692 @@
+{include file=header.html}
+
+<script type="text/javascript" src="{lib file=search_goods.js}" charset="utf-8"></script>
+
+<script type="text/javascript">
+
+var upimg   = '{res file=images/up.gif}';
+
+var downimg = '{res file=images/down.gif}';
+
+imgUping = new Image();
+
+imgUping.src = upimg;
+
+
+
+/* 加入数据包 */
+
+function add_datapacket(goods_id)
+
+{
+
+	<!--{if !$visitor.user_id}-->
+
+	alert('请登录');
+
+	<!--{else}-->
+
+    var url = SITE_URL + '/index.php?app=my_datapacket&act=add';
+
+    $.getJSON(url, {'goods_id':goods_id}, function(data){
+
+        //alert(data.msg);
+
+		if(confirm("已经添加至数据包，是否进入查看？")){
+
+    		document.location = SITE_URL + '/index.php?app=my_datapacket';
+
+   		}
+
+
+
+    });
+
+	<!--{/if}-->
+
+}
+
+
+
+$(function(){
+
+
+
+	var order = '{$smarty.get.order}';
+
+	var css = '';
+
+	
+
+	<!--{if $smarty.get.order}-->
+
+	order_arr = order.split(' ');
+
+	switch (order_arr[1]){
+
+		case 'desc' : 
+
+			css = 'order-down btn-order-cur';
+
+		break;
+
+		case 'asc' :
+
+			css = 'order-up btn-order-cur';
+
+		break;
+
+		default : 
+
+			css = 'order-down-gray';
+
+	}
+
+	$('.btn-order a[ectype='+order_arr[0]+']').attr('class','btn-order-click '+css);
+
+	<!--{/if}-->
+
+	
+
+	$(".btn-order a").click(function(){
+
+		if(this.id==''){
+
+			dropParam('order');// default order
+
+			return false;
+
+		}
+
+		else
+
+		{
+
+			dd = " desc";
+
+			if(order != '') {
+
+				order_arr = order.split(' ');
+
+				if(order_arr[0]==this.id && order_arr[1]=="desc")
+
+					dd = " asc";
+
+				else dd = " desc";
+
+			}
+
+			replaceParam('order', this.id+dd);
+
+			return false;
+
+		}
+
+	});
+
+	
+
+	<!--{if $smarty.get.price}-->
+
+	var filter_price = '{$smarty.get.price}';
+
+	filter_price = filter_price.split('-');
+
+	$('input[name="start_price"]').val(number_format(filter_price[0],0));
+
+	$('input[name="end_price"]').val(number_format(filter_price[1],0));
+
+	<!--{/if}-->
+
+	
+
+	$('.attr-bottom .show-more').click(function(){
+
+		$(this).parent().parent().children().find('.toggle').toggle();
+
+		if($(this).find('span').html()=='{$lang.expand}'){
+
+			$(this).find('span').html('{$lang.fold}');
+
+			$(this).attr('class', 'hide-more');
+
+		} else {
+
+			$(this).find('span').html('{$lang.expand}');
+
+			$(this).attr('class', '');
+
+		}
+
+	});
+
+
+
+
+
+
+
+});
+
+
+
+        $(function(){
+
+$(".sub_category .item").click(function(){
+
+    if($(this).hasClass("hover")){
+
+        $(this).removeClass("hover");
+
+    }else{
+
+         $(this).addClass("hover");
+
+    }
+
+   }); 
+
+        })
+
+
+
+</script>
+
+<style>
+
+.btn_add_datapacket{display:block;width:85px; height:21px; margin:0; color:#FFF; line-height:21px; text-align:center;background:url('{res file=images/upload.gif}') no-repeat;margin-top:3px;}
+
+</style>
+
+<div id="main" class="w-full">
+
+    <div id="page-search-goods" class="w mb20 mt20">
+
+        <div class="w mb10 clearfix">
+
+            {include file=curlocal.html}
+
+            <div class="col-sub">
+
+                <div class="sub_category clearfix mb10">
+
+                    <div class="mt">
+
+                        <h2>所有类目</h2>
+
+                    </div>
+
+                    <div class="mc">
+
+                        <!--{foreach from=$allcategories item=gcategory name=fe_gcategory}-->
+
+                        <div class="item <!--{if $gcategory.expanded}-->hover<!--{/if}-->">
+
+                            <h3>
+
+                                <b></b>
+
+                                <a href="{url app=search&cate_id=$gcategory.cate_id}" <!--{if $gcategory.selected}-->style="color:#E4393C;font-weight:bold;"<!--{/if}-->>{$gcategory.cate_name|escape}</a>
+
+                            </h3>
+
+                            <ul>
+
+                                <!--{foreach from=$gcategory.children item=child name=fe_child}-->
+
+                                <li>
+
+                                    <a href="{url app=search&cate_id=$child.cate_id}" <!--{if $child.selected}-->style="color:#E4393C;font-weight:bold;"<!--{/if}-->>{$child.cate_name|escape}</a>
+
+                                </li>
+
+                                <!--{/foreach}-->
+
+                            </ul>
+
+                            <!--
+
+                            <div class="show-more"><a href="javascript:;" >查看更多<i></i></a></div>
+
+                            -->
+
+                        </div>
+
+                        <!--{/foreach}-->
+
+                    </div>
+
+                </div>
+
+                
+
+                <div class="sub_goods clearfix mb10">
+
+                    <div class="mt"><h2>推广商品</h2></div>
+
+                    <div class="mc">
+
+                        <ul>
+
+                            <!--{foreach from=$recommend_goods item=goods name=fe_goods}-->
+
+                            <li>
+
+                                <div class="p-img">
+
+                                    <a href="{url app=goods&id=$goods.goods_id}">
+
+                                        <img width="160" height="160" src="{$goods.default_image}">
+
+                                    </a>
+
+                                </div>
+
+                                <div class="rate">
+
+                                    <a href="{url app=goods&id=$goods.goods_id}">{$goods.goods_name|escape}</a>
+
+                                </div>
+
+                                <div class="p-price"><strong>{$goods.price|price}</strong><div style="color:#666">已有{$goods.sales|escape}人评价</div></div>
+
+                            </li>
+
+                            <!--{/foreach}-->
+
+                        </ul>
+
+                    </div>
+
+                </div>
+
+                
+
+                
+
+            </div>
+
+            
+
+            <div class="col-main">
+
+                
+
+                <!--{foreach from=$ultimate_store item=store name=fe_store}-->
+
+                <div class="ultimate-store mb10">
+
+                    <div class="item">
+
+                        <div class="content clearfix">
+
+                            <a class="float-left store-logo" href="{url app=store&id=$store.store_id}"><img height="50" src="{$store.store_logo}" /> </a>
+
+                            <div class="float-left middleside">
+
+                                <a href="{url app=store&id=$store.store_id}">{$store.store_name|escape}</a>
+
+                                <span class="block">{$store.description|escape}</span>
+
+                            </div>
+
+                            <div class="float-right rightside">
+
+                                <b></b><a href="{url app=store&id=$store.store_id}">{$store.store_name|escape}</a>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!--{/foreach}-->
+
+
+
+                <!-- {if !$goods_list_order || $filters} -->
+
+                <div class="attribute">
+
+                    <div class="selected-attr title">
+
+                        <!--{if $filters}-->
+
+                        <strong>{$lang.your_selected}{$lang.colon}</strong>
+
+                        <!--{foreach from=$filters item=filter}-->
+
+                        <a href="javascript:;" id="{$filter.key}"><b>{$filter.name}{$lang.colon}</b>{$filter.value}<span></span></a>
+
+                        <!--{/foreach}-->
+
+                        <!--{else}-->
+
+                        <strong>{$lang.by_conditions}</strong>
+
+                        <!--{/if}-->
+
+                    </div>
+
+                    <div class="content">
+
+                        <!--{if $brands || $price_intervals || $regions || $categories || $props}-->
+
+                        <!--{if $brands && !$filters.brand}-->
+
+                        <div class="each clearfix">
+
+                            <h4>{$lang.by_brand}{$lang.colon}</h4>
+
+                            <div class="pv" ectype="ul_brand">
+
+                                <!--{foreach from=$brands item=row name=fe_row}-->
+
+                                <a href="javascript:void(0);" title="{$row.brand}" id="{$row.brand|escape:url}" {if $smarty.foreach.fe_row.iteration ge 25}class="toggle" style="display:none"{/if}>{$row.brand|escape}<span class="count">({$row.count})</span></a>
+
+                                <!--{/foreach}-->
+
+                            </div>
+
+                        </div>
+
+                        <!--{/if}-->
+
+                        <!--{foreach from=$props item=prop name=fe_prop}-->
+
+                        <div class="each clearfix" ectype="dl_props">
+
+                            <h4>{$prop.name}{$lang.colon}</h4>
+
+                            <div class="pv">
+
+                                <!--{foreach from=$prop.value item=row}-->
+
+                                <a href="javascript:void(0);" id="{$row.pid}:{$row.vid}" selected_props="{$props_selected}">{$row.prop_value|escape}</a>
+
+                                <!--{/foreach}-->
+
+                            </div>
+
+                        </div>
+
+                        <!--{/foreach}-->
+
+                        <!--{if $price_intervals && !$filters.price}-->
+
+                        <div class="each clearfix">
+
+                            <h4>{$lang.by_price}{$lang.colon}</h4>
+
+                            <div class="pv" ectype="ul_price">
+
+                                <!--{foreach from=$price_intervals item=row name=fe_row}-->
+
+                                <a href="javascript:void(0);" id="{$row.min} - {$row.max}" {if $smarty.foreach.fe_row.iteration ge 25}class="toggle" style="display:none"{/if}>{$row.min|price} - {$row.max|price}<span class="count">({$row.count})</span></a>
+
+                                <!--{/foreach}-->
+
+                            </div>
+
+                        </div>
+
+                        <!--{/if}-->
+
+
+
+                        <!--{if $regions && !$filters.region_id}-->
+
+                        <div class="each clearfix" style="border-bottom:0;">
+
+                            <h4>{$lang.by_region}{$lang.colon}</h4>
+
+                            <div class="pv" ectype="ul_region">
+
+                                <!--{foreach from=$regions item=row name=fe_row}-->
+
+                                <a href="javascript:void(0);" hidefocus="true" id="{$row.region_id}" title="{$row.region_name|escape}" {if $smarty.foreach.fe_row.iteration ge 25}class="toggle" style="display:none"{/if}>{$row.region_name|escape}<span class="count">({$row.count})</span></a>
+
+                                <!--{/foreach}-->
+
+                            </div>
+
+                        </div>
+
+                        <!--{/if}-->
+
+
+
+
+
+                        <!--{if $categories}-->
+
+                        <div class="attr-cate">
+
+                            <ul class="attr-list clearfix" style="border-top:0;" ectype="ul_cate">
+
+                                <!--{foreach from=$categories item=gcategory name=fe_gcategory}-->
+
+                                <li><a {if $smarty.get.cate_id==$gcategory.cate_id}style="color:#BF1B30"{/if} href="javascript:void(0);" title="{$gcategory.cate_name}" id="{$gcategory.cate_id}">{$gcategory.cate_name}</a><span>({$gcategory.count})</span></li>
+
+                                <!--{if $smarty.foreach.fe_gcategory.iteration % 5 eq 0 && !$smarty.foreach.fe_gcategory.last}-->
+
+                            </ul>
+
+                            <ul class="attr-list clearfix {if $smarty.foreach.fe_gcategory.iteration ge 25} toggle hidden{/if}" ectype="ul_cate">
+
+                                <!--{/if}-->
+
+                                <!--{/foreach}-->
+
+                            </ul>
+
+                        </div>
+
+                        <!--{/if}-->
+
+                        <!--{/if}-->
+
+                    </div>
+
+                    <div class="attr-bottom">
+
+                        <ins></ins><b class="show-more"><span>展开</span>条件<i></i></b>
+
+                    </div>
+
+                </div>
+
+                <!--{/if}-->
+
+
+
+                <div class="glist w985 mt10">
+
+                    <div class="clearfix">
+
+                        <div class="list-sort">
+
+                            <div class="search-type clearfix">
+
+                                <div class="float-left btn-type">
+
+                                    <a href="{url app=search}" class="current">搜索商品</a>
+
+                                    <a href="{url app=search&act=store}" style="border-right:0px;">搜索店铺</a>
+
+                                    <a href="{url app=search&act=groupbuy}">搜索团购</a>
+
+                                </div>
+
+                                <!--{if !$goods_list_order}-->{include file=page.top.html}<!--{/if}-->
+
+                            </div>	
+
+                            <form>
+
+                                <div class="display_mod float-left clearfix">
+
+                                    <a class="qh-list" hidefocus="true" id="list"  href="javascript:;"><i></i>列表</a>
+
+                                    <a class="qh-squares" hidefocus="true" id="squares"  href="javascript:;"><i></i>大图</a>
+
+                                </div>
+
+                                <div class="float-left btn-order">
+
+                                    <!--<span>{$lang.order_by}{$lang.colon}</span>-->
+
+                                    <!--{foreach from=$orders item=order key=k name=fe_order}-->
+
+                                    <!--{if !$k}-->
+
+                                    <a class="btn-order-click default-sort" id="{$k}" href="javascript:;">{$order}</a>
+
+                                    <!--{else}-->
+
+                                    <a class="btn-order-click order-down-gray" ectype="{$k}" id="{$k}" href="javascript:;">{$order}<i></i></a>
+
+                                    <!--{/if}-->
+
+                                    <!--{/foreach}-->
+
+                                </div>
+
+                                <div class="float-left filter-price">
+
+                                    <div class="filter-price-box">
+
+                                        <b class="fp-input">
+
+                                            <i class="ui-price-plain">&yen;</i>
+
+                                            <input type="text" name="start_price" maxlength="6" value="" />
+
+                                        </b>
+
+                                        <i class="fp-split"></i>
+
+                                        <b class="fp-input">
+
+                                            <i class="ui-price-plain">&yen;</i>
+
+                                            <input type="text" name="end_price" maxlength="6" value="" />
+
+                                        </b>
+
+                                        <a class="ui-btn-s-primary">{$lang.submit}</a>
+
+                                    </div>
+
+                                </div>
+
+                            </form>
+
+                        </div>
+
+                        <!--{if $goods_list_order}-->
+
+                        <div class="goods-empty mb10">{$lang.no_records_and_give_order}</div>
+
+                        <!--{/if}-->
+
+                        <div class="{$display_mode} goods-has clearfix w985" ectype="current_display_mode">
+
+                            <!--{foreach from=$goods_list item=goods name=fe_goods}-->
+
+                            <dl class="item clearfix dl-{$goods.goods_id}" {if !$smarty.foreach.fe_goods.first && $smarty.foreach.fe_goods.iteration%4 eq '0'}style="margin-right:0"{/if}>
+
+                                <dt><a href="{url app=goods&id=$goods.goods_id}" ><img src="{$goods.default_image}" /></a></dt>
+
+                                <dd class="sub-images sub-images-{$goods.goods_id} ">
+
+                                    <!--{foreach from=$goods._images item=image name=fe_image}-->
+
+                                    <img src="{$image.thumbnail}" goods_id="{$goods.goods_id}" image_url="{$image.thumbnail}" width="30" height="30" style="{if $smarty.foreach.fe_image.first}border:2px #ddd solid{else}border:2px #ddd solid{/if}"/>
+
+                                    <!--{/foreach}-->
+
+                                </dd>
+
+                                <dd class="desc"><a href="{url app=goods&id=$goods.goods_id}" >{$goods.goods_name|escape|truncate:48}</a></dd>
+
+                                <dd class="price twofloat clearfix"><em>{$goods.price|price}</em></dd>
+
+								<dd><a href="{url app=store&id=$goods.store_id}" >{$goods.store_name}</a></dd>
+
+                                <dd class="status clearfix">
+
+                                    <span>成交<em>{$goods.sales_info}笔</em></span>
+
+                                    <span>评价<a href="{url app=goods&act=comments&id=$goods.goods_id}">{$goods.comments|escape}笔</a></span>
+
+                                    <!--{if $goods.im_ww}-->
+
+                                    <a title="与{$goods.store_name}店主交谈" href="http://amos.im.alisoft.com/msg.aw?v=2&uid={$goods.im_ww|escape:url}&site=cntaobao&s=2&charset={$charset}" ><img border="0" src="http://amos.im.alisoft.com/online.aw?v=2&uid={$goods.im_ww|escape:url}&site=cntaobao&s=2&charset={$charset}" alt="与{$goods.store_name}店主交谈" align="absmiddle"/></a>
+
+                                    <!--{/if}-->
+
+                                    <!--{if $goods.im_qq}-->
+
+                                    <a title="与{$goods.store_name}店主交谈" href="http://wpa.qq.com/msgrd?V=1&amp;uin={$goods.im_qq|escape}&amp;Site={$goods.store_name|escape}&amp;Menu=yes" ><img src="http://wpa.qq.com/pa?p=1:{$goods.im_qq|escape}:4" alt="与{$goods.store_name}店主交谈" align="absmiddle"></a>
+
+                                    <!--{/if}-->
+
+                                </dd>
+
+                            </dl>
+
+                            <!--{/foreach}-->
+
+                        </div>
+
+                        <!--{if !$goods_list_order}-->{include file=page.bottom.html}<!--{/if}-->
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!--{if $recommend_goods}-->
+
+        <div class="recommend">
+
+            <div class="title"><span></span>{$lang.recommend_goods}</div>
+
+            <div class="content clearfix">
+
+                <!--{foreach from=$recommend_goods item=goods name=fe_goods}-->
+
+                <dl class="mb10">
+
+                    <dt><a href="{url app=goods&id=$goods.goods_id}" ><img width="170" height="170"  src="{$goods.default_image}" /></a></dt>
+
+                    <dd class="desc"><a href="{url app=goods&id=$goods.goods_id}" >{$goods.goods_name|escape|truncate:48}</a></dd>
+
+                    <dd class="price twofloat clearfix"><em>{$goods.price}</em><span>{$lang.zjcj}{$goods.sales}{$lang.bi}</span></dd>
+
+                    <dd class="service"></dd>
+
+                </dl>
+
+                <!--{/foreach}-->
+
+            </div>
+
+        </div>
+
+        <!--{/if}-->
+
+    </div>
+
+</div>
+
+{include file=server.html}
+
+{include file=footer.html}
+

@@ -1,0 +1,95 @@
+{include file="header.html"}
+<div id="rightTop">
+    <p>{$lang.ju_manage}</p>
+    <ul class="subnav">
+        <li><span>{$lang.ju_template}</span></li>
+        <li><a class="btn1" href="index.php?app=ju&amp;act=cate_list">{$lang.ju_cate}</a></li>
+        <li><a class="btn1" href="index.php?app=ju&amp;act=goods_list">{$lang.ju_verify}</a></li>
+        <li><a class="btn1" href="index.php?app=jubrand">{$lang.ju_brand}</a></li>
+    </ul>
+</div>
+	<div class="groupbuy">
+            <div class="title">
+                {$lang.handle_notice}
+            </div>
+			<ul>
+               <li>{$lang.ju_index_desc1}</li>
+               <li>{$lang.ju_index_desc2}</li>
+               <li>{$lang.ju_index_desc3}</li>
+               <li>{$lang.ju_index_desc4}</li>
+            </ul>
+    </div>
+<div class="mrightTop">
+    <div class="fontl">
+        <form method="get">
+            <div class="left">
+                <input type="hidden" name="app" value="ju" />
+                <input type="hidden" name="act" value="index" />
+                {$lang.title}:
+                <input class="queryInput" type="text" name="template_name" value="{$query.template_name|escape}" />
+                {$lang.ju_channel}:
+                <select class="querySelect" id="channel" name="channel">
+                <option value="">{$lang.select_pls}</option>
+                {html_options options=$channel_options selected=$smarty.get.channel}
+                </select>
+                {$lang.state}:
+                <select class="querySelect" id="state" name="state">
+                <option value="">{$lang.select_pls}</option>
+                {html_options options=$state_options selected=$smarty.get.state}
+                </select>
+                <input type="submit" class="formbtn" value="{$lang.query}" />
+            </div>
+            <!--{if $filtered}-->
+            <a class="left formbtn1" href="index.php?app=ju">{$lang.cancel_query}</a>
+            <!--{/if}-->
+        </form>
+    </div>
+</div>
+<div class="tdare">
+    <table width="100%" cellspacing="0" class="dataTable">
+        <tr class="tatr1">
+            <td width="50" class="firstCell"><input type="checkbox" class="checkall" /></td>
+            <td align="center">{$lang.template_name}</td>
+            <td align="center">{$lang.ju_channel}</td>
+            <td align="center">{$lang.start_time}</td>
+            <td align="center">{$lang.join_end_time}</td>
+            <td align="center">{$lang.end_time}</td>
+            <td align="center">{$lang.state}</td>
+            <td class="handler">{$lang.handler}</td>
+        </tr>
+        <!--{foreach from=$tempaltes_list item=template}-->
+        <tr class="tatr2">
+            <td class="firstCell"><input value="{$template.template_id}" class='checkitem' type="checkbox" /></td>
+            <td align="center">{$template.template_name}</td>
+            <td align="center">{$template.channel}</td>
+            <td align="center">{$template.start_time|date:complete}</td>
+            <td align="center">{$template.join_end_time|date:complete}</td>
+            <td align="center">{$template.end_time|date:complete}</td>
+            <td align="center">{$template.state|modifier:ju_state}</td>
+            <td class="handler" style="width:200px;"><a href="index.php?app=ju&amp;act=edit_template&amp;id={$template.template_id}">{$lang.edit}</a> | <a name="drop" href="javascript:drop_confirm('{$lang.drop_confirm}', 'index.php?app=ju&amp;act=drop_template&amp;id={$template.template_id}');">{$lang.drop}</a> | 
+            	<a href="index.php?app=ju&amp;act=goods_list&amp;tid={$template.template_id}">{$lang.verify}</a>
+            </td>
+        </tr>
+        <!--{/foreach}-->
+        <!--{if !$tempaltes_list}-->
+        <tr class="no_data">
+            <td colspan="10">{$lang.no_data}</td>
+        </tr>
+        <!--{/if}-->
+    </table>
+    <!--{if $tempaltes_list}-->
+    <div id="dataFuncs">
+        <div class="pageLinks">
+            {include file=page.bottom.html}
+        </div>
+        <div id="batchAction" class="left paddingT15">
+            &nbsp;&nbsp;
+            <input class="formbtn batchButton" type="button" value="{$lang.drop}" name="id" uri="index.php?app=ju&act=drop_template" presubmit="confirm('{$lang.drop_confirm}');" />
+            <a href="index.php?app=ju&amp;act=add_template" class="formbtn add_btn">{$lang.add}</a>
+            &nbsp;&nbsp;
+        </div>
+    </div>
+    <div class="clear"></div>
+    <!--{/if}-->
+</div>
+{include file="footer.html"}

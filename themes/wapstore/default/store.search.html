@@ -1,0 +1,84 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <base href="{$site_url}/" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+        {$page_seo}
+        <link href="{res file=css/common.css}" rel="stylesheet" type="text/css" />
+        <link href="{res file=css/flexslider.css}" rel="stylesheet" type="text/css" />
+        <script type="text/javascript" src="{res file=js/jquery-1.8.0.min.js}"></script>
+        <script type="text/javascript" src="{res file=js/jquery.flexslider.js}"></script>
+        <script type="text/javascript" src="{res file=js/sub_menu.js}"></script>
+        <script type="text/javascript" src="{lib file=ecmall.js}" charset="utf-8"></script>
+    </head>
+    <body>
+
+        <!---头部------>
+        <div class="header clearfix" style="text-align: center;color: #fff;line-height: 40px;">
+            <a class="logo" href="{url app=default}"></a>
+            <!---搜索框------>
+            {$store.store_name}
+            <a href="javascript:void(0)" class="new-a-jd"><span>下拉</span></a>
+        </div>    
+        <script>
+            $(function() {
+                $(".new-a-jd").click(function() {
+                    $(".new-jd-tab").fadeToggle();
+                })
+            })
+        </script>
+        <div class="new-jd-tab" style="display:none;">
+            <div class="new-tbl-type">
+                <a href="{url app=store&id=$store.store_id}" class="new-tbl-cell">
+                    <span class="icon">首页</span>
+                    <p style="color:#6e6e6e;">首页</p>
+                </a>
+                <a href="{url app=store&id=$store.store_id}" class="new-tbl-cell">
+                    <span class="icon2">分类搜索</span>
+                    <p style="color:#6e6e6e;">分类搜索</p>
+                </a>
+                <a href="{url app=cart}" id="html5_cart" class="new-tbl-cell">
+                    <span class="icon3">购物车</span>
+                    <p style="color:#6e6e6e;">购物车</p>
+                </a>
+                <a href="{url app=member}" class="new-tbl-cell">
+                    <span class="icon4">我的商城</span>
+                    <p style="color:#6e6e6e;">我的商城</p>
+                </a>
+            </div>
+        </div>
+        <div class="paixu">
+            <a href="index.php?app=store&act=search&id={$store.store_id}&keyword={$keyword}&cate_id={$cate_id}&order=sales%20desc" class=" <!--{if $sort eq '4'}-->cur<!--{/if}-->"><i class="icon-volume"></i>销量</a>
+            <a href="index.php?app=store&act=search&id={$store.store_id}&keyword={$keyword}&cate_id={$cate_id}&order=add_time%20desc" class=" <!--{if $sort eq '1'}-->cur<!--{/if}-->"><i class="icon-price"></i>新品</a>
+            <a href="index.php?app=store&act=search&id={$store.store_id}&keyword={$keyword}&cate_id={$cate_id}&order=price%20desc" class=" <!--{if $sort eq '2'}-->cur<!--{/if}-->"><i class="icon-new"></i>价格</a>
+        </div>
+        <!-----列表--------->
+        <div class="lists lists1">
+            <ul>
+                <!--{if $searched_goods}-->
+                <!--{foreach from=$searched_goods item=sgoods}-->
+                <a href="{url app=goods&id=$sgoods.goods_id}">
+                    <li>
+                        <img src="{$sgoods.default_image}" />
+                        <p>{$sgoods.goods_name|escape}</p>
+                        <span>{$sgoods.price|price}</span>
+                    </li>
+                </a>
+                <!--{/foreach}-->
+                <!--{else}-->
+                <div style="padding:50px 60px; text-align:center;background:#fff;margin:5px 5px 0;">{$lang.no_records}</div>
+                <!--{/if}-->
+            </ul>
+        </div>
+
+        <!--------翻页-------------->
+        <div class="page">
+            {include file=page.bottom.html}
+        </div>
+        {include file=footer.html}
+    </body>
+</html>

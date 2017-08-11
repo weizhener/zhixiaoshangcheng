@@ -1,0 +1,116 @@
+<div id="header" class="w">
+
+    <div id="shop-nav" class="w auto mb10">
+
+        <div class="banner">
+
+            <a href="{url app=store&id=$store.store_id}">
+
+                <!--{if $store.store_banner}-->
+
+                <img src="{$store.store_banner}" width="950" height="150" />
+
+                <!--{else}-->
+
+                <img src="{res file=images/banner.gif}" width="950" height="150" />
+
+                <!--{/if}-->
+
+            </a>
+
+        </div>
+
+
+
+        <ul class="clearfix">
+
+            <!--<li class="allcategory"></li>-->
+
+            <li><a class="{if $smarty.get.app eq 'store' and $smarty.get.act eq 'index'}active{else}normal{/if}" href="{url app=store&id=$store.store_id}"><span>{$lang.store_index}</span></a></li>
+
+
+
+            <!--{foreach from=$store.store_navs item=store_nav}-->
+
+            <li><a class="{if $smarty.get.app eq 'store' and $smarty.get.act eq 'article' and $smarty.get.id eq $store_nav.article_id}active{else}normal{/if}" href="{url app=store&act=article&id=$store_nav.article_id}"><span>{$store_nav.title|escape}</span></a></li>
+
+            <!--{/foreach}-->
+
+            <li><a class="{if $smarty.get.app eq 'store' and $smarty.get.act eq 'credit'}active{else}normal{/if}" href="{url app=store&act=credit&id=$store.store_id}"><span>{$lang.credit_evaluation}</span></a></li>
+
+
+
+            <!--{foreach from=$store.store_gcates item=gcategory}-->
+
+            <li><a class="{if $smarty.get.cate_id eq $gcategory.id}active{else}normal{/if}" href="{url app=store&id=$store.store_id&act=search&cate_id=$gcategory.id&from=nav}"><span>{$gcategory.value|escape}</span></a></li>
+
+            <!--{/foreach}-->
+
+
+
+
+
+            {if $store.functions.groupbuy}
+
+            <li><a class="{if $smarty.get.app eq 'groupbuy' or $smarty.get.act eq 'groupbuy'}active{else}normal{/if}" href="{url app=store&act=groupbuy&id=$store.store_id}"><span>{$lang.nav_groupbuy}</span></a></li>
+
+            {/if}
+
+            <!--{if $smarty.get.app eq 'store' && $smarty.get.act eq 'search' && $smarty.get.from neq 'nav'}-->
+
+            <li><a class="active"><span>{$lang.cats_goods}</span></a></li>
+
+            <!--{/if}-->
+
+            <!--{if $smarty.get.app eq 'goods' && $smarty.get.id}-->
+
+            <li><a class="active"><span>{$lang.goods_detail}</span></a></li>
+
+            <!--{/if}-->
+            
+            
+
+
+
+
+        </ul>
+
+    </div>
+
+    <div class="store-header-search w clearfix">
+
+        <div class="form">
+
+            <form action="index.php" method="get">
+
+                <b></b>
+
+                <input type="hidden" name="app" value="store" />
+
+                <input type="hidden" name="act" value="search" />
+
+                <input type="hidden" name="id" value="{$store.store_id}" />
+
+                <input type="text" name="keyword"  class="keyword" maxlength="30" value="{$smarty.get.keyword}"/>
+
+                <input type="submit" value="搜索" class="submit" />
+
+            </form>
+
+        </div>
+
+        <div class="keys">
+
+            <span>{$lang.hot_search}{$lang.colon}</span>
+
+            {foreach from=$store.hot_search item=keyword}
+
+            <a href="{url app=store&act=search&id=$store.store_id&keyword=$keyword|escape:url}">{$keyword}</a> 
+
+            {/foreach}
+
+        </div>
+
+    </div>
+
+</div>

@@ -1,0 +1,51 @@
+{include file="header.html"}    
+<div class="mb-head">
+    <a href="{url app=default}" class="l_b">首页</a>
+    <div class="tit">产品搜索</div>
+    <a href="{url app=category}" class="r_b">分类</a>
+</div>
+
+<script type="text/javascript" src="{lib file=search_goods.js}" charset="utf-8"></script>
+<script>
+    $(function () {
+        $("*[ectype='wap_order_by'] a").click(function () {
+            replaceParam('order', this.id + " desc");
+            return false;
+        });
+    });
+</script>
+
+<section class="search_goods_options" id="sort_order">
+    <ul class="s-items" ectype='wap_order_by'>
+        <li><a href="javascript:void(0);" <!--{if $smarty.get.order eq 'sales desc'}-->class="selected" <!--{/if}-->id="sales" >销量<span class="decollator">|</span></a></li>
+        <li><a href="javascript:void(0);" id="price">价格<span class="decollator">|</span></a></li>
+        <li><a href="javascript:void(0);" id="add_time">新品<span class="decollator">|</span></a></li>
+        <li><a href="javascript:void(0);" id="comments">好评<span class="decollator">|</span></a></li>
+    </ul>
+</section>
+
+
+<section class="search_goods">
+    <!--{if !$goods_list_order}-->
+    <ul class="list">
+
+        <!--{foreach from=$goods_list item=goods name=fe_goods}-->
+        <a href="{url app=goods&id=$goods.goods_id}">
+            <li>
+                <img src="{$goods.default_image}" alt="{$goods.name}"/>
+                <div class="detail">
+                    <p class="title">{$goods.goods_name|escape}</p>
+                    <p class="price">{$goods.price|price}</p>
+                    <p class="sales">已售：<em>{$goods.sales_info|escape}</em></p>
+                </div>
+            </li>
+        </a>
+        <!--{/foreach}-->
+    </ul>
+    <!--{else}-->
+    <center style="font-size:16px;">没有找到相关的商品！</center>
+    <!--{/if}-->
+    {include file='page.bottom.html'}
+</section>
+
+{include file="footer.html"}

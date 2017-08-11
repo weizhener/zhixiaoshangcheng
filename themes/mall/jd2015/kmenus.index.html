@@ -1,0 +1,93 @@
+{include file=member.header.html}
+<style>
+select{height: auto}
+.kg{ overflow:hidden;padding:20px 85px;border-bottom:#eee solid 1px;}
+.zscul{margin-left:35px;}
+.zscul li{padding:8px;}
+.zscul li select{padding:5px;}
+.btn{background: none repeat scroll 0 0 #3F89EC;border: 0 none;color: #FFFFFF;cursor: pointer;font-weight: bold;height: 32px;width: 120px;margin-left:111px;}
+table{padding-bottom:50px;}
+table th{border-top:1px solid #EEEEEE; border-bottom:1px solid #EEEEEE;}
+table td{border-bottom:1px solid #EEEEEE;}
+table th,table td{ padding:8px 10px; text-align:center;}
+.plug-menu{border-radius: 36px;box-shadow: 0 0 0 4px #FFFFFF, 0 2px 5px 4px rgba(0, 0, 0, 0.25);height: 36px;position: relative;width: 36px;margin:0 auto;}
+.plug-menu span {display: block;height: 28px;left: 4px;overflow: hidden;position: absolute;text-indent: -999px;top: 4px;width: 28px;}
+.remind .btn1{float: left;}
+</style>
+
+<div class="content">
+    {include file=member.menu.html}
+    <div id="right">    
+        <div class="wrap">
+            <div class="kg">
+                <h3 style="color:#666;" class="h_left remind">
+                    <a href="{url app=kmenus}" style="margin:0 30px 0 -40px;" class="btn1"><span class="pic2">快捷菜单管理</span></a>
+                    <a href="{url app=kmenusinfo}" style="margin:0;" class="btn1"> <span class="pic1">添加快捷菜单</span></a>
+                </h3>
+            </div>
+            <div class="content-right" style="padding-top:20px;">
+                <ul class="zscul">
+                    <form  method="post">
+                        <li>
+                            <strong>是否启用快捷菜单：</strong>
+                            <input type="radio" <!--{if $kmenus.status eq 0}-->checked="checked"<!--{/if}--> value="0" name="status" /> 启用
+                                   <input type="radio" <!--{if $kmenus.status eq 1}-->checked="checked"<!--{/if}--> value="1" style="margin-left:20px;" name="status"/> 不启用
+                        </li>
+                        <li>
+                            <strong style="margin-left:72px;">样式：</strong>
+                            <select name="stype">
+                                <option <!--{if $kmenus.stype eq 1}-->selected="selected"<!--{/if}--> value="1">样式一</option>
+                            </select>
+                        </li>
+                        <li>
+                            <strong style="margin-left:72px;">示例：</strong>
+                            <img src="{$site_url}/mall/kmenus/shili.png" />
+                        </li>
+                        <li>
+                            <strong style="margin-left:48px;">显示方式：</strong>
+                            <select name="stypeinfo">
+                                <option <!--{if $kmenus.stypeinfo eq 1}-->selected="selected"<!--{/if}--> value="1">左下角横向显示</option>
+                                <option <!--{if $kmenus.stypeinfo eq 2}-->selected="selected"<!--{/if}--> value="2">左下角纵向显示</option>
+                                <option <!--{if $kmenus.stypeinfo eq 3}-->selected="selected"<!--{/if}--> value="3">右下角横向显示</option>
+                                <option <!--{if $kmenus.stypeinfo eq 4}-->selected="selected"<!--{/if}--> value="4">右下角纵向显示</option>
+                            </select>
+                        </li>
+                        <li>
+                            <input type="submit" value="保存" class="btn" />
+                        </li>
+                    </form>
+                </ul>
+            </div> 
+            <div class="content-right" style="padding-top:20px;">
+                <table>
+                    <tr>
+                        <th width="120">效果图</th>
+                        <th>链接</th>
+                        <th width="80">名称</th>
+                        <th width="120">操作</th>
+                    </tr>
+                    <!--{foreach from=$kmenusinfo item=info}-->
+                    <tr>
+                        <td>
+                            <div class="plug-menu" style="background-color: #{$info.color};">
+                                <span class="close" style="background:url('{$info.imgurl}') no-repeat scroll 0 0 / 28px 28px rgba(0, 0, 0, 0);">
+                                </span>
+                            </div>
+                        </td>
+                        <td>{$info.loadurl}</td>
+                        <td>{$info.title}</td>
+                        <td>
+                            <a href="{url app=kmenusinfo&act=edit&id=}{$info.kmenusinfo_id}">编辑</a>
+                            <a style="margin-left:10px;" href="javascript:drop_confirm('您确定要删除吗？','{url app=kmenusinfo&act=del&id=}{$info.kmenusinfo_id}');">删除</a>
+                        </td>
+                    </tr>
+                    <!--{/foreach}-->
+                </table>
+            </div>         
+        </div>
+    </div>
+
+</div>
+<div class="clear"></div>
+{include file=footer.html}
+

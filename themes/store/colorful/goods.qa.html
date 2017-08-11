@@ -1,0 +1,179 @@
+{include file=header.html}
+<div class="w-full col-1" area="top_ad_area" widget_type="area">
+    <!--{widgets page=goodsinfo area=top_ad_area}-->
+</div>
+<div class="w clearfix mt10">
+    <div class="info-left">
+        {include file=goodsinfo.html}
+    </div>
+    <div class="info-right">
+    	<div class="user">
+            <h2>{$store.store_name|escape}</h2>
+            <div class="user_data">
+                <p>
+                    <span>{$lang.store_owner}: </span>{$store.store_owner.user_name|escape}
+                    <a target="_blank" href="{url app=message&act=send&to_id=$store.store_owner.user_id|escape}"><img src="{res file=images/web_mail.gif}" alt="{$lang.send_pm}" /></a>
+                </p>
+                <p>
+                    <span>{$lang.credit_value}: </span><span class="fontColor1">{$store.credit_value}</span>
+                    <!--{if $store.credit_value ge 0}--><img src="{$store.credit_image}" alt="" /><!--{/if}-->
+                </p>
+                <p>{$lang.store_grade}: {$store.sgrade}</p>
+                <p>{$lang.goods_count}: {$store.goods_count}</p>
+                <p>{$lang.region}: {$store.region_name|escape}</p>
+                <p>{$lang.store_add_time}: {$store.add_time|date}</p>
+                <!--{if $store.certifications}-->
+                <p>
+                    <span>{$lang.certification}: </span>
+                    <span>
+                        <!--{foreach from=$store.certifications item=cert}-->
+                        <!--{if $cert eq "autonym"}-->
+                        <a href="{url app=article&act=system&code=cert_autonym}" target="_blank" title="{$lang.cert_autonym}"><img src="{res file=images/cert_autonym.gif}" /></a>
+                        <!--{elseif $cert eq "material"}-->
+                        <a href="{url app=article&act=system&code=cert_material}" target="_blank" title="{$lang.cert_material}"><img src="{res file=images/cert_material.gif}" /></a>
+                        <!--{/if}-->
+                        <!--{/foreach}-->
+                    </span>
+                </p>
+                <!-- {/if} -->
+                <!--{if $store.address}-->
+                <!--<p>{$lang.address}: {$store.address|escape}</p>-->
+                <!--{/if}-->
+                <!--{if $store.tel}-->
+                <!--<p>{$lang.tel}: {$store.tel|escape}</p>-->
+                <!--{/if}-->
+                <!--{if $store.im_qq || $store.im_ww || $store.im_msn}-->
+                <p>
+                    <!--{if $store.im_qq}-->
+                    <a href="http://wpa.qq.com/msgrd?V=1&amp;uin={$store.im_qq|escape}&amp;Site={$store.store_name|escape}&amp;Menu=yes" target="_blank"><img src="http://wpa.qq.com/pa?p=1:{$store.im_qq|escape}:4" alt="QQ"></a>
+                    <!--{/if}-->
+                    <!--{if $store.im_ww}-->
+                    <a target="_blank" href="http://amos.im.alisoft.com/msg.aw?v=2&uid={$store.im_ww|escape:url}&site=cntaobao&s=2&charset={$charset}" ><img border="0" src="http://amos.im.alisoft.com/online.aw?v=2&uid={$store.im_ww|escape:url}&site=cntaobao&s=2&charset={$charset}" alt="Wang Wang" /></a>
+                    <!--{/if}-->
+                    <!--{if $store.im_msn}-->
+                    <a target="_blank" href="http://settings.messenger.live.com/Conversation/IMMe.aspx?invitee={$store.im_msn|escape}"><img src="http://messenger.services.live.com/users/{$store.im_msn|escape}/presenceimage/" alt="status" /></a>
+                    <!--{/if}-->
+                </p>
+                <!--{/if}-->
+            </div>
+            <div class="shop-other">
+            	<a target="_blank" href="{url app=store&id=$store.store_id}">{$lang.enter_the_store}</a>
+    			<a href="javascript:collect_store({$store.store_id})">{$lang.collect_store}</a>
+    		</div>
+            <div class="clear"></div>
+        </div>
+    </div>
+</div>
+<div id="content" class="clearfix">
+    <div id="left">
+        <div class="" area="store_left" widget_type="area">
+            <!--{widgets page=goodsinfo area=store_left}-->
+        </div>
+		 <!--{if $smarty.get.app eq "goods"}-->
+        <div class="history">
+            <div class="title">{$lang.goods_history}</div>
+            <ul>
+                        <!--{foreach from=$goods_history item=gh_goods}-->
+                        <li><a href="{url app=goods&id=$gh_goods.goods_id}"><img src="{$gh_goods.default_image}" width="50" height="50" alt="{$gh_goods.goods_name|truncate:20|escape}" title="{$gh_goods.goods_name|escape}" /></a></li>
+                        <!--{/foreach}-->
+             </ul>
+        </div>
+        <!--{/if}-->
+    </div>
+
+    <div id="right">
+        <a name="module">
+        <ul class="user_menu clearfix">
+            <li><a href="{url app=goods&id=$goods.goods_id}#module">{$lang.goods_detail}</a></li>
+            <li><a href="{url app=goods&act=comments&id=$goods.goods_id}#module">{$lang.goods_comment}</a></li>
+            <li><a href="{url app=goods&act=saleslog&id=$goods.goods_id}#module">{$lang.sales_log}</a></li>
+            <li class="active"><a  href="{url app=goods&act=qa&id=$goods.goods_id}#module">{$lang.qa}</a></li>
+        </ul>
+        <div class="module_currency">
+            <script type="text/javascript" src="{lib file=jquery.plugins/jquery.validate.js}" charset="utf-8"></script>
+			<script type="text/javascript">
+            $(function(){
+                $('#message').validate({
+                    errorPlacement: function(error, element){
+                        var _message_box = $(element).parent().find('.field_message');
+                        _message_box.find('.field_notice').hide();
+                        _message_box.parent().append(error);
+                    },
+                    rules : {
+                        content : {
+                            required : true,
+                            byteRange : [0,255,'{$charset}']
+                        }
+                    },
+                    messages : {
+                        content : {
+                            required : '{$lang.content_not_null}',
+                            byteRange: '{$lang.max_script}'
+                        }
+                    }
+                });
+            })
+            </script>
+            
+            <div class="message">
+                <!--{foreach from=$qa_info item=qainfo}-->
+                <div class="{cycle values=message_text2,message_text2 bg1}">
+                    <dl class="leave_word">
+                        <dt>{$lang.question_content}: </dt>
+                        <dd>{$qainfo.question_content|escape|nl2br}</dd>
+                        <p>
+                            <span class="name"><!-- {if $qainfo.user_name} -->{$qainfo.user_name}<!--{else}-->{$lang.guest}<!-- {/if} -->
+                            </span>
+                        </p>
+                        <dd>
+                            <p>{$qainfo.time_post|date:complete}</p>
+                        </dd>
+                    </dl>
+                    <!-- {if $qainfo.reply_content} -->
+                    <dl class="revert_to">
+                        <dt>{$lang.store_reply}: </dt>
+                        <dd>{$qainfo.reply_content|escape|nl2br}</dd>
+                        <p>
+                            <span class="date">{$qainfo.time_reply|date:complete}</span>
+                        </p>
+                    </dl>
+                    <!-- {/if} -->
+                </div>
+                <!-- {foreachelse} -->
+                <div class="{cycle values=message_text2,message_text2 bg1}">
+                    <span class="light">{$lang.no_records}</span>
+                </div>
+                <!--{/foreach}-->
+            </div>
+            {if $qa_info}{include file=page.bottom.html}{/if}
+            <div class="clear"></div>
+            <!--{if $smarty.get.app eq 'groupbuy' and $group.ican.ask or $smarty.get.app eq 'goods'}-->
+            <div class="fill_in">
+                <form method="post" id="message" action="index.php?app={$smarty.get.app}<!--{if $smarty.get.act}-->&amp;act={$smarty.get.act}<!--{elseif $smarty.get.app eq 'goods'}-->&amp;act=qa<!--{/if}-->&amp;id={$smarty.get.id}">
+                <p> <span class="desc">{$lang.wanner_qa}: </span><textarea name="content"></textarea><span class="field_message"><span class="field_notice"></span></span></p>
+                <p>
+                    <!--{if !$guest_comment_enable and !$visitor.user_id}-->
+                        {$lang.login_to_comment}
+                    <!--{else}-->
+                    <span>{$lang.qa_email}: </span>
+                    <span><input type="text" class="text" name="email" value="{$email}" /></span>
+                    <!--{if $captcha}-->
+                    <span>{$lang.captcha}: </span>
+                    <span><input type="text" class="text" name="captcha" /></span>
+                    <span><a href="javascript:change_captcha($('#captcha'));"><img id="captcha" class="captcha" src="index.php?app=captcha&amp;{$random_number}" /></a></span>
+                    <!--{/if}-->
+                    <!--{if $smarty.session.user_info}-->
+                    <span><label><input type="checkbox" name="hide_name" value="hide" /> {$lang.hide_name}</label></span>
+                    <!--{/if}-->
+                    <input type="submit" value="{$lang.submit_message}" name="qa" />
+                    <!--<input type="hidden" value="{$smarty.get.id}" name="goods_id" />
+                    <input type="hidden" value="ask" name="type" />-->
+                    <!--{/if}-->
+                </p>
+                </form>
+            </div>
+            <!--{/if}-->
+        </div>
+    </div>
+</div>
+{include file=footer.html}

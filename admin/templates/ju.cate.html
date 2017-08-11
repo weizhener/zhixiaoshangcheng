@@ -1,0 +1,72 @@
+{include file="header.html"}
+<script type="text/javascript">
+//<!CDATA[
+$(function(){
+    $('#cate_form').validate({
+        errorPlacement: function(error, element){
+            $(element).after(error);
+        },
+        success       : function(label){
+            label.addClass('right').text('OK!');
+        },
+        rules : {
+            cate_name : {
+                required : true
+            },
+        },
+        messages : {
+            cate_name : {
+                required : '{$lang.cate_name_required}',
+            },
+        }
+    });
+});
+//]]>
+</script>
+<div id="rightTop">
+    <p>{$lang.groupbuy_manage}</p>
+    <ul class="subnav">
+        <li><a class="btn1" href="index.php?app=ju">{$lang.groupbuy_template}</a></li>
+       	<li><a class="btn1" href="index.php?app=ju&amp;act=add_template">{$lang.add_template}</a></li>
+        <li><a class="btn1" href="index.php?app=ju&amp;act=cate_list">{$lang.groupbuy_cate}</a></li>
+        <li><span>{$lang.add_cate}</span></li>
+        <li><a class="btn1" href="index.php?app=ju&amp;act=goods_list">{$lang.groupbuy_verify}</a></li>
+    </ul>
+</div>
+	<div class="groupbuy">
+            <div class="title">
+                操作提示
+            </div>
+			<ul>
+                  <li>增加团购分类</li>
+                  <li></li>
+          </ul>
+    </div>
+<div class="info">
+    <form method="post" enctype="multipart/form-data" id="cate_form">
+        <table class="infoTable">
+            <tr>
+                <th class="paddingT15">
+                    {$lang.cate_name}:</th>
+                <td class="paddingT15 wordSpacing5">
+                    <input class="infoTableInput3" type="text" name="cate_name" value="{$cate.cate_name|escape}" />
+                </td>
+            </tr>
+            <tr>
+                <th class="paddingT15">
+                    {$lang.sort_order}:</th>
+                <td class="paddingT15 wordSpacing5">
+                    <input class="infoTableInput3" type="text" name="sort_order" value="{$cate.sort_order}"  style="width:60px;" />
+                </td>
+            </tr>
+        <tr>
+            <th></th>
+            <td class="ptb20">
+                <input class="formbtn" type="submit" name="Submit" value="{$lang.submit}" />
+                <input class="formbtn" type="reset" name="Submit2" value="{$lang.reset}" />
+            </td>
+        </tr>
+        </table>
+    </form>
+</div>
+{include file="footer.html"}

@@ -1,0 +1,66 @@
+/* store_scope */
+#store_scope .top_ad{}
+
+#store_scope .left{box-shadow: 0 1px 1px rgba(0, 0, 0, .1);width: 208px;float: left;background: #fff;}
+#store_scope .left .module{margin-bottom: 10px;border: 1px solid #DDDDDD;border-radius: 4px;overflow: hidden;}
+#store_scope .left .mt{font-size: 13pt;color: #999;height: 35px;line-height: 35px;overflow: hidden;background: #f1f1f1;padding-left: 27px;border-bottom: 1px solid #ddd;}
+/*左侧样式1*/
+#store_scope .left .mc{margin:10px;}
+#store_scope .left .mc select{background:#fafdfe;height:28px;width:180px;line-height:28px;border:1px solid #9bc0dd;-moz-border-radius:2px;-webkit-border-radius:2px;border-radius:2px;margin-bottom:10px;font-family: microsoft yahei;color: #999;}
+#store_scope .left .mc li{padding-bottom: 9px;}
+#store_scope .left .mc li a{color: #999;font-size: 11pt;}
+#store_scope .left .mc li i{height: 26px;width: 26px;display: inline-block;background: url(../images/se-bg.png) -63px -298px;vertical-align: -6px;}
+#store_scope .left .mc li.select i{background: url(../images/se-bg.png) -118px -298px;}
+/*左侧样式2*/
+#store_scope .left .newitem{position: relative;background: #fff;}
+#store_scope .left .newitem a{font-weight:normal;text-decoration:none;color:#666}
+#store_scope .left .newitem h3 {overflow: hidden;height: 30px;padding: 0 6px 0 36px;background: #F7F7F7;cursor: pointer;line-height: 30px;}
+#store_scope .left .newitem h3 a{font-size: 14px;}
+#store_scope .left .newitem b {position: absolute;top: 7px;left: 10px;overflow: hidden;width: 16px;height: 16px;margin-top: 1px;background: url(../images/mapstore1.png) no-repeat -59px -28px;cursor: pointer;}
+#store_scope .left .newitem ul {display: none;overflow: hidden;padding: 4px 0 4px 34px;border-top: 1px solid #ddd;zoom: 1;}
+#store_scope .left .newitem li {height: 24px;padding: 0 4px 0 0;overflow: hidden;line-height: 24px;}
+#store_scope .left .newitem li a {padding: 0 2px 2px;}
+#store_scope .left .newitem.hover b{background-position: -42px -28px;}
+#store_scope .left .newitem.hover ul {display: block;}
+
+
+
+
+#store_scope .right{box-shadow: 0 1px 1px rgba(0, 0, 0, .1);width: 978px;float: left;margin-left: 10px;border: 1px solid #DDDDDD;border-radius: 4px;background: #fff;padding-top: 20px;padding-bottom: 25px;}
+#store_scope .right .filter{height: 40px;padding-left: 20px;padding-right: 16px;padding-bottom: 20px;border-bottom: 1px solid #eee;}
+#store_scope .right .filter .fl{padding-top: 6px;float: left;}
+#store_scope .right .filter .fl a{height: 30px;width: 85px;background: #fff;font-size: 11pt;text-align: center;line-height: 30px;overflow: hidden;color: #666;float: left;display: inline;}
+#store_scope .right .filter .fl span{margin-left: 14px;margin-right: 14px;color: #ddd;margin-top: 2px;font-size: 16px;float: left;display: inline;}
+#store_scope .right .filter .fl a.select{background: #DF592F;color: #fff;}
+
+#store_scope .right .filter .fr{float: right}
+#store_scope .right .filter .fr a{cursor: pointer;width: 116px;line-height: 30px;text-align: center;height: 30px;display: block;font-size: 11pt;background: #DF592F;color: #fff;}
+
+#store_scope .right .filter .ser{width: 248px;height: 38px;float: right;border: 1px solid #ddd;background: #F1F1F1;border-radius: 8px;position: relative;}
+#store_scope .right .filter .ser i {width: 20px;height: 20px;background: url(../images/se-bg.png) -67px -359px;float: left;margin-top: 10px;margin-left: 15px;}
+#store_scope .right .filter .ser input{border: none;padding: 0;margin: 0px;float: left;height: 30px;width: 197px;margin-top: 4px;margin-left: 5px;line-height: 30px\9;color: #999;font-size: 11pt;background: #F1F1F1;font-family: microsoft yahei;}
+
+#store_scope .right .list li{width: 280px;height: 125px;float: left;border: 1px solid #eee;float: left;margin-left: 33px;margin-top: 19px;border-radius: 3px;display: inline;position: relative;box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);}
+#store_scope .right .list li i.res {z-index: 101;width: 43px;height: 42px;position: absolute;display: block;left: -4px;top: -3px;background: url(../images/isres_icon.png);}
+#store_scope .right .list li i.clo2{ z-index: 101; width: 43px; height: 42px; position: absolute; display: block;left: -4px; top: -3px; background: url(../images/isclose_icon.png); }
+#store_scope .right .list li i.hot{z-index: 101;  width: 43px; height: 42px; position: absolute; display: block;left: -4px; top: -3px; background: url(../images/ishot_icon.png); }
+#store_scope .right .list li i.new{z-index: 101;  width: 43px; height: 42px; position: absolute; display: block;left: -4px; top: -3px; background: url(../images/isnew_icon.png); }
+
+#store_scope .right .list li .img{width: 70px;height: 70px;display: block;position: absolute;left: 18px;top: 19px;border: 5px solid #eee;}
+#store_scope .right .list li .title{font-size: 11pt;color: #666;text-align: center;height:24px;overflow: hidden;position: absolute;left: 116px;top: 10px;}
+#store_scope .right .list li .goods_count{position: absolute;top:33px;left: 116px;text-align: center;font-size: 9pt;color: #999;overflow: hidden;}
+#store_scope .right .list li .goods_count span{color: #df592f;padding:0 2px;}
+#store_scope .right .list li .praise_rate{text-align: center;font-size: 9pt;color: #999;overflow: hidden;position: absolute;top:53px;left: 116px;}
+#store_scope .right .list li .praise_rate span{color: #df592f;padding:0 2px;}
+#store_scope .right .list li .juli{text-align: center;font-size: 9pt;color: #999;overflow: hidden;position: absolute;top:53px;left: 116px;}
+#store_scope .right .list li .juli span{color: #df592f;padding:0 2px;}
+#store_scope .right .list li .contact{position: absolute;top:80px;left: 116px;text-align: center;font-size: 9pt;color: #999;overflow: hidden;}
+#store_scope .right .list li .mapview{position: absolute;top:105px;left: 116px;text-align: center;font-size: 9pt;color: #999;overflow: hidden;}
+
+
+/*mapstore_address.html*/
+#mapaddr{}
+.mapaddr_content{position: relative;height:650px;}
+.mapaddr_header{position: absolute;top:10px;height: 40px;width: 100%;background: #92c424;border-radius: 2px 2px 0 0;color: #fff;line-height: 40px;}
+.mapaddr_header h1{margin: 0;text-align: center;font-size: 18px;font-weight: normal;}
+#g_index_map{position: absolute;top:50px;left: 0;width: 100%;height:600px;}

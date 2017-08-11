@@ -1,0 +1,75 @@
+
+/* site-nav */
+
+#site-nav{ background:url(../images/T1CCRNXmRFXXXXXXXX.png) 0px -44px repeat-x;line-height:22px;}
+#site-nav .shoptop{ height:22px;padding-top:2px;padding-bottom:2px; line-height:22px; position:relative; z-index:999; vertical-align:baseline}
+#site-nav .login_info{float:left; font-family:microsoft yahei;line-height:22px;}
+#site-nav .login_info a{margin-right:5px;}
+#site-nav .login_info a span{color:#0092D2;}
+#site-nav .login_info a:hover{color:#0092D2; text-decoration:underline}
+
+#site-nav .quick-menu { position:absolute;top:1px; right:0;}
+#site-nav .quick-menu li {float:left; margin-left:-1px;padding-top:1px;padding-bottom:0px;background:url(../images/T1CCRNXmRFXXXXXXXX.png) no-repeat right 6px; position:relative;}
+#site-nav .quick-menu li.home,
+#site-nav .quick-menu li.service{padding-left:10px;padding-right:10px;}
+#site-nav .quick-menu li.service a{line-height:24px;}
+
+#site-nav .menu-hd { position:relative; display:block;_display:inline-block;padding-bottom:0px;padding-left:10px;padding-right:22px;padding-top:1px; height:20px;line-height:17px; margin:3px 1px 0px; cursor:pointer; z-index:901;}
+#site-nav .sites .menu-hd{width:48px;}
+#site-nav .mytb .menu-hd {width: 48px}
+#site-nav .favorite .menu-hd {width: 36px}
+
+#site-nav .menu-hd b,
+#site-nav .mini-cart b{border-bottom: #eee 4px solid; position: absolute; border-left: #eee 4px solid; line-height: 0; width: 0px; height: 0px;font-size: 0px; border-top: #666 4px solid; top: 7px; right: 10px; border-right: #eee 4px solid; -webkit-transition: -webkit-transform .2s ease-in;-webkit-backface-visibility: hidden; -moz-transition: -moz-transform .2s ease-in; -o-transition: -o-transform .2s ease-in; transition: transform .2s ease-in}
+
+
+#site-nav .menu-bd {z-index: 900; border-bottom: #bfbfbf 1px solid; position: absolute; border-left: #bfbfbf 1px solid; display: none; background: #fff; border-top: #bfbfbf 1px solid; top: 21px;_top:23px; right: 0px; border-right: #bfbfbf 1px solid}
+
+#site-nav .menu-bd-panel {padding-bottom: 6px; padding-left: 10px; padding-right: 10px; padding-top: 10px}
+#site-nav .menu {position: relative}
+#site-nav .item:hover .menu-hd,
+#site-nav .hover .menu-hd {border-bottom: medium none; border-left: #bfbfbf 1px solid; margin: 2px 0px 0px; background: white; border-top: #bfbfbf 1px solid; border-right: #bfbfbf 1px solid}
+#site-nav .item:hover .menu-bd,
+#site-nav .hover .menu-bd {display: block;}
+#site-nav .item:hover .menu-hd b,
+#site-nav .hover .menu-hd b,
+#site-nav .item:hover .mini-cart b,
+#site-nav .hover .mini-cart b{border-bottom-color: #fff; FILTER: progid:DXImageTransform.Microsoft.BasicImage(rotation=2); border-top-color: #666; border-right-color: #fff; border-left-color: #fff; top:6px;*top:3px; -moz-transform: rotate(180deg); -moz-transform-origin: 50% 30%; -webkit-transform: rotate(180deg); -webkit-transform-origin: 50% 30%; -o-transform: rotate(180deg); -o-transform-origin: 50% 30%; transform: rotate(180deg); transform-origin: 50% 30%}
+
+#site-nav .quick-menu .mini-cart a.ac{position:relative;display:block;border: #d8d8d8 1px solid; line-height:17px;margin-top:3px;padding-left:25px;padding-right:6px;padding-top:0;width:76px; height:17px; background: #fff;}
+#site-nav .item:hover .mini-cart a.ac,
+#site-nav .hover .mini-cart a.ac{border-bottom:medium none; z-index:901;}
+#site-nav .quick-menu .mini-cart .mini-cart-hd{ color:#3E3E3E; font-weight:bold; margin:10px 0;}
+#site-nav .quick-menu .mini-cart .mini-cart-each{height:45px}
+#site-nav .quick-menu .mini-cart .mini-cart-img { display: inline-block; float: left;  height: 40px;    margin-right: 10px;    overflow: hidden;text-align: center;width: 40px;}
+#site-nav .quick-menu .mini-cart .mini-cart-title { float:left; line-height: 20px; width:190px; height:40px;overflow: hidden;}
+#site-nav .quick-menu .mini-cart .mini-cart-bt{float:left;border-top:1px solid #F2F2F2; margin-top:10px; text-align:center}
+#site-nav .quick-menu .mini-cart .mini-cart-bt a { background:url(../images/T1lxl1XcNGXXXXXXXX-113-50.png); background-color: white; background-position: 0 0;border: medium none;color: white;display: inline-block;height: 20px; line-height: 19px;padding: 0; text-align: center;width: 113px;}
+#site-nav .quick-menu .mini-cart .mini-cart-bt a:hover{ color:#fff;}
+#site-nav .quick-menu .mini-cart .price-admin{ float:right; text-align:right}
+#site-nav .quick-menu .mini-cart .mini-cart-del a{ color:#0092D2;}
+#site-nav .quick-menu .mini-cart .mini-cart-del a:hover{ text-decoration:underline; color:#0092D2;}
+#site-nav .quick-menu .mini-cart .mini-cart-empty{margin-right:30px;color:#999}
+
+#site-nav .mytb .menu-bd {line-height: 1.7; width:94px;height: 75px}
+#site-nav .favorite .menu-bd {line-height: 1.7; width:82px;height: 57px}
+
+#site-nav .mytb .menu-bd-panel {padding-bottom: 8px; padding-left: 10px; padding-right: 10px; padding-top: 8px}
+#site-nav .favorite .menu-bd-panel {padding-bottom: 8px; padding-left: 10px; padding-right: 10px; padding-top: 8px}
+
+#site-nav .quick-menu .mini-cart s{ position:absolute;width:14px; height:11px;top:2px;left:6px;background:url(../images/T1CCRNXmRFXXXXXXXX.png) no-repeat -100px -20px;}
+#site-nav .quick-menu .mini-cart a:hover{color:#f50;}
+#site-nav .quick-menu .mini-cart strong{color: #f50;padding:0 2px 0 2px;}
+#site-nav .quick-menu .mini-cart .menu-bd {border: #d8d8d8 1px solid;padding: 10px; padding-top: 0px;width: 304px;overflow: hidden; top: 17px; left: 0px; z-index:900}
+
+#site-nav .sites .menu-bd{width:202px;}
+#site-nav .sites .menu-bd a{color:#057BD2}
+#site-nav .iwantbuy .menu-bd{width:82px;}
+#site-nav .seller-center .menu-hd{ width:48px;}
+#site-nav .seller-center .menu-bd{ width: 94px; line-height:1.7;}
+#site-nav .seller-center .menu-bd-panel{padding: 8px 10px;}
+
+#site-nav .shoptop a{color:#666;}
+#site-nav .shoptop a:hover{color:#EE3000; text-decoration:none}
+
+/************** common end ***************************************************/

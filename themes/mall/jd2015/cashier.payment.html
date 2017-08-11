@@ -1,0 +1,135 @@
+{include file="header.html"}
+
+<style type="text/css">
+
+    .mall-nav{ display:none}
+
+</style>
+
+<div id="main" class="w-full">
+
+    <div id="page-cashier" class="w">
+
+        <div class="step step3 mt10 clearfix">
+
+            <span class="fs14 strong f60">{$lang.ckgwc}</span>
+
+            <span class="fs14 strong f60">{$lang.qrddxx}</span>
+
+            <span class="fs14 strong fff">{$lang.fk}</span>
+
+            <span class="fs14 strong">{$lang.qrsh}</span>
+
+            <span class="fs14 strong">{$lang.pj}</span>
+
+        </div>
+
+        <div class="order-form cashier clearfix">
+
+            <form action="index.php?app=cashier&act=goto_pay&order_id={$order.order_id}" method="POST" id="goto_pay">
+
+                <div class="order_info border mt20 clearfix">
+
+                    <div class="ico">
+
+                    </div>
+
+                    <div class="text">
+
+                        <p class="fs14 strong">{$lang.order_created} {$lang.order_amount} <span class="f60">{$order.order_amount|price}</span></p>
+                        
+                        <p>{$lang.xing} 需要现金：{$order.lost_money|price}，需要积分：{$order.use_integral|price}</p>
+
+                        <p>{$lang.xing} {$lang.order_created_desc}{$lang.order_sn}{$order.order_sn}</p>
+
+                        <p>{$lang.xing} <a href="{url app=buyer_order}" target="_blank">{$lang.member_view_order}</a></p>
+
+                    </div>
+
+                </div>
+
+                <div class="buy border padding10 mt10">
+
+                    <h3><b class="ico">{$lang.select_payment}</b></h3>
+
+                    <dl class="defray">
+
+                        <dt><input id="payment_epay" type="radio" name="payment_id" checked="checked" value="0" style="vertical-align:middle; margin-bottom:5px;" />{$lang.epay_desc}&nbsp;&nbsp;<b>{$lang.payment_money}<span style=" color:#FF4D0F"> {$money.money}&nbsp;</span>元</b></dt>
+
+                    </dl>
+                    
+
+
+                    <!--{if $payments.online}-->
+
+                    <dl class="defray">
+
+                        <dt>{$lang.online_payment}</dt>
+
+                        <!--{foreach from=$payments.online item=payment}-->
+
+                        <dd class="mb10 clearfix">
+
+                            <p class="radio float-left"><input id="payment_{$payment.payment_code}" type="radio" name="payment_id" value="{$payment.payment_id}" /></p>
+
+                            <p class="logo float-left"><label for="payment_{$payment.payment_code}"><img src="{$site_url}/includes/payments/{$payment.payment_code}/logo.gif" alt="{$payment.payment_name|escape}-{$payment.payment_desc|escape}" title="{$payment.payment_name|escape}-{$payment.payment_desc|escape}" width="125" height="47" /></label></p>
+
+                            <p class="explain float-left">{$payment.payment_desc|escape}</p>
+
+                        </dd>
+
+                        <!--{/foreach}-->
+
+                    </dl>
+
+                    <!--{/if}-->
+
+                    <!--{if $payments.offline}-->
+
+                    <dl class="defray">
+
+                        <dt>{$lang.offline_payment}</dt>
+
+                        <!--{foreach from=$payments.offline item=payment}-->
+
+                        <dd class="mb10 clearfix">
+
+                            <p class="radio float-left"><input type="radio" id="payment_{$payment.payment_code}" name="payment_id" value="{$payment.payment_id}" /></p>
+
+                            <p class="logo float-left"><label for="payment_{$payment.payment_code}"><img alt="{$payment.payment_name|escape}-{$payment.payment_desc|escape}" title="{$payment.payment_name|escape}-{$payment.payment_desc|escape}" src="{$site_url}/includes/payments/{$payment.payment_code}/logo.gif" width="125" height="47" align="absmiddle"/></label></p>
+
+                            <p class="explain float-left">{$payment.payment_desc|escape}</p>
+
+                        </dd>
+
+                        <!--{/foreach}-->
+
+                    </dl>
+
+                    <!--{/if}-->
+
+
+
+                </div>
+
+                <div class="make_sure mt10 mb20">
+
+                    <p>
+
+                        <a href="javascript:$('#goto_pay').submit();" class="btn-step fff strong fs14">{$lang.confirm_pay}</a>
+
+                    </p>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+
+{include file=server.html}
+
+{include file="footer.html"}

@@ -1,0 +1,41 @@
+{include file="member.header.html"}
+<div class="mb-head">
+    <a href="javascript:history.back(-1)" class="l_b">返回</a>
+    <div class="tit">{$head_msg}</div>
+    <a href="javascript" class="r_b"></a>
+</div>
+
+    <body class="gray">
+        <div class="w320">
+            <div class="mark"> 
+                <div class="bm_con">
+                    <div class="marklist">
+                        <ul>
+                            <br>
+                                <li style="text-align:center;">{$message}
+                                    <!--{if $err_file}-->
+                                    <b style="clear: both; float: left; font-size: 15px;">Error File: <strong>{$err_file}</strong> at <strong>{$err_line}</strong> line.</b>
+                                    <!--{/if}-->
+                                    <!--{if $icon neq "notice"}-->
+                                    <font style="clear: both; display:block; margin:0 0 0 50px;">
+                                        <!--{foreach from=$links item=item}-->
+                                        <a style="color:#aaa;" href="{$item.href}">>> {$item.text}</a><br />
+                                        <!--{/foreach}-->
+                                    </font>
+                                    <!--{/if}-->
+                                </li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <script type="text/javascript">
+            //<!CDATA[
+<!--{if $redirect}-->
+            window.setTimeout("{$redirect}", 1000);
+<!--{/if}-->
+            //]]>
+        </script>
+        
+{include file="member.footer.html"}

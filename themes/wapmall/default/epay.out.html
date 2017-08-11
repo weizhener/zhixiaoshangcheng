@@ -1,0 +1,59 @@
+{include file=member.header.html}
+<div class="mb-head">
+    <a href="javascript:history.back(-1)" class="l_b">返回</a>
+    <div class="tit">修改支付密码</div>
+    <a href="javascript" class="r_b"></a>
+</div>
+{include file=member.submenu.html}
+
+
+<script language = "JavaScript">
+    function tousers()
+    {
+        if (document.to_users.to_user.value == "")
+        {
+            alert("{$lang.zhuanyideyonghubunengweikong}！");
+            document.to_users.to_user.focus();
+            return false;
+        }
+        if (document.to_users.to_money.value == "")
+        {
+            alert("{$lang.tianxiezhuanyidejine}！");
+            document.to_users.to_money.focus();
+            return false;
+        }
+        return true;
+    }
+</script>
+
+<style>
+    .epay_out{margin:10px 16px;}
+</style>
+
+<div class="epay_out">
+    <form name="to_users" onSubmit="return tousers();" method="post">
+        <ul class="form_content">
+            <li>
+                <h3>{$lang.mubiaoyonghu}</h3>
+                <p><input type="text" name="to_user"  value=""  id="to_user"/></p>
+            </li>
+            <li>
+                <h3>{$lang.zhuanchujine}</h3>
+                <p><input type="text" name="to_money"  value=""  id="to_money"/></p>
+            </li>
+            <li>
+                <h3>{$lang.zhifumima}</h3>
+                <p><input type="password" name="zf_pass"  value=""  id="zf_pass"/></p>
+            </li>
+        </ul>
+        <input class="red_btn" type="submit" value="{$lang.submit}" />
+    </form>
+</div>
+
+
+
+
+
+
+
+{include file="member.footer.html"}

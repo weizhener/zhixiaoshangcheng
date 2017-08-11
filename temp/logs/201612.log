@@ -1,0 +1,114 @@
+Thu, 01 Dec 2016 06:15:35 +0000	[256]MySQL Error[1054]: Unknown column 'integral_max_exchange' in 'where clause'
+MySQL Query:SELECT COUNT(*) as c FROM ecm_integral_goods integral_goods WHERE integral_max_exchange > 0
+Wrong File:  D:\DedeAMPZ\WebRoot\ecsp\eccore\model\mysql.php[894]	\eccore\model\mysql.php	550
+Thu, 01 Dec 2016 06:15:36 +0000	[256]MySQL Error[1054]: Unknown column 'integral_max_exchange' in 'where clause'
+MySQL Query:SELECT COUNT(*) as c FROM ecm_integral_goods integral_goods WHERE integral_max_exchange > 0
+Wrong File:  D:\DedeAMPZ\WebRoot\ecsp\eccore\model\mysql.php[894]	\eccore\model\mysql.php	550
+Thu, 01 Dec 2016 06:16:41 +0000	[2]current() [<a href='function.current'>function.current</a>]: Passed variable is not an array or object	\app\integral.app.php	45
+Thu, 01 Dec 2016 06:16:42 +0000	[2]current() [<a href='function.current'>function.current</a>]: Passed variable is not an array or object	\app\integral.app.php	45
+Thu, 01 Dec 2016 06:17:11 +0000	[2]current() [<a href='function.current'>function.current</a>]: Passed variable is not an array or object	\app\integral.app.php	45
+Thu, 01 Dec 2016 06:17:12 +0000	[2]current() [<a href='function.current'>function.current</a>]: Passed variable is not an array or object	\app\integral.app.php	45
+Thu, 01 Dec 2016 06:20:36 +0000	[256]MySQL Error[1054]: Unknown column 'integral_max_exchange' in 'where clause'
+MySQL Query:SELECT COUNT(*) as c FROM ecm_integral_goods integral_goods WHERE integral_max_exchange > 0
+Wrong File:  D:\DedeAMPZ\WebRoot\ecsp\eccore\model\mysql.php[894]	\eccore\model\mysql.php	550
+Fri, 09 Dec 2016 03:10:07 +0000	[2]include_once(D:\DedeAMPZ\WebRoot\ecsp/includes/models/s.model.php) [<a href='function.include-once'>function.include-once</a>]: failed to open stream: No such file or directory	\eccore\ecmall.php	641
+Fri, 09 Dec 2016 03:10:13 +0000	[2]include_once(D:\DedeAMPZ\WebRoot\ecsp/includes/models/s.model.php) [<a href='function.include-once'>function.include-once</a>]: failed to open stream: No such file or directory	\eccore\ecmall.php	641
+Fri, 09 Dec 2016 03:10:14 +0000	[2]include_once(D:\DedeAMPZ\WebRoot\ecsp/includes/models/user_priv.model.php) [<a href='function.include-once'>function.include-once</a>]: failed to open stream: No such file or directory	\eccore\ecmall.php	641
+Fri, 09 Dec 2016 03:10:37 +0000	[2]include_once(D:\DedeAMPZ\WebRoot\ecsp/includes/models/s.model.php) [<a href='function.include-once'>function.include-once</a>]: failed to open stream: No such file or directory	\eccore\ecmall.php	647
+Fri, 09 Dec 2016 03:10:38 +0000	[2]include_once(D:\DedeAMPZ\WebRoot\ecsp/includes/models/s.model.php) [<a href='function.include-once'>function.include-once</a>]: failed to open stream: No such file or directory	\eccore\ecmall.php	647
+Fri, 09 Dec 2016 03:10:40 +0000	[2]include_once(D:\DedeAMPZ\WebRoot\ecsp/includes/models/s.model.php) [<a href='function.include-once'>function.include-once</a>]: failed to open stream: No such file or directory	\eccore\ecmall.php	647
+Fri, 09 Dec 2016 05:04:21 +0000	[2]mysql_fetch_array(): supplied argument is not a valid MySQL result resource	\eccore\model\mysql.php	446
+Fri, 09 Dec 2016 05:04:26 +0000	[2]mysql_fetch_array(): supplied argument is not a valid MySQL result resource	\eccore\model\mysql.php	446
+Sun, 11 Dec 2016 09:16:32 +0000	[2]file_get_contents(http://ip.taobao.com/service/getIpInfo.php?ip=192.168.3.7) [<a href='function.file-get-contents'>function.file-get-contents</a>]: failed to open stream: HTTP request failed! 	\includes\models\region.model.php	285
+Sun, 11 Dec 2016 09:44:58 +0000	[2]filemtime() [<a href='function.filemtime'>function.filemtime</a>]: stat failed for D:\DedeAMPZ\WebRoot\ecsp/data/crond.lock	\includes\libraries\cron.lib.php	259
+Sun, 11 Dec 2016 10:09:58 +0000	[2]file_get_contents(http://ip.taobao.com/service/getIpInfo.php?ip=192.168.3.7) [<a href='function.file-get-contents'>function.file-get-contents</a>]: failed to open stream: HTTP request failed! 	\includes\models\region.model.php	285
+Mon, 12 Dec 2016 03:21:50 +0000	[2]MallbaseApp::include(D:\DedeAMPZ\WebRoot\ecsp/includes/payments/epaywxnative/epaywxnative.payment.php) [<a href='function.MallbaseApp-include'>function.MallbaseApp-include</a>]: failed to open stream: No such file or directory	\app\frontend.base.php	1539
+Mon, 12 Dec 2016 03:21:52 +0000	[2]MallbaseApp::include(D:\DedeAMPZ\WebRoot\ecsp/includes/payments/epaywxnative/epaywxnative.payment.php) [<a href='function.MallbaseApp-include'>function.MallbaseApp-include</a>]: failed to open stream: No such file or directory	\app\frontend.base.php	1539
+Mon, 12 Dec 2016 03:40:41 +0000	[2]mysql_fetch_array(): supplied argument is not a valid MySQL result resource	\eccore\model\mysql.php	446
+Mon, 12 Dec 2016 05:31:26 +0000	[2]in_array() [<a href='function.in-array'>function.in-array</a>]: Wrong datatype for second argument	\app\jinhua.app.php	48
+Mon, 12 Dec 2016 05:50:23 +0000	[2]mysql_num_rows(): supplied argument is not a valid MySQL result resource	\eccore\model\mysql.php	671
+Tue, 13 Dec 2016 07:48:33 +0000	[2]file_get_contents(http://ip.taobao.com/service/getIpInfo.php?ip=1.80.120.242) [<a href='function.file-get-contents'>function.file-get-contents</a>]: failed to open stream: HTTP request failed! 	\includes\models\region.model.php	285
+Tue, 13 Dec 2016 12:10:06 +0000	[2]MallbaseApp::include(D:\DedeAMPZ\WebRoot\kehuceshi\ykt/includes/payments/epaywxnative/epaywxnative.payment.php) [<a href='function.MallbaseApp-include'>function.MallbaseApp-include</a>]: failed to open stream: No such file or directory	\app\frontend.base.php	1539
+Wed, 14 Dec 2016 02:22:38 +0000	[2]Division by zero	\external\widgets\mall\ju_slides_mp\main.widget.php	43
+Wed, 14 Dec 2016 03:20:47 +0000	[2]Division by zero	\external\widgets\mall\ju_slides_mp\main.widget.php	43
+Thu, 15 Dec 2016 01:33:19 +0000	[2]MallbaseApp::include(D:\DedeAMPZ\WebRoot\kehuceshi\ykt/includes/payments/epaywxnative/epaywxnative.payment.php) [<a href='function.MallbaseApp-include'>function.MallbaseApp-include</a>]: failed to open stream: No such file or directory	\app\frontend.base.php	1539
+Thu, 15 Dec 2016 02:06:12 +0000	[2]fsockopen() [<a href='function.fsockopen'>function.fsockopen</a>]: php_network_getaddresses: getaddrinfo failed: 不知道这样的主机。 	\includes\libraries\class.smtp.php	161
+Thu, 15 Dec 2016 02:06:16 +0000	[2]fsockopen() [<a href='function.fsockopen'>function.fsockopen</a>]: php_network_getaddresses: getaddrinfo failed: 不知道这样的主机。 	\includes\libraries\class.smtp.php	161
+Thu, 15 Dec 2016 02:06:17 +0000	[2]fsockopen() [<a href='function.fsockopen'>function.fsockopen</a>]: php_network_getaddresses: getaddrinfo failed: 不知道这样的主机。 	\includes\libraries\class.smtp.php	161
+Thu, 15 Dec 2016 02:06:19 +0000	[2]fsockopen() [<a href='function.fsockopen'>function.fsockopen</a>]: php_network_getaddresses: getaddrinfo failed: 不知道这样的主机。 	\includes\libraries\class.smtp.php	161
+Thu, 15 Dec 2016 02:06:29 +0000	[2]fsockopen() [<a href='function.fsockopen'>function.fsockopen</a>]: php_network_getaddresses: getaddrinfo failed: 不知道这样的主机。 	\includes\libraries\class.smtp.php	161
+Fri, 16 Dec 2016 03:54:26 +0000	[256]MySQL Error[1064]: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ') / (24 * 3600)) AS sn, access_time, COUNT(*) AS access_count FROM ecm_stats  WH' at line 1
+MySQL Query:SELECT FLOOR((access_time - ) / (24 * 3600)) AS sn, access_time, COUNT(*) AS access_count FROM ecm_stats  WHERE access_time >= '' AND access_time <= 172800 GROUP BY sn
+Wrong File:  D:\DedeAMPZ\WebRoot\kehuceshi\ykt\admin\app\flow_stats.app.php[65]	\eccore\model\mysql.php	555
+Fri, 16 Dec 2016 05:56:42 +0000	[256]MySQL Error[1052]: Column 'status' in where clause is ambiguous
+MySQL Query:SELECT COUNT(*) as c FROM ecm_customer_message customer_message LEFT JOIN ecm_goods g ON customer_message.goods_id = g.goods_id WHERE customer_message.type=4 AND status = 1
+Wrong File:  D:\DedeAMPZ\WebRoot\kehuceshi\ykt\eccore\model\mysql.php[949]	\eccore\model\mysql.php	555
+Fri, 16 Dec 2016 05:56:47 +0000	[256]MySQL Error[1052]: Column 'status' in where clause is ambiguous
+MySQL Query:SELECT COUNT(*) as c FROM ecm_customer_message customer_message LEFT JOIN ecm_goods g ON customer_message.goods_id = g.goods_id WHERE customer_message.type=4 AND status = 0
+Wrong File:  D:\DedeAMPZ\WebRoot\kehuceshi\ykt\eccore\model\mysql.php[949]	\eccore\model\mysql.php	555
+Sat, 17 Dec 2016 04:55:59 +0000	[2]filemtime() [<a href='function.filemtime'>function.filemtime</a>]: stat failed for D:\DedeAMPZ\WebRoot\kehuceshi\ykt/data/crond.lock	\includes\libraries\cron.lib.php	259
+Sat, 17 Dec 2016 04:55:59 +0000	[2]filemtime() [<a href='function.filemtime'>function.filemtime</a>]: stat failed for D:\DedeAMPZ\WebRoot\kehuceshi\ykt/data/crond.lock	\includes\libraries\cron.lib.php	259
+Sat, 17 Dec 2016 04:55:59 +0000	[2]filemtime() [<a href='function.filemtime'>function.filemtime</a>]: stat failed for D:\DedeAMPZ\WebRoot\kehuceshi\ykt/data/crond.lock	\includes\libraries\cron.lib.php	259
+Sat, 17 Dec 2016 04:55:59 +0000	[2]filemtime() [<a href='function.filemtime'>function.filemtime</a>]: stat failed for D:\DedeAMPZ\WebRoot\kehuceshi\ykt/data/crond.lock	\includes\libraries\cron.lib.php	259
+Sat, 17 Dec 2016 04:56:01 +0000	[2]filemtime() [<a href='function.filemtime'>function.filemtime</a>]: stat failed for D:\DedeAMPZ\WebRoot\kehuceshi\ykt/data/crond.lock	\includes\libraries\cron.lib.php	259
+Sat, 17 Dec 2016 05:57:52 +0000	[256]MySQL Error[1054]: Unknown column 'eee' in 'where clause'
+MySQL Query:SELECT *,member.user_id FROM ecm_member member WHERE eee
+Wrong File:  D:\DedeAMPZ\WebRoot\kehuceshi\ykt\eccore\model\mysql.php[1101]	\eccore\model\mysql.php	555
+Sat, 17 Dec 2016 06:03:33 +0000	[256]MySQL Error[1054]: Unknown column 'qqq' in 'where clause'
+MySQL Query:SELECT *,member.user_id FROM ecm_member member WHERE qqq
+Wrong File:  D:\DedeAMPZ\WebRoot\kehuceshi\ykt\eccore\model\mysql.php[1101]	\eccore\model\mysql.php	555
+Sat, 17 Dec 2016 08:23:18 +0000	[2]MallbaseApp::include(D:\DedeAMPZ\WebRoot\kehuceshi\ykt/includes/payments/epaywxnative/epaywxnative.payment.php) [<a href='function.MallbaseApp-include'>function.MallbaseApp-include</a>]: failed to open stream: No such file or directory	\app\frontend.base.php	1539
+Sun, 18 Dec 2016 07:01:21 +0000	[2]filemtime() [<a href='function.filemtime'>function.filemtime</a>]: stat failed for D:\DedeAMPZ\WebRoot\kehuceshi\ykt/data/crond.lock	\includes\libraries\cron.lib.php	259
+Mon, 19 Dec 2016 02:24:22 +0000	[2]filemtime() [<a href='function.filemtime'>function.filemtime</a>]: stat failed for D:\DedeAMPZ\WebRoot\kehuceshi\ykt/data/crond.lock	\includes\libraries\cron.lib.php	259
+Mon, 19 Dec 2016 06:37:59 +0000	[2]unlink(D:\DedeAMPZ\WebRoot\kehuceshi\ykt/data/files/store_6/goods_9/index.htm) [<a href='function.unlink'>function.unlink</a>]: No such file or directory	\admin\app\store.app.php	1351
+Mon, 19 Dec 2016 06:38:00 +0000	[2]rmdir(D:\DedeAMPZ\WebRoot\kehuceshi\ykt/data/files/store_6) [<a href='function.rmdir'>function.rmdir</a>]: Directory not empty	\admin\app\store.app.php	1361
+Tue, 20 Dec 2016 02:18:08 +0000	[2]mysql_fetch_array(): supplied argument is not a valid MySQL result resource	\eccore\model\mysql.php	449
+Tue, 20 Dec 2016 02:18:31 +0000	[2]mysql_fetch_array(): supplied argument is not a valid MySQL result resource	\eccore\model\mysql.php	449
+Tue, 20 Dec 2016 02:18:45 +0000	[2]mysql_fetch_array(): supplied argument is not a valid MySQL result resource	\eccore\model\mysql.php	449
+Tue, 20 Dec 2016 02:19:24 +0000	[2]mysql_fetch_array(): supplied argument is not a valid MySQL result resource	\eccore\model\mysql.php	449
+Tue, 20 Dec 2016 02:19:36 +0000	[2]mysql_fetch_array(): supplied argument is not a valid MySQL result resource	\eccore\model\mysql.php	449
+Tue, 20 Dec 2016 02:21:52 +0000	[2]mysql_fetch_array(): supplied argument is not a valid MySQL result resource	\eccore\model\mysql.php	449
+Tue, 20 Dec 2016 02:22:21 +0000	[2]mysql_fetch_array(): supplied argument is not a valid MySQL result resource	\eccore\model\mysql.php	449
+Tue, 20 Dec 2016 02:22:55 +0000	[2]mysql_fetch_array(): supplied argument is not a valid MySQL result resource	\eccore\model\mysql.php	449
+Tue, 20 Dec 2016 03:38:37 +0000	[2]filemtime() [<a href='function.filemtime'>function.filemtime</a>]: stat failed for D:\DedeAMPZ\WebRoot\kehuceshi\ykt/data/crond.lock	\includes\libraries\cron.lib.php	259
+Tue, 20 Dec 2016 03:41:47 +0000	[2]filemtime() [<a href='function.filemtime'>function.filemtime</a>]: stat failed for D:\DedeAMPZ\WebRoot\kehuceshi\ykt/data/crond.lock	\includes\libraries\cron.lib.php	259
+Tue, 20 Dec 2016 04:20:32 +0000	[2]filemtime() [<a href='function.filemtime'>function.filemtime</a>]: stat failed for D:\DedeAMPZ\WebRoot\kehuceshi\ykt/data/crond.lock	\includes\libraries\cron.lib.php	259
+Tue, 20 Dec 2016 04:28:37 +0000	[2]filemtime() [<a href='function.filemtime'>function.filemtime</a>]: stat failed for D:\DedeAMPZ\WebRoot\kehuceshi\ykt/data/crond.lock	\includes\libraries\cron.lib.php	259
+Tue, 20 Dec 2016 05:05:42 +0000	[2]filemtime() [<a href='function.filemtime'>function.filemtime</a>]: stat failed for D:\DedeAMPZ\WebRoot\kehuceshi\ykt/data/crond.lock	\includes\libraries\cron.lib.php	259
+Tue, 20 Dec 2016 05:12:42 +0000	[2]filemtime() [<a href='function.filemtime'>function.filemtime</a>]: stat failed for D:\DedeAMPZ\WebRoot\kehuceshi\ykt/data/crond.lock	\includes\libraries\cron.lib.php	259
+Sat, 24 Dec 2016 02:24:38 +0000	[2]file_get_contents(http://ip.taobao.com/service/getIpInfo.php?ip=111.206.36.8) [<a href='function.file-get-contents'>function.file-get-contents</a>]: failed to open stream: HTTP request failed! 	\includes\models\region.model.php	285
+Sat, 24 Dec 2016 02:26:27 +0000	[2]file_get_contents(http://ip.taobao.com/service/getIpInfo.php?ip=117.38.165.29) [<a href='function.file-get-contents'>function.file-get-contents</a>]: failed to open stream: HTTP request failed! 	\includes\models\region.model.php	285
+Sun, 25 Dec 2016 14:59:37 +0000	[2]file_get_contents(http://ip.taobao.com/service/getIpInfo.php?ip=123.53.203.92) [<a href='function.file-get-contents'>function.file-get-contents</a>]: failed to open stream: HTTP request failed! 	\includes\models\region.model.php	285
+Mon, 26 Dec 2016 01:22:17 +0000	[2]filemtime() [<a href='function.filemtime'>function.filemtime</a>]: stat failed for D:\DedeAMPZ\WebRoot\kehuceshi\ykt/data/crond.lock	\includes\libraries\cron.lib.php	259
+Mon, 26 Dec 2016 01:54:37 +0000	[2]mysql_fetch_array(): supplied argument is not a valid MySQL result resource	\eccore\model\mysql.php	449
+Mon, 26 Dec 2016 02:06:53 +0000	[256]MySQL Error[1054]: Unknown column 'undefined' in 'order clause'
+MySQL Query:SELECT g.goods_id,g.status, g.store_id, g.type, g.goods_name, g.cate_id, g.cate_name, g.brand, g.spec_qty, g.spec_name_1, g.spec_name_2, g.if_show, g.closed, g.add_time,g.gh_price,g.fengcheng,g.is_pass, g.recommended, g.default_image,g.mall_recommended,g.mall_sort_order, gs.spec_id, gs.spec_1, gs.spec_2, gs.color_rgb, gs.price,gs.gh_price, gs.stock, s.store_name, s.region_id, s.region_name, s.credit_value, s.sgrade, gp.pvs, gst.views, gst.sales, gst.comments FROM ecm_goods g LEFT JOIN ecm_goods_spec gs ON g.default_spec = gs.spec_id LEFT JOIN ecm_store s ON g.store_id = s.store_id LEFT JOIN ecm_goods_pvs gp ON g.goods_id=gp.goods_id LEFT JOIN ecm_goods_statistics gst ON g.goods_id = gst.goods_id  WHERE 1 = 1 AND gs.spec_id IS NOT NULL AND s.store_id IS NOT NULL  ORDER BY undefined asc, s.sort_order  LIMIT 0,10
+Wrong File:  D:\DedeAMPZ\WebRoot\kehuceshi\ykt\eccore\model\mysql.php[1101]	\eccore\model\mysql.php	555
+Mon, 26 Dec 2016 02:07:22 +0000	[256]MySQL Error[1054]: Unknown column 'undefined' in 'order clause'
+MySQL Query:SELECT g.goods_id,g.status, g.store_id, g.type, g.goods_name, g.cate_id, g.cate_name, g.brand, g.spec_qty, g.spec_name_1, g.spec_name_2, g.if_show, g.closed, g.add_time,g.gh_price,g.fengcheng,g.is_pass, g.recommended, g.default_image,g.mall_recommended,g.mall_sort_order, gs.spec_id, gs.spec_1, gs.spec_2, gs.color_rgb, gs.price,gs.gh_price, gs.stock, s.store_name, s.region_id, s.region_name, s.credit_value, s.sgrade, gp.pvs, gst.views, gst.sales, gst.comments FROM ecm_goods g LEFT JOIN ecm_goods_spec gs ON g.default_spec = gs.spec_id LEFT JOIN ecm_store s ON g.store_id = s.store_id LEFT JOIN ecm_goods_pvs gp ON g.goods_id=gp.goods_id LEFT JOIN ecm_goods_statistics gst ON g.goods_id = gst.goods_id  WHERE 1 = 1 AND gs.spec_id IS NOT NULL AND s.store_id IS NOT NULL  ORDER BY undefined asc, s.sort_order  LIMIT 0,10
+Wrong File:  D:\DedeAMPZ\WebRoot\kehuceshi\ykt\eccore\model\mysql.php[1101]	\eccore\model\mysql.php	555
+Mon, 26 Dec 2016 04:59:18 +0000	[2]file_get_contents(http://ip.taobao.com/service/getIpInfo.php?ip=113.138.30.160) [<a href='function.file-get-contents'>function.file-get-contents</a>]: failed to open stream: HTTP request failed! 	\includes\models\region.model.php	285
+Tue, 27 Dec 2016 05:27:50 +0000	[2]filemtime() [<a href='function.filemtime'>function.filemtime</a>]: stat failed for D:\DedeAMPZ\WebRoot\kehuceshi\ykt/data/crond.lock	\includes\libraries\cron.lib.php	259
+Tue, 27 Dec 2016 09:01:01 +0000	[256]MySQL Error[1064]: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ') / (24 * 3600)) AS sn, access_time, COUNT(*) AS access_count FROM ecm_stats  WH' at line 1
+MySQL Query:SELECT FLOOR((access_time - ) / (24 * 3600)) AS sn, access_time, COUNT(*) AS access_count FROM ecm_stats  WHERE access_time >= '' AND access_time <= 172800 GROUP BY sn
+Wrong File:  D:\DedeAMPZ\WebRoot\kehuceshi\ykt\admin\app\flow_stats.app.php[65]	\eccore\model\mysql.php	555
+Wed, 28 Dec 2016 23:42:21 +0000	[2]mysql_fetch_array(): supplied argument is not a valid MySQL result resource	\eccore\model\mysql.php	449
+Wed, 28 Dec 2016 23:42:25 +0000	[2]mysql_fetch_array(): supplied argument is not a valid MySQL result resource	\eccore\model\mysql.php	449
+Wed, 28 Dec 2016 23:42:28 +0000	[2]mysql_fetch_array(): supplied argument is not a valid MySQL result resource	\eccore\model\mysql.php	449
+Thu, 29 Dec 2016 06:18:58 +0000	[2]filemtime() [<a href='function.filemtime'>function.filemtime</a>]: stat failed for D:\DedeAMPZ\WebRoot\kehuceshi\ykt/data/crond.lock	\includes\libraries\cron.lib.php	259
+Fri, 30 Dec 2016 00:34:01 +0000	[2]mysql_fetch_array(): supplied argument is not a valid MySQL result resource	\eccore\model\mysql.php	449
+Fri, 30 Dec 2016 00:34:12 +0000	[2]mysql_fetch_array(): supplied argument is not a valid MySQL result resource	\eccore\model\mysql.php	449
+Fri, 30 Dec 2016 00:39:06 +0000	[2]mysql_fetch_array(): supplied argument is not a valid MySQL result resource	\eccore\model\mysql.php	449
+Fri, 30 Dec 2016 01:04:37 +0000	[2]Division by zero	\includes\ecapp.base.php	1586
+Fri, 30 Dec 2016 01:04:40 +0000	[2]Division by zero	\includes\ecapp.base.php	1586
+Fri, 30 Dec 2016 01:17:12 +0000	[2]mysql_fetch_array(): supplied argument is not a valid MySQL result resource	\eccore\model\mysql.php	449
+Fri, 30 Dec 2016 01:17:12 +0000	[2]mysql_fetch_array(): supplied argument is not a valid MySQL result resource	\eccore\model\mysql.php	449
+Fri, 30 Dec 2016 01:17:12 +0000	[2]mysql_fetch_array(): supplied argument is not a valid MySQL result resource	\eccore\model\mysql.php	449
+Fri, 30 Dec 2016 01:17:13 +0000	[2]mysql_fetch_array(): supplied argument is not a valid MySQL result resource	\eccore\model\mysql.php	449
+Fri, 30 Dec 2016 01:17:16 +0000	[2]mysql_fetch_array(): supplied argument is not a valid MySQL result resource	\eccore\model\mysql.php	449
+Fri, 30 Dec 2016 01:17:16 +0000	[2]mysql_fetch_array(): supplied argument is not a valid MySQL result resource	\eccore\model\mysql.php	449
+Fri, 30 Dec 2016 01:17:22 +0000	[2]mysql_fetch_array(): supplied argument is not a valid MySQL result resource	\eccore\model\mysql.php	449
+Fri, 30 Dec 2016 01:17:33 +0000	[2]mysql_fetch_array(): supplied argument is not a valid MySQL result resource	\eccore\model\mysql.php	449
+Fri, 30 Dec 2016 01:17:36 +0000	[2]mysql_fetch_array(): supplied argument is not a valid MySQL result resource	\eccore\model\mysql.php	449
+Fri, 30 Dec 2016 01:20:28 +0000	[2]mysql_fetch_array(): supplied argument is not a valid MySQL result resource	\eccore\model\mysql.php	449
+Fri, 30 Dec 2016 01:30:43 +0000	[2]mysql_fetch_array(): supplied argument is not a valid MySQL result resource	\eccore\model\mysql.php	449

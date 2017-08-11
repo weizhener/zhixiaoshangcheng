@@ -1,0 +1,136 @@
+@charset "utf-8";
+*{margin:0;padding:0;}
+h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:500;}
+body{
+	color: #525252;
+	background-color: #fff;
+	min-width:320px;
+	font-size:14px;
+	font-family:"ff-tisa-web-pro-1","ff-tisa-web-pro-2","Lucida Grande","Hiragino Sans GB","Hiragino Sans GB W3","Microsoft YaHei";
+}
+fieldset,img{border:0;}
+ol,ul{list-style:none;}
+table{border-collapse:collapse;border-spacing:0;}
+a{color: #333;text-decoration:none;}
+.auto{
+	background-color: #eaeaea;
+	max-width: 640px;
+	min-width:320px;
+	margin: 0 auto;
+}
+/* 头部 */
+.header{ height:40px; position:fixed; left:0; top:0; width:100%; z-index:9999; background:#964914; box-shadow:rgba(0,0,0,0.3) 1px 1px 3px;}
+.header .logo{ height:45px; float:left; width:130px;}
+.header .logo img{ height:40px;}
+.header .searchBar{ float:left; position:relative; height:40px; }
+.header .search_text{ float:left;height:30px; margin:5px 3%; border:none; width:94%; padding:0 35px 0 10px;border-radius:50px; color:#666;}
+.header .search_btn_img,.header .search_btn{ border:none; height:40px; width:40px; position:absolute; right:3%; bottom:5px; height:30px; cursor:pointer; }
+.header .search_btn{ z-index:9999;opacity:0;}
+/* 二级菜单 */
+.sub_menu{overflow:scroll; left:0;}
+.sub_menu,.shop_info{ background:rgba(0,0,0,0.8); position:absolute; top:40px; z-index:1000; width:100%; display:none; }
+.sub_menu ul li h2{ display:block; list-style:circle; cursor:pointer;  margin:0;color:#efefef; font-weight:bold; font-size:16px; padding:7px 20px; display:block; text-align:left;}
+.sub_menu ul li h2:active,.sub_menu_list a:active{ background:#000;}
+.sub_menu .fun{ border-top:#444 solid 1px; padding:10px 20px; overflow:hidden;}
+.sub_menu .fun a{color:#000; display:block; float:left; background:url(../images/arr.png) no-repeat 99% 15px #fff; background-size:13px;  font-size:16px;vertical-align:middle; width:100%; height:40px; line-height:40px; text-align:left; margin-bottom:5px;}
+.sub_menu .fun .code{ float:left;}
+.sub_menu .fun .fav{ float:right;}
+.sub_menu .fun img{ width:30px; height:30px; margin:0 10px 5px; vertical-align:middle;}
+.sub_menu_list{ display:none; background:rgba(255,255,255,0.1);}
+.sub_menu_list a{ font-weight:normal;display:block; list-style:circle; margin:0;color:#efefef;  font-size:16px; padding:7px 10px; display:block; text-align:left;}
+.sub_menu_list li{ margin-left:20px; font-weight:normal; font-size:14px;}
+/* 店铺信息 */
+.shop_info{ background:#333;padding:10px; display:none; left:100%;}
+.shop_info .shop_code{ width:140px; height:140px; float:left; margin-right:10px;}
+.shop_info .shop_name{ color:#fff; padding:0 0 5px 0; font-size:18px;}
+.shop_info .shop_detail{ overflow:hidden; width:140px;}
+.shop_info .shop_detail span{ color:#fff; display:block;  float:left; font-size:14px; line-height:28px;}
+.shop_info .shop_detail span strong{ color:#c00; font-size:16px;}
+.shop_info .back{ background:#fff; border:#ccc solid 3px; display:block; width:132px; float:left; padding:5px; text-align:center; margin-top:10px;}
+.fav_msg{display:none;position:fixed;  top:25%; left:25%; background:rgba(0,0,0,0.2); overflow:hidden; color:#fff; padding:3%;border-radius:10px; font-size:18px; height:39px; line-height:39px; vertical-align:middle; text-align:center; z-index:12345; vertical-align:middle;}
+.fav_msg img{ margin-right:5px;}
+/*banner*/
+.banner{margin: 40px auto 0; position:relative; background:#fff; width:100%; overflow:hidden;}
+#z_slider .flex-control-nav{ background:rgba(0,0,0,0.6); height:20px; line-height:20px;}
+#z_slider .flex-control-paging li a{background-color: #999;}
+#z_slider .flex-control-nav li{ margin:5px 6px;}
+#z_slider .flex-control-paging li a.flex-active{ background-color:#fff;}
+#z_slider .flex-control-paging li a{border-radius:0; }
+/* 分类 */
+.sort{ background:#fff; overflow:hidden; padding-bottom:10px; }
+.sort a{ float:left; width:25%; display:block; text-align:center;}
+.sort li{overflow:hidden;}
+.sort li .imgbox{width:73px; height:73px; background:#eee; box-shadow:rgba(0,0,0,0.3) 1px 1px 2px inset;border-radius:50px; margin:10px auto;}
+.sort li .imgbox:hover,.sort li .imgbox:active{
+		box-shadow:60px 1px 2px rgba(0, 0, 0, 0.3) inset;
+		-webkit-transition: all 0.5s linear;
+		-moz-transition: all 0.5s linear;
+		-o-transition: all 0.5s linear;
+		transition: all 0.5s linear;
+		}
+.sort li img{ width:65px; height:65px; border-radius:50px; background:#964914;box-shadow:rgba(0,0,0,0.3) 1px 1px 1px; margin-top:4px;}
+.sort li span{ text-align:center;width:73px; margin:0 auto; display:block;text-overflow:ellipsis;white-space:nowrap; overflow:hidden;}
+/* 列表 */
+.lists{ overflow:hidden;  border-top:#eee solid 1px; padding-bottom:1%;}
+.lists h2{ border-left:#222 solid 5px;  padding:2%; color:#f0f0f0; background:#964914;}
+.lists h2 a{ float:right; color:#f0f0f0;}
+.lists ul{ padding:0 1% 0 0;}
+.lists .goods{ width:49%; display:block; float:left; padding:1% 0 0 1%;}
+.lists li{ float:left;  float:left; background:#fff; width:100%; border:#ccc solid 1px;}
+.lists li .g_box{ position:relative;}
+.lists li img{width:100%;}
+.lists p{ text-align:left; width:90%; padding:5%; overflow:hidden; position:absolute; left:0; bottom:0; background:rgba(0,0,0,0.6); color:#fff;}
+.lists span{ display:block; text-align:left; color:#b20005; font-weight:bold; font-size:12px; position:absolute; top:50px; right:5px; padding:5px; border-radius:50px; background:rgba(255,255,255,0.6); box-shadow:rgba(0,0,0,0.3) 1px 1px 2px;}
+.lists1{ margin-top:90px;border-top:none;}
+/* 底部 */
+.footer{ width:100%; text-align:center; padding:10px 0; border-top:#964914 solid 3px; background:#f9f9f9; position:relative;overflow:hidden;}
+.footer p{ margin:2px 0; font-size:12px;}
+.footer p a{ margin:0 5px; font-size:12px;}
+.footer .top{ position:absolute; right:0; bottom:33px; width:50px; height:27px; }
+.footer .top img{ width:100%;}
+
+/* 底部导航 */
+.footer_nav{ position:fixed; left:0; bottom:0; width:100%;background:#fff; border-top:#964914 solid 5px; z-index:99999; }
+.footer_nav .toggle_nav{ position:relative;}
+.footer_nav .bottom_nav_btn{ width:50px; height:50px; display:block; background:#964914; cursor:pointer; border-radius:5px 5px 0 0; position:absolute; top:-50px; left:5px;}
+.footer_nav .bottom_nav_btn img{ width:40px; height:40px; margin:0 5px;}
+.footer_nav .nav{background:#fff; height:0; overflow:hidden;}
+.footer_nav .nav li{ float:left; width:25%; text-align:center;}
+.footer_nav .nav li span{ border-right:#EAEAEA solid 1px;width:100%; display:block; margin-top:5px;}
+.footer_nav .nav a:last-child span{ border-right:none;}
+.footer_nav .nav li span img{ width:30px;}
+
+
+
+/* 团购 */.tuan-title{ border-left:#222 solid 5px;  padding:2%; color:#f0f0f0; background:#964914; }
+.tuan_box{ overflow:hidden; padding:10px; background:#eee; position:relative;}
+.tuan_list{  overflow:hidden; text-align:center; position:relative; width:100%;}
+.tuan_list li a{display:inline-block;  width:200px; padding-bottom:5px; border:#eee solid 1px;}
+.tuan_list li .con{ padding:10px;box-shadow:rgba(0,0,0,0.3) 1px 1px 2px; font-size:12px; background:#fff;}
+.tuan_list li .con span{ display:block; margin:5px 0;}
+.tuan_list li .con .tuan_price strong{ color:#b20005;}
+.tuan_list li img{ width:100%;}
+.tuan_list li .con .s_time img{ width:20px; height:20px; vertical-align:bottom;}
+.tuan_imgbox{ position:relative;}
+.tuan_imgbox p{overflow:hidden;  text-overflow: ellipsis;    white-space: nowrap; position:absolute; left:0; bottom:0; width:100%; background:rgba(0,0,0,0.7); color:#fff; padding:3px 0; text-align:center;}
+.tuan_box .prenext{ width:17px; height:43px; background:url(../images/nextpre.png) no-repeat 0 7px; display:block; position:absolute; top:118px; background-size:35px;}
+.tuan_box .pre{ left:20px;}
+.tuan_box .next{ background-position:-18px 7px; right:20px;}
+
+
+.red_btn{
+background:#111;
+background:linear-gradient(to bottom,#964914,#964914);
+background: -moz-linear-gradient(top, #964914,#964914);
+background: -webkit-gradient(linear, 0 0, 0 100%, from(#964914), to(#964914));
+border:#964914 solid 1px;border-radius:3px;
+color:#fff;
+}
+.red_btn:active{
+background:#222;
+background:linear-gradient(to bottom,#964914,#964914);
+background: -moz-linear-gradient(top, #964914,#964914);
+background: -webkit-gradient(linear, 0 0, 0 100%, from(#964914), to(#964914));
+border:#964914 solid 1px;border-radius:3px;
+color:#fff;
+}

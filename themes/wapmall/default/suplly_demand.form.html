@@ -1,0 +1,219 @@
+{include file=member.header.html}
+<script type="text/javascript">
+//<!CDATA[
+function add_uploadedfile(file_data)
+{
+        $('#desc_images').append('<li file_name="'+ file_data.file_name +'" file_path="'+ file_data.file_path +'" ectype="handle_pic" file_id="'+ file_data.file_id +'"><input type="hidden" name="desc_file_id[]" value="'+ file_data.file_id +'"><div class="pic" style="z-index: 2;"><img src="{$site_url}/'+ file_data.file_path +'" width="50" height="50" alt="'+ file_data.file_name +'" /></div><div ectype="handler" class="bg" style="z-index: 3;display:none"><img src="{$site_url}/'+ file_data.file_path +'" width="50" height="50" alt="'+ file_data.file_name +'" /><p class="operation"><a href="javascript:void(0);" class="cut_in" ectype="insert_editor" ecm_title="{$lang.insert_editor}"></a><span class="delete" ectype="drop_image" ecm_title="{$lang.drop}"></span></p><p class="name">'+ file_data.file_name +'</p></div></li>');
+        trigger_uploader();
+        if(EDITOR_SWFU.getStats().files_queued == 0){
+                window.setTimeout(function(){
+                        $('#editor_uploader').hide();
+                },5000);
+        }
+}
+function drop_image(file_id)
+{
+    if (confirm(lang.uploadedfile_drop_confirm))
+        {
+            var url = SITE_URL + '/index.php?app=supply_demand&act=drop_uploadedfile';
+            $.getJSON(url, {'file_id':file_id}, function(data){
+                if (data.done)
+                {
+                    $('*[file_id="' + file_id + '"]').remove();
+                }
+                else
+                {
+                    alert(data.msg);
+                }
+            });
+        }
+}
+
+$(function(){
+	sdcategoryInit("sdcategory");
+	regionInit("region");
+    $('#suplly_demand_form').validate({
+        errorPlacement: function(error, element){
+            $(element).next('.field_notice').hide();
+            $(element).after(error);
+        },
+        success       : function(label){
+            label.addClass('validate_right').text('OK!');
+        },
+        onkeyup : false,
+        rules : {
+			cate_id : {
+                required   : true
+            },
+			title : {
+                required   : true
+            },
+			region_id : {
+                required   : true
+            },
+            phone      : {
+                required     : true
+            },
+            name      : {
+                required   :true
+            }
+        },
+        messages : {
+            cate_id       : {
+                required     : '{$lang.not_null}'
+            },
+            title      : {
+                required:  '{$lang.not_null}'
+            },
+			region_id      : {
+                required:  '{$lang.not_null}'
+            },
+			phone      : {
+                required:  '{$lang.not_null}'
+            },
+			name      : {
+                required:  '{$lang.not_null}'
+            }
+        }
+    });
+	$("[name='type']").change(function(){
+		if(this.value==1){
+			$("[ectype='demand']").hide();
+			$("[ectype='supply']").show();
+		}
+		else{
+			$("[ectype='demand']").show();
+			$("[ectype='supply']").hide();
+		}
+	});
+	
+
+});
+//]]>
+</script>
+{$editor_upload}
+{$build_editor}
+<div class="fixed">
+	<div class="header header2"><a href="{url app=member}" class="back3_pre">返回</a>用户中心 - 供应信息</div>
+	<ul class="top_tab">
+		<!--{foreach from=$_member_submenu item=_s_m name=member_submenu}-->
+		<!--{if $_curmenu eq $_s_m.name}-->
+		<li class="cur"><a href="{$_s_m.url}">{$_s_m.text}</a></li>
+		<!--{else}-->
+		<li><a href="{$_s_m.url}" >{$_s_m.text}</a></li>
+		<!--{/if}-->
+		<!--{/foreach}-->
+	</ul>
+</div>
+<div class="mian_top"></div>
+<div class="wrap">
+	<form method="post" id="suplly_demand_form" enctype="multipart/form-data" class="form">
+		<div class="form_title">{$lang.type}:</div>
+		<div class="form_main" style="text-align: center;">
+			<input type="radio" name="type" {if $info.type eq 1 or $info.type eq 0}checked{/if} value="1" />
+			<label>{$lang.supply}</label>&nbsp;&nbsp;
+			<input type="radio" name="type" value="2" {if $info.type eq 2}checked{/if} />
+			<label>{$lang.demand}</label>
+			<span class="red">*</span>
+		</div>
+		<div class="form_title">{$lang.cate}:</div>
+		<div class="form_main">
+			<p class="select" id="sdcategory">
+				<!-- {if $info.cate_id} -->
+				<span>{$info.cate_name|escape}</span>
+				<input type="button" value="{$lang.edit}" class="edit_gcategory" />
+				<select style="display:none">
+					<option>{$lang.select_pls}</option>
+					{html_options options=$sdcategories}
+				</select>
+				<!-- {else} -->
+				<select>
+					<option>{$lang.select_pls}</option>
+					{html_options options=$sdcategories}
+				</select>
+				<!-- {/if} -->
+				<input type="hidden" id="cate_id" name="cate_id" value="{$info.cate_id}" class="mls_sdid" />
+				<input type="hidden" id="cate_name" name="cate_name" value="{$info.cate_name}" class="mls_sdnames" />
+				<span class="red">*</span><span class="field_notice">{$lang.sdcate_desc}</span>
+			</p>
+		</div>
+		<div class="form_title">{$lang.demand_price}:</div>
+		<div class="form_main price">
+			<input type="text" class="text width_short" name="price_from" value="{$info.price_from}"/>
+			-
+			<input type="text" class="text width_short" name="price_to" value="{$info.price_to}"/>&nbsp;&nbsp;{$lang.yuan}
+		</div>
+		<div class="form_title">{$lang.price}:</div>
+		<div class="form_main">
+			<input type="text" name="price" value="{$info.price}" class="text width_short" style="width: 90%" />&nbsp;&nbsp;{$lang.yuan}</p>
+		</div>
+		<div class="form_title">{$lang.title}:</div>
+		<div class="form_main"><input type="text" name="title" value="{$info.title|escape}" class="text width7" /><span class="red">*</span></div>
+		<div class="form_title">{$lang.region}:</div>
+		<div class="form_main">
+			<p class="select" id="region">
+				<!-- {if $info.region_id} -->
+				<span>{$info.region_name|escape}</span>
+				<input type="button" value="{$lang.edit}" class="edit_region" />
+				<select style="display:none">
+					<option>{$lang.select_pls}</option>
+					{html_options options=$regions}
+				</select>
+				<!-- {else} -->
+				<select>
+					<option>{$lang.select_pls}</option>
+					{html_options options=$regions}
+				</select>
+				<!-- {/if} -->
+				<input type="hidden" name="region_id" value="{$info.region_id}" class="mls_id" />
+				<input type="hidden" name="region_name" value="{$info.region_name|escape}" class="mls_names" />
+				<span class="red">*</span>
+			</p>
+		</div>
+		<div class="form_title">{$lang.phone}:</div>
+		<div class="form_main"><input type="text" name="phone" value="{$info.phone|escape}" class="text width5" /> <span class="red">*</span></div>
+		<div class="form_title">{$lang.name}:</div>
+		<div class="form_main"><input type="text" name="name" value="{$info.name|escape}" class="text width5" /> <span class="red">*</span></div>
+		<div class="form_title">{$lang.details}:</div>
+		<div class="form_main">
+			<textarea name="content" id="description"  style="width:100%; height:300px;">
+				{$info.content|escape}
+			</textarea>
+			{if $is_store}
+			<div style=" position: relative; top: 10px; z-index: 5;"><a class="btn3" id="open_editor_uploader">{$lang.uploadedfile}</a>
+				<div class="upload_con" id="editor_uploader" style="display:none">
+					<div class="upload_con_top"></div>
+					<div class="upload_wrap">
+
+						<ul>
+							<li>
+								<div id="divSwfuploadContainer">
+									<div id="divButtonContainer">
+										<span id="editor_upload_button"></span>
+									</div>
+								</div>
+							</li>
+							<li><iframe src="index.php?app=comupload&act=view_iframe&id={$id}&belong={$belong}&instance=desc_image" width="86" height="30" scrolling="no" frameborder="0"></iframe></li>
+							<li id="open_editor_remote" class="btn2">{$lang.rem_upload}</li>
+						</ul>
+						<div id="editor_remote" class="upload_file" style="display:none">
+							<iframe src="index.php?app=comupload&act=view_remote&id={$id}&belong={$belong}&instance=desc_image" width="272" height="39" scrolling="no" frameborder="0"></iframe>
+						</div>
+						<div id="editor_upload_progress"></div>
+						<div class="upload_txt">
+							<span>{$lang.note_for_upload}</span>
+						</div>
+
+					</div>
+					<div class="upload_con_bottom"></div>
+				</div>
+			</div>
+			<ul id="desc_images" class="preview">
+
+			</ul>
+			{/if}
+		</div>
+		<div class="form_rbtn"><input type="submit" class="btn" value="{$lang.submit}" /></div>
+	</form>
+</div>
+{include file=footer.html}

@@ -1,0 +1,121 @@
+{include file=header.html}
+
+
+
+
+
+<div id="main" class="w-full">
+    <div id="page-job-apply" class="w mb20 pt10 clearfix">
+        
+        <div class="col-sub">
+            <div class="mt">招贤纳士</div>
+            <div class="mc">
+                <dl>
+                    <dt><a href="{url app=job}" title="招贤纳士"><span>招贤纳士</span></a></dt>
+                </dl>
+                <dl>
+                    <dt class="on"><a href="{url app=job_apply&act=add}" title="招贤纳士"><span>在线应聘</span></a></dt>
+                </dl>
+            </div>
+        </div>
+        
+        <div class="col-main">
+            <div class="mt">
+                <span>招贤纳士</span>
+            </div>
+            <div class="mc">
+                <form method="post">
+                <table>
+                    <tr>
+                        <th>{$lang.position}:</th>
+                        <td>
+                            <select name="job_id" id="job_id">
+                                <!--{foreach from=$jobs item=job}-->
+                                <option value="{$job.job_id}" <!--{if $job.job_id eq $id}--> selected="selected"<!--{/if}-->>{$job.position}</option>
+                                <!--{/foreach}-->
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>{$lang.name}:</th>
+                        <td><input type="text" name="name" id="name" value="" /></td>
+                    </tr>
+                    <tr>
+                        <th>{$lang.sex}:</th>
+                        <td>
+                            <input name="sex" type="radio" id="sex" value="0" checked="checked">
+                            <label>先生</label>
+                            <input name="sex" type="radio" id="sex" value="1">
+                            <label>女士</label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>{$lang.birthday}:</th>
+                        <td><input type="text" name="birthday" id="birthday" value="" /></td>
+                    </tr>
+                    <tr>
+                        <th>{$lang.native_place}:</th>
+                        <td><input type="text" name="native_place" id="native_place" value="" /></td>
+                    </tr>
+                    <tr>
+                        <th>{$lang.telephone}:</th>
+                        <td><input type="text" name="telephone" id="telephone" value="" /></td>
+                    </tr>
+                    <tr>
+                        <th>{$lang.zip_code}:</th>
+                        <td><input type="text" name="zip_code" id="zip_code" value="" /></td>
+                    </tr>
+                    <tr>
+                        <th>{$lang.email}:</th>
+                        <td><input type="text" name="email" id="email" value="" /></td>
+                    </tr>
+                    <tr>
+                        <th>{$lang.education}:</th>
+                        <td><input type="text" name="education" id="education" value="" /></td>
+                    </tr>
+                    <tr>
+                        <th>{$lang.professional}:</th>
+                        <td><input type="text" name="professional" id="professional" value="" /></td>
+                    </tr>
+                    <tr>
+                        <th>{$lang.school}:</th>
+                        <td><input type="text" name="school" id="school" value="" /></td>
+                    </tr>
+                    <tr>
+                        <th>{$lang.address}:</th>
+                        <td><input type="text" name="address" id="address" value="" /></td>
+                    </tr>
+                    
+                    <tr>
+                        <th>{$lang.awards}:</th>
+                        <td><textarea name="awards" cols="60" rows="5"></textarea></td>
+                    </tr>
+                    <tr>
+                        <th>{$lang.experience}:</th>
+                        <td><textarea name="experience" cols="60" rows="5"></textarea></td>
+                    </tr>
+                    <tr>
+                        <th>{$lang.hobbies}:</th>
+                        <td><textarea name="hobbies" cols="60" rows="5"></textarea></td>
+                    </tr>
+                    <tr>
+                        <th></th>
+                        <td><input type="submit" value="{$lang.save_edit}" /></td>
+                    </tr>
+                </table>
+                </form>
+            </div>
+        </div>
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+{include file=footer.html}

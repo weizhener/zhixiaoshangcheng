@@ -1,0 +1,56 @@
+{include file=header.html}
+<div id="page">
+<div class="w-full col-1" area="top_ad_area" widget_type="area">
+    <!--{widgets page=groupbuy area=top_ad_area}-->
+</div>
+<div id="content">
+    <div id="left">
+        <div class="" area="store_left" widget_type="area">
+            <!--{widgets page=groupbuy area=store_left}-->
+        </div>
+    </div>
+    
+    <div id="right">
+    	<div class="" area="store_right" widget_type="area">
+            <!--{widgets page=groupbuy area=store_right}-->
+        </div>
+        <div class="module_special">
+            <div class="title1">
+                <!-- {foreach from=$search_name item=item} -->
+                <!-- {if $item.url} -->
+                <p class="message_link"><a href="{$item.url}">{$item.text}</a></p>
+                <!-- {else} -->
+                {$item.text}
+                <!-- {/if} -->
+                <!-- {/foreach} -->
+            </div>
+                    <!--{if $groupbuy_list}-->
+                    <div class="group_major">
+                        <ul class="list">
+                        <!--{foreach from=$groupbuy_list item=groupbuy}-->
+                        <li>
+                            <div class="pic"><a href="{url app=groupbuy&id=$groupbuy.group_id}"><img src="{$groupbuy.default_image}" /></a></div>
+                            <h3><a href="{url app=groupbuy&id=$groupbuy.group_id}" target="_blank">{$groupbuy.group_name|escape}</a></h3>
+                            <p><span>{$lang.groupbuy_price}:&nbsp;</span>{$groupbuy.price|price}</p>
+                            <div class="time">
+                                <!-- {if $groupbuy.group_state} -->
+                                <span>{$groupbuy.group_state}
+                                <!-- {else} -->
+                                <span>{$lang.lefttime}:&nbsp;</span>{$groupbuy.lefttime}
+                                <!-- {/if} -->
+                            </div>
+                        </li>
+                        <!-- {/foreach} -->
+                        </ul>
+                    </div>
+                    {include file=page.bottom.html}
+                    <!--{else}-->
+                    <div class="nothing"><p>{$lang.no_groupbuy}</p></div>
+                    <!--{/if}-->
+        </div>
+    </div>
+    
+    <div class="clear"></div>
+</div>
+</div>
+{include file=footer.html}

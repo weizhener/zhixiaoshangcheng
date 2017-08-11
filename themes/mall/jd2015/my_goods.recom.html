@@ -1,0 +1,35 @@
+{include file=member.header.html}
+<style type="text/css">
+.eject_con .adds ul{ width:600px;}
+.eject_con .adds ul li{ width:250px;}
+</style>
+<div class="content">
+    {include file=member.menu.html}
+    <div id="right">
+        {include file=member.submenu.html}
+        <div class="wrap eject_con">
+            <div class="public adds" style="padding-top:40px;">
+            	<form method="post" id="recom_form">
+                <div style="overflow:hidden;">
+                    <div style="width:80px; float:left; font-weight:bold;">{$lang.recommend_to}:</div>
+                    <ul style=" float:left;">
+                        {foreach from=$recommends key=recom_id item=recom_name name=fe_recom}
+                        <li><label><input type="radio" name="recom_id" value="{$recom_id}" /> {$recom_name}</label></li>
+                        {/foreach}
+                    </ul>
+                </div>
+                <div class="submit"><input type="submit" class="btn" value="{$lang.submit}" /></div>
+                </form>
+            </div>
+            <div class="wrap_bottom"></div>
+        </div>
+        <iframe name="my_recommend" style="display:none"></iframe>
+        <div class="clear"></div>
+        <div class="adorn_right1"></div>
+        <div class="adorn_right2"></div>
+        <div class="adorn_right3"></div>
+        <div class="adorn_right4"></div>
+    </div>
+    <div class="clear"></div>
+</div>
+{include file=footer.html}

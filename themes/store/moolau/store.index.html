@@ -1,0 +1,119 @@
+{include file=header.html}
+{include file=top.html}
+
+<div id="mystore" class="w auto clearfix">
+   <div class="col-sub w190">
+      {include file=left.html}
+   </div>
+   <div class="col-main w750">    
+       <!--<div>{$store.description|escape:editor}</div>-->
+       
+       {include file=store.slides.html}
+		
+        <!--{if $recommended_goods}-->
+        <div class="module_special">
+            <h2 class="common_title veins2">
+                <div class="ornament1"></div>
+                <div class="ornament2"></div>
+                <span class="ico1"><span class="ico2">{$lang.recommended_goods}</span></span>
+            </h2>
+            <div class="wrap">
+                <div class="wrap_child">
+                    <div class="major">
+                        <ul class="list">
+                            <!--{foreach from=$recommended_goods item=rgoods}-->
+                            <li>
+                                <div class="pic"><a href="{url app=goods&id=$rgoods.goods_id}" target="_blank"><img src="{$rgoods.default_image}" width="160" height="160" /></a></div>
+                                <h3><a href="{url app=goods&id=$rgoods.goods_id}" target="_blank">{$rgoods.goods_name|escape|truncate:50}</a></h3>
+                                <p><em></em>{$rgoods.price|price}</p>
+                            </li>
+                            <!-- {/foreach} -->
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--{/if}-->
+        
+        <!--{if $hot_sale_goods}-->
+        <div class="module_special">
+            <h2 class="common_title veins2">
+                <div class="ornament1"></div>
+                <div class="ornament2"></div>
+                <span class="ico1"><span class="ico2">{$lang.hot_sale_goods}</span></span>
+            </h2>
+            <div class="wrap">
+                <div class="wrap_child">
+                    <div class="major">
+                        <ul class="list">
+                            <!--{foreach from=$hot_sale_goods item=hsgoods}-->
+                            <li>
+                                <div class="pic"><a href="{url app=goods&id=$hsgoods.goods_id}" target="_blank"><img src="{$hsgoods.default_image}" width="160" height="160" /></a></div>
+                                <h3><a href="{url app=goods&id=$hsgoods.goods_id}" target="_blank">{$hsgoods.goods_name|escape|truncate:50}</a></h3>
+                                <p><em></em>{$hsgoods.price|price}</p>
+                            </li>
+                            <!-- {/foreach} -->
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--{/if}-->
+
+        <div class="module_special">
+            <h2 class="common_title veins2">
+                <div class="ornament1"></div>
+                <div class="ornament2"></div>
+                <span class="ico1"><span class="ico2">{$lang.new_goods}</span></span>
+            </h2>
+            <div class="wrap">
+                <div class="wrap_child">
+                    <!--{if $new_goods}-->
+                    <div class="major">
+                        <ul class="list">
+                            <!--{foreach from=$new_goods item=ngoods}-->
+                            <li>
+                                <div class="pic"><a href="{url app=goods&id=$ngoods.goods_id}" target="_blank"><img src="{$ngoods.default_image}" width="160" height="160" /></a></div>
+                                <h3><a href="{url app=goods&id=$ngoods.goods_id}" target="_blank">{$ngoods.goods_name|escape|truncate:50}</a></h3>
+                                <p><em></em>{$ngoods.price|price}</p>
+                            </li>
+                            <!--{/foreach}-->
+                        </ul>
+                    </div>
+                    <!--{else}-->
+                    <div class="nothing"><p>{$lang.no_records}</p></div>
+                    <!--{/if}-->
+                </div>
+            </div>
+        </div>
+      
+        <!--{if $new_groupbuy}-->
+        <div class="module_special">
+            <h2 class="common_title veins2">
+                <div class="ornament1"></div>
+                <div class="ornament2"></div>
+                <span class="ico1"><span class="ico2">{$lang.new_groupbuy}</span></span>
+            </h2>
+            <div class="wrap">
+                <div class="wrap_child">
+                <div class="major">
+                    <ul class="list groupbuy">
+                        <!--{foreach from=$new_groupbuy item=groupbuy}-->
+                        <li>
+                            <div class="pic"><a href="{url app=groupbuy&id=$groupbuy.group_id}"><img width="160" height="160" src="{$groupbuy.default_image}" /></a></div>
+                            <h3><a href="{url app=groupbuy&id=$groupbuy.group_id}" target="_blank">{$groupbuy.group_name|escape|truncate:50}</a></h3>
+                            <p><em></em>{$groupbuy.price|price}</p>
+                            <div class="auto center">{$lang.lefttime}{$lang.colon}{$groupbuy.lefttime}</div>
+                        </li>
+                        <!-- {/foreach} -->
+                    </ul>
+                </div>
+                </div>
+            </div>
+        </div>
+        <!--{/if}-->
+      
+   </div>
+</div>
+
+{include file=footer.html}

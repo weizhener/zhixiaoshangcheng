@@ -1,0 +1,151 @@
+<div class="channel_phone_floor6 w clearfix  tab_{$widget_data.model_id}">
+    <div class="left_l">
+        <div class="mt">
+            <h3>{$widget_data.model_name1}</h3>
+        </div>
+        <div class="mc">
+            <ul>
+                <li class="list1">
+                    <a href="{$widget_data.ad1_link_url}" class="p_img" target="_blank">
+                        <img src="{$widget_data.ad1_image_url}" width="130" height="130">
+                    </a>
+                    <p class="p_title">
+                        <i></i>
+                        <a href="{$widget_data.ad1_link_url}" target="_blank">{$widget_data.ad1_title}</a>
+                    </p>
+                    <a href="{$widget_data.ad1_link_url}" class="p_name" target="_blank">{$widget_data.ad1_name}</a>
+                </li>
+                <li class="list2">
+                    <a href="{$widget_data.ad2_link_url}" class="p_img" target="_blank">
+                        <img src="{$widget_data.ad2_image_url}" width="130" height="130">
+                    </a>
+                    <p class="p_title">
+                        <i></i>
+                        <a href="{$widget_data.ad2_link_url}" target="_blank">{$widget_data.ad2_title}</a>
+                    </p>
+                    <a href="{$widget_data.ad2_link_url}" class="p_name" target="_blank">{$widget_data.ad2_name}</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="left_r">
+        <div class="mt">
+            <ul>
+                <li>
+                    <i></i>
+                    {$widget_data.model_name2}
+                </li>
+            </ul>
+        </div>
+        <div class="mc">
+            <p>
+                <a href="{$widget_data.ad3_link_url}" target="_blank">
+                    <img src="{$widget_data.ad3_image_url}" width="318" height="130">
+                </a>
+            </p>
+            <div class="phone_body" style=" position: relative;">
+                <div class="phone_mian" style="width:640px;position: absolute;left:0px;">
+                    <ul class="phone_list switchable" style=" float: left;display: block;">
+                        <!-- {foreach from=$widget_data.articles_3 item=article name=fe_article} -->
+                        <li>
+                            <i>◆</i>
+                            <a href="{url app=article&act=view&article_id=$article.article_id}" target="_blank">{$article.title|escape}</a>
+                            <em></em>
+                        </li>
+                        <!-- {/foreach} -->
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="right_l">
+        <div class="mt">
+            <h3>{$widget_data.model_name3}</h3>
+        </div>
+        <div class="mc">
+            <ul class="mv">
+                <li>
+                    <!-- {if $widget_data.ad_flash_url} -->
+                    <div style="padding:4px 0px; "><!-- 此段视频源文件来源于网络，通过网络播放器播放，需要连接网络 -->
+                        <EMBED style="{if $widget_data.ad_border}border:{$widget_data.ad_border}px solid #ddd;{/if}{if $widget_data.ad_margin}margin:{$widget_data.ad_margin}{/if}; " width="220" height="130"; 
+                               src="{$widget_data.ad_flash_url}" 
+                               quality= "high" 
+                               wmode="transparent"
+                               pluginspage="http://www.macromedia.com/go/getflashplayer"
+                               type="application/x-shockwave-flash">
+                    </div>
+                    <!-- {else} -->
+                    <div style="padding:10px; text-align:center;">请配置</div>
+                    <!-- {/if} -->
+                </li>
+                <li>
+                    <!-- {if $widget_data.ad1_flash_url} -->
+                    <div style="padding:10px 0px;"><!-- 此段视频源文件来源于网络，通过网络播放器播放，需要连接网络 -->
+                        <EMBED style="{if $widget_data.ad_border}border:{$widget_data.ad_border}px solid #ddd;{/if}{if $widget_data.ad_margin}margin:{$widget_data.ad_margin}{/if}; " width="220" height="130"; 
+                               src="{$widget_data.ad1_flash_url}" 
+                               quality= "high" 
+                               wmode="transparent"
+                               pluginspage="http://www.macromedia.com/go/getflashplayer"
+                               type="application/x-shockwave-flash">
+                    </div>
+                    <!-- {else} -->
+                    <div style="padding:10px; text-align:center;">请配置</div>
+                    <!-- {/if} -->
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="right_r">
+        <div class="mt">
+            <ul class="ks-switchable-nav">
+                <li class="ks-active">
+                    <i></i>
+                    {$widget_data.model_name4}
+                </li>
+                <li class="">
+                    <i></i>
+                    {$widget_data.model_name5}
+                </li>
+            </ul>
+        </div>
+        <div class="mc">
+            <div class="ks-switchable-content">
+                <ul>
+                    <li>
+                        <a href="{$widget_data.ad4_link_url}" target="_blank">
+                            <img src="{$widget_data.ad4_image_url}" width="318" height="130">
+                        </a>
+                        <!-- {foreach from=$widget_data.articles_1 item=article name=fe_article} -->
+                        <a class="list" href="{url app=article&act=view&article_id=$article.article_id}" target="_blank"><i>◆</i>{$article.title|escape}</a>
+                        <!-- {/foreach} -->
+                    </li>
+                </ul>
+                <ul style="display:none;">
+                    <li>
+                        <a href="{$widget_data.ad5_link_url}" target="_blank">
+                            <img src="{$widget_data.ad5_image_url}" width="318" height="130">
+                        </a>
+                        <!-- {foreach from=$widget_data.articles_2 item=article name=fe_article} -->
+                        <a class="list" href="{url app=article&act=view&article_id=$article.article_id}" target="_blank"><i>◆</i>{$article.title|escape}</a>
+                        <!-- {/foreach} -->
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    KISSY.ready(function(S) {
+        var tabs = new S.Tabs('.tab_{$widget_data.model_id}', {
+            aria: false
+        });
+    });
+</script>
+
+<!--
+-->
+
+

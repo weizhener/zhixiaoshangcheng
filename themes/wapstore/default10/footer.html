@@ -1,0 +1,80 @@
+
+<div class="huabian1"></div>
+<div class="footer">
+    <p>
+        <a href="{url app=default}">商城首页</a>|
+        <a href="{url app=store&id=$store.store_id}">商铺首页</a>|
+        <a href="{url app=member}">会员中心</a>
+    </p>
+    <a href="#" class="top"><img src="{res file=images/top.png}"></a>
+    <p>{if $store.functions.copyright}{$store.copyright|escape}{ else} Copyright &copy;2014 {$site_title}{/if}</p>
+</div> 
+
+<!--{if $kmenus.status==0 or $kmenus.status==''}-->
+<link type="text/css" rel="stylesheet" href="{res file=css/kmenus.css}">
+<div class="flo_btn_<!--{if $kmenus.stypeinfo=='' or $kmenus.stypeinfo==1 or $kmenus.stypeinfo==2}-->3<!--{else}-->{$kmenus.stypeinfo}<!--{/if}-->">
+    <ul>
+        <!--{foreach from=$kmenusinfo item=info}-->
+        <li>
+            <a style="background-color:#{$info.color};" href="<!--{if $info.title=='导航'}-->http://map.baidu.com/?newmap=1&ie=utf-8&s=s%26wd%3D{$info.loadurl}<!--{else}-->{$info.loadurl}<!--{/if}-->"><span style="background:url('{$info.imgurl}') scroll no-repeat center center transparent;background-size:60%; bottom:0; left:0;"></span></a>
+        </li>
+        <!--{/foreach}-->
+    </ul>
+</div>
+<!--{/if}-->
+
+<!--底部导航----------->
+<div class="taoplus" id="J_Taojia">
+    <div class="circle hide">
+        <div class="tpicons">
+            <ul>
+                <li class="more">
+                    <a href="{url app=my_favorite}"></a>
+                    <span class="bg"></span>
+                </li>
+                <li class="logis">
+                    <a href="{url app=my_address}"></a>
+                    <span class="bg"></span>
+                </li>
+                <li class="ww">
+                    <a href="http://site.tg.qq.com/forwardToPhonePage?siteId=1&phone={$store.tel}"></a>
+                    <span class="bg"></span>
+                </li>
+                <li class="user_btn">
+                    <a href="<!--{if $visitor.user_id}-->{url app=buyer_order}<!--{else}-->{url app=member&act=login&ret_url=$ret_url}<!--{/if}-->"></a>
+                    <span class="bg"></span>
+                </li>
+                <li class="car">
+                    <a href="{url app=cart}"></a>
+                    <span class="bg"></span>
+                </li>
+                <li class="menu">
+                    <a href="#"></a>
+                    <span class="bg"></span>
+                </li>
+            </ul>
+        </div>
+        <div class="tplogo">
+            <a href="{url app=store&id=$store.store_id}"></a>
+            <span class="bg"></span>
+        </div>
+    </div>
+    <div class="tpbtn on">
+        <div>
+            <ul>
+                <li class="icontao p"></li>
+            </ul>
+        </div>
+        <p class="num none"></p>
+    </div>
+</div>
+
+<div class="none" id="J_Shade"></div>
+<script>
+    $(function() {
+        $(".tpbtn").click(function() {
+            $(".circle").toggleClass("hide");
+            $("#J_Shade").toggleClass("none");
+        })
+    })
+</script>

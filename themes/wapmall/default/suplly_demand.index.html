@@ -1,0 +1,49 @@
+{include file=member.header.html}
+<div class="fixed">
+	<div class="header header2"><a href="{url app=member}" class="back3_pre">返回</a>用户中心 - 供应信息</div>
+	<ul class="top_tab">
+		<!--{foreach from=$_member_submenu item=_s_m name=member_submenu}-->
+		<!--{if $_curmenu eq $_s_m.name}-->
+		<li class="cur"><a href="{$_s_m.url}">{$_s_m.text}</a></li>
+		<!--{else}-->
+		<li><a href="{$_s_m.url}" >{$_s_m.text}</a></li>
+		<!--{/if}-->
+		<!--{/foreach}-->
+		<li><a href="index.php?app=supply_demand&amp;act=add" >发布信息</a></li>
+	</ul>
+</div>
+<div class="mian_top"></div>
+<div class="wrap">
+	<!--{foreach from=$sdinfo item=info name=v}-->
+	<div class="wapListBox">
+		<h2><a href="{url app=sdemand&act=view&id=$info.id}" target="_blank">{$info.title|escape}</a></h2>
+		<div class="rowspan">
+			<div class="colspan">{$lang.cate}:{$info.cate_name|escape}</div>
+			<div class="colspan">{$lang.price}:{if $info.type eq 2}{if $info.price_from eq 0 and $info.price_to eq 0}{$lang.asktoface}{else}{$info.price_from|price} - {$info.price_to|price}{/if}{else}{if $info.price eq 0}{$lang.asktoface}{else}{$info.price|price}{/if}{/if}</div>
+		</div>
+		<div class="rowspan">
+			<div class="colspan">{$lang.name}:{$info.name|escape}</div>
+			<div class="colspan">{$lang.phone}:{$info.phone}</div>
+		</div>
+		<div class="rowspan">
+			<div class="colspan">{$lang.verify}:
+				<!--{if $info.verify eq 1}-->
+				<font color="#006633">{$lang.verified}</font>
+				<!--{elseif $info.verify eq 2}-->
+				<font color="red">{$lang.verify_no_pass}</font>
+				<!--{else}-->
+				<font color="#FF6666">{$lang.verifying}</font>
+				<!--{/if}-->
+			</div>
+			<div class="colspan">{$lang.verify_desc}:<font color="#999">{$info.verify_desc}</font></div>
+		</div>
+		<div class="rowspan btn">
+			<a href="index.php?app=supply_demand&act=edit&id={$info.id}">{$lang.edit}</a>
+			<a href="javascript:drop_confirm('{$lang.drop_confirm}', 'index.php?app=supply_demand&amp;act=drop&id={$info.id}');">{$lang.drop}</a></td>
+		</div>
+	</div>
+	<!--{foreachelse}-->
+	<div class="notice-word">{$lang.$smarty.get.act}{$lang.no_records}</div>
+	<!--{/foreach}-->
+</div>
+{include file=footer.html}

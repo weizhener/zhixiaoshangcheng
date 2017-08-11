@@ -1,0 +1,79 @@
+{include file=member.header.html}
+<div class="mb-head">
+    <a href="javascript:history.back(-1)" class="l_b">返回</a>
+    <div class="tit">{$lang.$_curmenu}</div>
+    <a href="javascript" class="r_b"></a>
+</div>
+{include file=member.submenu.html}
+
+
+
+<script>
+    $(function() {
+        $("#refund_add").submit(function() {
+            if ($('#content').val() == '') {
+                alert('拒绝理由不能为空');
+                return false;
+            }
+            if ($('input[name="refund_cert"]').val() == '') {
+                alert('请上传凭证');
+                return false;
+            }
+        });
+    });
+</script>
+<style>
+    .refund_fefuse{margin:10px 16px;}
+    .refund_fefuse li {border-radius: 6px;}
+    .refund_fefuse li h3{display: block;font-size: 14px;color: #333;height:30px;line-height:30px;}
+    .refund_fefuse li p{width: 100%;margin-bottom:10px;}
+    .refund_fefuse li .text{border: 1px solid #DDDDDD;border-radius: 5px;text-indent: 10px;}
+    .refund_fefuse .red_btn{font-size: 16px;cursor: pointer;margin-bottom:10px;}
+</style>
+
+
+<div class="refund_fefuse">
+    <form id="refund_add" method="post" enctype="multipart/form-data">
+        <input type="hidden" name="refund_id" value="{$refund.refund_id}" />
+        <ul>
+            <li>
+                <h3>退款理由：</h3>
+                <p>
+                    <textarea name="content" id="content" class="text" style="width:100%; height:60px"></textarea>
+                </p>
+            </li>
+            <li>
+                <h3>上传凭证：</h3><p><input type="file" name="refund_cert" /></p>
+            </li>
+            <li>
+                <h3></h3><p><input type="submit" value="{$lang.submit}" class="red_btn" /></p>
+            </li>
+        </ul>
+    </form>
+    <ul class="refund_info">
+        <li><h3>退款编号：{$refund.refund_sn}</h3></li>
+        <li><h3>申请时间：{$refund.created|date:Y-m-d H:i:s}</h3></li>
+        <li><h3>
+                退款状态：
+                {if $refund.status=='CLOSED'}
+                退款关闭
+                {elseif $refund.status=='SUCCESS'}
+                退款成功
+                {elseif $refund.status=='WAIT_SELLER_AGREE'}
+                买家申请退款，等待卖家同意
+                {elseif $refund.status=='SELLER_REFUSE_BUYER'}
+                卖家拒绝退款，等待买家修改中
+                {elseif $refund.status=='WAIT_SELLER_CONFIRM'}
+                退款申请等待卖家确认中
+                {/if}	
+            </h3>
+        </li>
+        <li><h3>交易金额：{$refund.total_fee}</h3></li>
+        <li><h3>退款金额：{$refund.refund_fee}</h3></li>
+        <li><h3>退款原因：{$refund.refund_reason}</h3></li>
+        <li><h3>退款说明：{$refund.refund_desc}</h3></li>
+    </ul>
+</div>
+
+
+{include file=footer.html}

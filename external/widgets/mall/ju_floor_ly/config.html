@@ -1,0 +1,56 @@
+<script type="text/javascript">
+var _d = DialogManager.get('config_dialog');
+_d.setWidth(400);
+_d.setPosition('center');
+$('#add_image').click(function(){
+    $(this).before('<div class="field_item">' +
+        '<label>模块标题</label>' +
+		'<p><input type="text" name="model_name[]"/></p>' +
+		'<label>显示数量:</label>' +
+		'<p><input type="text" name="num[]"/></p>' +
+		'<label>选择数据源:</label>'+
+		'<p>' +
+			'<select name="cate_id[]">' +
+				'<option value="0">请选择分类...</option>' +
+				'<!-- {html_options options=$categories} -->'+
+			'</select>'+
+			'<input type="button" value="删除项" onclick="drop_image(this)" />' +
+		'</p>');
+});
+function drop_image(btnObj)
+{
+    $(btnObj).parents('.field_item').remove();
+}
+</script>
+<!-- {if $options} -->
+<!-- {foreach from=$options item=image} -->
+<div class="field_item">
+    <p><label>模块标题</label><input type="text" name="model_name[]" value="{$image.model_name}"/></p>
+    <p><label>显示数量:</label><input type="text" name="num[]" value="{$image.num}" /></p>
+     <label>选择数据源:</label>
+    <p>
+        <select name="cate_id[]">
+            <option value="0">请选择分类...</option>
+            <!-- {html_options options=$categories selected=$image.cate_id} -->
+        </select>
+        <input type="button" value="删除项" onclick="drop_image(this)" />
+    </p>
+</div>
+<!-- {/foreach} -->
+<!-- {else} -->
+<div class="field_item">
+    <label>模块标题</label>
+    <p><input type="text" name="model_name[]"/></p>
+    <label>显示数量:</label>
+    <p><input type="text" name="num[]"/></p>
+     <label>选择数据源:</label>
+    <p>
+        <select name="cate_id[]">
+            <option value="0">请选择分类...</option>
+            <!-- {html_options options=$categories} -->
+        </select>
+        <input type="button" value="删除项" onclick="drop_image(this)" />
+    </p>
+</div>
+<!-- {/if} -->
+<input type="button" id="add_image" value="新增项" />

@@ -1,0 +1,95 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta charset="UTF-8">
+        {$page_seo}
+        <meta name="viewport" content=" initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <meta name="format-detection" content="telephone=no">
+        <link type="text/css" rel="stylesheet" href="{res file=css/css.css}">
+        <script type="text/javascript" src="{res file=js/jquery-1.8.0.min.js}" charset="utf-8"></script>
+        <script type="text/javascript" src="{res file=js/jquery.flexslider.js}" charset="utf-8"></script>
+        <script>
+            $(window).load(function() {
+                $('.flexslider').flexslider({
+                    animation: "slide"
+                });
+                $(".flex-direction-nav,.flex-control-nav").remove();
+            });
+        </script>
+    </head>
+    <body>
+        {include file=header.html}
+
+        <div class="lay_page ">
+            <div class="fn_indexad">
+                <!---轮播------>
+                <section class="sliders">
+                    <div class="flexslider">
+                        <ul class="slides">
+                            <!--{foreach from=$goods_images item=goods_iamge}-->
+                            <li>
+                                <img  src="{$goods_iamge.image_url}"/>
+                            </li>
+                            <!--{/foreach}-->
+                        </ul>
+                    </div>
+                </section>
+                <!---------分类------------->
+                <div class="indexad_banner animate">
+                    <ul class="banner_list">
+                        <!--{if $store.radio_new eq '1'}-->
+                        <li class="list_item">
+                            <a href="index.php?app=store&act=search&id={$store.store_id}&order=add_time">
+                                最新商品
+                            </a>
+                        </li>
+                        <!--{/if}-->
+                        <!--{if $store.radio_recommend eq '1'}-->
+                        <li class="list_item">
+                            <a href="index.php?app=store&act=search&id={$store.store_id}&recommended=1">
+                                推荐商品
+                            </a>
+                        </li>
+                        <!--{/if}-->
+                        <!--{if $store.radio_hot eq '1'}-->
+                        <li class="list_item">
+                            <a href="index.php?app=store&act=search&id={$store.store_id}&order=views">
+                                热门商品
+                            </a>
+                        </li>
+                        <!--{/if}-->
+                            <!--{foreach from=$store.store_gcates item=gcategory}-->
+                            <li class="list_item">
+                        <a href="{url app=store&id=$store.store_id&act=search&cate_id=$gcategory.id}">
+                        {$gcategory.value|escape}
+                        </a>
+                        </li>
+                        <!--{/foreach}-->
+                    </ul>
+                </div>
+            </div>
+            <!------------底部---------------------->
+            {include file=footer.html}
+
+        </div>
+    </body>
+    <script>
+        $(function() {
+            publicmain();
+        });
+
+        $(window).resize(function() {
+            publicmain();
+        });
+
+        function publicmain() {
+            var h = document.documentElement.clientHeight;
+            var w = document.documentElement.clientWidth;
+            $('.slides li,.slides li img').css({'width': w, 'height': h});
+        }
+    </script>
+</html>

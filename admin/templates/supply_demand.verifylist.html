@@ -1,0 +1,98 @@
+{include file="header.html"}
+<style type="text/css">
+.dataTable td{ text-align:center;}
+</style>
+<div id="rightTop">
+    <p>{$lang.supply_demand}</p>
+    <ul class="subnav">
+        <li><a class="btn1" href="index.php?app=supply_demand">{$lang.manage}</a></li>
+        <li><span>{$lang.wait_verify}</span></li>
+        <li><a class="btn1" href="index.php?app=supply_demand&amp;act=cate">{$lang.cate_manage}</a></li>
+    </ul>
+</div>
+<div class="mrightTop">
+    <div class="fontl">
+        <form method="get">
+            <div class="left">
+                <input type="hidden" name="app" value="supply_demand" />
+                <input type="hidden" name="act" value="wait_verify" />
+                <select class="querySelect" name="field">{html_options options=$search_options selected=$smarty.get.field}
+                </select>:<input class="queryInput" type="text" name="search_name" value="{$query.search_name|escape}" />
+                {$lang.select_acategory}:
+                <select class="querySelect" id="cate_id" name="cate_id">
+                <option value="">{$lang.select_pls}</option>
+                {html_options options=$parents selected=$smarty.get.cate_id}
+                </select>
+                {$lang.select_type}:
+                <select class="querySelect" name="type">
+                <option value="">{$lang.select_pls}</option>
+                {html_options options=$type selected=$smarty.get.type}
+                </select>
+                <input type="submit" class="formbtn" value="{$lang.query}" />
+            </div>
+            <!--{if $filtered}-->
+            <a class="left formbtn1" href="index.php?app=supply_demand&amp;act=wait_verify">{$lang.cancel_query}</a>
+            <!--{/if}-->
+        </form>
+    </div>
+    <div class="fontr">
+        {include file=page.top.html}
+    </div>
+</div>
+<div class="tdare">
+    <table width="100%" cellspacing="0" class="dataTable">
+        <!--{if $infos}-->
+        <tr class="tatr1">
+            <td width="20" class="firstCell"><input type="checkbox" class="checkall" /></td>
+            <td align="left">{$lang.title}</td>
+            <td>{$lang.type}</td>
+            <td align="center">{$lang.price}</td>
+            <td>{$lang.category}</td>
+            <td>{$lang.user_name}</td>
+            <td>{$lang.name}</td>
+            <td>{$lang.phone}</td>
+            <td>{$lang.add_time}</td>
+            <td>{$lang.sort_order}</td>
+            <td>{$lang.handler}</td>
+        </tr>
+        <!--{/if}-->
+        <!--{foreach from=$infos item=info}-->
+        <tr class="tatr2">
+            <td class="firstCell"><!--{if !$info.code}--><input type="checkbox" class="checkitem" value="{$info.id}"/><!--{/if}--></td>
+            <td>{$info.title|escape}</td>
+            <td align="center">{if $info.type eq 1}{$lang.supply}{else}{$lang.demand}{/if}</td>
+            <td align="center">{if $info.type eq 2}{if $info.price_from eq 0 and $info.price_to eq 0}{$lang.asktoface}{else}{$info.price_from|price} - {$info.price_to|price}{/if}{else}{if $info.price eq 0}{$lang.asktoface}{else}{$info.price|price}{/if}{/if}</td>
+            <td>{$info.cate_name|escape}</td>
+            <td>{$info.user_name}</td>
+            <td>{$info.name}</td>
+            <td>{$info.phone}</td>
+            <td>{$info.add_time|date:complete}</td>
+            <td><span ectype="inline_edit" fieldname="sort_order" fieldid="{$info.id}" datatype="pint" maxvalue="255" class="editable">{$info.sort_order}</span></td>
+            <td>
+            	<a href="index.php?app=supply_demand&amp;act=view&amp;id={$info.id}">{$lang.view}</a> | 
+            	<a href="index.php?app=supply_demand&amp;act=verify&amp;id={$info.id}">{$lang.verify}</a> | 
+                <a href="javascript:drop_confirm('{$lang.drop_confirm}', 'index.php?app=supply_demand&amp;act=drop&amp;id={$info.id}');">{$lang.drop}</a></td>
+        </tr>
+        <!--{foreachelse}-->
+        <tr class="no_data">
+            <td colspan="7">{$lang.no_data}</td>
+        </tr>
+        <!--{/foreach}-->
+    </table>
+    <!--{if $infos}-->
+    <div id="dataFuncs">
+        <div class="pageLinks">
+            {include file=page.bottom.html}
+        </div>
+        <div id="batchAction" class="left paddingT15">
+            &nbsp;&nbsp;
+            <input class="formbtn batchButton" type="button" value="{$lang.drop}" name="id" uri="index.php?app=supply_demand&act=drop" presubmit="confirm('{$lang.drop_confirm}');" />
+            &nbsp;&nbsp;
+            <input class="formbtn batchButton" type="button" value="{$lang.batch_verify}" name="id" uri="index.php?app=supply_demand&act=verify" />
+            &nbsp;&nbsp; 
+        </div>
+    </div>
+    <div class="clear"></div>
+    <!--{/if}-->
+</div>
+{include file="footer.html"}

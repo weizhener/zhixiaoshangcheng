@@ -1,0 +1,38 @@
+{include file=member.header.html}
+
+<div class="mb-head">
+
+    <a href="javascript:history.back(-1)" class="l_b">返回</a>
+
+    <div class="tit">我的推广</div>
+
+    <a href="javascript" class="r_b"></a>
+
+</div>
+
+{include file=member.submenu.html}
+
+<br/>
+
+
+
+<div style="background:#fff;padding:10px;">
+    <h1>我的推广二维码</h1>
+    <img src="http://ykt.anduowang.com/index.php?app=qrcode&url=http://ykt.anduowang.com/index.php?app=reg%26u={$member_info.user_name}"/>
+	<br />
+	<br />
+	<a onClick="window.yutebi.share('http://ykt.anduowang.com/index.php?app=qrcode&url=http://ykt.anduowang.com/index.php?app=reg%26u={$member_info.user_name}');">点击分享给你的好友</a>
+	<br />
+	<br />
+
+    我的推荐人：<!--{if $parent_refers}-->{$parent_refers.user_name}<!--{else}-->自行注册<!--{/if}-->
+
+    <br/>
+
+</div>
+
+
+
+
+
+{include file=member.footer.html}

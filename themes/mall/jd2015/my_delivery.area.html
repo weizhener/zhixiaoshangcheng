@@ -1,0 +1,82 @@
+<script type="text/javascript">
+//<!CDATA[
+$(function(){
+	bind('{$smarty.get.id}');
+	$('#gs_submit').click(function(){
+		gs_callback('{$smarty.get.id}');
+	});
+	
+	$('#cancel_button').click(function(){
+        DialogManager.close('{$smarty.get.id}');
+    });
+	
+});
+//]]>
+</script>
+
+<style>
+body,div,p,dl,dt,li,h3{margin:0;padding:0;}
+input{ vertical-align:middle}
+ul{ list-style:none}
+.hidden{ display:none}
+.input{border:1px #7F9DB9 solid;}
+.clearfix:after{ content:'\20'; display:block; height:0; overflow:hidden; clear:both;}
+.select_area_form{width:660px;color:#3e3e3e;font-size:12px;}
+
+.select_area_form ul{width:640px;line-height:22px; background:#ECF4FF;padding:5px 8px 5px 8px;}
+.select_area_form .province{float:left;width:160px;}
+.select_area_form .province strong{font-weight:normal;font-size:12px}
+.select_area_form .gareas{border:1px #ECF4FF solid; background:none; display:inline-block;padding-right:5px; position:relative}
+
+.select_area_form .gareas ins{ display:none;height:1px; width:100%; position:absolute;left:0;bottom:-1px; z-index:99}
+.select_area_form .gareas-cur{border:1px #F7E4A5 solid; background:#FFFEC6;}
+.select_area_form .gareas-cur ins{ display:block; background:#FFFEC6; }
+.select_area_form .province input[type="checkbox"]{width:20px;}
+.select_area_form .province i{ text-decoration:none; color:#f60; font-style:normal}
+.select_area_form .province .expand-city{background:url('{res file=images/T1XZCWXd8iXXXXXXXX-8-8.gif}') no-repeat;width:8px; height:8px; display:inline-block; cursor:pointer}
+.select_area_form .citylist{ position:relative;}
+.select_area_form .city{border:1px #F7E4A5 solid;background:#FFFEC6;width:320px; position:absolute;left:-1px;top:0px; z-index:9}
+.select_area_form .city span{display:inline-block}
+.select_area_form .city p{ text-align:right}
+.select_area_form .bottom{border-top:1px #C4D5DF solid; background:#fff;padding:8px 0 8px 20px;margin-top:10px;}
+.select_area_form ul.white{ background:#fff}
+
+</style>
+<form>
+	<div class="select_area_form clearfix">
+    	<div class="notice-word selectedNoArea J_Warning hidden"></div>
+    	<ul class="white clearfix">
+			<!--{foreach from=$area item=province name=fe_province}-->
+			<li class="province J_Province">
+				<span class="gareas clearfix">
+					<ins></ins>
+					<input type="checkbox" name="province[{$province.region_id}]" id="province[{$province.region_id}]" fileds="province" value="{$province.region_id}" title="{$province.region_name}">
+					<label fileds="provinceName" for="province[{$province.region_id}]">{$province.region_name}<i></i></label>
+					<!--{if $province.cities}-->
+					<span class="expand-city J_ExpandCity"></span>
+					<div class="hidden clearfix citylist">
+						<div class="city">
+							<!--{foreach from=$province.cities item=city}-->
+							<span>
+                        		<input type="checkbox" name="city[{$province.region_id}][]" fileds="city" id="city{$city.region_id}" value="{$city.region_id}" title="{$city.region_name}">
+								<label fields="cityName" for="city{$city.region_id}">{$city.region_name}</label>
+    						</span>
+							<!--{/foreach}-->
+							<p><input type="button" class="J_CloseCity" value="{$lang.close}" /></p>
+						</div>
+					</div>
+					<!--{/if}-->
+				</span>
+			</li> 
+			<!--{if $smarty.foreach.fe_province.iteration % 8 eq 0 && !$smarty.foreach.fe_province.last}-->   
+		</ul>
+		<ul class="{if $smarty.foreach.fe_province.iteration % 16 eq 0}white{/if} clearfix">
+		<!--{/if}-->                
+		<!--{/foreach}-->
+		</ul>
+		<div class="bottom submit">
+			<input type="button" id="gs_submit" class="btn" value="{$lang.submit}" />
+			<input type="button" id="cancel_button" class="btn2" value="{$lang.cancel}" />
+		</div>
+	</div>
+</form>

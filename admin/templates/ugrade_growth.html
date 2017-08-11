@@ -1,0 +1,88 @@
+{include file="header.html"}
+<script type="text/javascript">
+$(function(){
+    $('#growth_form').validate({
+        errorPlacement: function(error, element){
+            $(element).next('.field_notice').hide();
+            $(element).after(error);
+        },
+        success       : function(label){
+            label.addClass('right').text('OK!');
+        },
+        onkeyup    : false,
+        rules : {
+			register_growth:{
+				required : true,
+				number   :true,
+				min      :0
+			},
+			bought_growth:{
+				required : true,
+				number   :true,
+				min      :0
+			},
+			comment_growth:{
+				required : true,
+				number   :true,
+				min      :0
+			}
+        },
+        messages : {
+            register_growth : {
+                required :'不能为空',
+                number   :'值必须为数字',
+				min      :'最小值为0'
+            },
+			bought_growth : {
+                required :'不能为空',
+                number   :'值必须为数字',
+				min      :'最小值为0'
+            },
+			comment_growth : {
+                required :'不能为空',
+                number   :'值必须为数字',
+				min      :'最小值为0'
+            }
+        }
+    });
+});
+</script>
+<div id="rightTop">
+    <p>成长值</p>
+    <ul class="subnav">
+        <li><a class="btn1" href="index.php?app=ugrade">等级管理</a></li>
+    </ul>
+</div>
+
+<div class="info">
+    <form id="growth_form" method="post" enctype="multipart/form-data">
+        <table class="infoTable">
+            <tr>
+                <th class="paddingT15">
+                    {$lang.register}:</th>
+                <td class="paddingT15 wordSpacing5">
+                    <input class="infoTableInput"  type="text" name="register_growth" value="{$growth.register_growth}"/><label class="gray">{$lang.register_note}</label></td>
+            </tr>
+            <tr>
+                <th class="paddingT15">
+                    {$lang.bought}:</th>
+                <td class="paddingT15 wordSpacing5">
+                    <input class="infoTableInput" type="text" name="bought_growth" value="{$growth.bought_growth}"/><label class="gray">{$lang.bought_note}</label></td>
+            </tr>
+            <tr>
+                <th class="paddingT15">
+                    {$lang.comment}:</th>
+                <td class="paddingT15 wordSpacing5">
+                    <input class="infoTableInput"  type="text" name="comment_growth" value="{$growth.comment_growth}"/><label class="gray">{$lang.comment_note}</label></td>
+            </tr>
+            <tr>
+            <th></th>
+            <td class="ptb20">
+                <input class="formbtn" type="submit" name="Submit" value="{$lang.submit}" />
+                <input class="formbtn" type="reset" name="Submit2" value="{$lang.reset}" />
+            </td>
+        </tr>
+        </table>
+    </form>
+</div>
+{include file="footer.html"}

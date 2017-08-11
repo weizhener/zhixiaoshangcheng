@@ -1,0 +1,45 @@
+{include file=member.header.html}
+<div class="content">
+    {include file=member.menu.html}
+    <div id="right">
+        {include file=my_statistics.select.html}
+        {include file=member.submenu.html}
+        <style>
+            table {BORDER-RIGHT: #cedced 1px solid;border-left: 1px solid #CEDCED;BORDER-TOP: #cedced 1px solid;MARGIN: 0.6em auto;WIDTH: 100%;BORDER-BOTTOM: #cedced 1px solid;BORDER-COLLAPSE: collapse;}
+            TD {PADDING-RIGHT: 0.9em; PADDING-LEFT: 0.9em; PADDING-BOTTOM: 0.3em; BORDER-right: #cedced 1px solid; COLOR: #000; PADDING-TOP: 0.3em; BORDER-BOTTOM: #cedced 1px solid; TEXT-ALIGN: left}
+            TH {PADDING-RIGHT: 10px; PADDING-LEFT: 10px; FONT-WEIGHT: normal; PADDING-BOTTOM: 0.3em; BORDER-right: #cedced 1px solid; COLOR: #5e759d; PADDING-TOP: 0.3em; BORDER-BOTTOM: #cedced 1px solid; text-align: left;height: 20px;}
+            THEAD TH {FONT-WEIGHT: lighter; FONT-SIZE: 14px; BACKGROUND: #e9f1fa; COLOR: #638199; TEXT-ALIGN: left}
+            .th1 {FONT-WEIGHT: bold; FONT-SIZE: 14px; COLOR: #333333; BORDER-BOTTOM: #cedced 2px solid; BACKGROUND-COLOR: #fff; TEXT-ALIGN: left}
+            .odd TH { FONT-WEIGHT: bold; COLOR: #282828; text-align: left;}
+            .odd .all_left {TEXT-ALIGN: left }
+        </style>
+        <div class="tabdiv1">
+            <table width="770">
+                <!--{if $statistics_reffrer_page_ranking}-->
+                <thead>
+                    <tr class="odd">
+                        <th width="53%" class="all_left"><strong>{$lang.page_ranking_url}</strong></th>
+                        <th width="15%" class="all_left"><strong>{$lang.page_ranking_vv}</strong></th>
+                        <th width="15%"><strong>{$lang.page_ranking_uv}</strong></th>
+                        <th width="17%" class="all_left"><strong>{$lang.page_ranking_ip}</strong></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- {foreach from=$statistics_reffrer_page_ranking.url key=key item=url name=f_url} -->
+                    <tr>
+                        <td><a href="{$key}" target="_blank" title="{$key}">{$key|truncate:70}</a></td>
+                        <td class="num1">{$url.vv}</td>
+                        <td>{$url.uv}</td>
+                        <td>{$url.ip}</td>
+                    </tr>
+                    <!-- {/foreach} -->
+                </tbody>
+                <!--{else}-->
+                暂时无数据
+                <!--{/if}-->
+            </table>
+        </div>
+    </div>
+    <div class="clear"></div>
+</div>
+{include file=footer.html}

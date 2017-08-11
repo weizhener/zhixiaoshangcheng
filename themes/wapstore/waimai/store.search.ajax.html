@@ -1,0 +1,35 @@
+<!--{if $searched_goods}-->
+<ul>
+    <!--{foreach from=$searched_goods item=sgoods}-->
+    <li>
+        <div class="pro-img">
+            <a href="{url app=goods&id=$sgoods.goods_id}" target="_blank">
+                <img src="{$sgoods.default_image}" />
+            </a>
+        </div>
+        <div class="pro-txt">
+            <h2>
+                <a href="{url app=goods&id=$sgoods.goods_id}" target="_blank">{$sgoods.goods_name|escape}</a>
+            </h2>
+            <span>{$sgoods.price|price}</span>
+            <p>已售{$sgoods.sales}份</p>
+        </div>
+        <div class="clr"></div>
+        <div class="count clearfix">
+            <a href="javascript:void(0);" class="reduce_goods reduce">
+                <img src="{res file=images/reduce.jpg}"/>
+            </a>
+            <input type="text" class="count-bg" stock="{$sgoods.stock}" spec="{$sgoods.default_spec}" name='goods_num' id='goods_num' value="0" />
+            <a href="javascript:void(0);" class="add_goods add">
+                <img src="{res file=images/add.jpg}"/>
+            </a>
+        </div>
+    </li>
+    <!--{/foreach}-->
+</ul>
+{include file=page.bottom.html}
+<!--{else}-->
+<div class="nothing">
+    <p>{$lang.no_records}</p>
+</div>
+<!--{/if}-->

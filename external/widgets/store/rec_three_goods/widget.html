@@ -1,0 +1,18 @@
+<div class="rec_three_goods mb10">
+	<ul class="list w-full">
+        <!--{foreach from=$widget_data.goods_list item=goods name=fe_goods}-->
+        <li {if $smarty.foreach.fe_goods.last}class="last"{/if}>
+           <div class="pic"><a href="{url app=goods&id=$goods.goods_id}" target="_blank" style="background:url({$goods.default_image})  no-repeat center 0;"></a></div>
+           <div class="detail w-full clearfix">
+           	   <p class="icon{$smarty.foreach.fe_goods.iteration}">{$goods.title}</p>
+               <div class="attr">
+               		<a href="{url app=goods&id=$goods.goods_id}" target="_blank">{$goods.goods_name|escape}</a>
+                    <span>已售出<b>{$goods.sales}</b>件</span>
+               </div>
+               <div class="price"><span>&yen;</span><b>{$goods.price}</b></div>	
+           </div>
+       </li>
+       <!-- {/foreach} -->
+       <div class="clr"></div>
+   </ul>
+</div>

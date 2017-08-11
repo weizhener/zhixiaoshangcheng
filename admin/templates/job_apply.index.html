@@ -1,0 +1,82 @@
+{include file="header.html"}
+<div id="rightTop">
+    <p>{$lang.job_apply}</p>
+    <ul class="subnav">
+        <li><span>{$lang.manage}</span></li>
+    </ul>
+</div>
+<div class="mrightTop">
+    <div class="fontl">
+        <form method="get">
+            <div class="left">
+                <input type="hidden" name="app" value="job_apply" />
+                <input type="hidden" name="act" value="index" />
+                {$lang.state}:
+                <select class="querySelect" name="state">
+                    {html_options options=$states selected=$query.state}
+                </select>
+                {$lang.position}:
+                <select class="querySelect" name="job_id">
+                    <!--{foreach from=$jobs item=job}-->
+                    <option value="{$job.job_id}" <!--{if $job.job_id eq $smarty.get.job_id}-->selected="selected"<!--{/if}-->>{$job.position}</option>    
+                    <!--{/foreach}-->
+                </select>
+                <input type="submit" class="formbtn" value="{$lang.query}" />
+            </div>
+            <!--{if $filtered}-->
+            <a class="left formbtn1" href="index.php?app=job_apply}">{$lang.cancel_query}</a>
+            <!--{/if}-->
+        </form>
+    </div>
+    <div class="fontr">
+        {if $job_applys}{include file=page.top.html}{/if}
+    </div>
+</div>
+<div class="tdare">
+    <table width="100%" cellspacing="0" class="dataTable">
+        <!--{if $job_applys}-->
+        <tr class="tatr1">
+            <td width="20" class="firstCell"><input type="checkbox" class="checkall" /></td>
+            <td align="center">{$lang.position}</td>
+            <td align="center">{$lang.name}</td>
+            <td align="center">{$lang.telephone}</td>
+            <td align="center">{$lang.education}</td>
+            <td align="center">{$lang.professional}</td>
+            <td align="center">{$lang.add_time}</td>
+            <td class="handler">{$lang.handler}</td>
+        </tr>
+        <!--{/if}-->
+        <!--{foreach from=$job_applys item=job_apply}-->
+        <tr class="tatr2">
+            <td class="firstCell"><input value="{$job_apply.id}" class='checkitem' type="checkbox" /></td>
+            <td align="center">{$job_apply.position|escape|default:未填写}</td>
+            <td align="center">{$job_apply.name|escape|default:未填写}</td>
+            <td align="center">{$job_apply.telephone|escape|default:未填写}</td>
+            <td align="center">{$job_apply.education|escape|default:未填写}</td>
+            <td align="center">{$job_apply.professional|escape|default:未填写}</td>
+            <td align="center">{$job_apply.add_time|date}</td>
+            <td class="handler">
+                <a href="index.php?app=job_apply&amp;act=view&amp;id={$job_apply.id}">{$lang.view}</a>  |  
+                <a name="drop" href="javascript:drop_confirm('{$lang.drop_confirm}', 'index.php?app=job_apply&amp;act=drop&amp;id={$job_apply.id}');">{$lang.drop}</a>
+            </td>
+        </tr>
+        <!--{foreachelse}-->
+        <tr class="no_data">
+            <td colspan="7">{$lang.no_data}</td>
+        </tr>
+        <!--{/foreach}-->
+    </table>
+    <!--{if $job_applys}-->
+    <div id="dataFuncs">
+        <div id="batchAction" class="left paddingT15">
+            &nbsp;&nbsp;
+            <input class="formbtn batchButton" type="button" value="{$lang.drop}" name="id" uri="index.php?app=job_apply&act=drop" presubmit="confirm('{$lang.drop_confirm}');" />
+        </div>
+        <div class="pageLinks">
+            {if $job_applys}{include file=page.bottom.html}{/if}
+        </div>
+    </div>
+    <!--{/if}-->
+    <div class="clear"></div>
+</div>
+{include file="footer.html"}

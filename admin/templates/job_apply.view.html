@@ -1,0 +1,79 @@
+{include file="header.html"}
+<div id="rightTop">
+    <p>{$lang.job_apply}</p>
+    <ul class="subnav">
+        <li><a class="btn1" href="index.php?app=job_apply">{$lang.manage}</a></li>
+    </ul>
+</div>
+<div class="info">
+    <table class="infoTable">
+      <tr>
+        <th class="paddingT15">{$lang.position}:</th>
+        <td class="paddingT15 wordSpacing5">{$job_apply.position|escape|default:未填写}</td>
+      </tr>
+      <tr>
+        <th class="paddingT15">{$lang.name}:</th>
+        <td class="paddingT15 wordSpacing5">{$job_apply.name|escape|default:未填写}</td>
+      </tr>
+      <tr>
+        <th class="paddingT15">{$lang.sex}:</th>
+        <td class="paddingT15 wordSpacing5">
+            <!--{if $job_apply.sex eq '0'}-->先生<!--{else}-->女士<!--{/if}-->
+        </td>
+      </tr>
+      <tr>
+        <th class="paddingT15">{$lang.birthday}:</th>
+        <td class="paddingT15 wordSpacing5">{$job_apply.birthday|escape|default:未填写}</td>
+      </tr>
+      <tr>
+        <th class="paddingT15">{$lang.native_place}:</th>
+        <td class="paddingT15 wordSpacing5">{$job_apply.native_place|escape|default:未填写}</td>
+      </tr>
+      <tr>
+        <th class="paddingT15">{$lang.telephone}:</th>
+        <td class="paddingT15 wordSpacing5">{$job_apply.telephone|escape|default:未填写}</td>
+      </tr>
+      <tr>
+        <th class="paddingT15">{$lang.zip_code}:</th>
+        <td class="paddingT15 wordSpacing5">{$job_apply.zip_code|escape|default:未填写}</td>
+      </tr>
+      <tr>
+        <th class="paddingT15">{$lang.email}:</th>
+        <td class="paddingT15 wordSpacing5">{$job_apply.email|escape|default:未填写}</td>
+      </tr>
+      <tr>
+        <th class="paddingT15">{$lang.education}:</th>
+        <td class="paddingT15 wordSpacing5">{$job_apply.education|escape|default:未填写}</td>
+      </tr>
+      <tr>
+        <th class="paddingT15">{$lang.professional}:</th>
+        <td class="paddingT15 wordSpacing5">{$job_apply.professional|escape|default:未填写}</td>
+      </tr>
+      <tr>
+        <th class="paddingT15">{$lang.school}:</th>
+        <td class="paddingT15 wordSpacing5">{$job_apply.school|escape|default:未填写}</td>
+      </tr>
+      <tr>
+        <th class="paddingT15">{$lang.address}:</th>
+        <td class="paddingT15 wordSpacing5">{$job_apply.address|escape|default:未填写}</td>
+      </tr>
+      <tr>
+        <th class="paddingT15">{$lang.awards}:</th>
+        <td class="paddingT15 wordSpacing5">{$job_apply.awards|escape|default:未填写}</td>
+      </tr>
+      <tr>
+        <th class="paddingT15">{$lang.experience}:</th>
+        <td class="paddingT15 wordSpacing5">{$job_apply.experience|escape|default:未填写}</td>
+      </tr>
+      <tr>
+        <th class="paddingT15">{$lang.hobbies}:</th>
+        <td class="paddingT15 wordSpacing5">{$job_apply.hobbies|escape|default:未填写}</td>
+      </tr>
+      <tr>
+        <th class="paddingT15">{$lang.add_time}:</th>
+        <td class="paddingT15 wordSpacing5">{$job_apply.add_time|date}</td>
+      </tr>
+      
+    </table>
+</div>
+{include file="footer.html"} 

@@ -1,0 +1,43 @@
+#integral{background-color: #f5f5f5;}
+#integral .col-1 .personal{width: 270px;height:370px;background: #000;float: left;overflow: hidden;}
+#integral .col-1 .personal .login,#integral .col-1 .personal .register{display: block;margin: 80px auto 0;cursor: pointer;width: 200px;height: 40px;line-height: 40px;background: #CC0033;font-size: 18px;text-align: center;color:#fff;}
+#integral .col-1 .personal .register{background:#99CC00}
+#integral .col-1 .personal .info {height: 258px;border-top: 4px solid #ce1c00;text-align: center;position: relative;}
+#integral .col-1 .personal .info .pic{padding-top: 40px;}
+#integral .col-1 .personal .info .pic .avatar {position: relative;width: 123px;height: 123px;margin: 0 auto;cursor: pointer;}
+#integral .col-1 .personal .info .pic .avatar img{width: 105px;height: 105px;border: 3px solid #FFF;border-radius: 105px;}
+#integral .col-1 .personal .info .pic .avatar .tips {position: absolute;top: 10px;left: -65px;background: url(../images/integral_personaltips.png) no-repeat;width: 70px;height: 33px;font-size: 12px;color: #ce1c00;text-decoration: none;text-align: left;text-indent: 5px;}
+#integral .col-1 .personal .info .pic .avatar .tips p{line-height: 16px;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;}
+#integral .col-1 .personal .info .text {position: absolute;width: 100%;top: 165px;left: 0;}
+#integral .col-1 .personal .info .text p {color: #fff;font-size: 14px;}
+#integral .col-1 .personal .info .text .pname {overflow: hidden;white-space: nowrap;text-overflow: ellipsis;width: 200px;margin: 0 auto;font-weight: 400;}
+#integral .col-1 .personal .info .text .exp a{color: #8c8c8c;font-size: 12px;}
+
+#integral .col-1 .personal .assets{border-top: 1px solid #560c00;}
+#integral .col-1 .personal .assets li {height: 30px;line-height: 30px;padding-left:40px;}
+#integral .col-1 .personal .assets li.rowbg {background: #1c1c1c;}
+#integral .col-1 .personal .assets li .key {width: 100px;color: #8c8c8c;display: inline-block;}
+#integral .col-1 .personal .assets li .value {color: #fff;text-decoration: none;display: inline-block;}
+
+
+#integral .right{float: right;width: 920px;height: 370px;overflow: hidden;}
+
+
+
+/*楼层*/
+.integral_floor{}
+.integral_floor .mt{height: 32px;line-height: 32px;padding: 10px 0;position: relative;}
+.integral_floor .mt h3{padding-left: 20px;font-size:14px;}
+.integral_floor .mc{}
+.integral_floor .mc ul{}
+.integral_floor .mc li {float: left;width: 282px;height: 460px;margin: 0 9px 20px 9px;background: #fff;overflow: hidden;}
+.integral_floor .mc li .pic img{width: 282px;height: 280px;}
+.integral_floor .mc li .goods_name{color: #666;font-size: 14px;height:34px;line-height: 17px;padding: 10px;text-overflow: ellipsis;border-bottom: 1px dashed #000;position: relative;}
+.integral_floor .mc li .goods_name .icon {position: absolute;width: 14px;height: 11px;bottom: -6px;right: 0;background: url(../images/integral_goods_name_ico.png) no-repeat;}
+.integral_floor .mc li .goods_price{color: #ce1c00;font-size: 28px;position: relative;height:30px;text-align: center;margin-top: 8px;}
+.integral_floor .mc li .goods_integral {line-height: 22px;height: 22px;color: #000;font-size: 14px;text-align: center;}
+.integral_floor .mc li .goods_integral .red{color:red;padding-left: 5px;font-weight: bold;}
+.integral_floor .mc li .btn{display: block;margin: 10px auto 0;cursor: pointer;width: 200px;height: 40px;line-height: 40px;background: #000;font-size: 18px;text-align: center;}
+.integral_floor .mc li .btn a{color: #fff;}
+.integral_floor .mc li:hover {outline: 4px solid #ce1c00;}
+.integral_floor .mc li:hover .btn {background: #ce1c00;}

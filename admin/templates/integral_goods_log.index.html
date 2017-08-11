@@ -1,0 +1,158 @@
+{include file="header.html"}
+
+<script type="text/javascript">
+
+$(function(){
+
+    $('#add_time_from').datepicker({dateFormat: 'yy-mm-dd'});
+
+    $('#add_time_to').datepicker({dateFormat: 'yy-mm-dd'});
+
+});
+
+</script>
+
+
+
+<div id="rightTop">
+
+    <p>{$lang.integral_goods_log}</p>
+
+    <ul class="subnav">
+
+        <li><span>{$lang.manage}</span></li>
+
+    </ul>
+
+</div>
+
+<div class="mrightTop">
+
+    <div class="fontl">
+
+        <form method="get">
+
+            <div class="left">
+
+                <input type="hidden" name="app" value="integral_goods_log" />
+
+                <input type="hidden" name="act" value="index" />
+
+                {$lang.user_name}:
+
+                <input class="queryInput" type="text" name="user_name" value="{$smarty.get.user_name|escape}" />
+
+                {$lang.goods_name}:
+
+                <input class="queryInput" type="text" name="goods_name" value="{$smarty.get.goods_name|escape}" />
+
+                
+
+                <select class="querySelect" name="state">
+
+                    <option value="">{$lang.states}</option>
+
+                    {html_options options=$states selected=$query.state}
+
+                </select>
+
+                {$lang.add_time_from}:<input class="queryInput2" type="text" value="{$query.add_time_from}" id="add_time_from" name="add_time_from" class="pick_date" />
+
+                {$lang.add_time_to}:<input class="queryInput2" type="text" value="{$query.add_time_to}" id="add_time_to" name="add_time_to" class="pick_date" />
+
+                <input type="submit" class="formbtn" value="{$lang.query}" />
+
+            </div>
+
+            <!--{if $filtered}-->
+
+            <a class="left formbtn1" href="index.php?app=integral_goods_log">{$lang.cancel_query}</a>
+
+            <!--{/if}-->
+
+        </form>
+
+    </div>
+
+    <div class="fontr">{include file=page.top.html}</div>
+
+</div>
+
+<div class="tdare">
+
+    <table width="100%" cellspacing="0" class="dataTable">
+
+        <!--{if $integral_goods_log_list}-->
+
+        <tr class="tatr1">
+
+            <td>{$lang.goods_name}</td>
+
+            <td>{$lang.user_name}</td>
+
+            <td>回购金额</td>
+
+
+            <td>操作时间</td>
+
+            <td>当前状态</td>
+
+            <td>{$lang.handler}</td>
+
+        </tr>
+
+        <!--{/if}-->
+
+        <!--{foreach from=$integral_goods_log_list item=integral_goods_log}-->
+
+        <tr class="tatr2">
+
+            <td>{$integral_goods_log.goods_name|escape}</td>
+
+            <td>{$integral_goods_log.user_name|escape}</td>
+
+            <td>{$integral_goods_log.money|escape}</td>
+
+
+
+
+            <td>{$integral_goods_log.add_time|date:Y-m-d H:i:s}</td>
+			
+            <td>{$integral_goods_log.state|escape}</td>
+			
+
+            <td class="handler">
+
+                <a href="index.php?app=integral_goods_log&amp;act=edit&amp;id={$integral_goods_log.id}">{$lang.edit}</a>
+
+            </td>
+
+        </tr>
+
+        <!--{foreachelse}-->
+
+        <tr class="no_data">
+
+            <td colspan="10">{$lang.no_data}</td>
+
+        </tr>
+
+        <!--{/foreach}-->
+
+    </table>
+
+    <!--{if $integral_goods_log_list}-->
+
+    <div id="dataFuncs">
+
+        <div class="pageLinks">{include file=page.bottom.html}</div>
+
+        <div class="clear"></div>
+
+    </div>
+
+    <!--{/if}-->
+
+</div>
+
+{include file="footer.html"}

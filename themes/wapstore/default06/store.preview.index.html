@@ -1,0 +1,211 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta content="width=device-width,minimum-scale=1.0,maximum-scale=1.0" name="viewport">
+<meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+<meta name="viewport" content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=no;">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+{$page_seo}
+<link type="text/css" rel="stylesheet" href="{res file=css/index.css}">
+<link type="text/css" rel="stylesheet" href="{res file=css/flexslider.css}">
+<script type="text/javascript" src="{res file=js/jquery-1.8.0.min.js}" charset="utf-8"></script>
+<script type="text/javascript" src="{res file=js/jquery.flexslider.js}" charset="utf-8"></script>
+<script type="text/javascript" src="{res file=js/sub_menu.js}" charset="utf-8"></script>
+<script type="text/javascript" src="{lib file=ecmall.js}" charset="utf-8"></script>
+</head>
+<script>
+$(window).load(function(){	
+	$('.flexslider').flexslider({
+    	animation: "slide"
+    });
+});
+</script>
+<body>
+<!----轮播-------->
+<div class="banner">   
+	<!---轮播开始------>
+    <section class="slider" style="overflow:hidden;"> 
+        <div class="flexslider" id="z_slider">
+            <ul class="slides">
+                   <!--{foreach from=$goods_images item=goods_iamge}-->
+                        <li>
+                            <img  src="{$goods_iamge.image_url}"/>
+                        </li>
+                        <!--{/foreach}-->
+            </ul>
+        </div>
+    </section>
+</div>
+<!-------轮播结束------------> 
+
+<div class="header">
+	<a href="javascript:void(0);" class="logo"><img src="{$store.store_logo}"></a>
+    <!---搜索框------>
+    <div class="searchBar">
+         <form   id="" name="" method="get" action="index.php">  
+         <input type="hidden" name="app" value="store" />
+             <input type="hidden" name="act" value="search" />
+             <input type="hidden" name="id" value="{$store.store_id}" />
+        <input type="text" name="keyword" placeholder="搜搜看吧" class="search_text" />
+        <div class="search_btn_img"><img src="{res file=images/search_btn.png}" style="width:30px;"></div>
+        <input type="button" value="" class="search_btn">
+        </form>
+    </div>
+</div>
+<!------------分类------------------------>
+
+<div class="sort">
+	<ul>
+    	<a href="javascript:void(0);">
+            <li>
+            	<div class="imgbox"><img src="{res file=images/sr1.png}"></div>
+                <span>最新商品</span>
+            </li>
+        </a>
+    	<a href="javascript:void(0);">
+            <li>
+            	<div class="imgbox"><img src="{res file=images/sr2.png}"></div>
+                <span>推荐商品</span>
+            </li>
+        </a>
+    	<a href="javascript:void(0);">
+            <li>
+            	<div class="imgbox"><img src="{res file=images/sr3.png}"></div>
+                <span>热门商品</span>
+            </li>
+        </a>
+           <!--{foreach from=$store.store_gcates_image item=gcategory}-->
+    	<a href="javascript:void(0);">
+            <li>
+            	<div class="imgbox"><img src="<!--{if $gcategory.cate_images}-->{$gcategory.cate_images}<!--{else}-->{res file=images/sr1.png}<!--{/if}-->"></div>
+                <span>{$gcategory.cate_name|escape}</span>
+            </li>
+        </a>
+    	 <!--{/foreach}-->
+    
+    	
+    </ul>
+</div>
+<!-----列表--------->
+ <!--{if $recommended_goods}-->
+<div class="lists">
+    <h2>橱窗推荐<a href="javascript:void(0);">查看更多>></a></h2>
+    <ul>
+    
+         <!--{foreach from=$recommended_goods item=rgoods}-->
+        <a href="javascript:void(0);" class="goods">
+            <li>
+            	<div class="g_box">
+                    <img src="{$rgoods.default_image}" />
+                	<span>{$rgoods.price|price}</span>
+                </div>
+                <p>{$rgoods.goods_name|escape}</p>
+            </li>
+        </a>
+         <!-- {/foreach} -->
+    </ul>
+</div>
+
+ <!--{/if}-->
+ <!--{if $new_goods}-->
+<div class="lists">
+    <h2>新品上市<a href="javascript:void(0);">查看更多>></a></h2>
+    <ul>
+          <!--{foreach from=$new_goods item=ngoods}-->
+        <a href="javascript:void(0);" class="goods">
+            <li>
+            	<div class="g_box">
+                    <img src="{$ngoods.default_image}" />
+                	<span>{$ngoods.price|price}</span>
+                </div>
+                 <p>{$ngoods.goods_name|escape}</p>
+            </li>
+        </a>  
+       <!--{/foreach}-->
+    </ul>
+</div>
+ <!--{/if}-->
+<!------------底部------------------------->
+<div class="footer">
+    <p>
+        <a href="javascript:void(0);">商铺首页</a>|<a href="javascript:void(0);">会员中心</a>|<a href="javascript:void(0);">关于我们</a>
+    </p>
+    <a href="#" class="top"><img src="{res file=images/top.png}"></a>
+    <p> {if $store.functions.copyright}{$store.copyright|escape}{ else} Copyright &copy;2013 mall.changxiao.cn{/if}</p>
+</div> 
+<!----底部导航------------->
+<div class="footer_nav">
+    <ul class="nav">
+    	<a href="#" class="home">
+        	<span><img src="{res file=images/nav_1.png}"></span>
+        </a>
+        <a href="javascript:;" class="menu"><li><span style="border-left:none;"><img src="{res file=images/nav_2.png}"></span></li></a>
+        <a href="javascript:void(0);"><li><span><img src="{res file=images/nav_3.png}"></span></li></a>
+        <a href="javascript:void(0);"><li><span style="border-right:none;"><img src="{res file=images/nav_4.png}"></span></li></a>
+    </ul>
+</div>
+    <!----------下拉二级菜单--------------->
+    <div class="sub_menu">
+          <ul>
+            <a href="javascript:void(0);"> 
+             <li>
+                  <h2>最新商品</h2>
+              </li>
+            </a>
+            <a href="javascript:void(0);"> 
+             <li>
+                  <h2>推荐商品</h2>
+                 
+              </li>
+              </a>
+               <a href="javascript:void(0);">
+              <li>
+                  <h2>热门商品</h2>
+                   
+              </li>
+              </a>
+              <!--{foreach from=$store.store_gcates item=gcategory}-->
+                 
+                <!--{if $gcategory.children}-->
+                 <li>
+                  <h2>{$gcategory.value|escape}</h2>
+                     <ol class="sub_menu_list">
+                <!--{foreach from=$gcategory.children item=child_gcategory}-->
+                <a href="javascript:void(0);"><li>{$child_gcategory.value|escape}</li></a>
+                  <!--{/foreach}-->
+                   </ol>
+                  </li>
+                  <!--{else}-->
+                  <a href="javascript:void(0);">
+                   <li>
+                  <h2>{$gcategory.value|escape}</h2>
+                  </li>
+                  </a>
+                  <!--{/if}-->
+              <!--{/foreach}-->
+          </ul>
+          <div class="fun">
+             <a href="javascript:;" class="code"><img src="{res file=images/code.png}"/>店铺二维码</a>
+             <a href="javascript:void(0);" class="fav"><img src="{res file=images/favorite.png}"/>收藏本店</a>
+          </div>
+    </div>
+    <!----------二维码、店铺信息--------------->
+    <div class="shop_info">
+    
+          <img src="<!--{if $store.store_code}-->{$store.store_code}<!--{else}-->{res file=images/code.jpg}<!--{/if}-->" class="shop_code"/>
+          <p class="shop_name">店铺ID：{$store.store_name|escape}</p>
+          <p class="shop_detail">
+              <span>信用度：<strong> <!--{if $store.credit_value ge 0}--><img src="{$store.credit_image}" alt="" /><!--{/if}--></strong></span><br />
+              <span>商品数量：{$store.goods_count}</span>
+          </p>
+          <a href="javascript:;" class="back">返回上一页</a>
+    </div>
+    <!--------显示收藏信息------------->
+    <div class="fav_msg">
+          <img src="{res file=images/favorite.png}" />
+          <span id="collect">收藏成功！</span>
+    </div>
+</body>
+</html>

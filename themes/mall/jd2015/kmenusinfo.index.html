@@ -1,0 +1,109 @@
+
+{include file=member.header.html}
+
+<style>
+select{height: auto}
+.kg{ overflow:hidden;padding:20px 85px;border-bottom:#eee solid 1px;}
+.zscul{margin-left:35px;}
+.zscul li{padding:8px;}
+.zscul li select{padding:5px;}
+.zscul li input{padding:5px;}
+.btn{background: none repeat scroll 0 0 #3F89EC;border: 0 none;color: #FFFFFF;cursor: pointer;font-weight: bold;height: 32px;width: 120px;margin-left:40px;}
+table{padding-bottom:50px;}
+table th{border-top:1px solid #EEEEEE; border-bottom:1px solid #EEEEEE;}
+table td{border-bottom:1px solid #EEEEEE;}
+table th,table td{ padding:8px 10px; text-align:center;}
+.plug-menu{border-radius: 36px;box-shadow: 0 0 0 4px #FFFFFF, 0 2px 5px 4px rgba(0, 0, 0, 0.25);height: 36px;position: relative;width: 36px;top:-15px;left:50px;}
+.plug-menu span {display: block;height: 28px;left: 4px;overflow: hidden;position: absolute;text-indent: -999px;top: 4px;width: 28px;}
+.remind .btn1{float: left;}
+</style>
+
+<div class="content">
+    {include file=member.menu.html}
+    <div id="right">    
+    	<div class="wrap">
+        	<div class="kg">
+            <h3 style="color:#666;" class="h_left remind">
+            	<a href="{url app=kmenus}" style="margin:0 30px 0 -40px;" class="btn1"><span class="pic2">快捷菜单管理</span></a>
+            	<a href="{url app=kmenusinfo}" style="margin:0;" class="btn1"> <span class="pic1">添加快捷菜单</span></a>
+            </h3>
+        </div>
+        <div class="content-right" style="padding-top:20px;">
+			<form  method="post">
+            	<input type="hidden" value="{$kmenusinfo.id}" name="id" />
+                <input type="hidden" value="{$kmenusinfo.imgurl}" id="zscimgurl" />
+                <ul class="zscul">
+                    <li>
+                        <strong>图标：</strong>
+                        <input type="radio" <!--{if $kmenusinfo.status eq 0 }-->checked="checked"<!--{/if}--> value="0" name="status" /> 默认
+                    </li>
+                    <li>
+                        <strong>图片：</strong>
+                        <select name="imgurl" onChange="zscimg();" id="imgurl">
+                            <option value="{$site_url}/mall/kmenus/plugmenu1.png">电话</option>
+                            <option value="{$site_url}/mall/kmenus/plugmenu3.png">导航</option>
+                            <option value="{$site_url}/mall/kmenus/plugmenu6.png">首页</option>
+                            <option value="{$site_url}/mall/kmenus/plugmenu9.png">购物</option>
+                            <option value="{$site_url}/mall/kmenus/plugmenu12.png">新浪微博</option>
+                            <option value="{$site_url}/mall/kmenus/plugmenu13.png">腾讯微博</option>
+                            <option value="{$site_url}/mall/kmenus/plugmenu14.png">腾讯空间</option>
+                            <option value="{$site_url}/mall/kmenus/plugmenu20.png">客服QQ</option>
+                        </select>
+                        <input type="hidden" value="{$kmenusinfo.title}" name="title" id="title" />
+                    </li>
+                    <li>
+                        <strong>示例：</strong>
+                        <div id="plugmenucolor" class="plug-menu" style="background-color: #{$kmenusinfo.color};">
+                                <span class="close" style="background:url('{$kmenusinfo.imgurl}') no-repeat scroll 0 0 / 28px 28px rgba(0, 0, 0, 0);">
+                                </span>
+                        </div>
+                    </li>
+                    <li>
+                        <strong>颜色：</strong>
+                        <input type="text" onblur="document.getElementById('plugmenucolor').style.backgroundColor=document.getElementById('themeStyle').style.backgroundColor;" style="width:65px; color: rgb(255, 255, 255); background-color:#{$kmenusinfo.color}" class="px color" value="{$kmenusinfo.color}" id="themeStyle" name="color" />
+                    </li>
+                    <li>
+                        <strong>链接：</strong>
+                        <input type="text" name="loadurl" style="width:230px;" value="{$kmenusinfo.loadurl}" maxlength="200" />
+                        <span id="zinfo"></span>
+                    </li>
+                    <li>
+                        <strong>排序：</strong>
+                        <input type="text" name="nums" style="width:65px;" value="{$kmenusinfo.nums}" />
+                    </li>
+                    <li>
+                        <input type="submit" value="保存" class="btn" />
+                    </li>
+                </ul>
+            </form>
+    	</div>       
+	</div>
+</div>
+
+</div>
+<div class="clear"></div>
+{include file=footer.html}
+<script src="{$site_url}/mall/jscolor/jscolor.js" type="text/javascript"></script>
+<script>
+	function zscimg(){
+		var url = $('#imgurl').val();
+		var text = $('#imgurl option:selected').text();
+		$('#title').val(text);
+		$('.close').css('background','url('+url+') no-repeat scroll 0 0 / 28px 28px rgba(255, 0, 0, 0)');
+		
+		if(url=='{$site_url}/mall/kmenus/plugmenu1.png'){
+			$('#zinfo').html('例：tel:13588888888 或者 tel:0595-11111111 (冒号要在英文输入法下输入)');
+		}else if(url=='{$site_url}/mall/kmenus/plugmenu3.png'){
+			$('#zinfo').html('例：厦门思明区软件园（请先在百度地图上确认是有效地址）');
+		}else if(url=='{$site_url}/mall/kmenus/plugmenu20.png'){
+			$('#zinfo').html('<a href="http://pan.baidu.com/s/1eQHvA4U" target="_blank">点击查看在线QQ客服教程</a>');
+		}else{
+			$('#zinfo').html('');
+		}
+	}
+	
+	$(function(){
+		var img = $('#zscimgurl').val();
+		$('#imgurl').val(img);
+	});
+</script> 

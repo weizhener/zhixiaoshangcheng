@@ -1,0 +1,179 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta content="width=device-width,minimum-scale=1.0,maximum-scale=1.0" name="viewport">
+<meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+<meta name="viewport" content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=no;">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+{$page_seo}
+<link type="text/css" rel="stylesheet" href="{res file=css/index.css}">
+<link type="text/css" rel="stylesheet" href="{res file=css/flexslider.css}">
+
+<script type="text/javascript" src="{res file=js/jquery-1.8.0.min.js}" charset="utf-8"></script>
+<script type="text/javascript" src="{res file=js/jquery.flexslider.js}" charset="utf-8"></script>
+<script type="text/javascript" src="{res file=js/touchslider.dev.js}"></script>
+<script type="text/javascript" src="{res file=js/sub_menu.js}" charset="utf-8"></script>
+<script type="text/javascript" src="{lib file=ecmall.js}" charset="utf-8"></script>
+
+</head>
+<script>
+$(window).load(function(){	
+	$('.flexslider').flexslider({
+    	animation: "slide"
+    });
+});
+</script>
+<body>
+ {include file=header.html}
+<!----轮播-------->
+<div class="banner">   
+	<!---轮播开始------>
+    <section class="slider" style="overflow:hidden;"> 
+        <div class="flexslider" id="z_slider">
+            <ul class="slides">
+                   <!--{foreach from=$goods_images item=goods_iamge}-->
+                         <li>
+                          <!-- {if $goods_iamge.image_link}-->
+                     <a href="{$goods_iamge.image_link}"> <img  src="{$site_url}/{$goods_iamge.image_url}"/></a>
+                  <!--{else}-->
+                     <img  src="{$site_url}/{$goods_iamge.image_url}"/>
+                         <!--{/if}-->
+                        </li>
+                        <!--{/foreach}-->
+            </ul>
+        </div>
+    </section>
+</div>
+<!-------轮播结束------------> 
+
+<!------------分类------------------------>
+
+<div class="sort">
+	<ul>
+	  <!--{if $store.radio_new eq '1'}-->
+    	<a href="index.php?app=store&act=search&id={$store.store_id}&order=add_time">
+            <li>
+            	<div class="imgbox"><img src="<!--{if $store.store_new_images}-->{$store.store_new_images} <!--{else}-->{res file=images/sr1.png} <!--{/if}-->"></div>
+                <span>最新商品</span>
+            </li>
+        </a>
+          <!--{/if}-->
+        <!--{if $store.radio_recommend eq '1'}-->
+    	<a href="index.php?app=store&act=search&id={$store.store_id}&recommended=1">
+            <li>
+            	<div class="imgbox"><img src="<!--{if $store.store_recommend_images}-->{$store.store_recommend_images} <!--{else}-->{res file=images/sr2.png}<!--{/if}-->"></div>
+                <span>推荐商品</span>
+            </li>
+        </a>
+           <!--{/if}-->
+           <!--{if $store.radio_hot eq '1'}-->
+    	<a href="index.php?app=store&act=search&id={$store.store_id}&order=views">
+            <li>
+            	<div class="imgbox"><img src="<!--{if $store.store_hot_images}-->{$store.store_hot_images} <!--{else}-->{res file=images/sr3.png}<!--{/if}-->"></div>
+                <span>热门商品</span>
+            </li>
+        </a>
+         <!--{/if}-->
+         
+         
+           <!--{foreach from=$store.store_gcates_image item=gcategory}-->
+           
+        	<a href="<!--{if $gcategory.article_link eq ''}-->{url app=store&id=$store.store_id&act=search&cate_id=$gcategory.cate_id}  <!--{else}--> {$gcategory.article_link|escape}<!--{/if}-->">
+            	<li>
+                	 <div class="imgbox"><img  src=" <!--{if $gcategory.cate_images}-->{$gcategory.cate_images}<!--{else}-->{res file=images/sr1.png}<!--{/if}-->" /></div>
+                    <span>{$gcategory.cate_name|escape}</span>
+                </li>
+            </a>
+          <!--{/foreach}-->
+    
+    </ul>
+</div>
+
+
+
+ <!--{if $new_groupbuy}-->
+<h2 class="tuan-title">最新团购</h2>
+
+<div class="tuan_box swipe">
+    <ul class="tuan_list"  id="slider1">
+       <!-- {foreach from=$new_groupbuy item=group} -->
+    	
+            <li>
+            <a href="{url app=groupbuy&id=$group.group_id&wx_store_id=$store.store_id}">
+                <div class="con">
+                    <div class="tuan_imgbox">
+                        <img src="{$group.default_image}">
+                        <p>{$group.group_name|escape}</p>
+                    </div>
+                    <span class="tuan_price">团购价：<strong>{$group.group_price|price}</strong></span>
+                     <!--{if $group.state eq 1}-->
+                    <span class="s_time"><img src="{res file=images/time.png}">剩余：{$group.lefttime}</span>
+                     <!--{elseif $group.state eq 2}-->
+                    <span class="s_time">活动已结束</span>
+                    <!--{elseif $group.state eq 3}-->
+                    <span class="s_time">活动已完成</span>
+                     <!--{elseif $group.state eq 4}-->
+                       <span class="s_time">活动已取消</span>
+                    <!--{/if}-->
+                </div>
+              </a>
+            </li>
+    	 <!-- {/foreach} -->
+    </ul>
+      <span onClick="t1.prev();" class="prenext pre"></span>
+    <span onClick="t1.next();" class="prenext next"></span>
+</div>
+  <!--{/if}-->
+
+
+  <!--{if $recommended_goods}-->
+<div class="lists">
+    <h2>橱窗推荐<a href="index.php?app=store&act=search&id={$store.store_id}&recommended=1">查看更多<img src="{res file=images/hs.png}"></a></h2>
+    <ul>
+       <!--{foreach from=$recommended_goods item=rgoods}-->
+     
+          <a href="{url app=goods&id=$rgoods.goods_id}" class="goods">
+            <li>
+            	<div class="g_box">
+                    <img src="{$site_url}/{$rgoods.default_image}" />
+                	 <span>{$rgoods.price|price}</span><i>    <!--{if $rgoods.cost_price eq '0'}-->{$rgoods.price|price}   <!--{else}-->{$rgoods.cost_price|price}<!--{/if}--></i>
+                </div>
+                <p>{$rgoods.goods_name|escape}</p>
+            </li>
+        </a>
+        <!-- {/foreach} -->
+      
+      
+      
+    </ul>
+</div>
+ <!--{/if}-->
+ 
+ 
+ <!--{if $new_goods}-->
+<div class="lists">
+    <h2>新品上市<a href="index.php?app=store&act=search&id={$store.store_id}&order=add_time">查看更多<img src="{res file=images/hs.png}"></a></h2>
+    <ul>
+   
+         <!--{foreach from=$new_goods item=ngoods}-->
+        <a href="{url app=goods&id=$ngoods.goods_id}" class="goods">
+            <li>
+            	<div class="g_box">
+                    <img src="{$site_url}/{$ngoods.default_image}" />
+                	<span>{$ngoods.price|price}</span><i><!--{if $ngoods.cost_price eq '0'}-->{$ngoods.price|price}   <!--{else}-->{$ngoods.cost_price|price}<!--{/if}--></i>
+                </div>
+                 <p>{$ngoods.goods_name|escape}</p>
+            </li>
+        </a>
+       <!--{/foreach}-->
+    </ul>
+</div>
+ <!--{/if}-->
+ {include file=footer.html}
+</body>
+</html>
+ <script>
+var t1=new TouchSlider('slider1',{'auto':true, speed:600, timeout:6000})
+</script>

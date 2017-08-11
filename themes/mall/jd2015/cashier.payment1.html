@@ -1,0 +1,148 @@
+{include file="header.html"}
+
+{include file="curlocal.html"}
+
+<link href="{res file=css/epay.css}" rel="stylesheet" type="text/css" />
+
+<style type="text/css">
+
+    .content { width: 1200px; margin: 10px auto 0; }
+
+    .module_common { padding: 5px; border: 4px solid #f8dbc6; overflow: hidden; margin-bottom: 10px; clear: both; }
+
+    .defrays {margin-bottom: 20px; overflow:hidden; }
+
+    /* 灰色线下支付 css类 */
+
+    .defrays dt { height:65px; line-height:65px; background: #f5f5f5; padding-left: 20px; font-weight: bold; color: #333; font-size:14px;}
+
+    .defrays dd {overflow: hidden; padding: 10px; }
+
+    .defrays dd .radio { float: left; width: 40px; text-align: center; padding-top: 14px; }
+
+    .defrays dd .logo { float: left; width: 140px; }
+
+    .defrays dd .explain { float: left; line-height: 20px; color: #787878; }
+
+    .defrays dd .dongtai { float: left; width: 677px; line-height: 40px; }
+
+</style>
+
+
+
+<div id="main" class="w-full">
+
+    <div id="page-cashier" class="w">
+
+        <div class="step step3 mt10 clearfix">
+
+            <span class="fs14 strong f60">{$lang.ckgwc}</span>
+
+            <span class="fs14 strong f60">{$lang.qrddxx}</span>
+
+            <span class="fs14 strong fff">{$lang.fk}</span>
+
+            <span class="fs14 strong">{$lang.qrsh}</span>
+
+            <span class="fs14 strong">{$lang.pj}</span>
+
+        </div>
+
+
+
+        <div class="order-form cashier clearfix">
+
+            <div class="order_info border mt20 clearfix">
+
+                <div class="ico">
+
+                </div>
+
+                <div class="text">
+
+                    <div class="clue_on"><h4>{$lang.order_check}</h4></div>
+
+                    <p class="fs14 strong">{$lang.order_amount} <span class="f60">{$order.order_amount|price}</span></p>
+                    
+                    <p>{$lang.xing} 需要现金：{$order.lost_money|price}，需要积分：{$order.use_integral|price}</p>
+
+                    <p>{$lang.xing} <a href="{url app=buyer_order}" target="_blank">{$lang.member_view_order}</a></p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <form action="index.php?app=epay&act=payment&payment_id={$payment_id}&order_id={$order.order_id}" method="POST" id="zft_pay">
+
+            <div class="border padding10 mt10">
+
+                <dl class="defrays">
+
+                    <dt>
+                    <!-- {if $payment_id eq 10} -->
+
+                    {$lang.epayjf_mony}<strong style=" color:#FF4D0F;padding-right: 20px;"> {$money.moneyjf} </strong>
+                    
+                    <!-- {else} -->
+                    
+                    {$lang.payment_money}<strong style=" color:#FF4D0F;padding-right: 20px;"> {$money.money} </strong>
+
+                    <!-- {/if} -->
+               <!-- 
+                    <span class="epay_btn" style="margin-top:10px;"><a href="{url app=epay&act=czlist}">{$lang.chongzhi}</a></span>
+
+                    <span class="epay_btn epay_btn_white" style="margin-top:10px;"><a href="{url app=epay&act=withdraw}">{$lang.tixian}</a></span>
+               -->
+                    </dt>
+
+
+
+                    <dd style="padding:50px;">
+
+                        {$lang.payment_zhifu}<input name="zf_pass" type="password" id="zf_pass" class="text width5">
+
+                        <input name="post_money" type="hidden" value="{$order.order_amount}" />
+
+                    </dd>
+
+                    <dd>
+
+                        <div class="make_sure">
+
+                            <p>
+
+                                <a href="javascript:$('#zft_pay').submit();" class="btn btn-step">确认付款</a>
+
+                            </p>
+
+                        </div>
+
+                    </dd>
+
+                </dl>
+
+            </div>
+
+        </form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </div>
+
+</div>
+
+
+
+{include file="footer.html"}

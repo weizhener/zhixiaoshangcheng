@@ -1,0 +1,60 @@
+
+
+<!----头部-------->
+<div class="header">
+    <ul class="nav">
+        <a href="{url app=store&id=$store.store_id}"><li><span><img src="{res file=images/nav_1.png}"></span></li></a>
+        <a href="javascript:;" class="menu"><li><span><img src="{res file=images/nav_2.png}"></span></li></a>
+        <a href="<!--{if $visitor.user_id}-->{url app=buyer_order}<!--{else}-->{url app=member&act=login&ret_url=$ret_url}<!--{/if}-->"><li><span><img src="{res file=images/nav_3.png}"></span></li></a>
+        <a href="{url app=cart}"><li><span><img src="{res file=images/nav_4.png}"></span></li></a>
+    </ul>
+    <!----------下拉二级菜单--------------->
+    <div class="sub_menu">
+        <ul>
+            <!--{if $store.radio_new eq '1'}-->
+
+            <a ><li> <h2>最新商品 </h2></li></a>
+            <!--{/if}-->
+            <!--{if $store.radio_recommend eq '1'}-->
+            <a href="index.php?app=store&act=search&id={$store.store_id}&recommended=1"><li><h2>推荐商品</h2></li></a>
+            <!--{/if}-->
+            <!--{if $store.radio_hot eq '1'}-->
+            <a href="index.php?app=store&act=search&id={$store.store_id}&order=views"><li><h2>热门商品</h2></li></a>
+            <!--{/if}-->
+
+            <!--{foreach from=$store.store_gcates item=gcategory}-->
+            <li>
+                <!--{if $gcategory.children}-->
+                <a href="#"><h2>{$gcategory.value|escape}</h2></a> 
+                <ol  class="sub_menu_list">
+                    <!--{foreach from=$gcategory.children item=child_gcategory}-->
+                    <a href="{url app=store&id=$store.store_id&act=search&cate_id=$child_gcategory.id}"><li>{$child_gcategory.value|escape}</li></a>
+                    <!--{/foreach}-->
+                </ol>
+                <!--{else}-->
+                <a href="{url app=store&id=$store.store_id&act=search&cate_id=$gcategory.id}"><h2>{$gcategory.value|escape}</h2></a>
+                <!--{/if}-->
+            </li>
+            <!--{/foreach}-->
+
+        </ul>
+        <div class="fun">
+            <a href="javascript:;" class="code"><img src="{res file=images/code.png}"/>店铺二维码</a>
+            <a href="javascript:collect_store({$store.store_id});" class="fav"><img src="{res file=images/favorite.png}"/>收藏本店</a>
+        </div>
+    </div>
+    <!----------二维码、店铺信息--------------->
+    <div class="shop_info">
+        <img src="<!--{if $store.store_code}-->{$store.store_code}<!--{else}-->{res file=images/code.jpg}<!--{/if}-->" class="shop_code"/>
+        <p class="shop_name">店铺ID：{$store.store_name|escape}</p>
+        <p class="shop_detail">
+            <span>信用度：<strong> <!--{if $store.credit_value ge 0}--><img src="{$store.credit_image}" alt="" /><!--{/if}--></strong></span><br />
+            <span>{$lang.goods_count}：{$store.goods_count}</span>
+        </p>
+        <a href="javascript:;" class="back">返回上一页</a>
+    </div>
+    <!--------显示收藏信息------------->
+    <div class="fav_msg">
+        <img src="{res file=images/favorite.png}"  /><span id='collect'>收藏成功！</span>
+    </div>
+</div>

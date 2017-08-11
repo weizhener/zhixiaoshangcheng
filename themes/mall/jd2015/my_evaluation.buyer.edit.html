@@ -1,0 +1,55 @@
+{include file=member.header.html}
+<div class="content">
+    {include file=member.menu.html}
+    <div id="right">
+        {include file=member.curlocal.html}
+        {include file=member.submenu.html}
+        <div class="wrap" style="border-top: 1px solid #e2e2e2;">
+            <div class="ncu-form-style evaledit_form">
+                <h4 style="padding-left:20px;height:30px;">改为好评</h4>
+                <div class="ncm-notes">
+                    <h3>修改评价须知：</h3>
+                    <ul>
+                        <li>1、您只有一次修改评价的机会，请珍惜。</li>
+                        <li>2、只有在评价期内的差评、中评才有修改机会。</li>
+                    </ul>
+                </div>
+                <form method="post" >
+                    <dl>
+                        <dt>被评价人：</dt>
+                        <dd>{$goods_list.buyer_name}</dd>
+                    </dl>
+                    <dl>
+                        <dt>相关宝贝：</dt>
+                        <dd><a target="_blank" href="{url app=goods&id=$goods_list.goods_id}" target="_blank">{$goods_list.goods_name|escape}</a></dd>
+                    </dl>
+                    <dl>
+                        <dt>评价：</dt>
+                        <dd>
+                            <input name="score" checked="checked" type="radio">
+                            好评
+                        </dd>
+                    </dl>
+                    <dl>
+                        <dt>评论：</dt>
+                        <dd>修改为好评的同时不要忘记修改请评语内容，不超过150个字。<br>
+                            <textarea name="seller_comment" rows="3" class="w600"></textarea>
+                        </dd>
+                    </dl>
+                    <dl>
+                        <dt>&nbsp;</dt>
+                        <dd>
+                            <input id="submit_group" type="submit" class="submit" value="提交">
+                        </dd>
+                    </dl>
+                </form>
+            </div>
+            <div class="wrap_bottom"></div>
+        </div>
+        <div class="clear"></div>
+    </div>
+    <div class="clear"></div>
+</div>
+<iframe id='iframe_post' name="iframe_post" frameborder="0" width="0" height="0">
+</iframe>
+{include file=footer.html}

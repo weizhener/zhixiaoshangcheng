@@ -1,0 +1,52 @@
+{include file="header.html"}
+{assign var="curr_name" value=$store.store_name}
+{include file="top.html"}
+    <div class="main">
+    <!--side-nav-->
+        <div class="side-nav">
+            <div class="soso-ico"><a href="{url app=search}"><img src="{res file=images/soso-ico.jpg}" /></a></div>
+            <!--{foreach from=$store.store_gcates item=gcategory}-->           
+            <strong><a class="" href="{url app=store&id=$store.store_id&act=search&cate_id=$gcategory.id}">{$gcategory.value|escape}</a></strong>
+            <!--{/foreach}-->
+
+            
+        </div>
+    <!--side-nav END-->
+
+    <!--product list-->
+        <div class="pro-list">
+            <ul>
+                <li>
+                    <div class="pro-img"><a href="#"><img src="images/list.jpg" /></a></div>
+                    <div class="pro-txt"><h2><a href="#">绿揽鱼丸</a></h2><span>￥88.00</span></div>
+                    <div class="clr"></div>
+                    <div class="count clearfix"><a href="#" class="reduce"></a><input type="text" class="count-bg" value="1" /><a href="#" class="add"></a></div>
+                </li>
+                <li>
+                    <div class="pro-img"><a href="#"><img src="images/list.jpg" /></a></div>
+                    <div class="pro-txt"><h2><a href="#">绿揽鱼丸</a></h2><span>￥88.00</span></div>
+                    <div class="clr"></div>
+                    <div class="count clearfix"><a href="#" class="reduce"></a><input type="text" class="count-bg" value="1" /><a href="#" class="add"></a></div>
+                </li>
+                <li>
+                    <div class="pro-img"><a href="#"><img src="images/list.jpg" /></a></div>
+                    <div class="pro-txt"><h2><a href="#">绿揽鱼丸</a></h2><span>￥88.00</span></div>
+                    <div class="clr"></div>
+                    <div class="count clearfix"><a href="#" class="reduce"></a><input type="text" class="count-bg" value="1" /><a href="#" class="add"></a></div>
+                </li>
+                <li>
+                    <div class="pro-img"><a href="#"><img src="images/list.jpg" /></a></div>
+                    <div class="pro-txt"><h2><a href="#">绿揽鱼丸</a></h2><span>￥88.00</span></div>
+                    <div class="clr"></div>
+                    <div class="count clearfix"><a href="#" class="reduce"></a><input type="text" class="count-bg" value="1" /><a href="#" class="add"></a></div>
+                </li>
+            </ul>
+        </div>
+    <!--product list END-->
+
+        <div class="clr"></div>
+    </div>
+    
+
+    <div class="space" style="padding:4em 0;"></div>
+{include file="footer.html"}

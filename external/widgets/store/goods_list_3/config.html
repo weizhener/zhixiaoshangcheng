@@ -1,0 +1,51 @@
+<script type="text/javascript">
+var _d = DialogManager.get('config_dialog');
+_d.setWidth(350);
+_d.setPosition('center');
+
+$("select[name='img_recom_id']").change(function(){
+    switchRecommend(this.value, 'img_cate_id');
+});
+
+switchRecommend($("select[name='img_recom_id']").val(), 'img_cate_id');
+
+function switchRecommend(recomId, selectName)
+{
+    if (recomId >= 0)
+    {
+        $("select[name='" + selectName + "']").hide();
+    }
+    else
+    {
+        $("select[name='" + selectName + "']").show();
+    }
+}
+</script>
+<div class="field_item">
+	<label>模块名称</label>
+    <p><input type="text" name="model_name" value="{$options.model_name}" /></p>
+    <label>模块链接地址</label>
+    <p><input type="text" name="link" value="{$options.link}" /></p>
+    <label>模块背景色</label>
+    <p><input type="text" name="model_color" value="{$options.model_color}" /></p>
+    <label>上传图片标题（图片的标题显示级别优于文字标题）:(<span>支持 gif|jpg|jpeg|png 格式</span>)</label>
+    <p><input type="file" name="ad_image_file" /><input type="hidden" name="ad_image_url" value="{$options.ad_image_url}" /></p>
+    <!-- {if $options.ad_image_url} --><p><img src="{$options.ad_image_url}" width="300"  /></p><!-- {/if} -->
+    <label>图片宽度:</label>
+    <p><input type="text" name="ad_width" value="{$options.ad_width}" />px</p>
+    <label>图片高度:</label>
+    <p><input type="text" name="ad_height" value="{$options.ad_height}" />px</p>
+	<label>显示数量</label>
+	<p><input type="text" name="amount" value="{$options.amount}" /></p>
+    <label>推荐类型:</label>
+    <p><select name="img_recom_id">
+        <option value="0">请选择...</option>
+        <!-- {foreach from=$recommends key=recom_id item=recom_name} -->
+        <option value="{$recom_id}"{if $options.img_recom_id eq $recom_id} selected="selected"{/if}>{$recom_name|escape}</option>
+        <!-- {/foreach} -->
+    </select>
+    <select name="img_cate_id">
+        <option value="0">请选择分类...</option>
+        <!-- {html_options options=$gcategories selected=$options.img_cate_id} -->
+    </select></p>
+</div>

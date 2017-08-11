@@ -1,0 +1,46 @@
+{include file="header.html"}
+<div id="rightTop">
+    <p>{$lang.goods_verify}</p>
+    <ul class="subnav">
+        <li><a class="btn1" href="index.php?app=ju&amp;act=goods_list">{$lang.all_goods}</a></li>
+        <li><a class="btn1" href="index.php?app=ju&amp;act=goods_list&amp;wait_verify=1">{$lang.wait_verify}</a></li>
+        <li><span>{$lang.view_detail}</span></li>
+    </ul>
+</div>
+<div class="info">
+    <div class="demand">
+    </div>
+    <div class="order_form">
+        <h1>{$lang.store_info}</h1>
+        <ul>
+            <li><b>{$lang.store_name}:</b>&nbsp;&nbsp;<a href="{$site_url}/index.php?app=store&id={$store.store_id}" target="_blank">{$store.store_name|escape}</a></li>
+            <li><b>{$lang.owner_name}:</b> {$store.owner_name}</li>
+            <li><b>{$lang.address}:</b>{$store.region_name} {$store.address}</li>
+            <li><b>{$lang.phone}:</b>{$store.tel}</li>
+        </ul>
+        <div class="clear"></div>
+    </div>
+    <div class="order_form">
+        <h1>{$lang.goods_info}</h1>
+        <ul>
+            <li><b>{$lang.goods_name}:</b>  &nbsp;&nbsp;<a href="{$site_url}/index.php?app=goods&id={$goods.goods_id}" target="_blank">{$goods.goods_name|escape}</a></li>
+            <li><b>{$lang.cate_name}:</b> {$goods.cate_name}</li>
+        </ul>
+        <!--{foreach from=$goods._specs item=specs}-->
+            <p style="text-align:left; margin:5px 0; padding:0;">
+            	<!--{if $specs.spec_1}-->
+                {$goods.spec_name_1}:{$specs.spec_1}&nbsp;&nbsp;&nbsp;&nbsp;
+                <!--{/if}-->
+                <!--{if $specs.spec_2}-->
+                {$goods.spec_name_2}:{$specs.spec_2}&nbsp;&nbsp;&nbsp;&nbsp;
+                <!--{/if}-->
+                {$lang.stock}:{$specs.stock}&nbsp;&nbsp;&nbsp;&nbsp;
+                {$lang.old_price}:{$specs.price|price}&nbsp;&nbsp;&nbsp;&nbsp;
+                {$lang.ju_price}:{$specs.group_price|price}
+             </p>
+        <!--{/foreach}-->
+        <div class="clear"></div>
+    </div>
+</div>
+
+{include file="footer.html"}

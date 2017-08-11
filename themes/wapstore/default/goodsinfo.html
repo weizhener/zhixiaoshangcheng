@@ -1,0 +1,213 @@
+<script type="text/javascript" src="{lib file=goodsinfo.js}" charset="utf-8"></script>
+<script type="text/javascript" src="{lib file=ecmall.js}" charset="utf-8"></script>
+<script type="text/javascript">
+//<!CDATA[
+    /* buy */
+    function buy()
+    {
+        if (goodsspec.getSpec() == null)
+        {
+            alert(lang.select_specs);
+            return;
+        }
+        var spec_id = goodsspec.getSpec().id;
+
+        var quantity = $("#quantity").val();
+        if (quantity == '')
+        {
+            alert(lang.input_quantity);
+            return;
+        }
+        if (parseInt(quantity) < 1)
+        {
+            alert(lang.invalid_quantity);
+            return;
+        }
+
+        add_to_cart(spec_id, quantity);
+    }
+
+    /* add cart */
+    function add_to_cart(spec_id, quantity)
+    {
+        var url = '{$site_url}/index.php?app=cart&act=add';
+
+        $.getJSON(url, {'spec_id': spec_id, 'quantity': quantity}, function(data) {
+            if (data.done)
+            {
+                $('.bold_num').text(data.retval.cart.kinds);
+                $('.bold_mly').html(price_format(data.retval.cart.amount));
+                $(".buynow .msg").slideDown().delay(5000).slideUp();
+                // $('.msg').slideDown('slow');
+                // setTimeout(slideUp_fn, 5000);
+            }
+            else
+            {
+                alert(data.msg);
+            }
+        });
+    }
+
+         /*buy_now*/
+        function buy_now()
+        {
+            //验证数据
+            if (goodsspec.getSpec() == null)
+            {
+                alert(lang.select_specs);
+                return;
+            }
+            var spec_id = goodsspec.getSpec().id;
+
+            var quantity = $("#quantity").val();
+            if (quantity == '')
+            {
+                alert(lang.input_quantity);
+                return;
+            }
+            if (parseInt(quantity) < 1)
+            {
+                alert(lang.invalid_quantity);
+                return;
+            }
+            buy_now_add_cart(spec_id, quantity);
+        }
+
+        /* add buy_now_add_cart */
+        function buy_now_add_cart(spec_id, quantity)
+        {
+            var url = SITE_URL + '/index.php?app=cart&act=add';
+            $.getJSON(url, {'spec_id': spec_id, 'quantity': quantity}, function(data) {
+                if (data.done)
+                {
+                    location.href = SITE_URL + '/index.php?app=order&goods=cart&store_id={$store.store_id}';
+                } else {
+                    alert(data.msg);
+                }
+            });
+        }
+
+
+
+var specs = new Array();
+<!--{foreach from=$goods._specs item=spec}-->
+<!--{if $spec.is_pro}-->
+specs.push(new spec({$spec.spec_id}, '{$spec.spec_1|escape}', '{$spec.spec_2|escape}', {$spec.price},{$spec.pro_price}, {$spec.stock},true,{$spec.discount|default:0}));
+<!--{else}-->
+specs.push(new spec({$spec.spec_id}, '{$spec.spec_1|escape}', '{$spec.spec_2|escape}', {$spec.price},0, {$spec.stock},false,{$spec.discount|default:0}));
+<!--{/if}-->
+<!--{/foreach}-->
+var specQty = {$goods.spec_qty};
+var defSpec = {$goods.default_spec|escape};
+var goodsspec = new goodsspec(specs, specQty, defSpec);
+//]]>
+</script>
+<div class="detail_img">
+    <div id="slider" class="slider" >
+        <ul id="sliderlist" class="sliderlist" >
+            <!--{foreach from=$goods._images item=goods_image name=fe_goods_image}-->
+            <li><img src="{$goods_image.image_url}"></li>
+
+            <!--{/foreach}-->
+        </ul>
+    </div>
+    <script type="text/javascript">
+        var t2 = new TouchSlider({id: 'sliderlist', speed: 600, timeout: 3000, before: function(index) {
+            }});
+    </script>
+    <div class="fav">
+        <a href="javascript:collect_goods({$goods.goods_id});">
+            <img src="{res file=images/favorite.png}"/><span>收藏</span>
+        </a>
+    </div>
+    <p class="line"></p>
+</div>
+
+<div class="detail_tit">
+    <p>{$goods.goods_name|escape}</p>
+    <p>{$lang.market_price}: <strong style="text-decoration:line-through;">{$goods.market_price|price}</strong></p>
+    <p>价格：<strong ectype="goods_price">{$goods._specs.0.price|price}</strong></p>
+    <!--{if $goods._specs.0.is_pro}-->
+    <span class="letter1">促销: </span>
+    <em class="promo-price-type" title="{$goods.pro_desc}">{$goods.pro_name}</em>
+    <span class="promo-price" ectype="goods_pro_price">{$goods._specs.0.pro_price|price}</span>
+    <div class="countdown J_Countdown_GoodsPromotion">
+        <span class="lefttime">还剩</span>
+        <span class="flip-top J_NumDays">{$goods.lefttime.d}</span><em>天</em>
+        <span class="flip-top J_NumHours">{$goods.lefttime.h}</span><em>小时</em>
+        <span class="flip-top J_NumMins">{$goods.lefttime.m}</span><em>分</em>
+        <span class="flip-top J_NumSeconds">{$goods.lefttime.s}</span><em>秒</em>
+    </div>
+    <!--{/if}-->
+
+    <!--{if $goods.if_open}-->
+    <span class="letter1">会员价: </span>
+    <!--{if $visitor.user_id }-->
+    <em class="promo-price-type" title="{$goods.grade_name}">{$goods.grade_name}</em><span class="promo-price" ectype="member_price">{$goods._specs.0.member_price|price}</span><br />
+    <!--{else}-->
+    <em class="promo-price-type" >登录后查看是否享受该优惠</em>
+    <!--{/if}-->
+    <!--{/if}-->
+    <div style="width: 100%;color:#e4393c;">
+        <!--{if $store.amount_for_free_fee}-->满{$store.amount_for_free_fee|price}元包邮<!--{/if}--><!--{if $store.acount_for_free_fee}-->,满{$store.acount_for_free_fee|escape}件包邮<!--{/if}-->
+    </div>
+    {if $goods.integral_max_exchange}<p>可使用积分:<strong style="color:red;font-weight: bold;padding-left:10px;">{$goods.integral_max_exchange|escape}</strong></p>{/if}
+    <p>销量：{$sales_info}{$comments}</p>
+    <p><span>所在地区：{$store.region_name|escape}</span><!--<span>快递：10.00</span>--></p>
+    <!--{if $shipping}-->
+    <p>物流运费：
+        <!--{foreach from=$shipping item=shippings }-->
+        <span>{$shippings.shipping_name}：¥{$shippings.first_price}</span>
+        <!--{/foreach}-->
+    </p>
+    <!--{/if}-->
+</div>
+<style>
+.list_entry{border-bottom: 1px solid #dedede;padding:20px 10px;position: relative;margin: 12px 0;background: #fff;}
+</style>
+<dl class="list_entry">
+    <dt>
+        <a href="{url app=store&id=$store.store_id}">{$store.store_name|escape}</a>
+    </dt>				
+    <dd>
+        <!--{if $store.credit_value ge 0}--><img src="{$store.credit_image}" alt="" /><!--{/if}-->
+    </dd>
+</dl>
+<div class="detail_size">
+    <div class="size_con">
+        <div class="handle">
+            <!--{if $goods.spec_qty gt 0}-->
+            <ul>
+                <li class="handle_title">{$goods.spec_name_1|escape}: </li><br />
+            </ul>
+            <!--{/if}-->
+            <!--{if $goods.spec_qty gt 1}-->
+            <ul>
+                <li class="handle_title">{$goods.spec_name_2|escape}: </li>
+            </ul>
+            <!--{/if}-->
+            <ul class="quantity">
+                <li class="handle_title">{$lang.quantity}: </li>
+                <li>
+                    <input type="text" class="text width1" name="" id="quantity" value="1" />
+                    {$lang.unit} {$lang.left_bracket}{$lang.stock}<span class="stock" ectype="goods_stock">{$goods._specs.0.stock}</span>{$lang.unit}{$lang.right_bracket}
+                </li>
+            </ul>
+            <!--{if $goods.spec_qty gt 0}-->
+            <ul class="selected">
+                <li class="handle_title">{$lang.your_select}: </li>
+                <li class="aggregate" ectype="current_spec"></li>
+            </ul>
+            <!--{/if}-->
+        </div>
+    </div>
+    <div class="buynow">
+        <a href="javascript:buy_now();" class="buy">立即购买</a><a href="javascript:buy();" class="add">加入购物车</a>
+        <div class="msg" style="display:none;">
+            <p><b></b>购物车内共有<span class="bold_num"></span>种商品 共计 <span class="bold_mly" style="color:#8D0303;"></span>！</p>
+            <a href="{url app=cart}" class="white_btn">查看购物车</a>
+            <a  onclick="$('.msg').css({'display': 'none'});" class="white_btn">继续购物</a>
+        </div>
+    </div>
+
+</div>

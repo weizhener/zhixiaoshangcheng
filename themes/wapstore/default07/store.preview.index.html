@@ -1,0 +1,206 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta content="width=device-width,minimum-scale=1.0,maximum-scale=1.0" name="viewport">
+<meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+<meta name="viewport" content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=no;">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+{$page_seo}
+<link type="text/css" rel="stylesheet" href="{res file=css/index.css}">
+<link type="text/css" rel="stylesheet" href="{res file=css/flexslider.css}">
+<link type="text/css" rel="stylesheet" href="{res file=css/mmenu.css}">
+<script type="text/javascript" src="{res file=js/jquery.js}" charset="utf-8"></script>
+<script type="text/javascript" src="{res file=js/jquery.flexslider.js}" charset="utf-8"></script>
+<script type="text/javascript" src="{res file=js/jquery.mmenu.min.js}" charset="utf-8"></script>
+<script type="text/javascript" src="{lib file=ecmall.js}" charset="utf-8"></script>
+
+</head>
+<body>
+<div id="page">
+<script type="text/javascript">
+    $(function() {
+        $('nav#menu-left').mmenu({
+            searchfield: true,
+            counters: true
+        });
+    });
+</script>   <div id="header">
+        <a href="#menu-left" class="ico_menu"><img src="{res file=images/nav_2.png}"></a>
+        <a href="javascript:void(0);" class="logo"><img src="{res file=images/logo.png}"></a>
+        <a href="javascript:void(0);" class="car"><img src="{res file=images/nav_4.png}"></a>
+        <a href="javascript:void(0);" class="user"><img src="{res file=images/nav_3.png}"></a>
+    </div>
+    
+    <div class="content">
+    
+        <!----轮播-------->
+        <div class="banner">   
+            <!---轮播开始------>
+            <section class="slider" style="overflow:hidden;"> 
+                <div class="flexslider" id="z_slider">
+                    <ul class="slides">
+                        <!--{foreach from=$goods_images item=goods_iamge}-->
+                         <li>
+                            <img  src="{$goods_iamge.image_url}"/>
+                        </li>
+                        <!--{/foreach}-->
+                     
+                    </ul>
+                </div>
+            </section>
+        </div>
+		<script>
+		$(window).load(function(){	
+			$('.flexslider').flexslider({
+				animation: "slide"
+			});
+		});
+		</script>
+        <!-------轮播结束------------> 
+        <div class="sort">
+            <ul>
+                <a href="javascript:void(0);">
+                    <li>
+                        <div class="imgbox"><img src="{res file=images/sr1.png}"></div>
+                        <span>最新商品</span>
+                    </li>
+                </a>
+                <a href="javascript:void(0);">
+                    <li>
+                        <div class="imgbox"><img src="{res file=images/sr2.png}"></div>
+                        <span>推荐商品</span>
+                    </li>
+                </a>
+                <a href="javascript:void(0);">
+                    <li>
+                        <div class="imgbox"><img src="{res file=images/sr3.png}"></div>
+                        <span>热门商品</span>
+                    </li>
+                </a>
+                 <!--{foreach from=$store.store_gcates_image item=gcategory}-->
+    	<a href="javascript:void(0);">
+            <li>
+            	<div class="imgbox"><img src="<!--{if $gcategory.cate_images}-->{$gcategory.cate_images}<!--{else}-->{res file=images/sr1.png}<!--{/if}-->"></div>
+                <span>{$gcategory.cate_name|escape}</span>
+            </li>
+        </a>
+    	 <!--{/foreach}-->
+  
+                
+            </ul>
+        </div>
+    </div>
+    <!-----列表--------->
+     <!--{if $recommended_goods}-->
+    <div class="lists">
+        <h2>橱窗推荐<a href="javascript:void(0);">查看更多>></a></h2>
+        <ul>
+           <!--{foreach from=$recommended_goods item=rgoods}-->
+           
+           <a href="javascript:void(0);">
+                <li>
+                    <img src="{$rgoods.default_image}" />
+                    <p>{$rgoods.goods_name|escape}</p>
+                    <span>{$rgoods.price|price}</span>
+                </li>
+            </a>
+         <!-- {/foreach} -->
+        </ul>
+    </div>
+     <!--{/if}-->
+      <!--{if $new_goods}-->
+    <div class="lists">
+        <h2>新品上市<a href="javascript:void(0);">查看更多>></a></h2>
+        <ul>
+          <!--{foreach from=$new_goods item=ngoods}-->
+            <a href="javascript:void(0);">
+                <li>
+                    <img src="{$ngoods.default_image}" />
+                    <p>{$ngoods.goods_name|escape}</p>
+                    <span>{$ngoods.price|price}</span>
+                </li>
+            </a>
+               <!--{/foreach}-->
+        </ul>
+    </div>
+     <!--{/if}-->
+   <!-----------隐藏导航开始---------------> 
+    <nav id="menu-left">
+        <div class="mmenu-search">
+         <form   id="" name="" method="get" action="index.php">  
+             <input type="hidden" name="app" value="store" />
+             <input type="hidden" name="act" value="search" />
+             <input type="hidden" name="id" value="{$store.store_id}" />
+            <input type="text" name="keyword" autocomplete="off" placeholder="搜搜看吧" class="search_text">
+            <div class="search_btn_img"><img src="{res file=images/search_btn.png}" style="width:30px;"></div>
+       		<input type="button" value="" class="search_btn">
+       		  </form>
+        </div>
+        <ul>
+            <li>
+                <a href="javascript:void(0);"><span>最新商品</span></a>
+            </li>
+            
+            <li>
+                <a href="javascript:void(0);"><span>推荐商品</span></a>
+            </li>
+             <li>
+                <a href="javascript:void(0);"><span>热门商品</span></a>
+            </li>
+         
+           <!--{foreach from=$store.store_gcates item=gcategory}-->
+                    <li>
+                <!--{if $gcategory.children}-->
+                 <a href="#"><span>{$gcategory.value|escape}</span></a> 
+                   <ul>
+                <!--{foreach from=$gcategory.children item=child_gcategory}-->
+                  <li><a href="javascript:void(0);">{$child_gcategory.value|escape}</a></li>
+                  <!--{/foreach}-->
+                  </ul>
+                 <!--{else}-->
+                   <a href="javascript:void(0);"><span>{$gcategory.value|escape}</span></a>
+                  <!--{/if}-->
+                     </li>
+              <!--{/foreach}-->
+         
+    
+            <li>
+            	<a href="javascript:;" class="code"><img src="{res file=images/code.png}"/>店铺二维码</a>
+            	<ul>
+                	<li><a href="javascript:;" >店铺ID：{$store.store_name|escape}</a></li>
+                	<li><a href="javascript:;" >信用度：<!--{if $store.credit_value ge 0}--><img src="{$store.credit_image}" alt="" /><!--{/if}--></a></li>
+                	<li><a href="javascript:;" >商品数量：{$store.goods_count}</a></li>
+                	<li><a href="javascript:;" class="codes" ><img src="<!--{if $store.store_code}-->{$store.store_code}<!--{else}-->{res file=images/code.jpg}<!--{/if}-->"></a></li>
+                </ul>
+            </li>
+            <li><a href="javascript:void(0);" class="fav"><img src="{res file=images/favorite.png}"/>收藏本店</a></li>
+        </ul>
+    </nav>
+    <!--------显示收藏信息------------->
+    <div class="fav_msg">
+          <img src="{res file=images/favorite.png}" />
+          <span id="collect">收藏成功！</span>
+    </div>
+   <!-----------隐藏导航结束--------------->
+   
+   <!------------底部------------------------->
+    <div class="footer">
+        <p>
+            <a href="javascript:void(0);">商铺首页</a>|<a href="javascript:void(0);">会员中心</a>|<a href="javascript:void(0);">关于我们</a>
+        </p>
+        <a href="#" class="top">top</a>
+        <p>{if $store.functions.copyright}{$store.copyright|escape}{ else} Copyright &copy;2013 mall.changxiao.cn{/if}</p>
+    </div> 
+    <script>
+//返回顶部	
+$(function(){
+	$('.top').click(function(){$('html,body').animate({scrollTop: '0px'}, 800);});
+	})
+	
+</script>
+</div>
+
+</body>
+</html>

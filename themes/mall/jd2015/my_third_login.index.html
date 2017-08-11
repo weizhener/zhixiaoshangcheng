@@ -1,0 +1,35 @@
+{include file=member.header.html}
+<div class="content">
+    {include file=member.menu.html}
+    <div id="right">
+        {include file=member.submenu.html}
+        <div class="wrap">
+            <div class="public_index table1">
+                <table>
+                    <tbody>
+                    <!--{if $third_logins}-->
+                    <tr class="line tr_bgcolor">
+                        <th>绑定类型</th>
+                        <th>绑定时间</th>
+                        <th>最后登录时间</th>
+                        <th>操作</th>
+                    </tr>
+                    <!--{/if}-->
+                    <!-- {foreach from=$third_logins item=third_login name=fe_third_login} -->
+                    <tr style="height: 50px;">
+                        <td class="align2">{$third_login.third_name}</td>
+                        <td class="align2">{$third_login.add_time|date:complete}</td>
+                        <td class="align2">{$third_login.update_time|date:complete}</td>
+                        <td class="align2"><a href="{url app=my_third_login&act=drop&id=$third_login.id}">解绑</a></td>
+                    </tr>
+                    <!-- {foreachelse} -->
+                    <tr><td colspan="4" class="member_no_records">此帐号未绑定任何第三方登录帐号进行登录</td></tr>
+                    <!-- {/foreach} -->
+                    </tbody>
+                </table>
+              </div>
+        </div>
+    </div>
+    <div class="clear"></div>
+</div>
+{include file=footer.html}

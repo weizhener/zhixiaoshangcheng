@@ -1,0 +1,26 @@
+<script type="text/javascript">
+    var _d = DialogManager.get('config_dialog');
+    _d.setWidth(350);
+    _d.setPosition('center');
+
+
+</script>
+<div class="field_item">
+    <label>模块标题</label>
+    <p><input type="text" name="model_name" value="{$options.model_name}"/></p>
+</div>
+<div class="field_item">
+    <label>选择商品:</label>
+    <p><select name="img_recom_id_1">
+            <option value="0">请选择...</option>
+            <!-- {foreach from=$recommends key=recom_id item=recom_name} -->
+            <option value="{$recom_id}"{if $options.img_recom_id_1 eq $recom_id} selected="selected"{/if}>{$recom_name|escape}</option>
+            <!-- {/foreach} -->
+        </select>
+        <select name="img_cate_id_1">
+            <option value="0">请选择分类...</option>
+            <!-- {html_options options=$gcategories selected=$options.img_cate_id_1} -->
+        </select>
+    </p>
+</div>
+

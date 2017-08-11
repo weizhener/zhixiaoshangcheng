@@ -1,0 +1,87 @@
+{include file=member.header.html}
+<script type="text/javascript">
+    $(function() {
+        $('#add_time_from').datepicker({dateFormat: 'yy-mm-dd'});
+        $('#add_time_to').datepicker({dateFormat: 'yy-mm-dd'});
+    });
+</script>
+<style type="text/css">
+    .table .line td{ border:none;}
+    .float_right {float: right;}
+    .line{ border-bottom:1px solid #E2E2E2}
+</style>
+<div class="content">
+    {include file=member.menu.html}
+    <div id="right">
+        {include file=member.submenu.html}
+        <div class="wrap">
+            <div class="public table">
+                <div class="user_search">
+                    <form method="get">
+                        <span>{$lang.order_sn}:</span>
+                        <input type="text" class="text1 width8" width="30" name="order_sn" value="{$query.order_sn|escape}">
+                        <select class="querySelect" name="type">
+                            <option value="">{$lang.search_types}</option>
+                            {html_options options=$epay_type_list selected=$smarty.get.type}
+                        </select>
+                        <select class="querySelect" name="complete">
+                            <option value="">{$lang.complete_list}</option>
+                            {html_options options=$complete_list selected=$smarty.get.complete}
+                        </select>
+                        <span>{$lang.time}: </span>
+                        <input type="text" class="text1 width2" name="add_time_from" id="add_time_from" value="{$query.add_time_from}"/> &#8211;
+                        <input type="text" class="text1 width2" name="add_time_to" id="add_time_to" value="{$query.add_time_to}"/>
+                        <input type="hidden" name="app" value="epay" />
+                        <input type="hidden" name="act" value="logall" />
+                        <input type="submit" class="btn" value="{$lang.so_so}" />
+                        <!--{if $filtered}-->
+                        <a class="detlink float_right" href="{url app=epay&act=logall}">{$lang.cancel_query}</a>
+                        <!--{/if}-->
+                    </form>
+                </div>		
+
+                <table>
+                    <!--{if $epaylog_list}-->
+                    <tr class="line tr_bgcolor">
+                        <th width="10%">{$lang.order_sn}</th>
+                        <th width="10%" align="center">{$lang.time}</th>
+                        <th width="60%">{$lang.caozuorizhi}</th>
+                        <th width="10%">{$lang.money}</th>
+                        <th width="10%" align="center">{$lang.zhuangtai}</th>
+                    </tr>
+                    <!--{/if}-->
+                    <!--{foreach from=$epaylog_list item=epaylog name=v}-->
+                    <!--{if $smarty.foreach.v.last}--><tr class="line_bold"><!--{else}--><tr class="line"><!--{/if}-->
+                        <td align="center">{$epaylog.order_sn}</td>
+                        <td align="center">{$epaylog.add_time|date:Y-m-d H:i}</td>
+                        <td align="center">{$epaylog.log_text}</td>
+                        <td align="center">{if $epaylog.money_flow eq 'income'}收入{else}支出{/if}{$epaylog.money}{$epaylog.yuan}</td>
+                        <td align="center"><!--{if $epaylog.complete==0}-->未完成<!--{else}-->已完成<!--{/if}--></td>
+                    </tr>
+                    <!--{foreachelse}-->
+                    <tr>
+                        <td colspan="5" class="member_no_records padding6">{$lang.$smarty.get.act}{$lang.no_records}</td>
+                    </tr>
+                    <!--{/foreach}-->
+                    <!--{if $epaylog_list}-->
+                    <tr class="sep-row">
+                        <td colspan="7"></td>
+                    </tr>
+                    <tr class="operations">
+                        <th colspan="7">
+                            <p class="position2 clearfix">
+                                {include file=member.page.bottom.html}
+                            </p>
+                        </th>
+                    </tr>
+                    <!--{/if}-->
+                </table>
+            </div>
+            <div class="wrap_bottom"></div>
+        </div>
+        <div class="clear"></div>
+    </div>
+    <div class="clear"></div>
+</div>
+<div class="clear"></div>
+{include file=footer.html}

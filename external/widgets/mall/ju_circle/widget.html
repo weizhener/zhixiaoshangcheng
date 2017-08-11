@@ -1,0 +1,42 @@
+<div class="circle carousel-{$widget_data.model_id}">
+	<div class="title">
+    	<h2>{$widget_data.model_name}</h2>
+		<div class="link">
+        	<!--{foreach from=$widget_data.keywords item=word name=fe_word}-->
+        	<a href="{$word.link}" target="_blank">{$word.keyword}</a>{if !$smarty.foreach.fe_word.last}<s>|</s>{/if}
+            <!--{/foreach}-->
+        </div>
+    </div>
+    <a class="btn prev" href="javascript:;"><s></s></a>
+    <a class="btn next" href="javascript:;"><s></s></a> 
+  <div class="scroller">
+     <ul class="ks-switchable-content">
+     	<!--{foreach from=$widget_data.ads item=image name=fe_image} -->
+        <li><a href="{$image.ad_link_url}" target="_blank" title="{$image.ad_title}"><img alt="{$image.ad_title}" src="{$image.ad_image_url}"  alt="{$image.ad_title}" /></a>
+        </li>       
+        <!-- {/foreach} -->
+      </ul>
+    </div>
+ </div>
+<script>
+KISSY.use("switchable", function(S) {
+	var tiny_slide = new S.Carousel('.carousel-{$widget_data.model_id}', {
+		steps:4,
+		effect: 'scrollx',
+		easing: 'easeOutStrong',
+		circular: true,
+		prevBtnCls: 'prev',
+		nextBtnCls: 'next',
+		disableBtnCls: 'disable',
+		interval:4,
+		autoplay:true
+	});
+});
+$(function(){
+	$('.carousel-{$widget_data.model_id}').hover(function(){
+		$('.circle .btn').show();
+	},function(){
+		$('.circle .btn').hide();
+	});
+});
+</script>

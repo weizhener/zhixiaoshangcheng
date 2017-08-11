@@ -1,0 +1,35 @@
+<div class="jd2015_fashion mb20 clearfix w">
+    <div class="subject-slide">
+        <ul class="subject-slide-nav clearfix tab{$widget_data.model_id}">
+            <li class="subject-nav subject-nav-1  subject-nav-selected">
+                <b class="subject-arrow"></b>
+                <a href="{$widget_data.ad1_link_url}" target="_blank">
+                    <img class="subject-type" src="{$widget_data.ad1_image_url}" width="190" height="320">
+                    <img class="subject-content" src="{$widget_data.ad2_image_url}" width="616" height="320" >
+                </a>
+            </li>
+            <li class="subject-nav subject-nav-2">
+                <b class="subject-arrow"></b>
+                <a href="{$widget_data.ad3_link_url}" target="_blank">
+                    <img class="subject-type" src="{$widget_data.ad3_image_url}"  width="190" height="320">
+                    <img class="subject-content" src="{$widget_data.ad4_image_url}" width="616" height="320" >
+                </a>
+            </li>
+            <li class="subject-nav subject-nav-3">
+                <b class="subject-arrow"></b>
+                <a href="{$widget_data.ad5_link_url}" target="_blank">
+                    <img class="subject-type" src="{$widget_data.ad5_image_url}"  width="190" height="320">
+                    <img class="subject-content" src="{$widget_data.ad6_image_url}" width="616" height="320" >
+                </a>
+            </li>
+        </ul>
+    </div>    
+</div>
+<script>
+    $(function() {
+        $('.tab{$widget_data.model_id} li').mouseover(function() {
+            $('.tab{$widget_data.model_id} .subject-nav-selected').removeClass('subject-nav-selected');
+            $(this).addClass('subject-nav-selected');
+        })
+    });
+</script>

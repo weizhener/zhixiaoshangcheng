@@ -1,0 +1,103 @@
+@charset "utf-8";
+.money_btn {margin-top:20px;;display: inline-block;zoom: 1;width:100px;height:30px;line-height:30px;text-align: center;text-decoration: none;border: 0;padding: 0;font-size: 12px;font-weight: 700;color: #FFF!important;background-color: #fb8318;}
+.epay_txt{font-size:14px; height:32px; line-height:32px;}
+
+
+
+/*epay 相关*/
+.epay .break-word {word-wrap:break-word;word-break:break-all;}
+.epay .content {width:766px;}
+.epay dt, .epay dd {float:left;}
+
+
+.epay_btn, .epay_btn span, .epay_btn input,.epay_btn a{display: inline-block;background: url(../images/member/3IgyctwEjp.png);height: 31px;line-height: 31px;border: 0;text-align: center;text-decoration: none;cursor: pointer;overflow: hidden;}
+.epay_btn {background-position: 0 -355px;color: #fff !important;position: relative;margin-right: 10px;}
+.epay_btn span, .epay_btn input,.epay_btn a{padding: 0 22px;background-position: right -503px;font-size: 14px;font-weight: 700 !important;color:#fff !important;}
+.epay_btn_white {background-position: 0 -429px;color:#666;}
+.epay_btn_white span, .epay_btn_white input,.epay_btn_white a{background-position:right -577px;color: #595959!important;}
+
+
+.bank-info a {color:#0088CC;text-decoration:none}
+.bank-info a:hover {color:#f60;text-decoration:underline}
+.bank-info .cards {width:700px;clear:both;padding-top:20px;}
+.bank-info .explain span {color:#0088CC;margin:0 2px 0 2px;}
+.bank-info .action {float:left;margin-left:30px;}
+.bank-info .card {float:left;background:url(../images/member/3kEI8YYBb1.png) -5px -7px;width:192px;height:115px;text-align:center;margin-right:30px;}
+.bank-info .card h2 {font-size:12px;color:#999;font-weight:normal;line-height:25px;width:175px;margin-left:10px;height:25px;overflow:hidden}
+.bank-info .card .number {line-height:40px;font-size:14px;font-weight:bold;color:#333;width:175px;margin-left:10px;height:45px;overflow:hidden}
+.bank-info .card .card-type {float:left;margin-left:15px;height:19px;width:48px;background:url(../images/member/3HVvM6MKrB.png) no-repeat;}
+.bank-info .card .debit {background-position:0 0;}
+.bank-info .card .credit {background-position:0 -23px;}
+.bank-info .card .card-handle {float:right;margin-right:15px;line-height:20px;}
+.bank-info .add-card {background:none}
+.bank-info .add-card a {display:block;width:185px;height:100px;background:url(../images/member/3lRmPn6xgx.png) -3px -6px;}
+.bank-info .add-card a:hover {background-position:-3px -115px;}
+.bank dl {margin-bottom:20px;width:760px;}
+.bank dt {float:left;width:70px;line-height:25px;}
+.bank dd {float:left;width:690px;text-align:left}
+.bank-list dd, .bank-list ul {width:600px;margin-bottom:2px;*margin-bottom:10px;}
+.bank-list li {float:left;width:163px;margin-right:18px;height:36px;margin-bottom:10px;text-align:center;line-height:34px;}
+.bank-list li input {float:left;margin-top:10px;margin-right:5px;*margin-right:0px;}
+.bank-list li label {border:1px #ddd solid;display:inline-block;width:140px;position:relative}
+.bank-list .renewedly {float:left;margin-left:2px;}
+.bank-list input[name="captcha"] {float:left;width:80px;}
+.icon-cashier {display:block;height:36px;background-repeat:no-repeat;text-align:center;text-indent: -9999px;background-image: url(../images/member/combo.png);}
+.icon-cashier-ABC, .icon-cashier-ABCBTB {background-position: 0px 0px;}
+.icon-cashier-BJBANK {background-position: 0px -36px;}
+.icon-cashier-BJRCB {background-position: 0px -72px;}
+.icon-cashier-BOC, .icon-cashier-BOCB2C, .icon-cashier-BOCBTB {background-position: 0px -108px;}
+.icon-cashier-CCB, .icon-cashier-CCBBTB {background-position: 0px -144px;}
+.icon-cashier-CDCB {background-position: 0px -180px;}
+.icon-cashier-CEB, .icon-cashier-CEBBANK {background-position: 0px -216px;}
+.icon-cashier-CIB {background-position: 0px -252px;}
+.icon-cashier-CITIC {background-position: 0px -288px;}
+.icon-cashier-CMB, .icon-cashier-CMBBTB {background-position: 0px -324px;}
+.icon-cashier-CMBC {background-position: 0px -360px;}
+.icon-cashier-COMM {background-position: 0px -396px;}
+.icon-cashier-FDB {background-position: 0px -432px;}
+.icon-cashier-GDB {background-position: 0px -468px;}
+.icon-cashier-HZCB, .icon-cashier-HZCBB2C {background-position: 0px -504px;}
+.icon-cashier-ICBC, .icon-cashier-ICBCB2C, .icon-cashier-ICBCBTB {background-position: 0px -540px;}
+.icon-cashier-NBBANK {background-position: 0px -576px;}
+.icon-cashier-PSBC, .icon-cashier-POSTGC {background-position: 0px -612px;}
+.icon-cashier-SHBANK {background-position: 0px -684px;}
+.icon-cashier-SHRCB {background-position: 0px -720px;}
+.icon-cashier-SPABANK {background-position: 0px -756px;}
+.icon-cashier-SPDB, .icon-cashier-SPDBBTB {background-position: 0px -792px;}
+.icon-cashier-WZCB, .icon-cashier-WZCBB2C-DEBIT {background-position: 0px -828px;}
+.icon-cashier-HXBANK, .icon-cashier-HXBANKB2C {background-position: 0px -864px;}
+.icon-cashier-alipay {background-position: 0px -900px;}
+.icon-cashier-ICBCBTB .qiye, .icon-cashier-CCBBTB .qiye, .icon-cashier-ABCBTB .qiye, .icon-cashier-CMBBTB .qiye, .icon-cashier-BOCBTB .qiye, .icon-cashier-SPDBBTB .qiye {display:block}
+.bank-add .captcha input{float:left;margin-right:3px;width:80px;}
+.bank-add .captcha a {display:inline-block;float:left;}
+
+
+
+
+
+/*-----epay提现相关-------*/
+.epay dt {width:100px;text-align:right;padding-right:40px;}
+.epay a {color:#0088CC;text-decoration:none}
+.epay a:hover {color:#f60;text-decoration:underline}
+.epay .title {border:1px #BCCCF0 solid;background:url(../images/member/3HOF6ZFCET.png) repeat-x 0 0;padding:15px 30px;height:25px;line-height:25px;}
+.epay .title p {margin-left:40px;}
+.epay .title strong {font-size:20px;font-family:Tahoma, Geneva, sans-serif;color:#FC491E;vertical-align:middle}
+.epay .title .link a {margin:0 10px;}
+.epay .title .link a.add-bank {display:inline-block;background:url(../images/member/3HOF6ZFCET.png) -184px -65px no-repeat;padding-left:24px;}
+.epay .form {border:1px #BCCCF0 solid;border-top:0;padding:30px 10px 10px 10px}
+.epay .form dl {padding-bottom:35px;width:100%;}
+.epay .bank-each {border:1px #ddd solid;border-radius:3px 3px 3px 3px;width:560px;background:#f1f1f1;padding:10px;margin-bottom:10px;}
+.epay .bank-each.selected {border:1px #90C1DC solid;background:#ECF3F8;}
+.epay .bank-each div {margin-right:10px;color:#030303}
+
+
+
+
+/*--------epay 充值相关-----------*/
+.epay .czlist dl{padding-bottom:20px;}
+.epay .czlist dt{}
+.epay .czlist dd{width: 600px;}
+.epay .czlist .czlist_type{width:100px;padding: 10px;float: left;margin-right: 20px;cursor: pointer;border: 1px #ddd solid;margin-bottom: 10px;}
+.epay .czlist .czlist_type input{float:left;vertical-align:middle;margin-top: 10px;}
+.epay .czlist .czlist_type label{padding:0 10px;float:left;height: 30px;line-height: 30px;}
+.epay .czlist .czlist_type img{height:30px;width:150px;}

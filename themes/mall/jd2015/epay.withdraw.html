@@ -1,0 +1,77 @@
+{include file=member.header.html}
+<script>
+    $(function () {
+        $('#epay-withdraw').submit(function () {
+            if ($(this).find('input[name="tx_money"]').val() == '' || $(this).find('input[name="tx_money"]').val() <= 0) {
+                alert('{$lang.withdraw_money_error}');
+                return false;
+            }
+        });
+    })
+</script>
+<div class="content">
+    {include file=member.menu.html}
+    <div id="right">
+        {include file=member.submenu.html}
+        <div class="wrap">
+            <div class="public table epay">
+                <!--{if $epay.money gt 0}-->
+                <!--{if !$bank_list}-->
+                <div class="notice-word">您还没有设置提现银行卡，请先设置后再申请提现。<a  href="{url app=epay&act=bank_add}">马上设置</a></div>
+                <!--{else}-->
+                <div class="notice-word">向商城交易宝提取余额到银行卡，请确保您的银行卡信息正确</div>
+                <form method="post" id="epay-withdraw">
+                    <div class="title clearfix">
+                        <h2 class="float-left">提取余额到银行卡</h2>
+                        <p class="float-left">余额：<strong>{$epay.money}</strong> 元</p>
+                        <div class="float-right link">
+                            <a class="add-bank"  href="{url app=epay&act=bank_add&type=debit}">添加银行卡</a>
+                            <a  href="{url app=epay&act=logall&type=70}">提现记录</a>
+                        </div>
+                    </div>
+                    <div class="form">
+                        <dl class="clearfix">
+                            <dt>选择银行卡：</dt>
+                            <dd>
+                                <!--{foreach from=$bank_list item=bank name=fe_bank}-->
+                                <div class="bank-each clearfix {if $smarty.foreach.fe_bank.first} selected {/if}">
+                                    <div class="radio float-left"><input name="bank_id" type="radio" value="{$bank.bank_id}" {if $smarty.foreach.fe_bank.first} checked="checked" {/if}/></div>
+                                    <div class="bank-name float-left">{$bank.bank_name}</div>
+                                    <div class="bank-num float-left">{$bank.num}</div>
+                                    <div class="action float-right">
+                                        <a  href="{url app=epay&act=bank_edit&bank_id=$bank.bank_id}">{$lang.edit}</a>
+                                    </div>
+                                </div>
+                                <!--{/foreach}-->
+                            </dd>
+                        </dl>
+                        <dl class="clearfix">
+                            <dt>提现金额：</dt>
+                            <dd><input type="text" name="tx_money" class="text" value="" /> 元</dd>
+                        </dl>
+                        <dl class="clearfix">
+                            <dt>支付密码：</dt>
+                            <dd><input type="password" name="post_zf_pass" class="text" value="" /></dd>
+                        </dl>
+                        <dl class="clearfix">
+                            <dt>&nbsp;</dt>
+                            <dd class="submit">
+                                <span class="epay_btn">
+                                    <input type="submit" value="提交" />
+                                </span>
+                            </dd>
+                        </dl>
+                    </div>
+                </form>
+                <!--{/if}-->
+                <!--{else}-->
+                <div class="notice-word">您目前账户余额为<span class="f60">0</span>元，不能申请提现。</div>
+                <!--{/if}-->
+            </div>
+            <div class="wrap_bottom"></div>
+        </div>
+        <div class="clear"></div>
+    </div>
+    <div class="clear"></div>
+</div>
+{include file=footer.html}

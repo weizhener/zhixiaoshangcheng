@@ -1,0 +1,201 @@
+{include file="header.html"}
+{assign var="curr_name" value=$store.store_name}
+{include file="top.html"}
+<style>
+</style>
+<div class="main">
+    <!--side-nav-->
+    <div class="side-nav" style="position:fixed;">
+        <div class="soso-ico">
+            <a href="{url app=search}">
+                <img src="{res file=images/soso-ico.jpg}" />
+            </a>
+        </div>
+        <!--{foreach from=$store.store_gcates item=gcategory name=foreach_store_cate}-->
+        {if $smarty.foreach.foreach_store_cate.iteration}
+         <strong><a class="{if $smarty.get.cate_id eq $gcategory.id}current{/if}" href="javascript:void(0);" uri="{url app=store&id=$store.store_id&act=ajax_search&cate_id=$gcategory.id}&debug=wap">{$gcategory.value|escape}</a></strong> 
+        {/if}
+        <!--{/foreach}--> </div>
+    <!--side-nav END-->
+
+    <!--product list-->
+    <div class="pro-list">
+        <!--{if $searched_goods}-->
+        <ul>
+            <!--{foreach from=$searched_goods item=sgoods}-->
+            <li>
+                <div class="pro-img">
+                    <a href="{url app=goods&id=$sgoods.goods_id}" target="_blank">
+                        <img src="{$sgoods.default_image}" />
+                    </a>
+                </div>
+                <div class="pro-txt">
+                    <h2>
+                        <a href="{url app=goods&id=$sgoods.goods_id}" target="_blank">{$sgoods.goods_name|escape}</a>
+                    </h2>
+                    <span>{$sgoods.price|price}</span>
+                    <p>已售{$sgoods.sales}份</p>
+                </div>
+                <div class="clr"></div>
+                <div class="count clearfix">
+                    <a href="javascript:void(0);" class="reduce_goods reduce"><img src="{res file=images/reduce.jpg}"/></a>
+                    <input type="text" class="count-bg" stock="{$sgoods.stock}" spec="{$sgoods.default_spec}" name='goods_num' id='goods_num' value="0" />
+                    <a href="javascript:void(0);" class="add_goods add"><img src="{res file=images/add.jpg}"/></a>
+                </div>
+            </li>
+            <!--{/foreach}--> </ul>
+        {include file=page.bottom.html}
+        <!--{else}-->
+        <div class="nothing">
+            <p>{$lang.no_records}</p>
+        </div>
+        <!--{/if}--> </div>
+    <!--product list END-->
+
+    <div class="clr"></div>
+</div>
+
+<div class="space" style="padding:4em 0;"></div>
+<script type="text/javascript">
+     $(document).ready(function(){
+        
+        initEvent();
+        $('.side-nav strong a').click(function(event) {
+            /* Act on the event */
+            $(".side-nav strong a").each(function(index, el) {
+                $(this).removeClass('current');
+            });
+            var url=$(this).attr('uri');
+            $(this).addClass('current');
+            load_page(url);
+
+        });
+
+     });
+
+     function initEvent()
+     {
+        $('.reduce_goods').click(function(){
+            var target=$(this).parent().find('#goods_num');
+            var val=target.val();
+            val=parseInt(val);
+            val>0?val=val-1:null;            
+            var spec=target.attr('spec');
+            updateCart(spec,val,target,0);
+
+        });
+
+        $('.add_goods').click(function(){
+            var target=$(this).parent().find('#goods_num');
+            var val=target.val();
+            val=parseInt(val);
+            val=val+1;
+            var spec=target.attr('spec');
+            updateCart(spec,val,target,1);
+
+        });
+     }
+
+     function updateCart(spec_id,num,target,type)
+     {
+        var url="index.php?app=cart&act=check_goods";
+         $.getJSON(url, {'spec_id': spec_id}, function(data, textStatus) {
+            if(data.done)
+            {
+             if(data.retval.status)
+             {
+               addToCart(spec_id,num,target);
+             }else{
+                var nnum=parseInt(data.retval.quantity);
+                var num2=0;
+                type==0?(num>0?num2=nnum-1:num2=0):num2=nnum+1;
+                num==0?num2=-1:null;
+                if(num2==-1)
+                {
+                    dropCart(data.retval.rec_id,target);
+                }else{
+                    updateToCart(spec_id,num,target,num2,type);
+                }
+               
+             }
+            }else{
+                alert('添加商品失败');
+            }
+             
+         });
+     }
+     function addToCart(spec_id,num,target)
+     {
+        var url="index.php?app=cart&act=add";
+        $.getJSON(url, {'spec_id': spec_id,'quantity':num}, function(data, textStatus) {
+                /*optional stuff to do after success */
+            if(data.done)
+            {
+
+              target.val(num);
+              try{
+                readCartInfo();
+              }catch(ex){}
+            }else{
+                alert(data.msg);
+            }
+        });
+     }
+
+      function dropCart(rec_id,target)
+     {
+        var url="index.php?app=cart&act=drop";
+        $.getJSON(url, {'rec_id': rec_id}, function(data, textStatus) {
+                /*optional stuff to do after success */
+            if(data.done)
+            {
+                var val=target.val();
+                val=parseInt(val);
+                val>0?val=val-1:val=val;
+                target.val(val);
+                try{
+                    readCartInfo();
+                }catch(ex){}
+            }else{
+                alert(data.msg);
+            }
+        });
+     }
+
+     function updateToCart(spec_id,num,target,num2,type)
+     {
+        var url="index.php?app=cart&act=update";
+        $.getJSON(url, {'spec_id': spec_id,'quantity':num2}, function(data, textStatus) {
+                /*optional stuff to do after success */
+            if(data.done)
+            {
+                var val=target.val();
+                val=parseInt(val);
+                type==0 ?(val>0?val=val-1:val=val):val=val+1;
+                target.val(val);
+                try{
+                    readCartInfo();
+                }catch(ex){}
+            }else{
+                alert(data.msg);
+            }
+        });
+     }
+
+
+
+
+     function load_page(url)
+     {
+        var container=$('.pro-list');
+        $.get(url, function(data) {
+            /*optional stuff to do after success */
+			var reg=new RegExp("act=ajax_search","g"); //创建正则RegExp对象   
+			data=data.replace(reg,"act=search");  
+            container.html(data);
+            initEvent();
+        });
+     }
+     
+    </script>
+{include file="footer.html"}

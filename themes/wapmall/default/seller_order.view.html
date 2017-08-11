@@ -1,0 +1,83 @@
+{include file="member.header.html"}
+<div class="mb-head">
+    <a href="javascript:history.back(-1)" class="l_b">返回</a>
+    <div class="tit">{$lang.detail}</div>
+    <a href="javascript" class="r_b"></a>
+</div>
+
+<body style="background:#eceded">
+    <div class="w320">
+        <div class="goods_info">
+            <!--{foreach from=$goods_list item=goods}-->
+            <div class="goods">
+                <img src="{$goods.goods_image}" />
+                <p class="title">{$goods.goods_name|escape}</p>
+                <p>{$goods.specification|escape}</p>
+                <p>价格：<strong>{$goods.price|price}</strong>数量：{$goods.quantity}</p>
+            </div>
+            <!--{/foreach}-->
+            <p class="pay">
+                <!-- <a href="{url app=cashier&order_id=$order.order_id}" class="white_btn">现在付款</a>
+                   <a href="#" class="white_btn cancel">取消订单</a>-->
+            </p>
+        </div>
+        <div class="goods_line"></div>
+
+        <ul class="orderlist orderinfo">
+            <li><b>订单状态</b><span>{$order.status|modifier:order_status}</span></li>
+            <li><b>订单号</b><span>{$order.order_sn}</span></li>
+            <!--{if $order.payment_code}-->
+            <li><b>{$lang.payment_name}</b><span>{$order.payment_name|escape}</span></li>
+            <!--{/if}-->
+            <!--{if $order.pay_message}-->
+            <li><b>{$lang.pay_message}</b><span>{$order.pay_message|escape}</span></li>
+            <!--{/if}-->
+            <li><b>{$lang.add_time}</b><span>{$order.add_time|date:complete}</span></li>
+            <!--{if $order.pay_time}-->
+            <li><b>{$lang.pay_time}</b><span>{$order.pay_time|date:complete}</span></li>
+            <!--{/if}-->
+            <!--{if $order.ship_time}-->
+            <li><b>{$lang.ship_time}</b><span>{$order.ship_time|date:complete}</span></li>
+            <!--{/if}-->
+            <!--{if $order.finished_time}-->
+            <li><b>{$lang.finished_time}</b><span>{$order.finished_time|date:complete}</span></li>
+            <!--{/if}-->
+        </ul>
+        <ul class="orderlist orderinfo">
+            <li><b>{$lang.buyer_name}</b><span>{$order.buyer_name|escape}</span></li>
+            <li><b>{$lang.phone_tel}</b><span>{$order.phone_tel|default:-}</span></li>
+            <li><b>{$lang.region}</b><span>{$order.region_name|escape|default:-}</span></li>
+            <li><b>{$lang.phone_mob}</b><span>{$order.phone_mob|default:-}</span></li>
+            <li><b>{$lang.email}</b><span>{$order.buyer_email|default:-}</span></li>
+            <li><b>{$lang.address}</b><span>{$order.address|escape|default:-}</span></li>
+        </ul>
+        <ul class="orderlist orderinfo">
+            <!--{foreach from=$order_logs item=log}-->
+            <li>
+                <b><!--{if $log.operator eq '0'}--><!--{else}-->{$log.operator|escape}<!--{/if}--></b>
+                <span>{$lang.at}{$log.log_time|date:complete}{$lang.change_status}{$log.order_status}{$lang.change_to}{$log.changed_status}<br/><!--{if $log.remark}-->{$lang.reason}:{$log.remark|escape}<!--{/if}--></span>
+            </li>
+            <!--{/foreach}-->
+        </ul>
+        <ul class="orderlist orderinfo">
+            <li><b>收货地址</b><span>{$order_extm.region_name|escape}&nbsp;{$order_extm.address|escape}</span></li>
+            <li><b>收货人</b><span>{$order_extm.consignee|escape}</span></li>
+            <!--{if $order_extm.phone_mob}-->   <li><b>手机号码</b><span>{$order_extm.phone_mob}</span></li><!--{/if}-->
+            <!--{if $order_extm.phone_tel}-->  <li><b>电话号码</b><span>{$order_extm.phone_tel}</span></li><!--{/if}-->
+            <!--{if $order_extm.zipcode}-->  <li><b>邮编</b><span>{$order_extm.zipcode|escape}</span></li><!--{/if}-->
+            <!--{if $order.postscript}--><li ><b style="width:87px">{$lang.postscript}</b><span>{$order.postscript|escape}</span></li> <!--{/if}-->
+            <!--{if $order.invoice_no}-->
+            <li > <b> {$lang.invoice_no}</b><span>{$order.invoice_no|escape}</span></li>
+            <!--{/if}-->
+        </ul>
+
+        <ul class="orderlist orderinfo" id='shipping_detail'>
+
+        </ul>
+        <p class="total_price">
+            物流（{$kuaidi_info.express_company}  {$kuaidi_info.$order.express_company}  <a href="index.php?app=order_express&order_id={$order.order_id}" >查看</a>）：<strong>{$order_extm.shipping_fee|price}</strong><br />
+            总价：<strong>{$order.order_amount|price}</strong>
+        </p>
+        <!------底部-------->
+    </div>
+{include file="member.footer.html"}

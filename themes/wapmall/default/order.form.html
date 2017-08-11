@@ -1,0 +1,82 @@
+{include file=member.header.html}
+<div class="mb-head">
+    <a href="javascript:history.back(-1)" class="l_b">返回</a>
+    <div class="tit">提交订单</div>
+    <a href="javascript" class="r_b"></a>
+</div>
+
+<form method="post" id="order_form">
+    {include file="order.shipping.html"}
+    <script type="text/javascript">
+        function postscript_activation(tt) {
+            if (!tt.name)
+            {
+                tt.value = '';
+                tt.name = 'postscript';
+            }
+
+        }
+    </script>
+    <div class="orderlist">
+        <ul>
+            <li>{$lang.postscript}</li>
+            <li>  <textarea  class="com_text" id="postscript" placeholder="{$lang.postscript_desc}" onclick="postscript_activation(this);"></textarea></li>
+        </ul>
+    </div>
+
+    <div class="orderlist">
+        <ul>
+            <li>{$lang.store}：<a href="{url app=store&id=$goods_info.store_id}" >{$goods_info.store_name|escape}</a></li>
+            <!--{foreach from=$goods_info.items item=goods}-->
+            <li>
+                <a  href="{url app=goods&id=$goods.goods_id}">	<img src="{$goods.goods_image}" /></a>
+                <p>  <a  href="{url app=goods&id=$goods.goods_id}">{$goods.goods_name|escape}</a></p>
+                <p>单价：{$goods.price|price}</p>
+                <p>数量：{$goods.quantity}{$lang.goods_unit}<strong>{$goods.subtotal|price}</strong></p>
+            </li>
+            <!--{/foreach}-->
+            <span style="margin-left:10px;"> 配送方式：</span>
+
+            <!--{if $is_free_fee}-->
+            <ul class="shipping_item">
+                <li>
+                    <input type="radio" name="is_free_fee" checked="checked" value="1" />
+                    {$shipping_method.shipping_name|escape}
+                    <input type="hidden" name="is_free_fee" value="1" />
+                    {$lang.shipping_fee}{$lang.colon}<span class="money" ectype="shipping_fee">&yen; 0.00</span>({$free_fee_name|escape})
+                </li>
+            </ul>
+            <!--{else}--> 
+                            <!--{foreach from=$shipping_methods key=key item=logist name=fe_logist}-->
+                            <li shipping_id="{$shipping_method.shipping_id}">
+                                <input type="radio" name="logist_fees" value="{$key}:{$logist.logist_fees}"  {if $smarty.foreach.fe_logist.first} checked="checked"{/if} />
+                                {$logist.shipping_name|escape}
+                                {$lang.shipping_fee}:&nbsp;<span class="money" ectype="shipping_fee">&yen;{$lang.$key}{$lang.colon}{$logist.logist_fees|price}</span>                                                                                                首件{$lang.colon}{$logist.start_fees|price}/{$logist.start_standards}件, 续件{$lang.colon}{$logist.add_fees|price}/{$logist.add_standards}件
+                            </li>
+                            <!--{/foreach}-->                                                                                
+            <!--{/if}-->
+            
+            <!--{if $goods_info.integral_enabled}-->
+            <li>当前用户可用积分<em style="font-weight:bold;color:red;padding: 0 5px;">{$member_integral}</em>,</li>
+            <li>本次订单最多可使用积分<em style="font-weight:bold;color:red;padding: 0 5px;">{$total_integral_max_exchange}</em></li>
+            <li>积分比例为<em style="font-weight:bold;color:red;padding: 0 5px;">{$integral_seller|default:0}</em></li>
+            <li>使用积分：<input type="text" name="use_integral" id="use_integral" onkeyup="set_order_amount_total();" class="text" /></li>
+            <!--{/if}-->
+            <li>
+                {if $goods_info.allow_coupon}
+                <select name="coupon_sn">
+                    <option value="">{$lang.pls_coupon}</option>
+                    {foreach from=$coupon_list item=coupon}
+                    <option value="{$coupon.coupon_sn}">SN:{$coupon.coupon_sn}({$coupon.coupon_value|price})</option>
+                    {/foreach}
+                </select>
+                {/if}
+            </li>
+            <li>合计：<strong id="order_amount2">{$goods_info.amount|price}</strong></li>
+        </ul>
+
+    </div>
+    <p class="total_price">实付款：<strong id="order_amount">{$goods_info.amount|price}</strong></p>
+    <a href="javascript:void($('#order_form').submit());" class="red_btn">提交订单</a>
+</form >
+{include file="member.footer.html"}

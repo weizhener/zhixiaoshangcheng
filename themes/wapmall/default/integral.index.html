@@ -1,0 +1,77 @@
+{include file=header.html}
+
+<link type="text/css" href="{res file=css/integral.css}" rel="stylesheet"  />
+
+<div id="integral">   
+
+    
+
+    <div class="integral_floor">
+
+        <div class="mt">
+
+            <h3>积分回购</h3>
+
+        </div>
+
+        <div class="mc clearfix" style="padding: 20px 0">
+
+            <ul class="clearfix">
+
+                <!--{foreach from=$goods_list item=goods name=fe_goods}-->
+
+                <li>
+
+                    <div class="pic">
+
+                        <a href="{url app=goods&id=$goods.goods_id}"><img src="{$goods.goods_logo}" /></a>
+
+                    </div>
+
+
+
+                    <div class="goods_name">
+
+                        <a href="{url app=goods&id=$goods.goods_id}">{$goods.goods_name|escape}</a>
+
+                        <span class="icon"></span>
+
+                    </div>
+
+                    <div class="goods_price">
+
+                        {$goods.goods_point|price}
+
+                    </div>
+
+                    <div class="goods_integral">
+
+                        <a href="index.php?app=integral&act=view&id={$goods.goods_id}" >立即兑换</a>
+
+                    </div>
+
+                </li>
+
+                <!--{/foreach}-->
+
+            </ul>
+
+            <!--{if !$goods_list_order}-->{include file=page.bottom.html}<!--{/if}-->
+
+        </div>
+
+        
+
+    </div>
+
+    
+
+    
+
+</div>
+
+
+
+
+
+{include file=footer.html}

@@ -1,0 +1,34 @@
+<!--{if $store.pic_slides}-->
+       <div class="pic_slides store-slides">
+    		<div class="bd">
+       			<div class="scroller">
+          			<ul class="ks-content ks-switchable-content clearfix">
+                    	<!--{foreach from=$store.pic_slides item=slides name=fe_slides}-->
+            			<li class="clearfix">
+       						<a href="{$slides.link}" target="_blank"><img width="750" height="300" src="{$slides.url}" /></a>  
+             			</li> 
+             			<!--{/foreach}-->
+         			 </ul>
+       			</div>
+       			<div class="ks-nav">
+          			<a href="javascript:;" class="prev prev"></a>
+         			<a href="javascript:;" class="next next"></a>
+       			</div>
+                <div class="ks-switchable-nav">
+                	<!--{foreach from=$store.pic_slides item=slides name=fe_slides}-->
+                    <span {if $smarty.foreach.fe_slides.first}class="ks-active"{/if}>{$smarty.foreach.fe_slides.iteration}</span>
+                    <!--{/foreach}-->
+                </div>
+    		</div>
+		</div>
+        <script type="text/javascript">
+       		KISSY.ready(function(S) {
+          		var carousel = new S.Carousel('.store-slides', {
+              	effect: 'scrollx',
+              	prevBtnCls: 'prev',
+             	nextBtnCls: 'next',
+			  	autoplay:true
+           	});
+	    });
+    	</script>
+        <!--{/if}-->

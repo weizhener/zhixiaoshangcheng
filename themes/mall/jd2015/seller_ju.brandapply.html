@@ -1,0 +1,89 @@
+<script type="text/javascript">
+//<!CDATA[
+$(function(){
+    $(".ok").mouseover(function(){
+        $(this).next("div").show();
+    });
+    $(".ok").mouseout(function(){
+        $(this).next("div").hide();
+    });
+    $('#brand_apply_form').validate({
+         errorLabelContainer: $('#warning'),
+        invalidHandler: function(form, validator) {
+           var errors = validator.numberOfInvalids();
+           if(errors)
+           {
+               $('#warning').show();
+           }
+           else
+           {
+               $('#warning').hide();
+           }
+        },
+        rules : {
+            brand_name : {
+                required : true,
+                byteRange: ['',100,'{$charset}']
+            },
+            brand_logo  : {
+				<!--{if $smarty.get.act eq brand_apply}-->
+                required : true,
+				<!--{/if}-->
+                accept : 'jpe?g|png|gif'
+            }
+        },
+        messages : {
+            brand_name : {
+                required : '{$lang.brand_name_required}. ',
+                byteRange: '{$lang.brand_maxlength_error}. '
+            },
+            brand_logo  : {
+				<!--{if $smarty.get.act eq brand_apply}-->
+                required : '{$lang.brand_logo_required}',
+				<!--{/if}-->
+                accept   : '{$lang.logo_accept_error}. '
+            }
+        }
+    });
+});
+//]]>
+</script>
+<ul class="tab">
+    <li class="active"><!--{if $smarty.get.act eq brand_edit}-->{$lang.brand_edit}<!--{else}-->{$lang.brand_add}<!--{/if}--></li>
+</ul>
+<div class="eject_con">
+    <div class="adds">
+        <div id="warning"></div>
+        <form method="post" action="index.php?app=seller_ju&act={$smarty.get.act}<!--{if $smarty.get.id neq ''}-->&id={$smarty.get.id}<!--{/if}-->" target="seller_ju" enctype="multipart/form-data" id="brand_apply_form">
+        <ul>
+            <li>
+                <h3>{$lang.brand_name}:</h3>
+                <p><input type="text" class="text width14" name="brand_name" value="{$brand.brand_name|escape}" id="brand_name" /><b class="strong">*</b></p>
+            </li>
+            <li>
+                <h3>{$lang.tag}:</h3>
+                <p><input type="text" class="text width14" name="tag" value="{$brand.tag|escape}" /></p>
+            </li>
+            <li>
+                <h3>{$lang.brand_logo}:</h3>
+                <div class="sign_box">
+                    <div class="sign_con">
+                        <div style="float:left;">
+                            <input class="infoTableFile2" id="brand_logo" type="file" name="brand_logo" />
+                        </div>
+                        <!--{if $brand.brand_logo}--><div class="sign" style="width:90px; height:45px; margin-top:5px;"><img src="{$brand.brand_logo}" width="90" height="45" alt="" ectype="logo1"/></div><!--{/if}-->
+                    </div>
+                    <div class="sign_con">
+                        <span class="color5"></span><br />
+                        <span class="color7"></span>
+                    </div>
+                </div>
+            </li>
+            <li>
+               <span class="field_notice">{$lang.brand_desc}</span>
+            </li>
+        </ul>
+        <div class="submit"><input type="submit" class="btn" value="{$lang.submit}" /></div>
+        </form>
+    </div>
+</div>

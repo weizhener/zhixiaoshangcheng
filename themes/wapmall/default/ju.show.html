@@ -1,0 +1,73 @@
+{include file="header.html"}
+<script type="text/javascript" src="{lib file=ecmall.js}" charset="utf-8"></script>
+<script type="text/javascript" src="{lib file=jquery.js}" charset="utf-8"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	
+	$.each($('.J_Countdown'),function(){
+	
+		var theDaysBox  = $(this).find('.J_NumDays');
+		var theHoursBox = $(this).find('.J_NumHours');
+		var theMinsBox  = $(this).find('.J_NumMins');
+		var theSecsBox  = $(this).find('.J_NumSeconds');
+		
+		countdown(theDaysBox, theHoursBox, theMinsBox, theSecsBox);
+	});
+	
+});
+</script>
+<link type="text/css" rel="stylesheet" href="{res file=css/ju.css}">
+<div class="mb-head">
+    <a href="{url app=default}" class="l_b">首页</a>
+    <div class="tit">聚划算</div>
+</div>
+
+<div id="main">
+<div class="detail_img tuan_con">
+        <div class="imgbox">
+    		<img src="{if $groupbuy.image}{$groupbuy.image}{else}{$groupbuy.default_image}{/if}">
+        </div>
+<h2 class="tuan_tit">
+            <p class="info">{$groupbuy.group_name|escape}</p>
+</h2>
+        <div class="tuan_info">
+            <ul>
+                <li>
+                    <p class="title">团购价：</p>
+                    <p class="con"><b>{$groupbuy.group_price|price}</b></p>
+                </li>
+                <li>
+                    <p class="title">原价：</p>
+                    <p class="con">
+                        <span><del>{$groupbuy.price|price}</del></span>
+                    </p>
+                </li>
+                <li>
+                    <p class="title">折扣：</p>
+                    <p class="con"><b>{$groupbuy.discount}折</b></p> <p class="title">/ 节省了</p><p class="con"><b>{$groupbuy.price_save|price}</b></p>
+                </li>
+                <li>
+                    <p class="title">已售：</p>
+                    <p class="con">
+                        <span>
+                          <b>{$groupbuy.group_count}</b></span>
+                    </p>
+                </li>
+                                        <li class="time-count J_Countdown"><p class="title">还剩：</p>
+                                            <span class="flip-top J_NumDays" >{$groupbuy.lefttime.d}</span><em>天</em>
+                                            <span class="flip-top J_NumHours">{$groupbuy.lefttime.h}</span><em>小时</em>
+                                            <span class="flip-top J_NumMins" >{$groupbuy.lefttime.m}</span><em>分</em>
+                                            <span class="flip-top J_NumSeconds">{$groupbuy.lefttime.s}</span><em>秒</em>
+                                        </li>             
+                <li>
+                    <p class="title">团购说明：</p>
+                    <p class="con"><span class="desc">{$groupbuy.group_desc}<span></p>
+                </li>
+          </ul>
+        </div>
+        <div class="tuan_btn">
+                   <input name="buy" class="red_btn" onclick="window.location.href='{url app=group&id=$groupbuy.goods_id&gid=$groupbuy.group_id}'" type="button" value="查看详情 / 参团" />
+  </div>
+</div>
+</div>
+{include file="footer.html"}

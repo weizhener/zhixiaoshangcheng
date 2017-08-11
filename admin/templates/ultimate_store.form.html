@@ -1,0 +1,159 @@
+{include file="header.html"}
+<script type="text/javascript" src="index.php?act=jslang"></script>
+<script type="text/javascript">
+//<!CDATA[
+$(function(){
+    $('#ultimate_form').validate({
+        errorPlacement: function(error, element){
+            $(element).next('.field_notice').hide();
+            $(element).after(error);
+        },
+        success       : function(label){
+            label.addClass('right').text('OK!');
+        },
+        onkeyup    : false,
+        rules : {
+			<!--{if $smarty.get.act eq 'add'}-->
+			user_name: {
+				required : true,
+                remote : {
+                    url  : 'index.php?app=ultimate_store&act=check_user_name',
+                    type : 'get',
+                    data : {
+                        brand_id : function(){
+                            return $('#user_name').val();
+                        },
+                    }
+                }
+            },
+			<!--{/if}-->
+            brand_id: {
+                remote : {
+                    url  : 'index.php?app=ultimate_store&act=check_brand&ultimate_id={$ultimate.ultimate_id}',
+                    type : 'get',
+                    data : {
+                        brand_id : function(){
+                            return $('#brand_id').val();
+                        },
+                    }
+                }
+            },
+			cate_id: {
+                remote : {
+                    url  : 'index.php?app=ultimate_store&act=check_gcategory&ultimate_id={$ultimate.ultimate_id}',
+                    type : 'get',
+                    data : {
+                        cate_id : function(){
+                            return $('#cate_id').val();
+                        },
+                    }
+                }
+            },
+			keyword: {
+                remote : {
+                    url  : 'index.php?app=ultimate_store&act=check_kw&ultimate_id={$ultimate.ultimate_id}',
+                    type : 'get',
+                    data : {
+                        keyword: function(){
+                            return $('#keyword').val();
+                        },
+                    }
+                }
+            }
+        },
+        messages : {
+		   <!--{if $smarty.get.act eq 'add'}-->
+		   user_name : {
+			   required : '{$lang.user_name_require}',
+               remote: '{$lang.user_no_store}' 	
+		   },
+		   <!--{/if}-->
+           brand_id: {
+                remote: '{$lang.brand_exist}'
+           },
+		   cate_id: {
+                remote: '{$lang.gcategory_exist}'
+           },
+		   keyword: {
+                remote: '{$lang.kw_exist}'
+           }   
+        }
+    });
+});
+//]]>
+</script>
+<div id="rightTop">
+  <p>{$lang.store}</p>
+  <ul class="subnav">
+    <li><a class="btn1" href="index.php?app=ultimate_store">{$lang.manage}</a></li>
+    <!-- {if $smarty.get.act eq 'add'} -->
+    <li><span>{$lang.add}</span></li>
+    <!--{else if $smarty.get.act eq 'edit'}-->
+    <li><a class="btn1" href="index.php?app=ultimate_store&act=add">{$lang.add}</a></li>
+    <li><span>{$lang.edit}</span></li>
+    <!--{/if}-->
+  </ul>
+</div>
+<div class="info">
+  <form method="post" id="ultimate_form">
+    <table class="infoTable">
+      <!--{if $smarty.get.act eq 'add'}-->
+      <tr>
+        <th class="paddingT15">请输入店家用户名:</th>
+        <td class="paddingT15 wordSpacing5">
+        	<input type="text" name="user_name" id="user_name" value="" />
+       </td>
+      </tr>
+      <!--{else}-->
+      <tr>
+        <th class="paddingT15">{$lang.store_name}:</th>
+        <td class="paddingT15 wordSpacing5">
+        	{$ultimate.store_name}
+       </td>
+      </tr>
+      <!--{/if}-->
+      <tr>
+      <th class="paddingT15"> {$lang.alias_brand}:</th>
+         <td class="paddingT15 wordSpacing5" >
+            <select id="brand_id" name="brand_id">
+              <option  value="">{$lang.alias_brand}</option>
+              {html_options  options=$brands selected=$ultimate.brand_id}
+            </select>
+            <span class="gray">优先级最高，如果搜索条件中同时有品牌，关键词，分类的，则优先显示品牌对应的旗舰店。</span>
+         </td>
+      </tr>
+      <tr>
+        <th class="paddingT15"> <label>{$lang.store_keyword}:</label></th>
+        <td class="paddingT15 wordSpacing5">
+        	<input id="keyword" name="keyword" value="{$ultimate.keyword}" />
+            <span class="gray">优先级次之，如果搜索条件中同时有关键词，分类的，则优先显示关键词对应的旗舰店。</span>
+        </td>
+      </tr>
+      <tr>
+      <th class="paddingT15"> {$lang.alias_gcategory}:</th>
+         <td class="paddingT15 wordSpacing5" >
+            <select id="cate_id" name="cate_id">
+              <option value="">{$lang.alias_gcategory}</option>
+              {html_options options=$gcategories selected=$ultimate.cate_id}
+            </select>
+            <span class="gray">优先级最低，如果搜索条件中没有品牌和关键词，则显示该分类对应的旗舰店（不显示该分类下的子分类对应的旗舰店）。</span>
+         </td>
+      </tr>
+      
+      <tr>
+        <th class="paddingT15"> <label>{$lang.description}:</label></th>
+        <td class="paddingT15 wordSpacing5"><textarea id="description" style="width:300px;height:100px;" name="description">{$ultimate.description}</textarea></td>
+      </tr>
+      <tr>
+        <th class="paddingT15"> <label for="status">{$lang.status}:</label></th>
+        <td class="paddingT15 wordSpacing5">{html_radios name="status" options=$status checked=$ultimate.status}</td>
+      </tr>
+      <tr>
+        <th></th>
+        <td class="ptb20"><input class="formbtn" type="submit" name="Submit" value="{$lang.submit}" />
+          <input class="formbtn" type="reset" name="Reset" value="{$lang.reset}" /></td>
+      </tr>
+    </table>
+  </form>
+</div>
+{include file="footer.html"}

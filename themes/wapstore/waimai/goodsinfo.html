@@ -1,0 +1,469 @@
+<script type="text/javascript" src="{lib file=goodsinfo.js}" charset="utf-8"></script>
+<script type="text/javascript">
+//<!CDATA[
+/* buy */
+function buy()
+{
+    if (goodsspec.getSpec() == null)
+    {
+        alert(lang.select_specs);
+        return;
+    }
+    var spec_id = goodsspec.getSpec().id;
+
+    var quantity = $("#quantity").val();
+    if (quantity == '')
+    {
+        alert(lang.input_quantity);
+        return;
+    }
+    if (parseInt(quantity) < 1)
+    {
+        alert(lang.invalid_quantity);
+        return;
+    }
+    add_to_cart(spec_id, quantity);
+}
+
+/* add cart */
+function add_to_cart(spec_id, quantity)
+{
+    var url = SITE_URL + '/index.php?app=cart&act=add';
+    $.getJSON(url, {'spec_id':spec_id, 'quantity':quantity}, function(data){
+        if (data.done)
+        {
+            $('.bold_num').text(data.retval.cart.kinds);
+            $('.bold_mly').html(price_format(data.retval.cart.amount));
+            $('.ware_cen').slideDown('slow');
+            setTimeout(slideUp_fn, 5000);
+        }
+        else
+        {
+            alert(data.msg);
+        }
+    });
+}
+
+var specs = new Array();
+var has_stock=0;
+<!--{foreach from=$goods._specs item=spec}-->
+specs.push(new spec({$spec.spec_id}, '{$spec.spec_1|escape}', '{$spec.spec_2|escape}', {$spec.price}, {$spec.stock}));
+{if $spec.stock }has_stock++;{else}{/if}
+<!--{/foreach}-->
+var specQty = {$goods.spec_qty};
+var defSpec = {$goods.default_spec|escape};
+var goodsspec = new goodsspec(specs, specQty, defSpec);
+//]]>
+</script>
+
+<h2 class="ware_title">{$goods.goods_name|escape}</h2>
+
+<div class="ware_info">
+    <div class="ware_pic">
+        <div class="big_pic">
+            <a href="javascript:;"><span class="jqzoom"><img src="{$goods._images.0.thumbnail|default:$default_image}" width="300" height="300" jqimg="{$goods._images.0.image_url}" /></span></a>
+        </div>
+
+        <div class="bottom_btn">
+            <!--<a class="collect" href="javascript:collect_goods({$goods.goods_id});" title="{$lang.add_to_favorite}"></a>-->
+            <div class="left_btn"></div>
+            <div class="right_btn"></div>
+            <div class="ware_box">
+                <ul>
+                    <!--{foreach from=$goods._images item=goods_image name=fe_goods_image}-->
+                    <li {if $smarty.foreach.fe_goods_image.first}class="ware_pic_hover"{/if} bigimg="{$goods_image.image_url}"><img src="{$goods_image.thumbnail}" width="55" height="55" /></li>
+                    <!--{/foreach}-->
+                </ul>
+            </div>
+        </div>
+        <script>
+            $(function(){
+                var btn_list_li = $("#btn_list > li");
+                btn_list_li.hover(function(){
+                    $(this).find("ul:not(:animated)").slideDown("fast");
+                },function(){
+                    $(this).find("ul").slideUp("fast");
+                });
+            });
+        </script>
+        <!-- {if $share} -->
+        <ul id="btn_list">
+            <li id="btn_list1" title="{$lang.collect_goods}">
+                <ul class="drop_down">
+                    <!-- {foreach from=$share item=item} -->
+                    <!-- {if $item.type eq 'collect'} --><li><!-- {if $item.logo} --><img src="{$item.logo}" /><!-- {/if} --><a target="_blank" href="{$item.link}">{$item.title|escape}</a></li><!-- {/if} -->
+                    <!-- {/foreach} -->
+                </ul>
+            </li>
+            <li id="btn_list2" title="{$lang.share_goods}">
+                <ul class="drop_down">
+                    <!-- {foreach from=$share item=item} -->
+                    <!-- {if $item.type eq 'share'} --><li><!-- {if $item.logo} --><img src="{$item.logo}" /><!-- {/if} --><a target="_blank" href="{$item.link}">{$item.title|escape}</a></li><!-- {/if} -->
+                    <!-- {/foreach} -->
+                </ul>
+            </li>
+        </ul>
+        <!-- {/if} -->
+    </div>
+
+    <div class="ware_text">
+        <div class="rate">
+            <span class="letter1">{$lang.price}: </span><span class="fontColor3" ectype="goods_price">{$goods._specs.0.price|price}</span><br />
+            <span class="letter1">{$lang.brand}: </span>{$goods.brand|escape}<br />
+            {$lang.tags}:&nbsp;&nbsp;<!--{foreach from=$goods.tags item=tag}-->{$tag}&nbsp;&nbsp;&nbsp;<!--{/foreach}--><br />
+			<!--360cd.cn-->
+			 <p style="">
+			 <style>.rate{overflow:visible;}</style>
+			 <link href="/themes/mall/default/styles/default/css/jd_css.css" rel="stylesheet" type="text/css">
+
+                            <ul id="list1" style="width:620px;">
+                                <li id="summary-stock">
+                                    <div class="dt" style="text-align:left">配&nbsp;送&nbsp;至：</div>
+                                    <div class="dd">                                           
+                                        <div id="store-selector" class="">
+                                            <div class="text">
+                                                <div title="">{if $smarty.get.sel_region_name}{$smarty.get.sel_region_name}{else}中国{/if}</div> <b></b>
+                                            </div>
+
+                                            <div class="content jd_content" >
+                                                <div data-widget="tabs" class="m JD-stock" id="JD-stock">
+                                                    <div class="mt">
+                                                        <ul class="tab">
+                                                            <li data-index="0" data-widget="tab-item" style="display: none;"  class="">
+                                                                <a href="javascript:void(0);" class="hover"> <em>中国</em> <i></i>
+                                                                </a>
+                                                            </li>
+                                                            <li data-index="1" data-widget="tab-item" style="display: none;" class="">
+                                                                <a href="javascript:void(0);" class=""> <em>请选择</em> <i></i>
+                                                                </a>
+                                                            </li>
+                                                            <li data-index="2" data-widget="tab-item" style="display: none;" class="curr">
+                                                                <a href="javascript:void(0);" class="">
+                                                                    <em>请选择</em>
+                                                                    <i></i>
+                                                                </a>
+                                                            </li>
+                                                            <li data-index="3" data-widget="tab-item" style="display: none;">
+                                                                <a href="javascript:void(0);" class="">
+                                                                    <em>请选择</em>
+                                                                    <i></i>
+                                                                </a>
+                                                            </li>
+                                                        </ul>
+                                                        <div class="stock-line"></div>
+                                                    </div>
+                                                    <div class="mc" data-area="0" data-widget="tab-content" id="stock_province_item" style="display: none;"></div>
+                                                    <div class="mc" data-area="1" data-widget="tab-content" id="stock_city_item" style="display: none;"></div>
+                                                    <div class="mc" data-area="2" data-widget="tab-content" id="stock_area_item" style="display: none;"></div>
+                                                    <div class="mc" data-area="3" data-widget="tab-content" id="stock_town_item" style="display: none;"></div>
+                                                </div>
+                                            </div>
+                                            <div onclick="$('#store-selector').removeClass('hover')" class="close"></div>
+                                        &nbsp;<b class=has_stock >有货</b>
+										</div>
+                                        <div id="store-prompt"> <strong></strong>
+                                        </div>
+										
+                                    </div>
+                                </li>
+                            </ul>
+                         </p>
+			<style>
+			.jd_content{
+				width:auto;
+				margin:auto;
+			}
+			</style>
+						<script>
+                            var oindex=0;
+                            var sel_region_id=0;
+                            var sel_region_name='';
+                            $(document).ready(function(){
+                                
+                                $('.mt .tab li').click(function(){
+                                  removeCurr();
+                                  var area=$(this).attr('data-index');
+                                  showCurr(area);
+                                  showArea(area);
+                                  oindex=area;
+                                  hideLi(area);                                  
+                                });
+                                $('#store-selector').mouseover(function() {
+                                    /* Act on the event */
+                                    $('#store-selector').addClass('hover');
+                                   
+
+                                });
+                                 initData(); 
+								 if(has_stock)
+								 {
+								   $('.has_stock').html('有货');								 
+								 }else{
+								   $('.has_stock').html('无货');	
+								 }
+                            });
+							//2014-5-28
+							function getParams()
+							{
+							   var params = location.search.substr(1).split('&');
+							   return params;
+							}
+							function replaceParams(key,value,params)
+							{
+							   
+								var found  = false;
+								for (var i = 0; i < params.length; i++)
+								{
+									param = params[i];
+									arr   = param.split('=');
+									pKey  = arr[0];
+									if (pKey == 'page')
+									{
+										params[i] = 'page=1';
+									}
+									if (pKey == key)
+									{
+										params[i] = key + '=' + value;
+										found = true;
+									}
+								}
+								if (!found)
+								{
+									value = (value);
+									params.push(key + '=' + value);
+								}
+								return params;
+							}
+							
+							function dropParams(key,params)
+							{
+							
+							  for (var i = 0; i < params.length; i++)
+								{
+									param = params[i];
+									arr   = param.split('=');
+									pKey  = arr[0];
+									if (pKey == 'page')
+									{
+										params[i] = 'page=1';
+									}
+									if (pKey == key)
+									{
+										params.splice(i, 1);
+									}
+								}
+								return params;
+							}
+							
+							function goParams(params)
+							{
+							  go(SITE_URL + '/index.php?' + params.join('&'));
+							}
+							
+							
+                            function querySelRegion()
+                            {
+							    var params=getParams();
+								replaceParams('sel_region_id',sel_region_id,params);
+								replaceParams('sel_region_name',sel_region_name,params);
+								
+								goParams(params);
+                            }
+                            function querySelRegionCacle()
+                            {
+								var params=getParams();
+                                dropParams('sel_region_id',params);
+								dropParams('sel_region_name',params);
+								
+								goParams(params);
+
+                            }
+							
+							//2014-5-28
+                           
+                            function initData()
+                            {
+                                var pid=2;
+                                loadRegionData(pid,0,'中国','中国');
+                            }
+                            function initAreaItem()
+                            {
+                                $('.area-list li a').click(function(event) {
+                                    /* Act on the event */
+                                    var val=$(this).attr('data-value'); 
+                                    var index=$(this).attr('area-index');
+                                    var pname=$(this).attr('data-pname');
+                                    var name=$(this).html();
+                                    var nname=pname+' '+name;
+                                    $("#store-selector .text div").html(nname);
+                                    $("#sel_region_id").val(val);
+                                    sel_region_id=val;
+                                    sel_region_name=nname;
+                                    loadRegionData(val,index,nname,name);
+                                });
+                            }
+
+                            function loadRegionData(pid,index,pname,title)
+                            {                                
+                                var url = REAL_SITE_URL + '/index.php?app=mlselection&type=region';
+                                var obj=_getAreaIndexObj(index);
+                                    var index2=parseInt(index)+1;
+                                    $.getJSON(url, {'pid':pid}, function(data){
+                                        if (data.done)
+                                        {
+                                            if (data.retval.length > 0)
+                                            {
+                                                var data  = data.retval;
+                                                var tmpstr='';
+                                                var ptitle='';
+                                                for (i = 0; i < data.length; i++)
+                                                {
+                                                    tmpstr+='<li>'+
+                                                            '<a href="javascript:void(0);" data-value="' + data[i].region_id + '" area-index="'+index2+'" data-pname="' + pname + '">'+ data[i].region_name +'</a>'+
+                                                    '</li>';
+                                                }
+                                                tmpstr='<ul class="area-list">'+tmpstr+'</ul>';                       
+                                                obj.html(tmpstr);
+                                                showArea(index);
+                                                removeCurr();
+                                                showCurr(index);
+                                                index=parseInt(index);
+                                                hideLi(index);
+                                                showLi(index,title);
+                                                initAreaItem();
+                                            }
+                                        }
+                                        else
+                                        {
+                                            alert(data.msg);
+                                        }
+                                    });
+                            }
+
+                            function _getAreaIndexObj(index)
+                            {
+                               var obj;
+                                $('.mc').each( function() {
+                                     /* iterate through array or object */
+                                     var area=$(this).attr('data-area');
+                                         if(index==area)
+                                         {              
+                                            obj= $(this);
+                                         }
+                                    });
+                                return obj;
+                            }
+                            function showArea(index)
+                            {
+                                $('.mc').each( function() {
+                                     /* iterate through array or object */
+                                     var area=$(this).attr('data-area');
+                                     if(index==area)
+                                     {
+                                        $(this).show();
+
+                                     }else{
+                                        $(this).hide();
+                                     }
+                                });
+                            }
+
+
+                            function showLi(index,title)
+                            {
+                                $('.mt .tab li').each(function(){
+                                    var tindex=$(this).attr('data-index');
+                                    if(tindex==index)
+                                    {           
+                                        $(this).html('<a href="#none" class=""> <em>'+title+'</em> <i></i></a>');
+                                        $(this).css('display','list-item');
+                                    }       
+                                });
+                            }
+                            function hideLi(index)
+                            {
+                                $('.mt .tab li').each(function(){
+                                    var tindex=$(this).attr('data-index');
+                                    if(tindex>index)
+                                    {
+                                        $(this).css('display','none');
+                                    }
+                                });
+                            }
+                            function showCurr(index)
+                            {
+                                $('.mt .tab li').each(function(){
+                                    var tindex=$(this).attr('data-index');
+                                    if(tindex==index)
+                                    {
+                                        $(this).addClass('curr');
+                                    }
+                                    
+                                })
+                                oindex=index;
+                            }
+                            function removeCurr()
+                            {
+                                $('.mt .tab li').each(function(){
+                                    $(this).removeClass('curr');
+                                    
+                                })
+                            }
+                            </script>
+                   <!--360cd.cn-->
+            {$lang.sale_situation}: {$sales_info}{$comments}<br />
+            {$lang.region}: {$store.region_name|escape}
+        </div>
+
+        <div class="handle">
+            <!--{if $goods.spec_qty gt 0}-->
+            <ul>
+                <li class="handle_title">{$goods.spec_name_1|escape}: </li>
+            </ul>
+            <!--{/if}-->
+            <!--{if $goods.spec_qty gt 1}-->
+            <ul>
+                <li class="handle_title">{$goods.spec_name_2|escape}: </li>
+            </ul>
+            <!--{/if}-->
+            <ul>
+                <li class="handle_title">{$lang.quantity}: </li>
+                <li>
+                    <input type="text" class="text width1" name="" id="quantity" value="1" />
+                    {$lang.unit}{$lang.left_bracket}{$lang.stock}<span class="stock" ectype="goods_stock">{$goods._specs.0.stock}</span>{$lang.unit}{$lang.right_bracket}
+                </li>
+            </ul>
+            <!--{if $goods.spec_qty gt 0}-->
+            <ul>
+                <li class="handle_title">{$lang.your_select}: </li>
+                <li class="aggregate" ectype="current_spec"></li>
+            </ul>
+            <!--{/if}-->
+        </div>
+
+        <ul class="ware_btn">
+            <div class="ware_cen" style="display:none">
+                <div class="ware_center">
+                    <h1>
+                        <span class="dialog_title">{$lang.add_to_cart_ok}</span>
+                        <span class="close_link" title="{$lang.close}" onmouseover="this.className = 'close_hover'" onmouseout="this.className = 'close_link'" onclick="slideUp_fn();"></span>
+                    </h1>
+                    <div class="ware_cen_btn">
+                        <p class="ware_text_p">{$lang.cart_status}</p>
+                        <p class="ware_text_btn">
+                            <input type="submit" class="btn1" name="" value="{$lang.view_cart}" onclick="location.href='{$site_url}/index.php?app=cart'" />
+                            <input type="submit" class="btn2" name="" value="{$lang.continue_buy}" onclick="$('.ware_cen').css({'display':'none'});" />
+                        </p>
+                    </div>
+                </div>
+                <div class="ware_cen_bottom"></div>
+            </div>
+
+            <!--<li class="btn_c1" title="{$lang.buy_now}"><a href="#"></a></li>-->
+            <li class="btn_c2" title="{$lang.add_to_cart}"><a href="javascript:buy();"></a></li>
+            <li class="btn_c3" title="{$lang.add_to_favorite}"><a href="javascript:collect_goods({$goods.goods_id});"></a></li>
+        </ul>
+    </div>
+
+    <div class="clear"></div>
+</div>

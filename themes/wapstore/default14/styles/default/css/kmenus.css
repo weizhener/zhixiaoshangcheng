@@ -1,0 +1,28 @@
+/* CSS Document */
+
+.flo_btn_1{ position:fixed; left:0; bottom:20px; z-index:999;}
+.flo_btn_1 li{ float:left; margin-left:15px; }
+.flo_btn_1 li a{display:block; background-color:#E84507; width:30px; height:30px; border-radius:50px; box-shadow:0 0 0 4px #FFFFFF, 0 2px 5px 4px rgba(0, 0, 0, 0.25);}
+.flo_btn_1 li span{display: block;height: 100%;overflow: hidden;text-align: center;vertical-align: middle;width: 100%;}
+
+
+
+.flo_btn_2{ position:fixed; width:30px; left:10px; bottom:20px; z-index:999;}
+.flo_btn_2 li{ margin-bottom:15px; }
+.flo_btn_2 li a{display:block; background-color:#E84507; width:30px; height:30px; border-radius:50px; box-shadow:0 0 0 4px #FFFFFF, 0 2px 5px 4px rgba(0, 0, 0, 0.25);}
+.flo_btn_2 li span{display: block;height: 100%;overflow: hidden;text-align: center;vertical-align: middle;width: 100%;}
+
+
+
+
+.flo_btn_3{ position:fixed;right:0; bottom:20px; z-index:999;}
+.flo_btn_3 li{ float:right; margin-right:15px; }
+.flo_btn_3 li a{display:block; background-color:#E84507; width:30px; height:30px; border-radius:50px; box-shadow:0 0 0 4px #FFFFFF, 0 2px 5px 4px rgba(0, 0, 0, 0.25);}
+.flo_btn_3 li span{display: block;height: 100%;overflow: hidden;text-align: center;vertical-align: middle;width: 100%;}
+
+
+
+.flo_btn_4{ position:fixed; width:30px; right:10px; bottom:20px; z-index:999;}
+.flo_btn_4 li{ margin-bottom:15px; }
+.flo_btn_4 li a{display:block; background-color:#E84507; width:30px; height:30px; border-radius:50px; box-shadow:0 0 0 4px #FFFFFF, 0 2px 5px 4px rgba(0, 0, 0, 0.25);}
+.flo_btn_4 li span{display: block;height: 100%;overflow: hidden;text-align: center;vertical-align: middle;width: 100%;}

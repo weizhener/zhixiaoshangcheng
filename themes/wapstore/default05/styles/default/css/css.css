@@ -1,0 +1,124 @@
+@charset "utf-8";
+/* CSS Document */
+body,p,h1,h2,h3,h4,ul,ol,li,dl,dt,dd,form{margin:0;padding:0;font-size:100%}
+ul,ol{list-style:none}
+a{text-decoration:none}
+body{-webkit-text-size-adjust:none;line-height:1.6;font-size:14px;font-family:"ff-tisa-web-pro-1","ff-tisa-web-pro-2","Lucida Grande","Hiragino Sans GB","Hiragino Sans GB W3";min-width:320px;}
+em{font-style:normal}
+img{ border:none;}
+h1,h2,h3{font-weight:normal}
+body{word-wrap:break-word;word-break:break-all;-webkit-text-size-adjust:none;background-color:#fbfbfb}
+del{text-shadow:none}
+input[type=checkbox]{-webkit-appearance:none;width:16px;height:16px;background-color:transparent;background-image:url(../images/all.png);background-position:-76px 0;-webkit-background-size:16px;background-size:16px;border:0;margin:0}
+input[type=checkbox]:checked{background-image:url(../images/all.png);background-position:-76px -17px}
+h2 input[type=checkbox]{margin-top:4px}
+/**************/
+.ui_fluid{width:100%;display:block}
+.ui_gap{padding-left:15px;padding-right:15px;margin-bottom:15px}
+.ui_align_center{text-align:center}
+.ui_align_left{text-align:left}
+.ui_align_right{text-align:right}
+.ui_float_left{float:left}
+.ui_float_right{float:right}
+.ui_clearfix:after{clear:both;content:".";display:block;height:0;overflow:hidden;font-size:0}
+.ui_bfc{display:table-cell}
+.ui_bfc:after{clear:both;display:block;visibility:hidden;overflow:hidden;height:0!important;line-height:0;font-size:xx-large;content:" x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x "}
+.mod_color_normal,.ui_color_normal,body,a{color:#333}
+.ui_color_comment,.mod_color_comment{color:#ccc}
+.ui_color_weak,.mod_color_weak{color:#999}
+.ui_color_em,.mod_color_em{color:#f90}
+.ui_color_strong,.mod_color_strong{color:#f34}
+.ui_bg_color_weak{background-color:#f6f6f6}
+.ui_list_disc{list-style:disc inside}
+.ui-bt{border-top:1px solid #eaeaea}
+.ui_textinput{width:20px;height:14px;padding:3px 5px;border:1px solid #eaeaea;color:#999;text-align:center;line-height:14px;font-size:12px;-webkit-appearance:none;border-radius:0}
+
+.color_black{background-color:#131313!important;color:#FFF}
+.color_red{background-color:#e90717!important;color:#FFF}
+.color_blank{background-color:#FFF!important;color:#161616!important}
+.color_jj_1{background-color:#369!important;color:#fff}
+.color_jj_2{background-color:#999!important;color:#fff}
+.color_select_1{background-color:#a39275!important;color:#fff}
+.color_select_2{background-color:#003!important;color:#fff}
+.color_only_1{background-color:#f99!important;color:#fff}
+.color_only_2{background-color:#9fc!important;color:#fff}
+.color_veromoda_1{background-color:#ff9!important;color:#fff}
+.color_veromoda_2{background-color:#9ff!important;color:#fff}
+
+.qb_icon{display:inline-block;background-repeat:no-repeat}
+@media screen and (-webkit-device-pixel-ratio:1.5){.qb_icon{-webkit-background-size:auto;background-size:auto}}.qb_clearfix:after{clear:both;content:".";display:block;height:0;visibility:hidden}
+.qb_none{display:none!important}
+
+
+.lay_page{overflow:hidden}
+.lay_page_wrap{margin-left:auto;margin-right:auto}
+.lay_header{height:45px}
+.lay_toptab{top:-45px;width:100%}
+.lay_toptab.fixed{position:fixed;top:0;left:0;width:100%;z-index:100}
+.lay_toptab.hidden{top:-45px}
+.lay_toptab.hidden_css3{-webkit-transform:translate(0,-45px);transform:translate(0,-45px)}
+.lay_toptab.animate{transition:all .14s linear;-webkit-transition:all .14s linear}
+
+.lay_footer{padding:0 0 8px;margin-bottom:0!important;background-color:#fbfbfb; width:100%; text-align:center; font-family:"微软雅黑"; color:#999; font-size:12px; position:fixed; left:0; bottom:0;}
+.lay_footer .flex_box{height:30px;line-height:30px;text-align:center;color:#999;background-color:#161616;text-shadow:none;font-size:12px;font-weight:bold; float:left; width:33%; margin-bottom:8px;}
+
+/* 小图标 */
+.icon_back{background-image:url(../images/all.png);background-position:-76px -34px;width:6px;height:13px;vertical-align:text-bottom}
+.icon_pen{background-image:url(../images/all.png);background-position:-76px -51px;width:12px;height:12px;margin-right:5px;vertical-align:-1px}
+.icon_trash{background-image:url(../images/all.png);background-position:-93px 0;width:13px;height:14px;vertical-align:-2px}
+.icon_nike{background-image:url(../images/nike.png);width:11px;height:11px;margin-left:5px}
+.icon_icenter{background-image:url(../images/all.png);background-position:-31px 0;width:22px;height:22px}
+.icon_cart{background-image:url(../images/all.png);background-position:-31px -23px;width:22px;height:22px}
+.icon_goback{background-image:url(../images/all.png);background-position:-31px -46px;width:22px;height:22px}
+.icon_weigou_logo{background-image:url(../images/all.png);background-position:-54px 0;width:21px;height:21px}
+.icon_number_bubble{background-image:url(../images/all.png);background-position:-93px -17px;width:15px;height:15px}
+.icon_profile_location{background-image:url(../images/all.png);background-position:-93px -34px;width:9px;height:13px}
+.icon_number_bubble_em{background-image:url(../images/all.png);background-position:-93px -51px;width:15px;height:15px;color:#f94e09;font-size:12px;line-height:15px;font-weight:normal;font-family:Arial;text-align:center;font-style:normal;text-shadow:none;overflow:hidden;position:absolute;top:-5px;right:-5px;margin-top:0!important}
+.icon_profile_coupon{background-image:url(../images/all.png);background-position:0 0;width:30px;height:30px;position:relative}
+.icon_arrow_right{background-image:url(../images/all.png);background-position:-110px 0;width:7px;height:11px;position:relative;top:2px}
+.icon_lock{background-image:url(../images/all.png);background-position:-110px -17px;width:9px;height:11px;position:relative}
+.icon_checkbox{background-image:url(../images/all.png);background-position:-110px -34px;width:15px;height:15px}
+.icon_checkbox_checked{background-image:url(../images/all.png);background-position:-110px -51px;width:15px;height:15px}
+.icon_checkbox_disabled{background-image:url(../images/all.png);background-position:-127px 0;width:15px;height:15px}
+.icon_detailinfo{background-image:url(../images/all.png);background-position:0 -31px;width:30px;height:30px}
+.icon_cellphone{background-image:url(../images/all.png);background-position:-127px -17px;width:9px;height:14px}
+
+
+.mod_tab{background-color:#161616;background-image:-webkit-gradient(linear,left top,left bottom,from(#212121),to(#161616));background-image:-webkit-linear-gradient(top,#212121,#161616);background-image:linear-gradient(to bottom,#212121,#161616);height:44px;border-bottom:1px solid #000; position:fixed; top:0; left:0; z-index:9999;}
+.mod_tab .tab_item{cursor:pointer;text-align:center;position:relative;width:20%; float:left; overflow:hidden;}
+.mod_tab .tab_item:after{content:"";display:block;width:1px;border-left:1px solid #000;background-color:#262626;height:44px;position:absolute;left:0;top:0}
+.mod_tab .tab_item:first-child:after{display:none}
+.mod_tab .tab_item_logo{ width:40%; height:40px; line-height:40px;}
+.mod_tab .tab_item_logo img{margin-top:2px;height:37px;}
+.mod_tab .tab_item .qb_icon{margin-top:10px}
+.mod_tab .tab_item .icon_number_bubble{color:#fff;font-size:12px;line-height:15px;font-weight:normal;font-family:Arial;text-align:center;font-style:normal;text-shadow:none;overflow:hidden;position:absolute;top:3px;left:50%;margin-left:5px;margin-top:0}
+
+.mod_clipimg{overflow:hidden;display:block}
+.mod_clipimg img{vertical-align:top;background-position:center 120px}
+.mod_clipimg .default{width: 162px; height: 162px; margin-top: -1px;}
+.mod_clipimg .default1{ height:130px; width:220px;}
+
+.fn_ad{text-shadow:none}
+.fn_ad .ad_item{display:block}
+.fn_ad.ad_all{background-color:#fff}
+.fn_ad.ad_all .ad_item{height:160px;overflow:hidden}
+.fn_ad.ad_all .ad_img{width:160px;float:left;position:relative}
+.fn_ad.ad_all .ad_item:nth-child(2n) .ad_img{float:right}
+.fn_ad.ad_all .ad_detail{height:140px;padding-left:20px;padding-right:20px;padding-top:20px;background-color:#15456b;color:#fff}
+.fn_ad.ad_all .detail_arrow_l{display:inline-block;width:6px;height:6px;border-right:2px solid #fff;border-bottom:2px solid #fff;content:" ";visibility:visible;-webkit-transform:rotate(-135deg) translate(-2px,0);transform:rotate(-135deg) translate(-2px,0)}
+.fn_ad.ad_all .detail_arrow_r{display:inline-block;width:6px;height:6px;border-right:2px solid #fff;border-bottom:2px solid #fff;content:" ";visibility:visible;-webkit-transform:rotate(-45deg) translate(-2px,0);transform:rotate(-45deg) translate(-2px,0)}
+.fn_ad.ad_all .ad_item:nth-child(2n) .ad_detail{text-align:right}
+.fn_ad.ad_all .ad_item:nth-child(2n+1) .detail_arrow_r{-webkit-transform:rotate(135deg) translate(-2px,0);transform:rotate(135deg) translate(-2px,0)}
+.fn_ad.ad_all .ad_item .color_blank .detail_arrow_r{border-right-color:#131313;border-bottom-color:#131313}
+
+/* 菜单 */
+.fn_indexad .indexad_banner{width:235px;  overflow:hidden; position:absolute; left:50%; bottom:90px; margin-left:-117px; z-index:55;}
+.fn_indexad .indexad_banner .banner_list{width:235px}
+.fn_indexad .indexad_banner .list_item{width:115px;height:45px;background-color:rgba(255,255,255,.8);color:#333;text-align:center;line-height:45px;font-size:14px;float:left;margin-left:2px;margin-bottom:2px;-webkit-transition:-webkit-transform .5s ease;position:relative}
+.fn_indexad .indexad_banner a{width:115px;height:45px;display:block}
+.fn_indexad .indexad_banner .list_item:nth-child(2n){-webkit-animation:animate1 .5s ease-in}
+.fn_indexad .indexad_banner .list_item:nth-child(2n+1){-webkit-animation:animate2 .5s ease-in}
+@-webkit-keyframes animate1{0%{-webkit-transform:translate(300px,0)}100%{-webkit-transform:translate(0,0)}}
+@-webkit-keyframes animate2{0%{-webkit-transform:translate(-300px,0)}100%{-webkit-transform:translate(0,0)}}
+
+.sliders{ position:fixed; z-index:-1;}

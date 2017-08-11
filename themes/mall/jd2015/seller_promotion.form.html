@@ -1,0 +1,265 @@
+{include file=member.header.html}
+<style>
+.txt { margin-right:20px}
+.spec ul { width: 530px; overflow: hidden; }
+.spec .td { padding-bottom: 10px; }
+.spec li { float: left; margin-left: 6px; display: inline; }
+.spec li input { text-align: center; }
+.spec .th { padding: 3px 0; margin-bottom: 10px; border-top: 2px solid #e3e3e3; border-bottom: 1px solid #e3e3e3; background: #f8f8f8; }
+</style>
+<script type="text/javascript">
+//<!CDATA[
+$(function(){
+    $('#start_time input').datepicker({dateFormat: 'yy-mm-dd'});
+    $('#end_time input').datepicker({dateFormat: 'yy-mm-dd'});
+    check_spec();
+
+    $('#pro_form').validate({
+        errorPlacement: function(error, element){
+            $(element).next('.field_notice').hide();
+            $(element).after(error);
+        },
+        success       : function(label){
+            label.addClass('validate_right').text('OK!');
+        },
+        onkeyup : false,
+        rules : {
+            pro_name : {
+                required   : true
+            },
+            pro_desc : {
+                maxlength   : 255
+            },
+            end_time      : {
+                required     : true
+            },
+            goods_id      : {
+                required   :true,
+                min    : 1
+            }
+        },
+        messages : {
+            pro_name  : {
+                required   : '{$lang.fill_pro_name}'
+            },
+            pro_desc  : {
+                maxlength   : '{$lang.fill_max_pro_desc}'
+            },
+            end_time       : {
+                required     : '{$lang.fill_end_time}'
+            },
+            goods_id      : {
+                required:  '{$lang.fill_goods}',
+                min   : '{$lang.fill_goods}'
+            }
+        }
+    });
+
+});
+
+function gs_callback(){
+    query_spec($('#goods_id').val());
+}
+
+function check_spec(){
+    $('input[name="spec_id[]"]').click(function(){
+        var obj_pro_price = $(this).parent().parent().find('input[ectype="pro_price"]');
+		var obj_pro_type  = $(this).parent().parent().find('select[ectype="pro_type"]');
+        if($(this).attr('checked') == true){
+            obj_pro_price.show();
+            obj_pro_price.attr('disabled', false);
+			
+			obj_pro_type.show();
+			obj_pro_type.attr('disabled',false);
+        }else{
+            obj_pro_price.hide();
+            obj_pro_price.attr('disabled', true);
+            obj_pro_price.val('');
+            $('label.error').remove();
+			
+			obj_pro_type.hide();
+			obj_pro_type.attr('disabled',true);
+        }
+    });
+
+    $('#submit_pro').unbind('click');
+    $('#submit_pro').click(function(){
+        $('label.error').remove();
+        var qty = 0;
+        var error = false;
+        var price_empty = false;
+		var pro_price_DY_price = false;// 促销价大于原价
+		var discount_error = false;
+		
+        $('*[ectype="spec_item"]').each(function(){
+            var obj_pro_price = $(this).find('input[ectype="pro_price"]');
+            var pro_price = obj_pro_price.val();
+            var if_checked = $(this).find('input[name="spec_id[]"]').attr('checked');
+			var obj_pro_type = $(this).find('select[ectype="pro_type"]');
+			var price = $(this).find('li[ectype="price[]"]').text();
+			//alert(obj_pro_type.val());
+			//alert(pro_price.split(".")[1].length);
+			//alert(Number(price));
+            if_checked && qty++;
+            if(if_checked){
+			   if(pro_price == ''){
+                   price_empty = obj_pro_price;
+                   return false;
+               }
+               if(pro_price != '' && (!Number(pro_price) || pro_price < 0 || isNaN(pro_price))){
+                   error = obj_pro_price;
+				   return false;
+               }
+			   if(obj_pro_type.val()=='price' && (Number(pro_price) > Number(price))) {
+				  pro_price_DY_price = obj_pro_price;
+				  return false;
+			   }
+			   if(obj_pro_type.val()=='discount' && (pro_price=='' || (pro_price.split(".").length!=1 && pro_price.split(".")[1].length>=2) || Number(pro_price) < 0 || Number(pro_price) > 10 || (Math.round(Number(pro_price) * Number(price)*0.1*100)*0.01==Math.round(Number(price)*100)*0.01))){
+				  discount_error = obj_pro_price;
+				  return false;
+			   }
+			}
+        })
+        if(qty == 0){
+            alert('{$lang.fill_spec}');
+            return false;
+        }
+        if(error != false){
+            error.focus();
+            error.addClass('error');
+            //error.after('<label class="error" for="pro_price[]" generated="true">{$lang.invalid_pro_price}</label>');
+			alert('{$lang.invalid_pro_price}');
+            return false;
+        }
+        if(price_empty != false){
+            price_empty.focus();
+            price_empty.addClass('error');
+            //price_empty.after('<label class="error" for="pro_price[]" generated="true">{$lang.fill_pro_price}</label>');
+			alert('优惠幅度不能为空，如果不想设置优惠，请把前面的√去掉');
+            return false;
+        }
+		if(pro_price_DY_price != false){
+			pro_price_DY_price.focus();
+			pro_price_DY_price.addClass('error');
+			alert('优惠价不能大于原价');
+			return false;
+		}
+		if(discount_error != false){
+			discount_error.focus();
+			discount_error.addClass('error');
+			alert('折扣必须在0-10之间，而且最多只能有一个小数点');
+			return false;
+		}
+    });
+}
+
+function query_spec(goods_id){
+    $.getJSON('index.php?app=seller_promotion&act=query_goods_info',{
+        'goods_id':goods_id
+        },
+        function(data){
+            if(data.done){
+                var goods = data.retval;
+                $('#spec_name').html(goods.spec_name);
+                $('ul[ectype="spec_item"]').remove();
+                    $.each(goods._specs,function(i,item){
+                        $('#pro_spec').append('<ul ectype="spec_item" class="td"><li class="distance2"><input name="spec_id[]" value="'+ item.spec_id +'" type="hidden" {if $smarty.get.act eq "add" || $item.pro_price}checked="checked" {/if}/>'+ item.spec +'</li><li class="distance1">' + item.stock + '</li><li class="distance1" ectype="price[]">'+ item.price +'</li><li class="distance1"><input ectype="pro_price" name="pro_price'+item.spec_id+'" type="text" class="text width2" {if $smarty.get.act eq "edit" && !$item.pro_price}style="display:none"{/if} /></li><li class="distance1"><select ectype="pro_type" name="pro_type'+item.spec_id+'" {if $smarty.get.act eq "edit" && !$item.pro_price}style="display:none"{/if}><option value="price">{$lang.pro_type_price}</option><option value="discount">{$lang.pro_type_discount}</option></select></li></ul>');
+                });
+                check_spec();
+            }
+        });
+}
+//]]>
+</script>
+<div class="content">
+  <div class="totline"></div>
+  <div class="botline"></div>
+  {include file=member.menu.html}
+  <div id="right">
+  	  {include file=member.curlocal.html}
+     {include file=member.submenu.html}
+        <div id="seller_promotion_form" class="wrap">
+
+            <div class="public">
+                <form method="post" id="pro_form">
+                    <div class="information_index">
+                        <h4>{$lang.promotion_basic_info}</h4>
+                        <div class="add_wrap">
+                            <div class="assort">
+                                <p class="txt">{$lang.promotion_name}:
+                                <input type="text" name="pro_name" value="{$promotion.pro_name|escape}" class="text" /> <span class="red">*</span></p>
+                            </div>
+                            <div class="assort">
+                                <p class="txt" id="start_time">
+                                    {$lang.start_time}:
+                                    <input name="start_time" value="{$promotion.start_time|date:Y-m-d}" type="text" class="text width2" />
+                                </p>
+                                <p class="txt" id="end_time">
+                                    {$lang.end_time}:
+                                    <input name="end_time" value="{$promotion.end_time|date:Y-m-d}" type="text" class="text width2" /> <span class="red">*</span>
+                                </p>
+                            </div>
+                            <div class="assort">
+                                <p class="txt" id="start_time">
+                                    {$lang.pro_desc}:
+                                    <textarea style="overflow-y: auto; width: 250px; vertical-align: top;" id="pro_desc" name="pro_desc" class="text">{$promotion.pro_desc|escape}</textarea>
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="add_wrap">
+
+                            <div class="assort">
+                                <p class="txt">{$lang.select_goods}:
+                                {if !$goods}
+                                    <input gs_id="goods_id" gs_name="goods_name" gs_callback="gs_callback" gs_title="gselector" gs_width="480" gs_type="store" gs_store_id="{$store_id}" ectype="gselector" type="text" name="goods_name" id="goods_name" value="{$promotion.goods_name|escape}" class="text" /> <span class="red">*</span>
+                                {else}
+                                    {$goods.goods_name|escape}
+                                {/if}
+                                <input type="hidden" id="goods_id" name="goods_id" value="{$promotion.goods_id}" />
+                                </p>
+                            </div>
+                            <div class="assort">
+                                <p class="txt" style="float:left">{$lang.spec_price}:
+                                </p>
+                                    <div id="pro_spec" class="spec" style="float:left">
+                                        <ul class="th">
+                                            <li id="spec_name" class="distance2">{if $goods}{$goods.spec_name}{else}{$lang.spec}{/if}</li>
+                                            <li class="distance1">{$lang.stock}</li>
+                                            <li class="distance1">{$lang.price}</li>
+                                            <li class="distance2" style="width:130px;">{$lang.pro_price}</li>
+                                            <li class="distance1">{$lang.pro_type}</li>
+                                        </ul>
+                                        {foreach from=$goods._specs item=spec}
+                                        <ul ectype="spec_item" class="td">
+                                        <li class="distance2">
+                                           <input name="spec_id[]" value="{$spec.spec_id}" type="hidden" {if $smarty.get.act eq "add" || $spec.pro_price} checked="checked"{/if} />{$spec.spec}
+                                        </li>
+                                        <li class="distance1">{$spec.stock}</li>
+                                        <li class="distance1" ectype="price[]">{$spec.price}</li>
+                                        <li class="distance2"><input ectype="pro_price" name="pro_price{$spec.spec_id}" type="text" class="text width2" value="{$spec.pro_price}" {if $smarty.get.act eq "edit" && !$spec.pro_price}style="display:none"{/if}/></li>
+                                        <li>
+                                           <select ectype="pro_type" name="pro_type{$spec.spec_id}" {if $smarty.get.act eq "edit" && !$spec.pro_price}style="display:none"{/if}>
+                                              <option value="price"{if $spec.pro_type eq 'price'} selected="selected"{/if}>{$lang.pro_type_price}</option>
+                                              <option value="discount"{if $spec.pro_type eq 'discount'} selected="selected"{/if}>{$lang.pro_type_discount}</option>
+                                           </select></li>
+                                        </ul>
+                                        {/foreach}
+                                    </div>
+                            </div>
+                            <div class="issuance"><input id="submit_pro" type="submit" class="btn" value="{$lang.submit}" /></div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="clear"></div>
+        <div class="adorn_right1"></div>
+        <div class="adorn_right2"></div>
+        <div class="adorn_right3"></div>
+        <div class="adorn_right4"></div>
+    </div>
+    <div class="clear"></div>
+</div>
+{include file=footer.html}

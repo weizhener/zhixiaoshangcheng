@@ -1,0 +1,71 @@
+{include file=member.header.html}
+
+<div class="content">
+    {include file=member.menu.html}
+    <div id="right">
+        {include file=member.submenu.html}
+        <div class="wrap">
+            <div class="public table bank">
+                <div class="bank-add">
+                    <div class="notice-word">当您申请提现时平台会向您这里设置的银行卡汇款，请确保您的银行卡是正确的。</div>
+                    <form method="post">                                                <input type="hidden" name="bank_id" value="{$card.bank_id}" />                        
+                        <dl class="bank-list clearfix">
+                            <dt>开户银行</dt>
+                            <dd>
+                                <ul class="ui-list-icons clearfix">
+                                    <!--{foreach from=$bank_inc item=bank key=key name=fe_bank}-->
+                                    <li>
+                                        <input type="radio" name="short_name" id="{$key}" value="{$key}"{if $smarty.foreach.fe_bank.first}checked="checked" {/if} {if $key eq $card.short_name} checked="checked" {/if}  />
+                                               <label class="  icon-box current " for="{$key}" >
+                                            <span class="icon-cashier icon-cashier-{$key}" title="{$bank}">&nbsp;</span>
+                                        </label>
+                                    </li>
+                                    <!--{/foreach}-->
+                                </ul>
+                            </dd>
+                        </dl>
+                        <dl class="clearfix">
+                            <dt>卡 号</dt>
+                            <dd><input type="text" name="bank_num" class="text width_normal" value="{$card.bank_num}" /></dd>
+                        </dl>
+                        <dl class="clearfix">
+                            <dt>户 名</dt>
+                            <dd><input type="text" name="account_name" class="text width_normal" value="{$card.account_name}" /></dd>
+                        </dl>
+                        <dl class="clearfix">
+                            <dt>开户支行</dt>
+                            <dd>
+                                <input type="text" name="open_bank" class="text width_normal" value="{$card.open_bank}" />
+                                <span class="gray">示例：XXX银行XXX支行</span>
+                            </dd>
+                        </dl>
+                        <dl class="clearfix">
+                            <dt>卡类型</dt>
+                            <dd>
+                                <label><input type="radio" name="bank_type" value="debit" {if $smarty.get.bank_type eq 'debit' || $card.bank_type eq 'debit'} checked="checked" {/if} />储蓄卡（借记卡）</label>
+                                <label><input type="radio" name="bank_type" value="credit" {if $smarty.get.bank_type eq 'credit' || $card.bank_type eq 'credit'} checked="checked" {/if} />信用卡（贷记卡）</label>
+                            </dd>
+                        </dl>
+                        <dl class="clearfix">
+                            <dt>验证码</dt>
+                            <dd class="captcha clearfix">
+                                <input type="text" name="captcha" class="text" id="captcha1" />
+                                <a href="javascript:change_captcha($('#captcha'));" class="renewedly"><img id="captcha" src="index.php?app=captcha&amp;{$random_number}" /></a>
+                            </dd>
+                        </dl>
+                        <dl class="clearfix">
+                            <dt>&nbsp;</dt>
+                            <dd>
+                                <span class="epay_btn"><input type="submit"  value="{$lang.submit}" /></span>
+                            </dd>
+                        </dl>
+                    </form>
+                </div>
+            </div>
+            <div class="wrap_bottom"></div>
+        </div>
+        <div class="clear"></div>
+    </div>
+    <div class="clear"></div>
+</div>
+{include file=footer.html}

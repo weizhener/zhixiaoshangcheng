@@ -1,0 +1,123 @@
+{include file="member.header.html"}
+<div class="content clearfix">
+	<div class="totline"></div>
+	<div class="botline"></div>
+  	{include file=member.menu.html}
+	<div id="right">
+    	{include file=member.submenu.html}
+		<div class="wrap">
+			<div class="eject_btn_two eject_pos1" title="{$lang.delivery_add}"><b class="ico1" onclick="go('index.php?app=my_delivery&amp;act=add');">{$lang.delivery_add}</b></div>
+			<div class="public_select table">
+				<div class="info2">
+					<form method="post" id="delivery_template">
+						<table class="infoTable" align="center">
+							<tr>
+								<td align="left" width="200" height="25">{$lang.name}{$lang.colon}</td>
+                				<td align="left"><input type="text" name="name" class="input template_name" value="{$delivery.name|escape}" /></td>
+            				</tr>
+            				<tr>
+								<td align="left" width="200" height="25">{$lang.delivery_type}{$lang.colon}</td>
+               					<td align="left"><p class="gray">{$lang.delivery_type_note}</p></td>
+            				</tr>
+            				<tr>
+            					<td></td>
+                				<td>
+                					<div class="section-list">
+                        				<!--{foreach from=$delivery.area_fee item=item key=type}-->
+                    					<div class="section mb10">
+											<p>
+                             					<input type="hidden" name="template_types[]"  value="{$type}" id="input_{$type}" checked="checked"/>
+												<label for="input_{$type}">{$lang.$type}</label>
+											</p>
+											<div class="postage-detail" id="{$type}">
+                            					<div class="default_fee">
+                                					<label>默认运费{$lang.colon}</label>
+                                    				<input type="hidden" name="{$type}_dests[]" value="1" />
+                                    				<input type="text" class="input" value="{$item.default_fee.start_standards}" name="{$type}_start[]" />
+                                    				<label>件内，</label>
+                                   					<input type="text" class="input" value="{$item.default_fee.start_fees}" name="{$type}_postage[]" /> 
+                                    				<label>元，</label>
+                                    				<label>每增加</label>
+                                    				<input type="text" class="input" value="{$item.default_fee.add_standards}" name="{$type}_plus[]" />
+                                    				<label>个，</label>
+                                    				<label>增加运费</label>
+                                    				<input type="text" class="input" value="{$item.default_fee.add_fees}" name="{$type}_postageplus[]" />
+                                    				<label>元</label>
+                                				</div>
+                                				<div class="other_fee">
+                                					<div class="fee_list">
+                                    					<!--{if $item.other_fee}-->
+                                    					<table border="0" cellpadding="0" cellspacing="0">
+				 											<thead>
+																<tr>
+																	<th class="cell-area">运送到</th>
+																	<th>首件(个)</th>
+																	<th>首费(元)</th>
+																	<th>续件(个)</th>
+																	<th>续费(元)</th>
+																	<th>操作</th>
+																</tr>
+															</thead>
+															<tbody>
+                                            					<!--{foreach from=$item.other_fee item=fee name=fe_fee}-->
+                                            					<tr>
+				 													<td class="cell-area">
+																		<div class="selected_area J_SelectedAreaName">{$fee.dests}</div>
+																		<input type="hidden" group="dests" name="{$type}_dests[]" value="{$fee.dest_ids}" />
+                                                        					<a href="javascript:;" gs_id="gselector-delivery-{$type}{$smarty.foreach.fe_fee.iteration}" gs_name="delivery_name" gs_callback="gs_callback" gs_title="{$lang.edit_template}" gs_width="660" gs_type="delivery" gs_store_id="" ectype="gselector" gs_opacity="0.05" gs_class="simple-blue" name="gselector-delivery" id="gselector-delivery" class="btn-add-product">{$lang.edit}</a>
+																	</td>
+																	<td><input type="text" class="input" value="{$fee.start_standards}" name="{$type}_start[]" /></td>
+																	<td><input type="text" class="input" value="{$fee.start_fees}" name="{$type}_postage[]" /></td>
+																	<td><input type="text" class="input" value="{$fee.add_standards}" name="{$type}_plus[]" /></td>
+																	<td><input type="text" class="input" value="{$fee.add_fees}" name="{$type}_postageplus[]" /></td>
+																	<td><a href="javascript:;" class="del_area" type="{$type}">删除</a></td>
+				 												</tr>
+                                                				<!--{/foreach}-->
+                                             				</tbody>
+                                          				</table>
+                                        				<!--{/if}-->
+                                    				</div>
+                                					<p class="add_area" type="{$type}">为指定地区城市设置运费</p>
+                                				</div>
+                            				</div>
+										</div>
+                        				<!--{/foreach}-->
+                        
+                        				<!--{foreach from=$delivery.plus_type item=item}-->																																																																	 										<div class="section">
+											<p>
+												<input type="hidden" name="template_types[]"  value="{$item}" id="input_{$item}"/>
+                                				<label for="input_{$item}">{$lang.$item}</label>
+											</p>
+											<div class="postage-detail" id="{$item}">
+                            					<div class="default_fee">
+                                					<label>默认运费{$lang.colon}</label>
+                                    				<input type="hidden" name="{$item}_dests[]" value="1" />
+                                    				<input type="text" class="input" value="1" name="{$item}_start[]" /> <label>件内，</label>
+                                    				<input type="text" class="input" value="10" name="{$item}_postage[]" /> <label>元，</label>
+                                    				<label>每增加</label>
+                                    				<input type="text" class="input" value="1" name="{$item}_plus[]" /> <label>件，</label>
+                                    				<label>增加运费</label>
+                                    				<input type="text" class="input" value="0" name="{$item}_postageplus[]" /> <label>元</label>
+                                				</div>
+                                				<div class="other_fee">
+                                					<div class="fee_list"></div>
+                                    				<p class="add_area" type="{$item}">为指定地区城市设置运费</p>
+                                				</div>
+                            				</div>
+										</div>
+                        				<!--{/foreach}--> 
+                   					</div>                 
+                				</td>
+           					</tr>
+           					<tr>
+            					<td></td>
+               					<td height="50"><span class="btn-alipay"><input type="submit" value="{$lang.submit}" class="submit" /></span></td>
+           					</tr>
+        				</table>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{include file="footer.html"}

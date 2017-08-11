@@ -1,0 +1,44 @@
+{include file=member.header.html}
+<div class="content">
+    {include file=member.menu.html}
+    <div id="right">
+        {include file=member.submenu.html}
+        <div class="wrap">
+            <div class="public_select table">
+                <table>
+                    <tr class="gray">
+                        <th>ID</th><th>用户名</th><th>真实姓名</th><th>QQ</th><th>手机号</th><th>注册时间</th>
+                    </tr>
+                    <!--{if $refers}-->
+                    <!-- {foreach from=$refers item=refer name=fe_refer} -->
+                    <tr class="line<!--{if $smarty.foreach.fe_refer.last}--> last_line<!--{/if}-->">
+                        <td class="align2">{$refer.user_id}</td>
+                        <td class="align2">{$refer.user_name|escape}</td>
+                        <td class="align2">{$refer.real_name|escape}</td>
+                        <td class="align2">{$refer.im_qq|escape}</td>
+                        <td class="align2">{$refer.phone_mob|escape}</td>
+                        <td class="align2">{$refer.reg_time|date}</td>
+                    </tr>
+                    <!--{/foreach}-->
+                    <!--{else}-->
+                    <tr>
+                        <td class="align2 member_no_records padding6" colspan="7">{$lang.no_records}</td>
+                    </tr>
+                    <!--{/if}-->
+                    <tr>
+                        <th colspan="7">
+                        </th>
+                    </tr>
+                    <tr>
+                        <th colspan="7">
+                            {include file=member.page.bottom.html}
+                        </th>
+                    </tr>
+                </table>
+            </div>
+            <div class="wrap_bottom"></div>
+        </div>
+    </div>
+    <div class="clear"></div>
+</div>
+{include file=footer.html}

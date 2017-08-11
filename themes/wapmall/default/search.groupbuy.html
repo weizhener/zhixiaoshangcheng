@@ -1,0 +1,30 @@
+{include file="header.html"}
+<script type="text/javascript" src="{lib file=search_groupbuy.js}" charset="utf-8"></script>   
+<div class="mb-head">
+    <a href="{url app=default}" class="l_b">首页</a>
+    <div class="tit">团购</div>
+</div>
+
+<div id="main">
+
+
+<section class="search_goods">
+    <ul class="list">
+
+        <!-- {foreach from=$groupbuy_list item=group name=fe_group} -->
+        <a href="{url app=groupbuy&id=$group.group_id}">
+            <li>
+                <img src="{$group.default_image}" alt="{$group.group_name|escape}"/>
+                <div class="detail">
+                    <p class="title">{$group.group_name|escape}</p>
+                    <p class="price">{$group.group_price|price} <del>{$group.price}</del></p>
+                </div>
+            </li>
+        </a>
+    <!-- {/foreach} -->
+    </ul>
+
+    {include file='page.bottom.html'}
+</section>
+</div>
+{include file="footer.html"}

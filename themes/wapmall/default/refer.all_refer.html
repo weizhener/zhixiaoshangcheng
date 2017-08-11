@@ -1,0 +1,25 @@
+{include file=member.header.html}
+<div class="mb-head">
+    <a href="javascript:history.back(-1)" class="l_b">返回</a>
+    <div class="tit">所有成员</div>
+    <a href="javascript" class="r_b"></a>
+</div>
+{include file=member.submenu.html}
+
+<div class="table">
+    <table>
+        <!--{if $all_refers}-->
+        <!-- {foreach from=$all_refers item=refer name=fe_refer key=key} -->
+        <tr>
+            <td style="text-align: left;">
+                {$refer}&nbsp;&nbsp;&nbsp;(ID:{$key})
+            </td>
+        </tr>
+        <!--{/foreach}-->
+        <!--{/if}-->
+    </table>
+</div>
+
+
+
+{include file=member.footer.html}

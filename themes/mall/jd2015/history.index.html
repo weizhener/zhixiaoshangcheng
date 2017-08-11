@@ -1,0 +1,23 @@
+{include file="header.html"}
+<div id="main" class="w-full">
+    <div id="page-search-promotion" class="w mt10 mb20">
+        {include file=curlocal.html}
+        <div class="w mt10">
+            <div class="group-list mt10 mb10 clearfix">
+                <ul class="clearfix">
+                    <!-- {foreach from=$goods_list item=goods name=fe_goods} -->
+                    <a target="_blank" href="{url app=goods&id=$goods.goods_id}">
+                        <li class="item mb20" {if $smarty.foreach.fe_goods.iteration % 4 eq 0} style="margin-right:0"{/if}>
+                            <img src="{$goods.default_image}" alt="{$goods.goods_name|escape}" />
+                            <h3>{$goods.goods_name|escape|truncate:60}</h3>
+                        </li>
+                    </a>
+                    <!--{foreachelse}-->
+                    <div>没有浏览记录</div>
+                    <!-- {/foreach} -->
+                </ul>
+            </div>    
+        </div>
+    </div>
+</div>
+{include file="footer.html"}

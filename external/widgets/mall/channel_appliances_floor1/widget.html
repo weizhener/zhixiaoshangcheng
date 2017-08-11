@@ -1,0 +1,130 @@
+<div class="channel_appliances_floor1 w clearfix">
+    <div class="left">
+        <div class="mt">
+            <h2>{$widget_data.model_name}</h2>
+            <div class="keywords">
+                <!--{foreach from=$widget_data.keywords item=k}-->
+                <a href="{url app=search&keyword=$k|escape:url}" target="_blank">{$k}</a>
+                <!--{/foreach}-->
+            </div>
+        </div>
+        <div class="mc">
+            <div class="mc_left">
+                <div class="p_img">
+                    <a href="{$widget_data.ad1_link_url}" target="_blank">
+                        <img src="{$widget_data.ad1_image_url}" width="280" height="280">
+                    </a>
+                </div>
+                <div class="p_info">
+                    <div class="p_title">
+                        <a href="{$widget_data.ad1_link_url}" target="_blank">{$widget_data.ad1_title}</a>
+                    </div>
+                    <div class="p_price">
+                         ￥{$widget_data.ad1_price}
+                    </div>
+                    <div class="p_market">
+                        <del>{$widget_data.ad1_market}</del>
+                    </div>
+                    <div class="p_sale">{$widget_data.subtitle_name}</div>
+                    <div class="goumai">
+                        <a href="{$widget_data.ad1_link_url}" target="_blank"></a>
+                    </div>
+                </div>
+            </div>
+            <div class="mc_right">
+                <ul>
+                    <!-- {foreach from=$widget_data.goods_list_1 item=goods name=fe_goods} -->
+                    <li>
+                        <div class="p_img">
+                            <a href="{url app=goods&id=$goods.goods_id}" target="_blank">
+                                <img src="{$goods.default_image}" width="130" height="130">
+                            </a>
+                        </div>
+                        <div class="p_title">
+                            <a href="{url app=goods&id=$goods.goods_id}" target="_blank">{$goods.goods_name|escape}</a>
+                        </div>
+                        <div class="p_price">
+                            {$goods.price|price}
+                        </div>
+                    </li>
+                    <!-- {/foreach} -->
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="right tab_{$widget_data.model_id}">
+        <div class="mt">
+            <h2>{$widget_data.left_title_name}</h2>
+            <ul class="ks-switchable-nav">
+                <li class="ks-active">
+                    {$widget_data.model_name2}
+                </li>
+                <li class>
+                    {$widget_data.model_name3}
+                </li>
+                <li class>
+                    {$widget_data.model_name4}
+                </li>
+            </ul>
+        </div>
+        <div class="ks-switchable-content">
+            <ul class="ks-active" style="display: block;">
+                <!-- {foreach from=$widget_data.goods_list_2 item=goods name=fe_goods} -->
+                <li>
+                    <div class="p_img">
+                        <a href="{url app=goods&id=$goods.goods_id}" target="_blank">
+                            <img src="{$goods.default_image}" width="50" height="50">
+                        </a>
+                    </div>
+                    <div class="p_title">
+                        <a href="{url app=goods&id=$goods.goods_id}" target="_blank">{$goods.goods_name|escape}</a>
+                    </div>
+                    <div class="p_price">{$goods.price|price}</div>
+                </li>
+                <!-- {/foreach} -->
+            </ul>
+            <ul class style="display: none;">
+                <!-- {foreach from=$widget_data.goods_list_3 item=goods name=fe_goods} -->
+                <li>
+                    <div class="p_img">
+                        <a href="{url app=goods&id=$goods.goods_id}" target="_blank">
+                            <img src="{$goods.default_image}" width="50" height="50">
+                        </a>
+                    </div>
+                    <div class="p_title">
+                        <a href="{url app=goods&id=$goods.goods_id}" target="_blank">{$goods.goods_name|escape}</a>
+                    </div>
+                    <div class="p_price">{$goods.price|price}</div>
+                </li>
+                <!-- {/foreach} -->
+            </ul>
+            <ul class style="display: none;">
+                <!-- {foreach from=$widget_data.goods_list_4 item=goods name=fe_goods} -->
+                <li>
+                    <div class="p_img">
+                        <a href="{url app=goods&id=$goods.goods_id}" target="_blank">
+                            <img src="{$goods.default_image}" width="50" height="50">
+                        </a>
+                    </div>
+                    <div class="p_title">
+                        <a href="{url app=goods&id=$goods.goods_id}" target="_blank">{$goods.goods_name|escape}</a>
+                    </div>
+                    <div class="p_price">{$goods.price|price}</div>
+                </li>
+                <!-- {/foreach} -->
+            </ul>
+            <div class="bottom_img">
+                <a href="{$widget_data.ad2_link_url}" target="_blank">
+                    <img src="{$widget_data.ad2_image_url}" width="248" height="138">
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    KISSY.ready(function(S) {
+        var tabs = new S.Tabs('.tab_{$widget_data.model_id}', {
+            aria: false
+        });
+    });
+</script>

@@ -1,0 +1,107 @@
+{include file=header.html}
+<link type="text/css" href="{res file=css/mapstore.css}" rel="stylesheet" />
+<script type="text/javascript" src="{res file=js/mapstore.js}" charset="utf-8"></script> 
+<div id="store_scope" class="w-full">
+    <div class="w mb20 mt10 clearfix">
+        <div class="top_ad mb10">
+            <img src="{res file=images/store_scope_ad.jpg}" >
+        </div>
+
+        <div class="left">
+            <!--            
+                        <div class="module">
+                            <div class="mt">类别</div>
+                            <div class="mc">
+                                <ul ectype='ul_scategory'>
+                                    <li {if !$scate_id}class="select"{/if}><a href="javascript:void(0)" id="0"><i></i>全部</a></li>
+                                    {foreach from=$scategorys item=scategory}
+                                    <li {if $scategory.cate_id eq $scate_id}class="select"{/if}><a href="javascript:void(0)" id="{$scategory.cate_id}"><i></i>{$scategory.cate_name}</a></li>
+                                     {/foreach} 
+                                </ul>
+                            </div>
+                        </div>-->
+
+
+            <div class="module">
+                <div class="mt">类别</div>
+                <!--{foreach from=$scategorys item=scategory name=fe_scategory}-->
+                <div class="newitem <!--{if $top_id eq $scategory.id}-->hover<!--{/if}-->" ectype='ul_scategory'>
+                    <h3>
+                        <b></b>
+                        <a href="javascript:void(0)" id="{$scategory.id}">{$scategory.value|escape}</a>
+                    </h3>
+                    <ul>
+                        <!--{if $scategory.children}-->
+                        <!--{foreach from=$scategory.children item=child}-->
+                        <li><a href="javascript:void(0)" id="{$child.id}">{$child.value|escape}</a></li>
+                        <!-- {/foreach} -->
+                        <!--{else}-->
+                        <li><a href="javascript:void(0)">暂无子分类</a></li>
+                        <!--{/if}-->
+                    </ul>
+                </div>
+                <!-- {/foreach} -->
+            </div>
+        </div>
+
+        <div class="right">
+            <div class="filter">
+                <div class="fl" ectype='order_by'>
+                    <a href="javascript:void(0)" id="juli" <!--{if $smarty.get.order eq 'juli' || !$smarty.get.order}-->class="select"<!--{/if}-->>最近店铺</a> <span>|</span> 
+                    <a href="javascript:void(0)" id="add_time" <!--{if $smarty.get.order eq 'add_time'}-->class="select"<!--{/if}-->>新开店铺</a> <span>|</span> 
+                    <a href="javascript:void(0)" id="credit_value" <!--{if $smarty.get.order eq 'credit_value'}-->class="select"<!--{/if}-->>信誉店铺</a>
+                </div>
+
+                <div class="fr">
+                    <a href="{url app=mapstore&act=address}">更换地址</a>
+                </div>
+
+                <!--
+                <div class="ser">
+                    <i></i>
+                    <input name="store_name" onfocus="if (value == '请输入店铺名称') {
+                                value = ''
+                            }" onblur="if (value == '') {
+                                        value = '请输入店铺名称'
+                                    }" value="请输入店铺名称" on="" id="store_name" type="text">
+                    <b id="store_name_clear" style="display: none;"></b>
+                </div>
+                -->
+            </div>
+
+            <div class="list">
+                <ul>
+                    <!--{foreach from=$stores item=store}-->
+                    <li>
+                        <i class="res"></i>
+                        <!--
+                        <i class="clo2"></i>
+                        <i class="hot"></i>
+                        <i class="new"></i>
+                        -->
+                        <a href="{url app=store_meals&id=$store.store_id}" target="_blank" class="img"><img src="{$store.store_logo}" width="70" height="70"/></a>
+                        <a href="{url app=store_meals&id=$store.store_id}" target="_blank" class="title">{$store.store_name|escape}</a>
+                        <a href="{url app=store_meals&id=$store.store_id}" target="_blank" class="goods_count">共计<span>{$store.goods_count|escape}</span>商品</a>
+                        <!--
+                        <a href="{url app=store_meals&id=$store.store_id}" target="_blank" class="praise_rate">好评率<span>{$store.praise_rate|escape}%</span><img src="{$store.credit_image}" /></a>
+                        -->
+                        <a href="{url app=store_meals&id=$store.store_id}" target="_blank" class="juli">距离：<span>{$store.juli|escape}KM</span></a>
+                        <span class="contact">
+                            <!--{if $store.tel}-->电话：{$store.tel|escape}<!--{/if}-->
+                            <!--{if $store.im_qq}-->
+                            <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin={$store.im_qq}&site=qq&menu=yes"><img border="0" src="http://wpa.qq.com/pa?p=2:{$store.im_qq}:52" alt="点击这里给我发消息" title="点击这里给我发消息"/></a>
+                            <!--{/if}-->
+                            <!--{if $store.im_ww}-->
+                            <a target="_blank" href="http://amos.alicdn.com/msg.aw?v=2&uid={$store.im_ww}&site=cnalichn&s=11&charset=UTF-8" ><img border="0" src="http://amos.alicdn.com/online.aw?v=2&uid={$store.im_ww}&site=cnalichn&s=11&charset=UTF-8" alt="点击这里给我发消息" /></a>
+                            <!--{/if}-->
+                        </span>
+                        <a href="{url app=mapstore&act=view&id=$store.store_id}" class="mapview" target="_blank">查看地图</a>
+                    </li>
+                    <!-- {/foreach} -->
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+{include file=server.html}
+{include file=footer.html}

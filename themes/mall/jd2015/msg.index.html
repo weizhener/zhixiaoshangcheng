@@ -1,0 +1,44 @@
+{include file=member.header.html}
+<style type="text/css">
+    .table .line td{ border:none;}
+    .float_right {float: right;}
+    .line{ border-bottom:1px solid #E2E2E2}
+</style>
+<div class="content">
+    {include file=member.menu.html}
+    <div id="right">
+        {include file=member.submenu.html}
+        <div class="wrap">
+            <div class="public table">
+                <table>
+                    <!--{if $msglogs}-->
+                    <tr class="line tr_bgcolor">
+                        <td align='left' width='20%'>手机号码</td>
+                        <td align='left' width='20%'>时间</td>
+                        <td align='left' width='50%'>内容</td>
+                        <td align='left' width='10%'>状态</td>
+                    </tr>
+                    <!--{/if}-->
+                    <!--{foreach from=$msglogs item=msglog name=v}-->
+                    <!--{if $smarty.foreach.v.last}--><tr class="line_bold"><!--{else}--><tr class="line"><!--{/if}-->
+                        <td align='left'>{$msglog.to_mobile|escape}</td>
+                        <td align='left'>{$msglog.time|date:Y-m-d H:i:s}</td>
+                        <td align='left'>{$msglog.content|escape}</td>
+                        <td align='left'>{$msglog.state}</td>
+                    </tr>
+                    <!--{foreachelse}-->
+                    <tr>
+                        <td colspan="5" class="member_no_records padding6">{$lang.$smarty.get.act}{$lang.no_records}</td>
+                    </tr>
+                    <!--{/foreach}-->
+                </table>
+                {include file=member.page.bottom.html}
+            </div>
+            <div class="wrap_bottom"></div>
+        </div>
+        <div class="clear"></div>
+    </div>
+    <div class="clear"></div>
+</div>
+<div class="clear"></div>
+{include file=footer.html}

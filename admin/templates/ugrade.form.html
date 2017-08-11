@@ -1,0 +1,94 @@
+{include file="header.html"}
+<script type="text/javascript">
+$(function(){
+    $('#grade_form').validate({
+        errorPlacement: function(error, element){
+            $(element).next('.field_notice').hide();
+            $(element).after(error);
+        },
+        success       : function(label){
+            label.addClass('right').text('OK!');
+        },
+        onkeyup    : false,
+        rules : {
+            grade_name : {
+                required : true,
+                remote   : {
+                url :'index.php?app=ugrade&act=check_grade_name',
+                type:'get',
+                data:{
+                        grade_name : function(){
+                        return $('#grade_name').val();
+                        },
+                        id  : '{$ugrade.grade_id}'
+                    }
+                }
+            },
+			growth_needed:{
+				required : true,
+				number   :true,
+				min      : 1
+			}
+        },
+        messages : {
+            grade_name : {
+                required : '等级名称不能为空',
+                remote   : '等级名称已存在'
+            },
+			growth_needed:{
+				required : '成长值不能为空',
+				number   : '该成长值必须为数值',
+				min      :'成长值必须大于1'
+			}
+        }
+    });
+});
+</script>
+<div id="rightTop">
+  <ul class="subnav">
+    <li><a class="btn1" href="index.php?app=ugrade">等级管理</a></li>
+    <li>
+      {if $smarty.get.act eq 'edit'}
+      <span>编辑等级</span>
+      {else}
+      <span>新增等级</span>
+      {/if}
+    </li>
+  </ul>
+</div>
+<div class="info">
+  <form method="post" enctype="multipart/form-data" id="grade_form">
+    <table class="infoTable">
+      <tr>
+        <th class="paddingT15"> {$lang.grade_name}:</th>
+        <td class="paddingT15 wordSpacing5"><input class="infoTableInput2" name="grade_name" type="text" id="grade_name" value="{$ugrade.grade_name}" /> </td>
+      </tr>
+       <tr>
+        <th class="paddingT15"> {$lang.grade_icon}:</th>
+        <td class="paddingT15 wordSpacing5"><input type="file" name="grade_icon" value="{$real_site_url}/{$ugrade.grade_icon}" /></td>
+      </tr>
+      <!--{if $ugrade.grade_icon}-->
+      <tr>
+        <th class="paddingT15"></th>
+        <td class="paddingT15 wordSpacing5"><img width="" height="" src="{$real_site_url}/{$ugrade.grade_icon}" /></td>
+      </tr>
+      <!--{/if}--> 
+      <tr>
+        <th class="paddingT15"> {$lang.grade}:</th>
+        <td><!--{if $smarty.get.act eq 'edit'}-->{$ugrade.grade}<!--{else}-->{$ugrade}<!--{/if}--><input class="infoTableInput2" name="grade" type="hidden"  value="{$ugrade}" /></td>
+      </tr>
+      <!--{if $ugrade.grade_id neq 1}-->
+      <tr>
+        <th class="paddingT15"> {$lang.growth_needed}:</th>
+        <td class="paddingT15 wordSpacing5"><input class="infoTableInput2" name="growth_needed" type="text" id="growth_needed" value="{$ugrade.growth_needed}" /><span class="gray field_notice">{$lang.growth_needed_desc}</span></td>
+      </tr>
+      <!--{/if}--> 
+      <tr>
+        <th></th>
+        <td class="ptb20"><input class="formbtn" type="submit" name="Submit" value="{$lang.submit}" />
+          <input class="formbtn" type="reset" name="Reset" value="{$lang.reset}" />        </td>
+      </tr>
+    </table>
+  </form>
+</div>
+{include file="footer.html"}

@@ -1,0 +1,215 @@
+
+
+<script type="text/javascript" src="{lib file=goodsinfo.js}" charset="utf-8"></script>
+<script type="text/javascript" src="{lib file=ecmall.js}" charset="utf-8"></script>
+<script type="text/javascript">
+//<!CDATA[
+    /* buy */
+    function buy()
+    {
+        if (goodsspec.getSpec() == null)
+        {
+            alert(lang.select_specs);
+            return;
+        }
+        var spec_id = goodsspec.getSpec().id;
+
+        var quantity = $("#quantity").val();
+        if (quantity == '')
+        {
+            alert(lang.input_quantity);
+            return;
+        }
+        if (parseInt(quantity) < 1)
+        {
+            alert(lang.invalid_quantity);
+            return;
+        }
+
+        add_to_cart(spec_id, quantity);
+    }
+
+    /* add cart */
+    function add_to_cart(spec_id, quantity)
+    {
+        var url = 'index.php?app=cart&act=add';
+
+        $.getJSON(url, {'spec_id': spec_id, 'quantity': quantity}, function(data) {
+            if (data.done)
+            {
+                $('.bold_num').text(data.retval.cart.kinds);
+                $('.bold_mly').html(price_format(data.retval.cart.amount));
+                $(".buynow .msg").slideDown().delay(5000).slideUp();
+                // $('.msg').slideDown('slow');
+                // setTimeout(slideUp_fn, 5000);
+            }
+            else
+            {
+                alert(data.msg);
+            }
+        });
+    }
+
+    function to_shop()
+    {
+        if (goodsspec.getSpec() == null)
+        {
+            alert(lang.select_specs);
+            return;
+        }
+        var spec_id = goodsspec.getSpec().id;
+
+        var quantity = $("#quantity").val();
+        if (quantity == '')
+        {
+            alert(lang.input_quantity);
+            return;
+        }
+        if (parseInt(quantity) < 1)
+        {
+            alert(lang.invalid_quantity);
+            return;
+        }
+
+        add_to_shop(spec_id, quantity);
+    }
+    function add_to_shop(spec_id, quantity)
+    {
+        var url = 'index.php?app=cart&act=add';
+
+        $.getJSON(url, {'spec_id': spec_id, 'quantity': quantity}, function(data) {
+            if (data.done)
+            {
+                window.location.href = 'index.php?app=cart';
+                // $('.bold_num').text(data.retval.cart.kinds);
+                // $('.bold_mly').html(price_format(data.retval.cart.amount));
+                // $(".buynow .msg").slideDown().delay(5000).slideUp();
+            }
+            else
+            {
+                alert(data.msg);
+            }
+        });
+    }
+
+
+
+var specs = new Array();
+<!--{foreach from=$goods._specs item=spec}-->
+specs.push(new spec({$spec.spec_id}, '{$spec.spec_1|escape}', '{$spec.spec_2|escape}', {$spec.price}, {$spec.stock}));
+<!--{/foreach}-->
+var specQty = {$goods.spec_qty};
+var defSpec = {$goods.default_spec|escape};
+var goodsspec = new goodsspec(specs, specQty, defSpec);
+//]]>
+</script>
+<div class="detail_img">
+    <div id="slider" class="slider" >
+        <ul id="sliderlist" class="sliderlist" >
+            <!--{foreach from=$goods._images item=goods_image name=fe_goods_image}-->
+            <li><img src="{$goods_image.thumbnail}"></li>
+
+            <!--{/foreach}-->
+        </ul>
+    </div>
+    <script type="text/javascript">
+        var t2 = new TouchSlider({id: 'sliderlist', speed: 600, timeout: 3000, before: function(index) {
+            }});
+    </script>
+    <div class="fav">
+        <a href="javascript:collect_goods({$goods.goods_id});">
+            <img src="{res file=images/favorite.png}"/><span>收藏</span>
+        </a>
+    </div>
+    <p class="line"></p>
+</div>
+
+<div style=" width:100%; padding-left:10px;">分享到：
+<!-- JiaThis Button BEGIN -->
+<div class="jiathis_style_32x32">
+	<a class="jiathis_button_copy"></a>
+	<a class="jiathis_button_weixin"></a>
+	<a class="jiathis_button_cqq"></a>
+	<a class="jiathis_button_qzone"></a>
+	<a class="jiathis_button_tsina"></a>
+	<a class="jiathis_button_tqq"></a>
+	<a class="jiathis_button_renren"></a>
+	<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+</div>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+</div>
+<div class="detail_tit"><br/></div>
+
+<div class="detail_tit">
+    <p>{$goods.goods_name|escape}</p>
+    <p>{$lang.brand}: {$goods.brand|escape}</p>
+    <!--{if ($goods.pro_type eq 'ugrade' && $visitor.user_id) || $goods.pro_type neq 'ugrade'}-->
+    <!--{if $goods._specs.0.pro_price|price neq 0}-->
+    <p>价格：<span ectype="goods_price"><del class="price-del">{$goods._specs.0.price|price}</del></span></p>
+    <p>促销：<em class="promo-price-type" title="{$goods.pro_desc}">{$goods.pro_name}</em>
+    <strong ectype="goods_price">{$goods._specs.0.pro_price|price}</strong>
+    <!--{else}-->
+    <p>价格：<strong ectype="goods_price">{$goods._specs.0.price|price}</strong></p>
+    <!--{/if}-->
+    <!--{else}-->
+    <p>价格：<strong ectype="goods_price">{$goods._specs.0.price|price}</strong></p>
+    <em class="promo-price-type" title="{$goods.pro_desc}">登录查看您是否享有会员价</em>
+    <!--{/if}--></p>
+
+    <!--{if $goods_integral_info}-->
+    <p>赠送积分：{$goods_integral_info.has_integral|default:0} 积分</p>
+    <p>可用积分：{$goods_integral_info.max_exchange|default:0} 积分</p>
+    <!--{/if}-->
+        
+    <p>销量：{$sales_info}{$comments}</p>
+    <p><span>所在地区：{$store.region_name|escape}</span></p>
+    <!--{if $shipping}-->
+    <p>物流运费：
+        <!--{foreach from=$shipping item=shippings }-->
+        <span>{$shippings.shipping_name}：¥{$shippings.first_price}</span>
+        <!--{/foreach}-->
+    </p>
+    <!--{/if}-->
+	<p>在线客服: {$store.tel|escape} <a href="tel:{$store.tel|escape}"><img src="{res file=images/tel.jpg}"></a>
+<!--{if $store.im_qq}--><a href="http://wpa.qq.com/msgrd?v=3&amp;uin={$store.im_qq|escape}&amp;site={$store.store_name|escape}&amp;menu=yes" target="_blank"><img src="http://wpa.qq.com/pa?p=1:{$store.im_qq|escape}:4" alt="QQ"></a> <!--{/if}--> <!--{if $store.im_ww}--><a target="_blank" href="http://amos.im.alisoft.com/msg.aw?v=2&uid={$store.im_ww|escape:url}&site=cntaobao&s=2&charset={$charset}" ><img border="0" src="http://amos.im.alisoft.com/online.aw?v=2&uid={$store.im_ww|escape:url}&site=cntaobao&s=2&charset={$charset}" alt="Wang Wang" /></a><!--{/if}--></p>
+</div>
+
+<div class="detail_size">
+    <div class="size_con">
+        <div class="handle">
+            <!--{if $goods.spec_qty gt 0}-->
+            <ul>
+                <li class="handle_title">{$goods.spec_name_1|escape}: </li><br />
+            </ul>
+            <!--{/if}-->
+            <!--{if $goods.spec_qty gt 1}-->
+            <ul>
+                <li class="handle_title">{$goods.spec_name_2|escape}: </li>
+            </ul>
+            <!--{/if}-->
+            <ul class="quantity">
+                <li class="handle_title">{$lang.quantity}: </li>
+                <li>
+                    <input type="text" class="text width1" name="" id="quantity" value="1" />
+                    {$lang.unit} {$lang.left_bracket}{$lang.stock}<span class="stock" ectype="goods_stock">{$goods._specs.0.stock}</span>{$lang.unit}{$lang.right_bracket}
+                </li>
+            </ul>
+            <!--{if $goods.spec_qty gt 0}-->
+            <ul class="selected">
+                <li class="handle_title">{$lang.your_select}: </li>
+                <li class="aggregate" ectype="current_spec"></li>
+            </ul>
+            <!--{/if}-->
+        </div>
+    </div>
+    <div class="buynow">
+        <a href="javascript:to_shop();" class="buy">立即购买</a><a href="javascript:buy();" class="add">加入购物车</a>
+        <div class="msg" style="display:none;">
+            <p><b></b>购物车内共有<span class="bold_num"></span>种商品 共计 <span class="bold_mly" style="color:#8D0303;"></span>！</p>
+            <a href="{url app=cart}" class="white_btn">查看购物车</a>
+            <a  onclick="$('.msg').css({'display': 'none'});" class="white_btn">继续购物</a>
+        </div>
+    </div>
+
+</div>

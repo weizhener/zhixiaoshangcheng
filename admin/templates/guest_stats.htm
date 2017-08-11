@@ -1,0 +1,51 @@
+{include file="header.html"}
+<div class="main">
+	<div class="fixed-bar">
+		<div class="item-title">
+			<h3><a href="index.php?act=welcome" style="text-decoration:none;">{$setting.site_name}</a> &nbsp;>&nbsp;{$lang.compile_report}&nbsp;&nbsp;>&nbsp;&nbsp; {$lang.guest_stats}</h3>
+		</div>
+	</div>
+	<div class="fixed-empty"></div>
+	<div class="list-div">
+	  <table width="100%" cellspacing="1" cellpadding="3">
+		<tr>
+		<th colspan="5" align="left" style="padding-left:10px;">
+		{$lang.percent_buy_member}<span style="font:12px;color:#777;">{$lang.buy_member_formula}</span>
+		</th>
+		</tr>
+		<tr align="center">
+		  <td>{$lang.member_count}</td>
+		  <td>{$lang.order_member_count}</td>
+		  <td>{$lang.member_order_count}</td>
+		  <td>{$lang.percent_buy_member}</td>
+		</tr>
+		<tr align="center">
+		  <td>{$user_num}</td>
+		  <td>{$have_order_usernum}</td>
+		  <td>{$user_all_order}</td>
+		  <td>{$user_ratio}%</td>
+		</tr>
+	  </table>
+	</div>
+	<div class="list-div">
+	  <table width="100%" cellspacing="1" cellpadding="3">
+		<tr>
+		<th colspan="5" align="left" style="padding-left:10px;">
+		{$lang.order_turnover_peruser}<span style="font:12px;color:#777;">{$lang.member_order_amount}
+		{$lang.member_buy_amount}</span>
+		</th>
+		</tr>
+		<tr align="center">
+		  <td>{$lang.member_sum}</td>
+		  <td>{$lang.average_member_order}</td>
+		  <td>{$lang.member_order_sum}</td>
+		</tr>
+		<tr align="center">
+		  <td>{$order_amount|price}</td>
+		  <td>{$ave_user_ordernum}</td>
+		  <td>{$ave_user_turnover|price}</td>
+		</tr>
+	  </table>
+	</div>
+</div>
+{include file="footer.html"}

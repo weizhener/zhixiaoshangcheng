@@ -1,0 +1,9 @@
+<!--{if $page_info.page_count gt 1}-->
+<div class="page">
+    <div class="pagination">
+        <a href="javascript:;" class="page-num">{$page_info.curr_page} / {$page_info.page_count}<i class="icon-down"></i></a>
+        <a href="<!--{if $page_info.prev_link}-->{$page_info.prev_link}<!--{else}-->javascript:void(0)<!--{/if}-->" class="last">上一页</a>
+        <a href="<!--{if $page_info.next_link}-->{$page_info.next_link}<!--{else}-->javascript:void(0)<!--{/if}-->" class="next">下一页</a>
+    </div>
+</div>
+<!--{/if}-->

@@ -1,0 +1,107 @@
+{include file=member.header.html}
+
+
+
+<div class="content">
+
+    {include file=member.menu.html}
+
+    <div id="right">
+
+        {include file=member.submenu.html}
+
+        <div class="wrap">
+
+            <div class="public table">
+
+                <table class="table_head_line">
+
+                    <tbody>
+
+                        <!--{if $integral_goods_log_list}-->
+
+                        <tr class="line_bold">
+
+                            <th class="align1" colspan="7">
+
+                            </th>
+
+                        </tr>
+
+                        <tr class="line tr_color">
+
+                            <th class="align1">物品名称</th>
+
+                            <th>收货信息</th>
+
+                            <th>银行信息</th>
+
+                            <th align="center">操作时间</th>
+
+                            <th align="center">当前状态</th>
+
+                        </tr>
+
+                        <!--{/if}-->
+
+                        <!--{foreach from=$integral_goods_log_list item=integral_goods_log name=v}-->
+
+                        <!--{if $smarty.foreach.v.last}--><tr class="line_bold"><!--{else}--><tr class="line"><!--{/if}-->              
+
+                            <td class="link1">{$integral_goods_log.goods_name|escape}</td>
+
+                            <td align="center">收货人：{$integral_goods_log.my_name|escape}<br />收货地址：{$integral_goods_log.my_address|escape}<br />联系电话：{$integral_goods_log.my_mobile|escape}</td>
+							
+							
+	                            <td align="center">银行户名：{$integral_goods_log.truename|escape}<br />开户银行：{$integral_goods_log.bankname|escape}<br />开户行名称：{$integral_goods_log.bankadd|escape}<br />银行卡号：{$integral_goods_log.bankcard|escape}</td>
+
+
+                            <td align="center">{$integral_goods_log.add_time|date:Y-m-d H:i:s}</td>
+
+                            <td align="center">{$integral_goods_log.state|escape}
+							
+							
+							<!--{if $integral_goods_log.state=='待发货'}-->
+							
+							<a href='index.php?app=my_integral_goods&act=tui&id={$integral_goods_log.id}' style="color:#FF0000;">退货</a>
+							
+							
+							<!--{/if}-->  
+							</td>
+
+                        </tr>
+
+                        <!--{foreachelse}-->
+
+                        <tr>
+
+                            <td colspan="7" class="member_no_records">{$lang.no_records}</td>
+
+                        </tr>
+
+                        <!--{/foreach}-->
+
+                    </tbody>
+
+                </table>
+
+                {include file=member.page.bottom.html}
+
+                <div class="clear"></div>
+
+            </div>
+
+            <div class="wrap_bottom"></div>
+
+        </div>
+
+        <div class="clear"></div>
+
+    </div>
+
+    <div class="clear"></div>
+
+</div>
+
+{include file=footer.html}
+

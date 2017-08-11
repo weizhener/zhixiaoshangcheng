@@ -1,0 +1,80 @@
+{include file=member.header.html}
+<style>
+.information .info table{ width :auto;}
+</style>
+<div class="content">
+  <div class="totline"></div>
+  <div class="botline"></div>
+  {include file=member.menu.html}
+  <div id="right"> 
+      {include file=member.submenu.html}
+    <div class="wrap">
+        <div class="public">
+            <div class="information">
+               <form method="post" enctype="multipart/form-data" id="pic_slides_wap_form">
+                    <div class="setup info shop">
+
+                        <table style="width: 100%;">
+                            <tr>
+                                <th style="width:200px;">{$lang.pic_slides_wap_url}1{$lang.colon}(240px * 200px)</th>
+                                <td style="width:250px;">
+                                    <p class="td_block"><input type="file" class="text width_normal" name="pic_slides_wap_url_1" /></p>
+                                </td>
+                                <td>{if $slides.pic_slides_wap_url_1}<img src="{$slides.pic_slides_wap_url_1}"  height="25"/>{/if}</td>
+                            </tr>
+                            <tr>
+                                <th class="width2">{$lang.pic_slides_wap_link}1{$lang.colon}</th>
+                                <td>
+                                    <p class="td_block"><input type="text" class="text width_normal" name="pic_slides_wap_link_1" value="{$slides.pic_slides_wap_link_1}" /></p>
+                                </td>
+                            </tr>
+                            
+                            <tr>
+                                <th style="width:200px;">{$lang.pic_slides_wap_url}2{$lang.colon}(240px * 200px)</th>
+                                <td>
+                                    <p class="td_block"><input type="file" class="text width_normal" name="pic_slides_wap_url_2" /></p>
+                                </td>
+                                <td>{if $slides.pic_slides_wap_url_2}<img src="{$slides.pic_slides_wap_url_2}"  height="25"/> {/if}</td>
+                            </tr>
+                            <tr>
+                                <th class="width2">{$lang.pic_slides_wap_link}2{$lang.colon}</th>
+                                <td>
+                                    <p class="td_block"><input type="text" class="text width_normal" name="pic_slides_wap_link_2" value="{$slides.pic_slides_wap_link_2}"/></p>
+                                </td>
+                            </tr>
+
+                             <tr>
+                                <th style="width:200px;">{$lang.pic_slides_wap_url}3{$lang.colon}(240px * 200px)</th>
+                                <td>
+                                    <p class="td_block"><input type="file" class="text width_normal" name="pic_slides_wap_url_3" /></p>
+                                </td>
+                                <td>{if $slides.pic_slides_wap_url_3}<img src="{$slides.pic_slides_wap_url_3}"  height="25"/> {/if}</td>
+                            </tr>
+                            <tr>
+                                <th class="width2">{$lang.pic_slides_wap_link}3{$lang.colon}</th>
+                                <td>
+                                    <p class="td_block"><input type="text" class="text width_normal" name="pic_slides_wap_link_3" value="{$slides.pic_slides_wap_link_3}"/></p>
+                                </td>
+                            </tr>
+                            <tr>
+                            	<th></th>
+                                <td><input type="submit" class="btn" value="{$lang.submit}" /></td>
+                                <td></td>
+                           </tr>
+                         </table>
+                     </div>
+                </form>
+            </div>
+         </div>
+         <div class="wrap_bottom"></div>
+        </div>
+
+        <div class="clear"></div>
+        <div class="adorn_right1"></div>
+        <div class="adorn_right2"></div>
+        <div class="adorn_right3"></div>
+        <div class="adorn_right4"></div>
+    </div>
+    <div class="clear"></div>
+</div>
+{include file=footer.html}

@@ -1,0 +1,78 @@
+{include file=header.html}
+
+
+<style>
+    #coupon{margin: 10px auto}
+    .coupon_view{border: #ccc solid 1px;margin:10px 0;padding:30px 160px;}
+    .coupon_view h3{font-size: 16px;font-weight: bolder;color: #666;line-height: 26px;text-align: center;margin:10px 0;}
+    .coupon_view .coupon_info{text-align: center;color: #888;}
+    .coupon_view .scan_code{text-align: center;}
+    .coupon_view .cut_line{border-bottom:1px dotted #888;margin: 10px 0px;}
+    .coupon_view .youhui_sfun {padding: 0px;text-align: center;}
+    .coupon_view .input_shopcart {background: url("{res file=images/btn_shopcart.gif}") no-repeat scroll 0 0 transparent;border: 0 none;color: #FFFFFF;font-size: 20px;height: 39px;text-align: center;text-indent: 10px;width: 168px;cursor: pointer;display:inline-block; line-height:39px;}
+    .coupon_view .coupon_bg{text-align: center;}
+</style>
+<script>
+    function add_coupon(coupon_id) {
+
+<!--{if !$visitor.user_id}-->
+        alert('请先登录');
+        return;
+<!--{/if}-->
+
+
+        var url = SITE_URL + '/index.php?app=my_coupon&act=add';
+
+        $.getJSON(url, {'coupon_id': coupon_id}, function(data) {
+            if (data.done)
+            {
+                alert(data.retval);
+            }
+            else
+            {
+                alert(data.msg);
+            }
+        });
+    }
+</script>
+<div id="main" class="w-full">
+    <div id="coupon" class="w">
+        {include file=curlocal.html}
+        <div class="coupon_view">
+            <h3>{$coupon.coupon_name|escape}</h3>
+            <!--{if $coupon.coupon_bg}-->
+            <div class="coupon_bg">
+                <img src="{$coupon.coupon_bg}" height="100" >
+                <div class="cut_line"></div>
+            </div>
+            <!--{/if}-->
+            <div class="coupon_info">
+                有效期：{$coupon.start_time|date:Y-m-d}至{$coupon.end_time|date:Y-m-d} | 
+                使用次数：<span style="color:#de2b2c;font-weight:bolder; font-family:verdana;">{$coupon.use_times|escape}</span> | 
+                最低消费：<span style="color:#de2b2c;font-weight:bolder; font-family:verdana;">{$coupon.min_amount|price}</span> | 
+                抵扣额度：<span style="color:#de2b2c;font-weight:bolder; font-family:verdana;">{$coupon.coupon_value|price}</span> | 
+                已领取：<span style="color:#de2b2c;font-weight:bolder; font-family:verdana;">{$coupon.hava_received|default:0}</span> | 
+                未领取：<span style="color:#de2b2c;font-weight:bolder; font-family:verdana;">{$coupon.not_received|default:0}</span> | 
+                发放店铺：<a href="{url app=store&id=$store.store_id}">{$store.store_name|escape}</a> 
+            </div>
+            <div class="scan_code" >
+                {$coupon.scan_code}<br/>
+                <h2>扫描二维码手机领取</h2>
+            </div>
+            <div class="cut_line"></div>
+            <div class="youhui_sfun">
+                <div class="input_shopcart" onclick="add_coupon({$coupon.coupon_id})">领取</div>	
+            </div>
+            <div class="cut_line"></div>
+
+
+            <div class="content">
+                {$coupon.content|escape:editor}
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+{include file=footer.html}

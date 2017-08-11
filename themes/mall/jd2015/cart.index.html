@@ -1,0 +1,115 @@
+{include file="header.html"}
+<style type="text/css">
+.mall-nav{ display:none}
+</style>
+<script type="text/javascript">
+$(function(){
+	$(".btn-batch input[name='sellectAll']").click(function(){
+		$(".goods-each .select input[name='s"+$(this).val()+"']").attr("checked",$(this).attr("checked"));
+	});
+	$(".btn-batch a").click(function(){
+		var name = this.name;
+		var checked = 0;
+		$(".goods-each .select input").each(function(){
+			if($(this).attr("checked")==true){
+				srg = $(this).val().split(":");
+				if(name=="batch_del"){
+					drop_cart_item(srg[0], srg[1]);
+				} else {
+					batch_move_favorite(srg[0], srg[1], srg[2],checked==0);
+				}
+				checked++;
+			}
+		});
+		if(!checked) {
+			alert('你未选择任何项');
+		}
+	});
+});
+
+</script>
+<div id="main" class="w-full">
+<div id="page-cart" class="w cart-index mb20">
+   <div class="step step1 mt10 clearfix">
+      <span class="fs14 strong fff">{$lang.ckgwc}</span>
+      <span class="fs14 strong">{$lang.qrddxx}</span>
+      <span class="fs14 strong">{$lang.fk}</span>
+      <span class="fs14 strong">{$lang.qrsh}</span>
+      <span class="fs14 strong">{$lang.pj}</span>
+   </div>
+   
+   <div class="cartbox w mt20 mb10">
+      <div class="amount">
+         
+      </div>
+      <div class="title clearfix mb10">
+         <span class="sellect-all">{$lang.sellect}</span>
+         <span class="col-desc">{$lang.store_goods}</span>
+         <span>{$lang.price}</span>
+         <span>{$lang.quantity}</span>
+         <span>{$lang.subtotal}</span>
+         <span>{$lang.handle}</span>
+      </div>
+      <div class="content">
+         <!--{foreach from=$carts item=cart key=store_id}-->
+         <div class="store-each">
+            <div class="store-name pb10">{$lang.store}{$lang.colon}<a href="{url app=store&id=$store_id}">{$cart.store_name|escape}</a></div>
+            <!--{foreach from=$cart.goods item=goods name=fe_goods}-->
+            <dl class="goods-each clearfix" id="cart_item_{$goods.rec_id}">
+               <dd class="select"><input type="checkbox" name="s{$store_id}" value="{$store_id}:{$goods.rec_id}:{$goods.goods_id}" /></dd>
+               <dd class="pic"><a class="block" href="{url app=goods&id=$goods.goods_id}" target="_blank"><img src="{$goods.goods_image}" alt="{$goods.goods_name|escape}" width="80" height="80" /></a></dd>
+               <dd class="desc">
+                  <p><a href="{url app=goods&id=$goods.goods_id}" target="_blank">{$goods.goods_name|escape}</a></p>
+                  <span class="f66">{$goods.specification|escape}</span>
+               </dd>
+               
+               <dd class="price">{$goods.price|price}</dd>
+               <dd class="quantity">
+                  <img src="{res file='images/subtract.gif'}" onclick="decrease_quantity({$goods.rec_id});" alt="{$lang.decrease}" width="11" height="11"/>
+                  <input class="input" id="input_item_{$goods.rec_id}" value="{$goods.quantity}" orig="{$goods.quantity}" changed="{$goods.quantity}" onkeyup="change_quantity({$store_id}, {$goods.rec_id}, {$goods.spec_id}, this);" type="text" />
+                  <img src="{res file='images/adding.gif'}" onclick="add_quantity({$goods.rec_id});" alt="{$lang.increase}" width="11" height="11" />
+               </dd>
+               <dd class="subtotal fs14 strong" id="item{$goods.rec_id}_subtotal">{$goods.subtotal|price}</dd>
+               <dd class="handle">
+                   <a class="move" href="javascript:;" onclick="move_favorite({$store_id}, {$goods.rec_id}, {$goods.goods_id});">{$lang.move_favorite}</a>
+                   <br />
+                   <a class="del" href="javascript:;" onclick="drop_cart_item({$store_id}, {$goods.rec_id});">{$lang.drop}</a>
+               </dd>
+            </dl>
+            <!-- {/foreach} -->
+            <div class="cart-amount mt20 w auto mb10 clearfix">
+               <div class="btn-batch mt5">
+                  <label class="pl10"><input value="{$store_id}" type="checkbox" name="sellectAll" />{$lang.sellectAll}</label>
+                  <a href="javascript:;" name="batch_del" class="center" title="{$lang.batch_del}">{$lang.batch_del}</a>
+                  <a href="javascript:;" name="batch_collect" class="center" title="{$lang.batch_collect}">{$lang.batch_collect}</a>
+               </div>
+               <div class="btn-amount">
+                  <p>
+                     <a href="{url app=store&id=$store_id}" class="inline-block back center">{$lang.goon_shopping}</a>
+                     <span class="ml20">{$lang.goods_amount}{$lang.colon}</span>
+                     <strong class="price fs14 strong mr20"  id="cart{$store_id}_amount">{$cart.amount|price}</strong>
+                     <a href="{url app=order&goods=cart&store_id=$store_id}" class="inline-block btn fs14 center fff strong">{$lang.next_order_form}</a>
+                  </p>
+               </div>
+            </div>
+         </div>
+         <!--{/foreach}-->
+      </div>
+   </div>
+   <div class="interest mt20">
+      <div class="title border fs14 padding5 f66 strong"><span class="arr"></span>{$lang.interest_note}</div>
+      <div class="content border border-t-0 clearfix">
+         <!--{foreach from=$interest item=goods}-->
+         <dl class="float-left">
+           <dt><a href="{url app=goods&id=$goods.goods_id}" target="_blank"><img width="160" height="160" src="{$goods.default_image}" /></a></dt>
+           <dd class="desc"><a href="{url app=goods&id=$goods.goods_id}" target="_blank">{$goods.goods_name|escape|truncate:50}</a></dd>
+           <dd class="price clearfix"><em>{$goods.price}</em><span>{$lang.zjcj}{$goods.sales}{$lang.bi}</span></dd>
+           <dd class="service"></dd>
+         </dl> 
+         <!--{/foreach}-->
+      </div>
+   </div>
+</div>
+</div>
+{include file=server.html}
+{include file="footer.html"}

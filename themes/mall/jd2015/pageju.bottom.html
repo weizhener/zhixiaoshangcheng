@@ -1,0 +1,28 @@
+<div class="list-page">
+    <!--{if $page_info.prev_link}-->
+    <a class="pg-prev" href="{$page_info.prev_link}"><i class="trigger"></i><s>{$lang.prev_page}</s></a>
+    <!--{else}-->
+    <span class="pg-prev"><i class="trigger"></i></span>
+    <!--{/if}-->
+    <!--{foreach from=$page_info.page_links key=page item=link}-->
+    <!--{if $page_info.curr_page eq $page}-->
+    <a class="on" href="{$link}"><span>{$page}</span></a>
+    <!--{else}-->
+    <a href="{$link}"><span>{$page}</span></a>
+    <!--{/if}-->
+    <!--{/foreach}-->
+    <!--{if $page_info.last_link}-->
+    <a class="page_link" href="{$page_info.last_link}"><!--{$page_info.last_suspen}-->&nbsp;<!--{$page_info.page_count}--></a>
+    <!--{/if}-->
+    <!--{if $page_info.next_link}-->
+    <a class="pg-next" href="{$page_info.next_link}">
+    	<s>{$lang.next_page}</s>
+		<i class="trigger"></i>
+    </a>
+    <!--{else}-->
+    <span class="pg-next">
+    	<s>{$lang.next_page}</s>
+		<i class="trigger"></i>
+    </span>
+    <!--{/if}-->
+</div>

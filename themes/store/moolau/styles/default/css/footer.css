@@ -1,0 +1,8 @@
+#footer{}
+
+#footer .foot-group,#footer .foot-copyright,#footer .foot-parter{ text-align:center;color:#666; background:#fff}
+#footer .foot-group{margin: 0px auto 10px auto;border-top:1px #ddd solid;padding-top:15px;}
+#footer .foot-group a { margin: 0 7px;}
+
+#footer .foot-copyright {margin: 5px auto 10px auto; font-family:microsoft yahei}
+#footer .foot-parter a{margin-right:15px;}

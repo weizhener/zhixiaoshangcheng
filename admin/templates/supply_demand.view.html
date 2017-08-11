@@ -1,0 +1,29 @@
+{include file="header.html"}
+<div id="rightTop">
+    <p>{$lang.supply_demand}</p>
+    <ul class="subnav">
+        <li><a class="btn1" href="index.php?app=supply_demand">{$lang.manage}</a></li>
+        <li><a class="btn1" href="index.php?app=supply_demand&amp;act=wait_verify">{$lang.wait_verify}</a></li>
+        <li><a class="btn1" href="index.php?app=supply_demand&amp;act=cate">{$lang.cate_manage}</a></li>
+        <li><span>{$lang.view}</span></li>
+    </ul>
+</div>
+<div class="info">
+    <div class="order_form">
+        <h1>{$lang.info_detail}</h1>
+        <ul>
+            <li><b>{$lang.type}:</b>&nbsp;&nbsp;{if $info.type eq 1}{$lang.supply}{else}{$lang.demand}{/if}</li>
+            <li><b>{$lang.title}:</b>&nbsp;&nbsp;{$info.title|escape}</li>
+            <li><b>{$lang.category}:</b>&nbsp;&nbsp;{$info.cate_name|escape}</li>
+            <li><b>{$lang.user_name}:</b>&nbsp;&nbsp;{$info.user_name|escape}</li>
+            <li><b>{$lang.name}:</b>&nbsp;&nbsp;{$info.name|escape}</li>
+            <li><b>{$lang.phone}:</b>&nbsp;&nbsp;{$info.phone|escape}</li>
+            <li><b>{$lang.add_time}:</b>&nbsp;&nbsp;{$info.add_time|date:complete}</li>
+            <li><b>{$lang.price}:</b>&nbsp;&nbsp;{if $info.type eq 2}{if $info.price_from eq 0 and $info.price_to eq 0}{$lang.asktoface}{else}{$info.price_from|price} - {$info.price_to|price}{/if}{else}{if $info.price eq 0}{$lang.asktoface}{else}{$info.price|price}{/if}{/if}</li>
+            <li style="width:100%"><b>{$lang.content}:</b>&nbsp;&nbsp;{$info.content|escape:editor}</li>
+        </ul>
+        <div class="clear"></div>
+    </div>
+</div>
+
+{include file="footer.html"}

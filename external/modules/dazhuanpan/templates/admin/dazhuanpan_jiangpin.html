@@ -1,0 +1,94 @@
+{include file="header.html"}
+<div id="rightTop">
+    <p>{$lang.dazhuanpan_call}</p>
+    <ul class="subnav">
+        <li><a class="btn3" href="index.php?module=dazhuanpan">{$lang.dazhuanpan_manage}</a></li>
+        <li><span>{$lang.dazhuanpan_jiangpin}</span></li>
+        <li><a class="btn3" href="index.php?module=dazhuanpan&act=add">{$lang.dazhuanpan_jiangpin_add}</a></li>
+         <li><a class="btn3" href="index.php?module=dazhuanpan&act=dazhuanpan_log">{$lang.dazhuanpan_log}</a></li>
+    </ul>
+</div>
+
+<div class="tdare">
+    <table width="100%" cellspacing="0" class="dataTable">
+        <!-- {if $jiangpin_list} -->
+        <tr class="tatr1">
+            <td width="20" class="firstCell"><input id="checkall_1" type="checkbox" class="checkall"/></td>
+            <td>奖品名称</td>
+            <td>剩余个数</td>
+            <td>中奖概率</td>
+            <td>积分金额</td>
+            <td>添加时间</td>
+            <td class="handler">{$lang.handler}</td>
+        </tr>
+        <!-- {/if} -->
+        <!--{foreach from=$jiangpin_list item=val key=key}-->
+        <tr class="tatr2">
+            <td width="20" class="firstCell">
+            <input type="checkbox" class="checkitem" value="{$val.id}" />
+            </td>
+            <td>{$val.title|escape}</td>
+            <td class="table_center">{$val.num|escape} </td>
+             <td class="table_center">{$val.gailv|escape} </td>
+             <td class="table_center">{$val.money} </td>
+             <td class="table_center">{$val.time|date} </td>
+            <td class="handler">
+            <a href="index.php?module=dazhuanpan&amp;act=edit&amp;id={$val.id}">{$lang.edit}</a>
+                |
+                <a href="javascript:if(confirm('{$lang.drop_confirm}'))window.location = 'index.php?module=dazhuanpan&amp;act=drop&amp;id={$val.id}';">{$lang.drop}</a>  </td>
+        </tr>
+        <!--{foreachelse}-->
+        <tr class="no_data">
+            <td colspan="4">{$lang.no_data}</td>
+        </tr>
+        <!--{/foreach}-->
+        <tfoot>
+            <tr>
+            <!-- {if $jiangpin_list} -->
+                <td width="20" class="firstCell"><label for="checkall1"><input id="checkall_2" type="checkbox" class="checkall"></label></td>
+                <td colspan="3" id="batchAction">
+                    <span class="all_checkbox"><label for="checkall_2">{$lang.checkall}</label></span>&nbsp;&nbsp;
+                    <input class="formbtn batchButton" type="button" value="{$lang.drop}" name="id" uri="index.php?module=dazhuanpan&act=drop" presubmit="confirm('{$lang.drop_confirm}');" />
+                </td>
+            <!--{/if}-->
+            </tr>
+        </tfoot>
+        
+       
+            
+                
+               
+           
+        
+    </table>
+<!--{if $page_info.page_count gt 1}-->
+<div class="page mtr10">
+  <a class="stat">{sprintf lang=total_item var1=page_info.item_count}</a>
+  <!--{if $page_info.prev_link}-->
+  <a class="former" href="{$page_info.prev_link}"></a>
+  <!--{else}-->
+  <span class="formerNull"></span>
+  <!--{/if}-->
+  <!--{if $page_info.first_link}-->
+ <a class="page_link" href="{$page_info.first_link}">1&nbsp;<!--{$page_info.first_suspen}--></a>
+ <!--{/if}-->
+  <!--{foreach from=$page_info.page_links key=page item=link}-->
+  <!--{if $page_info.curr_page eq $page}-->
+  <a class="page_hover" href="{$link}">{$page}</a>
+  <!--{else}-->
+  <a class="page_link" href="{$link}">{$page}</a>
+  <!--{/if}-->
+  <!--{/foreach}-->
+  <!--{if $page_info.last_link}-->
+  <a class="page_link" href="{$page_info.last_link}"><!--{$page_info.last_suspen}-->&nbsp;<!--{$page_info.page_count}--></a>
+  <!--{/if}-->
+  <a class="nonce">{$page_info.curr_page} / {$page_info.page_count}</a>
+  <!--{if $page_info.next_link}-->
+  <a class="down" href="{$page_info.next_link}">{$lang.next_page}</a>
+  <!--{else}-->
+  <span class="downNull">{$lang.next_page}</span>
+  <!--{/if}-->
+</div>
+<!--{/if}-->
+</div>
+{include file="footer.html"}

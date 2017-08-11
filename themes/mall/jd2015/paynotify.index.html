@@ -1,0 +1,13 @@
+{include file="header.html"}
+<div id="mycart" class="w auto">
+   {include file="curlocal.html"}
+   <div class="order-form">
+      <div class="succeed">
+         <h4>{$lang.pay_successed}</h4>
+         <p>{$lang.pay_successed_desc} <a href="{url app=member}">{$lang.member_center}</a>&nbsp;&nbsp;<a href="{url app=buyer_order&act=view&order_id=$order.order_id}">{$lang.view_order}</a></p>
+         <div class="btn" title="{$lang.mall_index}"><a href="{$site_url}"></a></div>
+      </div>
+   </div>
+</div>
+{include file=server.html}
+{include file="footer.html"}

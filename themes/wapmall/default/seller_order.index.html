@@ -1,0 +1,95 @@
+{include file="member.header.html"}
+<div class="mb-head">
+    <a href="javascript:history.back(-1)" class="l_b">返回</a>
+    <div class="tit">订单管理</div>
+    <a href="javascript" class="r_b"></a>
+</div>
+
+
+<body class="gray" style="overflow-x:hidden;">
+    <div class="w320">
+        <!---------个人中心头部--------------->
+        <div class="user_header">
+            <div class="user_photo">
+                <a href="{url app=member}"><img src="{res file=images/user.jpg}" /></a>
+            </div>
+            <span class="user_name">
+                您好,欢迎{$visitor.user_name|escape}。<a href="index.php?app=member&act=logout" style="color:#999;margin-left:5px;">退出</a>
+            </span>
+            <div class="order_panel">
+                <ul class="orders">
+                    <a href="{url app=seller_order&act=index&type=pending}">
+                        <li>
+                            <span class="num  <!--{if $type eq pending}--> on <!--{/if}-->"></span>
+                            <span>待付款</span>
+                        </li>
+                    </a>
+                    <a href="{url app=seller_order&act=index&type=accepted}">
+                        <li>
+                            <span class="num <!--{if $type eq accepted}--> on <!--{/if}-->"></span>
+                            <span>待发货</span>
+                        </li>
+                    </a>
+                    <a href="{url app=seller_order&act=index&type=shipped}">
+                        <li>
+                            <span class="num <!--{if $type eq shipped}--> on <!--{/if}-->"></span>
+                            <span>已发货</span>
+                        </li>
+                    </a>
+                    <a href="{url app=seller_order&act=index&type=finished}">
+                        <li>
+                            <span class="num <!--{if $type eq finished}--> on <!--{/if}-->"></span>
+                            <span>已完成</span>
+                        </li>
+                    </a>
+                </ul>
+            </div>
+        </div>
+
+
+        <!------------订单页--------------------------->
+
+
+
+
+        <div class="u_order">
+            <!--{foreach from=$orders item=order}-->
+            <div class="orderbox">
+                <h2><span>{$lang.buyer_name}：{$order.buyer_name|escape}</span><b>{$lang.order_status}:<font style="color:#b20005;">{$order.status|modifier:order_status}<!--{if $order.evaluation_status}-->,&nbsp;{$lang.already_evaluate}<!--{/if}--></font></b></h2>
+                <div class="detail">
+                    <p>{$lang.order_sn}：{$order.order_sn}</p>
+                    <p>{$lang.phone_tel}：<!--{ if $order.phone_mob neq ''}-->{$order.phone_mob}<!--{else}-->{$order.phone_tel}<!--{/if}--></p>
+                    <p>​{$lang.order_amount}：{$order.order_amount|price}</p>​
+                    <p>{$lang.payment_name}：{$order.payment_name|escape}</p>
+                </div>
+                <p class="opr">
+                    <input type="button" value="{$lang.received_pay}" class="white_btn" ectype="dialog" dialog_id="seller_order_received_pay" dialog_width="100%" uri="index.php?app=seller_order&amp;act=received_pay&amp;order_id={$order.order_id}&ajax" dialog_title="{$lang.received_pay}" id="order{$order.order_id}_action_received_pay"{if $order.status neq ORDER_PENDING} style="display:none"{/if} />
+                           <input type="button" value="{$lang.confirm_cod_order}" class="white_btn" ectype="dialog" uri="index.php?app=seller_order&amp;act=confirm_order&amp;order_id={$order.order_id}&ajax" dialog_id="seller_order_confirm_order" dialog_title="{$lang.confirm_cod_order}"  dialog_width="100%" id="order{$order.order_id}_action_confirm"{if $order.status neq ORDER_SUBMITTED} style="display:none"{/if} />
+                           <input type="button" value="{$lang.adjust_fee}" class="white_btn" uri="index.php?app=seller_order&amp;act=adjust_fee&amp;order_id={$order.order_id}&ajax" dialog_width="100%" dialog_title="{$lang.adjust_fee}" ectype="dialog"  dialog_id="seller_order_adjust_fee" id="order{$order.order_id}_action_adjust_fee"{if $order.status neq ORDER_PENDING and $order.status neq ORDER_SUBMITTED} style="display:none"{/if} />
+                           <input type="button" value="{$lang.shipped_order}" class="white_btn" ectype="dialog" dialog_title="{$lang.shipped_order}" dialog_id="seller_order_shipped" uri="index.php?app=seller_order&amp;act=shipped&amp;order_id={$order.order_id}&ajax"  dialog_width="100%" id="order{$order.order_id}_action_shipped"{if $order.status neq ORDER_ACCEPTED} style="display:none"{/if} />
+                           <!--//已发货-->
+						   <!--{if $enable_express}-->
+						   <a class="white_btn"  href="{url app=order_express&amp;order_id=$order.order_id}" {if $order.status neq ORDER_SHIPPED && $order.status neq ORDER_FINISHED} style="display:none"{/if}>{$lang.view_delivery_track}</a>
+						   <!--{/if}-->
+                           <input type="button" value="{$lang.finish_order}" class="white_btn" ectype="dialog" dialog_id="seller_order_finished"  dialog_title="{$lang.finish_order}" uri="index.php?app=seller_order&amp;act=finished&order_id={$order.order_id}&ajax" dialog_width="100%"  id="order{$order.order_id}_action_finish"{if $order.payment_code neq 'cod' or $order.status neq ORDER_SHIPPED} style="display:none"{/if} />
+                           <input type="button" value="{$lang.edit_invoice_no}" class="white_btn" ectype="dialog" dialog_title="{$lang.edit_invoice_no}" uri="index.php?app=seller_order&amp;act=shipped&amp;order_id={$order.order_id}&ajax" dialog_id="seller_order_shipped" dialog_width="100%" id="order{$order.order_id}_action_edit_invoice_no"{if $order.status neq ORDER_SHIPPED} style="display:none"{/if} />
+                           <!-- //不是取消和完成的订单就可以取消-->
+                           <input type="button" value="{$lang.cancel_order}" class="white_btn" ectype="dialog" uri="index.php?app=seller_order&amp;act=cancel_order&order_id={$order.order_id}&ajax" dialog_title="{$lang.cancel_order}" dialog_id="seller_order_cancel_order" dialog_width="100%" id="order{$order.order_id}_action_cancel"{if $order.status eq ORDER_CANCELED or $order.status eq ORDER_FINISHED} style="display:none"{/if} />
+                           <a class="white_btn" href="{url app=seller_order&act=view&order_id=$order.order_id}" >{$lang.view_order}</a>
+                </p>
+            </div>
+            <!--{foreachelse}-->
+
+            <div class="null" style="margin-top:120px;">
+                <p>你没有订单信息~</p>
+            </div>
+            <!--{/foreach}-->
+        </div>
+
+        <div class="page">
+            {include file=member.page.bottom.html}
+        </div>
+
+        <iframe name="seller_order" style="display:none;"></iframe>
+    </div>
+{include file="member.footer.html"}

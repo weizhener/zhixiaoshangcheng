@@ -1,0 +1,42 @@
+{include file="member.header.html"}
+<div class="mb-head">
+    <a href="javascript:history.back(-1)" class="l_b">返回</a>
+    <div class="tit">我的优惠卷</div>
+    <a href="javascript" class="r_b"></a>
+</div>
+
+
+
+<style>
+    .my_coupon{border-radius: 5px;position: relative;overflow: hidden;color: #6b6b6b;margin: 0px 10px 0;font-size: 14px;margin-top:10px;}
+    .my_coupon select{margin-bottom: 5px;}
+</style>
+
+<div class="table">
+    <table>
+        <tbody>
+            <tr>
+                <th style="width:30%;text-align: center">{$lang.coupon_sn}</th>
+                <th style="width:20%">{$lang.coupon_value}</th>
+                <th style="width:20%">{$lang.remain_times}</th>
+                <th style="width:20%">{$lang.if_valid}</th>
+                <th style="width:10%">{$lang.handle}</th>
+            </tr>
+            <!-- {foreach from=$coupons item=coupon name=v} -->
+            <tr>
+                <td>{$coupon.coupon_sn}</td>
+                <td>{$coupon.coupon_value}</td>
+                <td><!--{if $coupon.remain_times eq -1}-->{$lang.no_limit}<!--{else}-->{$coupon.remain_times}<!--{/if}--></td>
+                <td><!--{if $coupon.valid}-->有效<!--{else}-->失效<!--{/if}--></td>
+                <td align="center"><a href="javascript:javascript:drop_confirm('{$lang.drop_confirm}', 'index.php?app=my_coupon&act=drop&id={$coupon.coupon_sn}');" class="delete">{$lang.drop}</a></td>
+            </tr>
+            <!--{/foreach}-->
+        </tbody>
+    </table>
+</div>
+
+
+<div class="page">
+    {include file=member.page.bottom.html}
+</div>
+{include file="member.footer.html"}

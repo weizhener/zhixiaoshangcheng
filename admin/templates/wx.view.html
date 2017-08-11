@@ -1,0 +1,103 @@
+{include file="header.html"}
+<div class="main">
+  <div id="rightTop">
+  <p>{$lang.user}</p>
+  <ul class="subnav">
+    <li><span>{$lang.manage}</span></li>
+    	<li><a class="btn1" href="index.php?app=user&amp;act=weixin">微信会员</a></li>
+    <li><a class="btn1" href="index.php?app=user&amp;act=add">{$lang.add}</a></li>
+  </ul>
+</div>
+
+
+
+	<div class="mrightTop">
+	  <div class="fontl">
+		<form method="get" name="search_form">
+		   <div class="left">
+           <input type="hidden" name="wxid" value="{$id}" />
+			  <input type="hidden" name="app" value="user" />
+			  <input type="hidden" name="act" value="view" />
+			  <select class="querySelect" name="field_name">{html_options options=$query_fields selected=$smarty.get.field_name}
+			  </select>
+			  <input class="queryInput" type="text" name="field_value" value="{$smarty.get.field_value|escape}" />
+			  
+			   <a href="JavaScript:void(0);" class="btn-search" onclick="document.search_form.submit()">{$lang.query}</a>
+		  </div>
+		  <!--{if $filtered}-->
+		  <a class="left formbtn1" href="index.php?app=user&weixin">{$lang.cancel_query}</a>
+		  <!--{/if}-->
+		</form>
+	  </div>
+	  <div class="fontr">{include file=page.top.html}</div>
+	</div>
+	<div class="tdare">
+	  <table width="100%" cellspacing="0" class="dataTable">
+		<!--{if $wxmessage_list}-->
+		<tr class="tatr1">
+		  <td width="20" class="firstCell"><input type="checkbox" class="checkall" /></td>
+		  <td>微信号</td>
+		
+	 <td>时间</td>
+         <td>内容</td>
+         
+       
+
+		  <td>操作</td>
+		</tr>
+		<!--{/if}-->
+		<!--{foreach from=$wxmessage_list item=user}-->
+		<tr class="tatr2">
+		  <td class="firstCell"><input type="checkbox" class="checkitem" value="{$user.id}" /></td>
+		  <td> 
+          {if $user.w_message}
+          
+          平台公众号
+          {else}
+          {$wxinfo.nickname|escape}
+          
+          
+          
+          {/if}
+           </td>
+	
+         <td>
+     {$user.dateline|date:Y.m.d H:i:s}
+         </td>
+    
+        
+
+        <td>
+        
+       
+        {$user.message|escape}
+        
+          {$user.w_message|escape}
+        </td>
+        
+     
+   
+		
+	      <td><a href="index.php?app=user&act=wxdrop&id={$user.id}" > 删除</a> </td>
+
+
+		
+		</tr>
+		<!--{foreachelse}-->
+		<tr class="no_data">
+		  <td colspan="10">{$lang.no_data}</td>
+		</tr>
+		<!--{/foreach}-->
+	  </table>
+	  <!--{if $wxmessage_list}-->
+	  <div id="dataFuncs">
+		<div id="batchAction" class="left paddingT15"> &nbsp;&nbsp;
+			<a href="javaScript:void(0);" class="formbtn batchButton" name="id" uri="index.php?app=user&act=wxdrop" presubmit="confirm('您确定要删除么？')"><span>{$lang.drop}</span></a>
+		</div>
+		<div class="pageLinks">{include file=page.bottom.html}</div>
+		<div class="clear"></div>
+	  </div>
+	  <!--{/if}-->
+	</div>
+</div>
+{include file="footer.html"}

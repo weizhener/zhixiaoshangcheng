@@ -1,0 +1,38 @@
+
+
+<!--nav-->
+<div class="nav clearfix">
+    <ul>
+        <li><a href="{url app=store&id=$store.store_id}"><img src="{res file=images/home.jpg}" /><strong>首页</strong></a></li>
+        <li><a href="{url app=store&act=search&id=$store.store_id}"><img src="{res file=images/shop.jpg}" /><strong>点外卖</strong></a></li>
+        <li><a href="{url app=cart}"><img src="{res file=images/car.jpg}" /><strong>已选菜品</strong></a></li>
+        <li><a href="{url app=member}"><img src="{res file=images/user.jpg}" /><strong>个人中心</strong></a></li>
+    </ul>
+    
+    <div class="bar">
+        <ul>
+            <li>已选<span class='cart_num' style="font-size:1em;">0</span></li><li><span class="color02">￥</span><span class="color02 cart_amount">0.00</span></li><li><a href="{url app=cart}" style="color:#fff;">选好了</a></li><div class="clr"></div>
+        </ul>
+    </div>
+</div>
+<!--nav END-->
+<script type="text/javascript">
+    function readCartInfo()
+    {
+        var url="index.php?app=cart";
+        $.getJSON(url, {'act': 'get_goods'}, function(data, textStatus) {
+                /*optional stuff to do after success */
+            if(data.done)
+            {
+                $('.cart_num').html(data.retval.cart.quantity);
+                $('.cart_amount').html(data.retval.cart.amount);
+            }
+        });
+    }
+    $(document).ready(function() {
+        readCartInfo();
+    });
+</script>
+</div>
+</body>
+</html>

@@ -1,0 +1,68 @@
+/*导航*/
+html.mmenu-opened,html.mmenu-opened body{height: 100%;width: 100%;overflow: hidden;}
+html.mmenu-opened body{position: relative;}
+.mmenu{display: none;width: 100%;height: 100%;position: absolute;top: 0;left: 0;z-index: 0;overflow: auto;overflow-x: hidden;overflow-y: auto;-webkit-overflow-scrolling: touch;}
+.mmenu,.mmenu *{-webkit-text-size-adjust: none;font-family: Arial, Helvetica, Garuda, sans-serif;font-size: 14px;}
+.mmenu ul,.mmenu li{list-style: none;}
+.mmenu li{position: relative;}
+.mmenu ul,.mmenu li,.mmenu li > a,.mmenu li > span{display: block;padding: 0;margin: 0;}
+.mmenu > ul{background-color: inherit;padding: 10px 0 40px 0;}
+html.mmenu-left .mmenu > ul > li{padding-right: 65px;}
+html.mmenu-right .mmenu > ul > li{padding-left: 65px;}
+html.mmenu-opened .mmenu.mmenu-opened{display: block;}
+html.mmenu-opened .mmenu-page{box-shadow: 0 0 20px rgba( 0, 0, 0, 0.8 );background-color: inherit;min-height: 100%;position: absolute;z-index: 1;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;}
+#mmenu-blocker{display: none;}
+html.mmenu-opened #mmenu-blocker,html.mmenu-blocking #mmenu-blocker{background: #fff;opacity: 0;display: block;width: 100%;height: 100%;position: absolute;top: 0;z-index: 2;}
+html.mmenu-opened .mmenu-page,html.mmenu-opened #mmenu-blocker{-webkit-transition: left 0.5s ease, right 0.5s ease, margin 0.5s ease;-moz-transition: left 0.5s ease, right 0.5s ease, margin 0.5s ease;transition: left 0.5s ease, right 0.5s ease, margin 0.5s ease;}
+html.mmenu-accelerated .mmenu-page,html.mmenu-accelerated #mmenu-blocker{-webkit-transform: translate3d(0,0,0);-moz-transform: translate3d(0,0,0);transform: translate3d(0,0,0);}
+html.mmenu-left.mmenu-opened .mmenu-page,html.mmenu-left.mmenu-opened #mmenu-blocker{margin-left: 0px;left: 0%;}
+html.mmenu-left.mmenu-opening .mmenu-page,html.mmenu-left.mmenu-opening #mmenu-blocker{margin-left: -65px;left: 100%;}
+html.mmenu-right.mmenu-opened .mmenu-page,html.mmenu-right.mmenu-opened #mmenu-blocker{margin-right: 0px;right: 0%;}
+html.mmenu-right.mmenu-opening .mmenu-page,html.mmenu-right.mmenu-opening #mmenu-blocker{margin-right: -65px;right: 100%;}
+/*Menu- styling*/
+.mmenu{background: #333;}
+.mmenu *{text-shadow: 0 1px 2px rgba( 0, 0, 0, 0.5 );}
+.mmenu li{border: none;border-top: 1px solid #444;border-bottom: 1px solid #111;}
+.mmenu li:first-child{border-top-width: 0;}
+.mmenu li > a,.mmenu li > span{text-indent: 20px;text-overflow: ellipsis;white-space: nowrap;line-height: 40px;overflow: hidden;padding-right: 5px;}
+.mmenu li > a,.mmenu li > span,.mmenu li > a:hover{color: #999;text-decoration: none;}
+.mmenu li.mmenu-selected > a,.mmenu li.mmenu-selected > span{background: #222;}
+.mmenu li.mmenu-selected > a.mmenu-subopen{background: transparent;}
+/*Submenu- open link*/
+.mmenu a.mmenu-subopen{width: 100%;height: 40px;padding: 0;position: absolute;right: 65px;top: 0;z-index: 2;}
+html.mmenu-right .mmenu a.mmenu-subopen,.mmenu ul ul a.mmenu-subopen{right: 0;}
+.mmenu a.mmenu-subopen.mmenu-fullsubopen{width: 100%;}
+.mmenu a.mmenu-subopen + a,.mmenu a.mmenu-subopen + span{padding-right: 45px;}
+/*Submenu- close link*/
+.mmenu a.mmenu-subclose{background: #222;text-indent: 40px;padding-top: 10px;margin-top: -10px;}
+/*Submenu- vertical*/
+.mmenu.mmenu-vertical ul ul{display: none;padding: 0 10px 10px 10px;}
+.mmenu.mmenu-vertical li.mmenu-opened > ul{display: block;}
+.mmenu.mmenu-vertical ul ul li:last-child{border-bottom-width: 0;}
+/*Submenu- horizontal*/
+.mmenu.mmenu-horizontal{width: 1000%;}
+.mmenu.mmenu-horizontal ul{width: 10%;margin-left: 0%;float: left;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;-webkit-transition: margin-left 0.5s ease;-moz-transition: margin-left 0.5s ease;transition: margin-left 0.5s ease;}
+html.mmenu-accelerated .mmenu.mmenu-horizontal ul{-webkit-transform: translate3d(0,0,0);-moz-transform: translate3d(0,0,0);transform: translate3d(0,0,0);}
+.mmenu.mmenu-horizontal ul.mmenu-submenu{display: none;}
+.mmenu.mmenu-horizontal ul.mmenu-submenu.mmenu-opened{display: block;}
+.mmenu.mmenu-horizontal ul.mmenu-subopened{margin-left: -10%;height: 100%;overflow: hidden;}
+/*Arrows*/
+.mmenu a.mmenu-subopen:after,.mmenu a.mmenu-subclose:before{content: '';border: 4px solid rgba( 255, 255, 255, 0.3 );border-left: none;border-top: none;display: block;width: 6px;height: 6px;position: absolute;}
+.mmenu a.mmenu-subopen:after{right: 16px;top: 16px;-webkit-transform: rotate( 315deg );transform: rotate( 315deg );}
+.mmenu a.mmenu-subclose:before{left: 20px;top: 25px;-webkit-transform: rotate( 135deg );transform: rotate( 135deg );}
+.mmenu.mmenu-vertical li.mmenu-opened > a.mmenu-subopen:after{-webkit-transform: rotate( 45deg );transform: rotate( 45deg );}
+html.mmenu-right .mmenu a.mmenu-subclose:before{left: 85px;}
+/*Search*/
+.mmenu div.mmenu-search{background: #222;border-bottom: 1px solid #444;width: 100%;height: 50px;padding: 5px 75px 5px 10px !important;position: fixed;top: 0;z-index: 1;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;}
+html.mmenu-right .mmenu div.mmenu-search{padding: 5px 10px 5px 75px !important;}
+.mmenu div.mmenu-search .search_text{background: #555;border: none;border-radius: 20px;line-height: 30px;color: #fff;display: block;width: 100%;height: 30px;margin: 5px 0;padding: 0 50px 0 10px;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;-webkit-appearance: none; }
+.mmenu div.mmenu-search ~ ul{margin-top: 40px;}
+.search_btn_img, .search_btn {border: none;height: 40px;width:50px;position: absolute;right:75px;bottom:9px;height: 30px;cursor: pointer; }
+.search_btn_img{ text-align:center;}
+.search_btn{ opacity:0; z-index:999;}
+/*店铺信息*/
+.code img,.fav img{ height:25px; width:25px; margin-right:10px; vertical-align:middle;}
+.codes{ width:220px; display:block;}
+.codes img{ padding:10px 0; width:100%; width:200px; }
+.fav_msg{display:none;position:fixed;  top:100px; left:25%; background:rgba(0,0,0,0.2); overflow:hidden; color:#fff; padding:3%;border-radius:10px; font-size:18px; height:39px; line-height:39px; text-align:center; z-index:12345;}
+.fav_msg img{ margin-right:5px;vertical-align:middle; }

@@ -1,0 +1,30 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+<title>智芸商城</title>
+</head>
+<script type="text/javascript" src="jquery-1.7.2.min.js"></script>
+
+<body style="background:url(img/download.jpg);">
+<h1 style=" text-align:center; padding:1em 0 0.5em 0; color:#E4ECFF;">恭喜你，注册成功</h1>
+<div id="xiazai" style="display:none; text-align:center; padding:0.2em 0; font-size:1.2em;"><a href="/ykt.apk" style="color:#E4ECFF">马上下载APP</a></div>
+<div id="weixin" style="display:none; text-align:center;  padding:0.2em 0; font-size:1.2em;color:#E4ECFF">请选择在浏览器中打开后下载APP</div>
+<script language="javascript">
+function is_weixn(){
+    var ua = navigator.userAgent.toLowerCase();
+    if(ua.match(/MicroMessenger/i)=="micromessenger") {
+        return true;
+    } else {
+        return false;
+    }
+}
+if(is_weixn()){
+	$("#weixin").show();
+}else{
+	$("#xiazai").show();
+}
+</script>
+</body>
+</html>

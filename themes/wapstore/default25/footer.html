@@ -1,0 +1,24 @@
+
+<div class="footer">
+    <p>
+        <a href="{url app=default}">商城首页</a>|
+        <a href="{url app=store&id=$store.store_id}">商铺首页</a>|
+        <a href="{url app=member}">会员中心</a>
+    </p>
+    <a href="#" class="top"><img src="{res file=images/top.png}"></a>
+    <p>{if $store.functions.copyright}{$store.copyright|escape}{ else} Copyright &copy;2014 {$site_title}{/if}</p>
+</div> 
+
+
+<!--{if $kmenus.status==0 or $kmenus.status==''}-->
+    <link type="text/css" rel="stylesheet" href="{res file=css/kmenus.css}">
+    <div class="flo_btn_<!--{if $kmenus.stypeinfo==''}-->1<!--{else}-->{$kmenus.stypeinfo}<!--{/if}-->">
+        <ul>
+            <!--{foreach from=$kmenusinfo item=info}-->
+                <li>
+                    <a style="background-color:#{$info.color};" href="<!--{if $info.title=='导航'}-->http://map.baidu.com/?newmap=1&ie=utf-8&s=s%26wd%3D{$info.loadurl}<!--{else}-->{$info.loadurl}<!--{/if}-->"><span style="background:url('{$info.imgurl}') scroll no-repeat center center transparent;background-size:60%; bottom:0; left:0;"></span></a>
+                </li>
+            <!--{/foreach}-->
+        </ul>
+    </div>
+<!--{/if}-->

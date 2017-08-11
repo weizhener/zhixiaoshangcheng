@@ -1,0 +1,43 @@
+/* 通用页内表单提交类型样式 */
+.callcenter{width: 780px;;padding: 10px;}
+.ncu-form-style {  padding-top: 15px;}
+.ncu-form-style h3 { font-weight: 600; line-height: 22px; color: #555; clear: both; background-color: #F5F5F5; padding: 5px 0 5px 12px; border-bottom: solid 1px #E7E7E7;}
+.ncu-form-style dl { line-height: 20px; color: #777; width: 96%; clear: both; padding: 0; margin: 4px auto; border-bottom: dashed 1px #F5F5F5; overflow: hidden;}
+.ncu-form-style dl.bottom { border-bottom-width: 0px;}
+.ncu-form-style dl dt { color: #404040; line-height: 32px; text-align: right; width: 130px; float: left; padding: 0 6px 0 0; margin: 0;}
+.ncu-form-style dl dt.required em { line-height: 22px; background: url(../images/member/ncus_public.png) no-repeat scroll -276px -231px; display: inline-block; height: 16px; width: 16px; margin-right: 5px;}
+.ncu-form-style dl dd { float: left; padding: 8px; width: 600px;}
+.ncu-form-style dl dd p { clear: both;}
+
+.ncu-form-style input.submit { font-weight: 700; line-height:34px; color: #555; background: url(../images/member/ncus_public.png) no-repeat scroll 0 -110px; width: 120px; height: 34px; border: 0; border-radius: 4px;box-shadow: 1px 1px 0 rgba(0,0,0,0.1); cursor: pointer;display: inline-block;}
+.ncu-form-style input.submit:hover { color: #000; background-position: 0 -150px; box-shadow: none;}
+.ncu-form-style textarea { width: 198px; height: 64px;}
+.ncu-form-style .upload-appeal-pic { border: dotted 1px #D8D8D8; padding: 5px; width: 250px; margin-left: 32px;}
+.ncu-form-style .upload-appeal-pic p { padding: 5px;}
+.ncu-form-style .info-album a { font-weight: bold; color: #999; line-height: 20px; background: url(../images/member/album_bg.gif) no-repeat 5px -492px; display: inline-block; height: 20px; padding: 0px 4px 0px 28px; margin: 8px 0px; border: 1px solid #E7E7E7; }	
+
+.ncm-notes { background-color:#FEFEDA; clear: both; padding:8px; border: 1px solid #FFE8C2!important; margin: 0 auto 10px auto;}
+.ncm-notes h3 { font-size: 12px !important; background: url(../images/member/ico_1.gif) no-repeat 3px -2865px; background-color:transparent !important; color: #F60 !important; border:none !important; font-weight:700; padding:0 0 0 24px !important; height: 24px; line-height: 24px; margin-bottom: 4px; border:none;}
+.ncm-notes ul { padding-left: 24px; width:90%; line-height: 24px; clear:both;}
+.ncm-notes ul li { }
+
+/*店铺客服中心设置*/
+.w60 {width: 60px !important;}
+.w400 {width: 400px!important;}
+.mt10 {margin-top: 10px !important;}
+i, cite, em {font-style: normal;}
+.ncs-message a {text-decoration: none}
+.ncs-message .text {border: 1px solid #ccc;padding: 4px;font-family: microsoft yahei;font-size: 14px;color: #666;background: #fff url(../images/member/text.gif) repeat-x;font-size: 12px;}
+.ncs-message input.text{ font-family: Tahoma; height: 16px; line-height: 16px; background-color:#FBFBFB; padding: 1px 2px 3px 4px !important; padding: 3px 2px 1px 4px; border: solid 1px; border-color: #CCC #DDD #DDD #CCC;}
+.ncs-message input.text:hover{ background-color:#FFF;}
+.ncs-message textarea { font-family: Tahoma; line-height: 18px; color: #777; background-color:#FBFBFB; padding: 1px 2px 3px 4px !important; padding: 3px 2px 1px 4px; border: solid 1px; border-color: #CCC #DDD #DDD #CCC; box-shadow: 2px 2px 1px 0 #E7E7E7 inset; -moz-box-shadow: 2px 2px 1px 0 #E7E7E7 inset/* if FF*/; -webkit--box-shadow: 2px 2px 1px 0 #E7E7E7 inset/* if Webkie*/;}
+.ncs-message a.ncu-btn6 { line-height: 19px; color: #FFF; font-weight: 600; background: url(../images/member/ncus_repeat_x.png) repeat-x scroll center -140px; text-align: center; display: inline-block; height: 20px; padding-right: 10px; padding-left: 10px; border: solid 1px #64A8E1; border-radius: 4px; box-shadow: 1px 1px 1px rgba(0,0,0,0.1);}
+.ncs-message a:hover.ncu-btn6 {color: #498CD0; text-decoration: none; background-position: 0 -40px; border-color:#AED2FF; box-shadow: none;}
+.ncs-message .pb20 {padding-bottom: 20px !important;}
+.ncs-message dl dd { padding:0 !important;}
+.ncs-message-title span { color: #777; display: inline-block; line-height: 30px;}
+.ncs-message-list {}
+.ncs-message-list span { display:inline-block; line-height: 30px;height: 30px;}
+.ncs-message .name { width: 90px;}
+.ncs-message .tool { width: 90px;}
+.ncs-message .number { width: 200px;}

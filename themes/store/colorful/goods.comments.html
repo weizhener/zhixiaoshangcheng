@@ -1,0 +1,176 @@
+{include file=header.html}
+<div class="w-full col-1" area="top_ad_area" widget_type="area">
+    <!--{widgets page=goodsinfo area=top_ad_area}-->
+</div>
+<div class="w clearfix mt10">
+    <div class="info-left">
+        {include file=goodsinfo.html}
+    </div>
+    <div class="info-right">
+        <div class="user">
+            <h2>{$store.store_name|escape}</h2>
+            <div class="user_data">
+                <p>
+                    <span>{$lang.store_owner}: </span>{$store.store_owner.user_name|escape}
+                    <a target="_blank" href="{url app=message&act=send&to_id=$store.store_owner.user_id|escape}"><img src="{res file=images/web_mail.gif}" alt="{$lang.send_pm}" /></a>
+                </p>
+                <p>
+                    <span>{$lang.credit_value}: </span><span class="fontColor1">{$store.credit_value}</span>
+                    <!--{if $store.credit_value ge 0}--><img src="{$store.credit_image}" alt="" /><!--{/if}-->
+                </p>
+                <p>{$lang.store_grade}: {$store.sgrade}</p>
+                <p>{$lang.goods_count}: {$store.goods_count}</p>
+                <p>{$lang.region}: {$store.region_name|escape}</p>
+                <p>{$lang.store_add_time}: {$store.add_time|date}</p>
+                <!--{if $store.certifications}-->
+                <p>
+                    <span>{$lang.certification}: </span>
+                    <span>
+                        <!--{foreach from=$store.certifications item=cert}-->
+                        <!--{if $cert eq "autonym"}-->
+                        <a href="{url app=article&act=system&code=cert_autonym}" target="_blank" title="{$lang.cert_autonym}"><img src="{res file=images/cert_autonym.gif}" /></a>
+                        <!--{elseif $cert eq "material"}-->
+                        <a href="{url app=article&act=system&code=cert_material}" target="_blank" title="{$lang.cert_material}"><img src="{res file=images/cert_material.gif}" /></a>
+                        <!--{/if}-->
+                        <!--{/foreach}-->
+                    </span>
+                </p>
+                <!-- {/if} -->
+                <!--{if $store.address}-->
+                <!--<p>{$lang.address}: {$store.address|escape}</p>-->
+                <!--{/if}-->
+                <!--{if $store.tel}-->
+                <!--<p>{$lang.tel}: {$store.tel|escape}</p>-->
+                <!--{/if}-->
+                <!--{if $store.im_qq || $store.im_ww || $store.im_msn}-->
+                <p>
+                    <!--{if $store.im_qq}-->
+                    <a href="http://wpa.qq.com/msgrd?V=1&amp;uin={$store.im_qq|escape}&amp;Site={$store.store_name|escape}&amp;Menu=yes" target="_blank"><img src="http://wpa.qq.com/pa?p=1:{$store.im_qq|escape}:4" alt="QQ"></a>
+                    <!--{/if}-->
+                    <!--{if $store.im_ww}-->
+                    <a target="_blank" href="http://amos.im.alisoft.com/msg.aw?v=2&uid={$store.im_ww|escape:url}&site=cntaobao&s=2&charset={$charset}" ><img border="0" src="http://amos.im.alisoft.com/online.aw?v=2&uid={$store.im_ww|escape:url}&site=cntaobao&s=2&charset={$charset}" alt="Wang Wang" /></a>
+                    <!--{/if}-->
+                    <!--{if $store.im_msn}-->
+                    <a target="_blank" href="http://settings.messenger.live.com/Conversation/IMMe.aspx?invitee={$store.im_msn|escape}"><img src="http://messenger.services.live.com/users/{$store.im_msn|escape}/presenceimage/" alt="status" /></a>
+                    <!--{/if}-->
+                </p>
+                <!--{/if}-->
+            </div>
+            <div class="shop-other">
+                <a target="_blank" href="{url app=store&id=$store.store_id}">{$lang.enter_the_store}</a>
+                <a href="javascript:collect_store({$store.store_id})">{$lang.collect_store}</a>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+</div>
+<div id="content" class="clearfix">
+    <div id="left">
+        <div class="" area="store_left" widget_type="area">
+            <!--{widgets page=goodsinfo area=store_left}-->
+        </div>
+        <!--{if $smarty.get.app eq "goods"}-->
+        <div class="history">
+            <div class="title">{$lang.goods_history}</div>
+            <ul>
+                <!--{foreach from=$goods_history item=gh_goods}-->
+                <li><a href="{url app=goods&id=$gh_goods.goods_id}"><img src="{$gh_goods.default_image}" width="50" height="50" alt="{$gh_goods.goods_name|truncate:20|escape}" title="{$gh_goods.goods_name|escape}" /></a></li>
+                <!--{/foreach}-->
+            </ul>
+        </div>
+        <!--{/if}-->
+    </div>
+    <div id="right">
+        <a name="module">
+            <ul class="user_menu clearfix">
+                <li><a href="{url app=goods&id=$goods.goods_id}#module">{$lang.goods_detail}</a></li>
+                <li class="active"><a href="{url app=goods&act=comments&id=$goods.goods_id}#module">{$lang.goods_comment}</a></li>
+                <li><a href="{url app=goods&act=saleslog&id=$goods.goods_id}#module">{$lang.sales_log}</a></li>
+                <li><a href="{url app=goods&act=qa&id=$goods.goods_id}#module">{$lang.qa}</a></li>
+            </ul>
+            <div class="module_currency">
+                <div class="message">
+
+                    <!--{if $evaluation_data}-->
+                    <script type="text/javascript" src="{lib file=search_goods.js}" charset="utf-8"></script>
+                    <script>
+                        $(function() {
+                            $("input[name='evalscore']").bind("click", function() {
+                                replaceParam('evalscore', this.value, 'show_comment');
+                            });
+                            $("input[name='havecomment']").bind("click", function() {
+                                if (this.checked == true) {
+                                    replaceParam('havecomment', this.value, 'show_comment');
+                                } else {
+                                    dropParam('havecomment');
+                                }
+                            });
+                        });
+                    </script>
+                    <div class="nc-g-r" id="show_comment">
+                        <p>宝贝与描述相符<em>{$evaluation_data.evaluation_desc}</em>分</p>
+                        <dl class="ncs-rate-column">
+                            <dt><em style="left:{$evaluation_data.percent}%;">{$evaluation_data.evaluation_desc}</em></dt>
+                            <dd>非常不满</dd>
+                            <dd>不满意</dd>
+                            <dd>一般</dd>
+                            <dd>满意</dd>
+                            <dd>非常满意</dd>
+                        </dl>
+                        <a href="{url app=store&id=$store.store_id}" target="_blank">店铺评价</a>
+                    </div>
+                    <table width="100%" border="0" cellpadding="0" cellspacing="0" class="nc-comment" id="t">
+                        <thead class="type">
+                            <tr>
+                                <th colspan="2"><div>
+                            <input name="evalscore" type="radio" value="0" {if $smarty.get.evalscore eq '0' or !$smarty.get.evalscore}checked=""{/if}>
+                                   <label for="allRate">全部评价</label>
+                            <input name="evalscore" type="radio" value="3" {if $smarty.get.evalscore eq '3'}checked=""{/if}>
+                                   <label for="goodRate">好评</label> <span style="color:#999;padding-left:2px">({$comments_count.good})</span>
+                            <input name="evalscore" type="radio" value="2" {if $smarty.get.evalscore eq '2'}checked=""{/if}>
+                                   <label for="mediumRate">中评</label> <span style="color:#999;padding-left:2px">({$comments_count.middle})</span>
+                            <input name="evalscore" type="radio" value="1" {if $smarty.get.evalscore eq '1'}checked=""{/if}>
+                                   <label for="worstRate">差评</label> <span style="color:#999;padding-left:2px">({$comments_count.bad})</span>
+                        </div></th>
+                        <td><div>
+                                <input name="havecomment" type="checkbox" value="1" {if $smarty.get.havecomment eq '1'}checked{/if}>
+                                       显示有内容的评价</div>
+                        </td>
+                        </tr>
+                        </thead>
+                    </table>
+                    <!--{/if}-->
+
+                    <!-- {foreach from=$goods_comments item=comment} -->
+                    <dl class="{cycle values=message_text,message_text bg1}">
+                        <dt>
+                        <span class="light">{if $comment.anonymous}***{else}{$comment.buyer_name|escape}{/if} <img src="{$comment.buyer_credit_image}" title="{$comment.buyer_credit_value}" />({$comment.evaluation_time|date:complete})</span>
+                        </dt>
+                        <dd>{$comment.omment|escape|nl2br}</dd>
+                        <div class="beat">
+                            {$lang.evaluation}:
+                            {if $comment.evaluation gt 0}<img src="{res file=images/bit.gif}" />{/if}
+                            {if $comment.evaluation gt 1}<img src="{res file=images/bit.gif}" />{/if}
+                            {if $comment.evaluation gt 2}<img src="{res file=images/bit.gif}" />{/if}
+                            {if $comment.evaluation lt 3}<img src="{res file=images/bit2.gif}" />{/if}
+                            {if $comment.evaluation lt 2}<img src="{res file=images/bit2.gif}" />{/if}
+                            {if $comment.evaluation lt 1}<img src="{res file=images/bit2.gif}" />{/if}
+                        </div>
+                    </dl>
+                    <!-- {foreachelse} -->
+                    <dl class="message_text">
+                        <dt><span class="light">{$lang.no_records}</span></dt>
+                    </dl>
+                    <!-- {/foreach} -->
+                </div>
+            </div>
+            <div class="clear"></div>
+
+            {include file=page.bottom.html}
+            <div class="clear"></div>
+    </div>
+
+    <div class="clear"></div>
+</div>
+
+{include file=footer.html}

@@ -1,0 +1,262 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta content="width=device-width,minimum-scale=1.0,maximum-scale=1.0" name="viewport">
+<meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+<meta name="viewport" content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=no;">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+{$page_seo}
+<link type="text/css" rel="stylesheet" href="{res file=css/index.css}">
+<link type="text/css" rel="stylesheet" href="{res file=css/tuan.css}">
+<script type="text/javascript" src="{res file=js/jquery-1.8.0.min.js}"></script>
+<link type="text/css" rel="stylesheet" href="{res file=css/mmenu.css}">
+<script type="text/javascript" src="{res file=js/sub_menu.js}" charset="utf-8"></script>
+<script type="text/javascript" src="{res file=js/jquery.mmenu.min.js}" charset="utf-8"></script>
+<script type="text/javascript" src="{res file=js/touchslider.dev.js}"></script>
+<script type="text/javascript" src="{lib file=jquery.plugins/jquery.validate.js}" charset="utf-8"></script>
+</head>
+<body>
+   {include file=header.html}
+   
+    <!---------详情页------------->
+    <div class="detail_img tuan_con">
+    	  <!-- {if $goods._images } -->
+           <div  class="sliders" >
+                <ul class="sliderlist" id="slider">
+                  <!--{foreach from=$goods._images item=goods_image name=fe_goods_image}-->
+                    <li><img src="{$site_url}/{$goods_image.thumbnail}"></li>
+                     <!--{/foreach}-->
+                </ul>
+           </div>
+         <script type="text/javascript">
+            var t1=new TouchSlider('slider',{speed:600, timeout:3000, direction:'left', align:'left'})
+          </script>
+      <!-- {else} -->
+        <div class="imgbox">
+    		<img src="{$goods.default_image}">
+        </div>
+      <!-- {/if} -->
+         <form method="post" id="join_group_form" action="index.php?app=groupbuy&amp;id={$group.group_id}">
+        <h2 class="tuan_tit">
+            <p class="info">{$group.group_name|escape}</p>
+            <p class="time"><strong>{$group.state_desc}</strong> <!-- {if $group.state eq 1} --><span class="s_time"><img src="{res file=images/time.png}">剩余：{$group.end_times}</span></p>  <!-- {/if} -->
+        </h2>
+        <div class="tuan_info">
+            <ul>
+                <li>
+                    <p class="title">起始时间：</p>
+                    <p class="con"><b>{$group.start_time|date:Y-m-d} </b>至<b>{$group.end_time|date:Y-m-d}</b></p>
+                </li>
+                <li>
+                    <p class="title">已卖件数：</p>
+                    <p class="con">
+                        <span>
+                        <b>{$group.sale_num}</b></span>
+                    </p>
+                </li>
+               
+                   <!-- {if $group.max_per_user gt 0} -->
+                       <li>
+                    <p class="title">每人限购：</p>
+                    <p class="con"><b> {$group.max_per_user}</b></p>
+                </li>
+                        <!-- {/if} -->
+               
+                <li>
+                    <p class="title">团购说明：</p>
+                    <p class="con">  <!-- {if $group.group_desc} -->
+                            {$group.group_desc}
+                            <!-- {else} -->
+                            {$lang.no_desc}
+                            <!-- {/if} -->
+                            </p>
+                </li>
+            </ul>
+        </div>
+        <div class="tuan_name">
+        	商品名称：{$goods.goods_name}
+        </div>
+        <div class="info_table">
+            <table>
+                <tbody>
+                    <tr>
+                        <th>{$goods.spec_name|escape}</th>
+                        <th>{$lang.original_price}</th>
+                        <th>{$lang.group_price}</th>
+                        <!-- {if $group.ican.join or $group.ican.join_info} -->
+                          <th>{$lang.buy_quantity}</th>
+                         <!-- {/if} -->
+ 
+                    </tr>
+                     <!-- {foreach from=$goods._specs item=spec} -->
+                    <tr>
+                        <td>
+                         {$spec.spec}<input ectype="spec" name="spec[]" type="hidden" class="text" value="{$spec.spec}" /><input ectype="spec_id" name="spec_id[]" type="hidden" class="text" value="{$spec.spec_id}" />
+                        </td>
+                        <td style="text-decoration:line-through">{$spec.price|price}</td>
+                        <td style="color:#b20005">{$spec.group_price|price}</td>
+                          <!-- {if $group.ican.join or $group.ican.join_info} -->
+                            <td>
+                            <!-- {if $group.ican.join} --><input ectype='quantity' name="quantity[]" type="text" class="nums" /><!-- {/if} -->
+                            <!-- {if $group.ican.join_info} -->{$spec.my_qty}<!-- {/if} -->
+                            </td>
+                            <!-- {/if} -->
+                      
+                    </tr>
+                     <!-- {/foreach} -->
+                </tbody>
+            </table>
+        </div>
+        
+             <div class="tuan_btn">
+                        <!-- {if $group.ican.join_info} -->
+                        
+                        <!-- {/if} -->
+                        <!-- {if $group.ican.exit} -->
+                        <input name="exit" class="red_btn" type="submit" value="{$lang.joined_this_groupbuy},点击{$lang.exit_groupbuy}" />
+                        <!-- {/if} -->
+                        <!-- {if $group.ican.buy} -->
+                        <input name="buy" class="red_btn" onClick="window.location.href='index.php?app=order&goods=groupbuy&group_id={$smarty.get.id}'" type="button" value="{$lang.buy}" />
+                        <!-- {/if} -->
+                </div>
+                
+           <!-- {if $group.ican.join} -->
+        <div class="tuan_btn">
+        	<input type="button" value="参加团购" class="red_btn" id="join">
+        </div>
+        <div id="info"  class="tuan_user" style="display: none;">
+            <h2>参团人信息<a href="javascript:;" id='close' class="close"><img src="{res file=images/close.png}"></a></h2>
+            <p class="tit">请认真填写以下信息，以便店主与您联系</p>
+            <p>真实姓名：<input type="text" name="link_man" class="tu_txt"></p>
+            <p>联系电话：<input type="text" name="tel" class="tu_txt"></p>
+            <div class="tuan_btn">
+        	<input type="submit" value="参加团购" name="join" class="red_btn" >
+           </div>
+         
+        </div>
+         <!-- {/if}  -->
+    </div>
+    </form>
+   
+    <div class="detail_con">
+    	<ul class="tab">
+        	<li class="cur">商品详情</li>
+            <li>参团记录</li>
+        </ul>
+        <div class="tab_con">
+            		<ul class="zx_list">
+            	{$goods.description}
+            	 </ul>
+        </div>
+        <div class="tab_con" style="display:none;">
+        	<ul class="comments_list">
+            	 <!-- {foreach from=$join_list item=user} -->
+                        <li>{$user.user_name}</li>
+                        <!-- {foreachelse} -->
+                        <li>{$lang.no_groupbuy_log}</li>
+                        <!-- {/foreach} -->
+            </ul>
+        </div>
+    </div>
+    <!----------tab切换--------------->
+    <script type="text/javascript">
+	jQuery(function(jq){
+		function changeTab(lis, divs){
+			lis.each(function(i){
+				var els = jq(this);
+				els.click(function(){
+					lis.removeClass();
+					divs.stop().hide().animate({'opacity':0},0);
+					jq(this).addClass("cur");
+					divs.eq(i).show().animate({'opacity':1},300);
+				});
+			});
+		}
+		var rrE = jq(".detail_con");
+		changeTab(rrE.find(".tab li"), rrE.find(".tab_con"));
+	
+	});
+	</script>
+    <!------底部-------->
+   {include file=footer.html}
+</body>
+</html>
+
+
+
+<script type="text/javascript">
+//<!CDATA[
+$(function(){
+	
+    $('#join').click(function(){
+        var qty = 0;
+        var error = false;
+        var max_per_user = {$group.max_per_user};
+        $('input[ectype="quantity"]').each(function(){
+            if(parseInt($(this).val()) > 0 ){
+                qty += parseInt($(this).val());
+            }
+            if($(this).val() !='' && (parseInt($(this).val()) < 0 || isNaN(parseInt($(this).val()))))
+            {
+                error = true;
+            }
+        });
+        if('{$group.ican.login}'){
+           alert('{$lang.need_login}');
+           var SITE_URL = "{$site_url}";
+           window.location.href = SITE_URL + '/index.php?app=member&act=login&ret_url=' + encodeURIComponent('index.php?app=groupbuy&id={$group.group_id}');
+        }else if(error == true){
+           alert('{$lang.invalid_quantity}');
+        }else if(qty == 0){
+           alert('{$lang.fill_quantity}');
+        }else if(max_per_user > 0 && qty > max_per_user){
+           alert('{sprintf lang=error_max_per_user var1=group.max_per_user}');
+        }else{
+            $('#info').show();
+            $('input[name="link_man"]').focus();
+            $('input[ectype="quantity"]').attr('disabled',true);
+        }
+    });
+    $('#close').click(function(){
+        $('#info').hide();
+        $('input[ectype="quantity"]').attr('disabled',false);
+    });
+    $('#join_group_form').submit(function(){
+        $('input[ectype="quantity"]').attr('disabled',false);
+    });
+
+    $('input[name="exit"]').click(function(){
+        if(!confirm('{$lang.confirm_exit}')){
+            return false;
+        }
+    });
+
+    $('#join_group_form').validate({
+        errorPlacement: function(error, element){
+            $(element).next('.field_notice').hide();
+            $(element).after(error);
+        },
+        onkeyup : false,
+        rules : {
+            link_man : {
+                required   : true
+            },
+            tel :{
+                checkTel : true
+            }
+        },
+        messages : {
+            link_man  : {
+                required   : '{$lang.fill_join_user_info}'
+            },
+            tel: {
+                checkTel   : '{$lang.fill_join_user_info}'
+            }
+        }
+    });
+});
+
+//]]>
+</script>

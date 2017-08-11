@@ -1,0 +1,69 @@
+{include file="member.header.html"}
+<script type="text/javascript" src="{lib file=timepicker.js}" charset="utf-8"></script>
+<div class="mb-head">
+    <a href="javascript:history.back(-1)" class="l_b">返回</a>
+    <div class="tit">聚划算管理</div>
+    <a href="javascript" class="r_b"></a>
+</div>
+<div style="overflow-x:hidden;">
+
+<!---------个人中心头部--------------->
+<div class="user_header">
+    <div class="user_photo">
+        <a href="{url app=member}"><img src="{res file=images/user.jpg}" /></a>
+    </div>
+    <span class="user_name">
+        您好,欢迎{$visitor.user_name|escape}。<a href="index.php?app=member&act=logout" style="color:#999;margin-left:5px;">退出</a>
+    </span>
+    <div class="order_panel">
+        <ul class="orders">
+            <a href="{url app=seller_ju}">
+                <li  style="width:43%;">
+                    <span class="num  on"></span>
+                    <span>全部聚划算</span>
+                </li>
+            </a>
+            <a href="{url app=seller_ju&act=add}">
+                <li  style="width:43%;">
+                    <span class="num"></span>
+                    <span>新增聚划算</span>
+                    <b></b>
+                </li>
+            </a>
+        </ul>
+    </div>
+</div>
+<!------------聚划算页--------------------------->
+<div class="u_order">
+    <!--{foreach from=$groupbuy_list item=group name=_group_f}-->
+    <div class="orderbox">
+        <div class="detail">
+           <a  href="{if $group.status eq 1}{url app=ju&act=show&id=$group.group_id}{else}{url app=goods&id=$group.goods_id}{/if}"><img {if $group.image}src="{$site_url}/{$group.image}" {else}src="{$site_url}/{$group.default_image}"{/if}/></a>
+            <p class="title">{$group.group_name|escape}</p>
+            <p>​{$lang.select_groupbuy}：{$group.template_name}({$group.state|modifier:group_state})</p>​
+            <p>{$lang.buy}：{$group.quantity}</p>
+            <p>{$lang.status}：<!--{if $group.status eq 1}-->
+                            <font title="{$group.status_desc}" color="#006633">{$lang.verified}</font>
+                            <!--{elseif $group.status eq 2}-->
+                            <font title="{$group.status_desc}" color="#999999">{$lang.verify_no_pass}</font>
+                            <!--{elseif $group.status eq 3}-->
+                            <font title="{$group.status_desc}" color="#CC9900">{$lang.wait_edit}</font>
+                            <!--{else}-->
+                            <font title="{$group.status_desc}" color="#FF6600">{$lang.verifying}</font>
+                            <!--{/if}--></p>
+        </div>
+        <p class="opr"><a href="{url app=seller_ju&act=edit&id=$group.group_id}" class="edit">{$lang.edit}</a> <a href="javascript:drop_confirm('{$lang.drop_confirm}', 'index.php?app=seller_ju&amp;act=drop&id={$group.group_id}');" class="delete">{$lang.drop}</a>
+        </p>
+    </div>
+    <!--{foreachelse}-->
+    <div class="null" style="display:none; margin-top:120px;">
+        <p>你没有添加聚划算商品~</p>
+    </div>
+    <!--{/foreach}-->
+</div>
+
+<div class="page">
+    {include file=member.page.bottom.html}
+</div>
+</div>
+{include file="member.footer.html"}

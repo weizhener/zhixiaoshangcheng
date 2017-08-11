@@ -1,0 +1,191 @@
+{$build_editor}
+{$editor_upload}
+<style>
+    .eject_con .adds .coupon{width: 720px;}
+    .eject_con .adds .coupon li{width: 720px;}
+</style>
+<script type="text/javascript">
+//<!CDATA[
+$(function(){
+    trigger_uploader();
+    $('#coupon_form').validate({
+         errorLabelContainer: $('#warning'),
+        invalidHandler: function(form, validator) {
+           var errors = validator.numberOfInvalids();
+           if(errors)
+           {
+               $('#warning').show();
+           }
+           else
+           {
+               $('#warning').hide();
+           }
+        },
+        rules : {
+            coupon_name : {
+                required : true
+            },
+            coupon_value : {
+                required : true,
+                number : true
+            },
+            use_times : {
+                required : true,
+                digits : true
+            },
+            min_amount : {
+                required : true,
+                number : true
+            },
+            end_time : {
+                required : true
+            }
+        },
+            messages : {
+            coupon_name : {
+                required : '{$lang.coupon_name_required}'
+            },
+            coupon_value : {
+                required : '{$lang.coupon_value_required}',
+                number : '{$lang.coupon_value_only_number}'
+            },
+            use_times : {
+                required : '{$lang.use_times_empty}',
+                digits : '{$lang.use_times_only_digits}'
+            },
+            min_amount : {
+                required : '{$lang.mim_amount_required}',
+                number : '{$lang.min_amount_only_number}'
+            },
+            end_time : {
+                required : '{$lang.end_time_required}'
+            }
+        }
+    });
+
+    $('#add_time_from').datepicker({dateFormat: 'yy-mm-dd'});
+    $('#add_time_to').datepicker({dateFormat: 'yy-mm-dd'});
+});
+
+function add_uploadedfile(file_data)
+{
+   $('#desc_images').append('<li file_name="'+ file_data.file_name +'" file_path="'+ file_data.file_path +'" ectype="handle_pic" file_id="'+ file_data.file_id +'"><input type="hidden" name="file_id[]" value="'+ file_data.file_id +'"><div class="pic" style="z-index: 2;"><img src="{$site_url}/'+ file_data.file_path +'" width="50" height="50" alt="'+ file_data.file_name +'" /></div><div ectype="handler" class="bg" style="z-index: 3;display:none"><img src="{$site_url}/'+ file_data.file_path +'" width="50" height="50" alt="'+ file_data.file_name +'" /><p class="operation"><a href="javascript:void(0);" class="cut_in" ectype="insert_editor" ecm_title="{$lang.insert_editor}"></a><span class="delete" ectype="drop_image" ecm_title="{$lang.drop}"></span></p><p class="name">'+ file_data.file_name +'</p></div></li>');
+   trigger_uploader();
+        if(EDITOR_SWFU.getStats().files_queued == 0){
+            window.setTimeout(function(){
+                $('#editor_uploader').hide();
+            },5000);
+        }
+}
+function drop_image(file_id)
+{
+    if (confirm(lang.uploadedfile_drop_confirm))
+        {
+            var url = SITE_URL + '/index.php?app=seller_coupon&act=drop_uploadedfile';
+            $.getJSON(url, {'file_id':file_id}, function(data){
+                if (data.done)
+                {
+                    $('*[file_id="' + file_id + '"]').remove();
+                }
+                else
+                {
+                    alert(data.msg);
+                }
+            });
+        }
+}
+
+//]]>
+</script>
+<div class="eject_con">
+    <div class="adds">
+        <div id="warning"></div>
+        <form method="post" enctype="multipart/form-data" action="index.php?app=seller_coupon&act={$smarty.get.act}&id={$smarty.get.id}" target="coupon" id="coupon_form">
+            <ul class="coupon">
+            <li>
+                <h3>{$lang.coupon_name}:</h3>
+                <p><input type="text" class="text width14" name="coupon_name" value="{$coupon.coupon_name|escape}"/><b class="strong">*</b></p>
+            </li>
+            <li>
+                <h3>{$lang.coupon_value}:</h3>
+                <p><input type="text" class="text width2" name="coupon_value" value="{$coupon.coupon_value}" /><b class="strong">*</b></p>
+            </li>
+            <li>
+                <h3>{$lang.use_times}:</h3>
+                <p><input type="text" class="text width2" name="use_times" value="<!--{if $coupon.use_times}-->{$coupon.use_times}<!--{else}-->1<!--{/if}-->" /><span class="field_notice">{$lang.use_times_desc}</span><b class="strong">*</b></p>
+            </li>
+            <li>
+                <h3>{$lang.time_limit}:</h3>
+                <p><input type="text" class="text width2" name="start_time" value="<!--{if $coupon.start_time}-->{$coupon.start_time|date}<!--{else}-->{$today|date}<!--{/if}-->" id="add_time_from" readonly="readonly" />
+                 {$lang.to} <input type="text" class="text width2" name="end_time" value="<!--{if $coupon.end_time}-->{$coupon.end_time|date}<!--{/if}-->" id="add_time_to" readonly="readonly" /><b class="strong">*</b>
+                </p>
+            </li>
+            <li>
+                <h3>{$lang.min_amount}:</h3>
+                <p><span class="field_notice" style="padding-left: 0px; ">{$lang.min_amount_desc_start}  <input type="text" class="text width1" name="min_amount" value="{$coupon.min_amount}" />   {$lang.min_amount_desc_end}</span><b class="strong">*</b></p>
+            </li>
+            <li>
+                <h3>{$lang.if_issue}:</h3>
+                <p style="line-height:25px;"><input type="checkbox" name="if_issue" value="1" />{$lang.yes_issue} <span class="field_notice">{$lang.issue_desc}</span></p>
+                <div class="clear"></div>
+            </li>
+            <li>
+                <h3>{$lang.coupon_bg}:</h3>
+                <p>
+                    <input type="file" name="coupon_bg"/>
+                    <!--{if $coupon.coupon_bg}-->
+                    <img src="{$coupon.coupon_bg}" height="50" alt="{$coupon.coupon_name|escape}"/>
+                    <!--{/if}-->
+                </p>
+            </li>
+            <li>
+                <h3>{$lang.content}:</h3>
+                <p><textarea  name="content" id="content" style="width:570px; height:250px;">{$coupon.content|escape}</textarea></p>
+            </li>
+        </ul>
+            <div class="editor">
+            <div style="position: relative; top: 10px; z-index: 5;">
+                <a class="btn3" id="open_editor_uploader">{$lang.uploadedfile}</a>
+                   <div class="upload_con" id="editor_uploader" style="display:none">
+                    <div class="upload_con_top"></div>
+                    <div class="upload_wrap">
+                     <ul>
+                        <li><iframe src="index.php?app=comupload&act=view_iframe&id={$id}&belong={$belong}&instance=desc_image" width="86" height="30" scrolling="no" frameborder="0"></iframe></li>
+                        <li id="open_editor_remote" class="btn2">{$lang.rem_upload}</li>
+                    </ul>
+                    <div id="editor_remote" class="upload_file" style="display:none">
+                    <iframe src="index.php?app=comupload&act=view_remote&id={$id}&belong={$belong}&instance=desc_image" width="272" height="39" scrolling="no" frameborder="0"></iframe>
+                    </div>
+                    <div id="editor_upload_progress"></div>
+                    <div class="upload_txt">
+                        <span>{$lang.note_for_upload}</span>
+                    </div>
+
+                </div>
+                <div class="upload_con_bottom"></div>
+            </div>
+        </div>
+         <ul id="desc_images" class="preview">
+            <!--{foreach from=$files_belong_coupon item=file}-->
+            <li ectype="handle_pic" file_name="{$file.file_name|escape}" file_path="{$file.file_path}" file_id="{$file.file_id}">
+            <input type="hidden" name="file_id[]" value="{$file.file_id}">
+                <div class="pic">
+                <img src="{$site_url}/{$file.file_path}" width="50" height="50" alt="{$file.file_name|escape}" title="{$file.file_name|escape}" /></div>
+                <div ectype="handler" class="bg">
+                <img src="{$site_url}/{$file.file_path}" width="50" height="50" alt="{$file.file_name|escape}" title="{$file.file_name|escape}" />
+                    <p class="operation">
+                        <a href="javascript:void(0);" class="cut_in" ectype="insert_editor" ecm_title="{$lang.insert_editor}"></a>
+                        <span class="delete" ectype="drop_image" ecm_title="{$lang.drop}"></span>
+                    </p>
+                    <p title="{$file.file_name|escape}" class="name">{$file.file_name|escape}</p>
+                </div>
+            </li>
+            <!--{/foreach}-->
+        </ul>
+        <div class="clear"></div>
+        </div>
+        <div class="submit"><input type="submit" class="btn" value="{$lang.submit}" /></div>
+        </form>
+    </div>
+    <div style="border:0px; height:70px; width:10px;"></div>
+</div>

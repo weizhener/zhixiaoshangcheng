@@ -1,0 +1,110 @@
+{include file=member.header.html}
+<style type="text/css">
+.float_right {float: right;}
+.refund_form table td{ height:30px;}
+.refund_form input{ vertical-align:middle}
+.refund_submit{ display:inline-block; background:url('{res file=images/refund_btn.jpg}') no-repeat -102px 0; width:83px; height:30px; line-height:30px; text-align:center;color:#fff; text-decoration:none;font-weight:bold;border:0; cursor:pointer}
+</style>
+<script>
+$(function(){
+	$("#refund_form").submit(function(){
+		var re = /^[0-9]+.?[0-9]*$/;   //判断字符串是否为数字  
+     	if (($('input[name="refund_goods_fee"]').val() !='' && !re.test($('input[name="refund_goods_fee"]').val())) || ($('input[name="refund_shipping_fee"]').val() !='' && !re.test($('input[name="refund_shipping_fee"]').val())))
+    	{
+        	alert("{$lang.price_error}");
+        	return false;
+     	}
+	 
+		if($('input[name="refund_goods_fee"]').val()<0 || $('input[name="refund_goods_fee"]').val()==''){
+			alert('{$lang.refund_fee_ge0}');
+			return false;
+		} else if($('input[name="refund_goods_fee"]').val() > {$refund.goods_fee}){
+			alert('{$lang.refund_fee_gt_total_fee}:{$refund.goods_fee}');
+			return false;
+		}
+		if($('input[name="shipped"]:checked').val() =='' || $('input[name="shipped"]:checked').val() == undefined){
+			alert('{$lang.select_refund_shipped}');
+			return false;
+		}
+		if($('input[name="refund_shipping_fee"]').val()<0){
+			alert('{$lang.refund_shipping_fee_ge0}');
+			return false;
+		} else if($('input[name="refund_shipping_fee"]').val() > {$refund.shipping_fee}){
+			alert('{$lang.refund_shipping_fee_error}:{$refund.shipping_fee}');
+			return false;
+		}
+		
+		if($('select[name="refund_reason"]').val()==''){
+			alert('{$lang.select_refund_reason}');
+			return false;
+		}
+	});	
+});
+</script>
+
+<div class="content">
+    {include file=member.menu.html}
+    <div id="right">
+        {include file=member.submenu.html}
+        <div class="wrap">
+            <div class="public refund_form">
+            	<form id="refund_form" method="post" enctype="multipart/form-data">
+                	<table>
+                    	<tr>
+                        	<td>退款金额：</td>
+                            <td>
+                            	<input type="text" name="refund_goods_fee" class="text width_short" value="{$refund.refund_goods_fee}" style="background:none" /> 元
+                                <span class="gray">（最多{$refund.goods_fee|price}元，退款金额=实际购买单价*件数）</span>
+                            </td>
+                        </tr>
+                        <tr>
+                        	<td>收货情况：</td>
+                            <td>
+                            	<input type="radio" name="shipped" value="2" id="shipped-2" {if $refund.shipped eq 2} checked="checked"{/if} /><label for="shipped-2">{$lang.shipped_2}</label>
+                                <input type="radio" name="shipped" value="1" id="shipped-1" class="ml10" {if $refund.shipped eq 1} checked="checked"{/if}/><label for="shipped-1">{$lang.shipped_1}</label>
+                                <input type="radio" name="shipped" value="0" id="shipped-0" class="ml10" {if $smarty.get.act eq 'edit' && !$refund.shipped} checked="checked"{/if}/><label for="shipped-0">{$lang.shipped_0}</label>
+                            </td>
+                        </tr>
+                        <tr>
+                        	<td>退&nbsp;&nbsp;运&nbsp;&nbsp;费：</td>
+                            <td>
+                            	<input type="text" name="refund_shipping_fee" class="text width_short" value="{$refund.refund_shipping_fee}" /> 元
+                                <span class="gray">（最多{$refund.shipping_fee}元，分摊运费=退款商品/商品总额*总运费。如果不是质量问题，卖家可以拒绝）</span>
+                            </td>
+                        </tr>
+                        <tr>
+                        	<td>退款原因：</td>
+                            <td>
+                            	<select class="text" name="refund_reason" style="background:none">
+                                	<option value="" selected="selected">请选择退款原因</option>
+                                    <option value="缺货" {if $refund.refund_reason eq '缺货'} selected="selected"{/if}>缺货</option>
+                                    <option value="未按约定时间发货" {if $refund.refund_reason eq '未按约定时间发货'} selected="selected"{/if}>未按约定时间发货</option>
+                                	<option value="收到假货" {if $refund.refund_reason eq '收到假货'} selected="selected"{/if}>收到假货</option>
+                                    <option value="商品有质量问题" {if $refund.refund_reason eq '商品有质量问题'} selected="selected"{/if}>商品有质量问题</option>
+                                    <option value="商品错发/漏发" {if $refund.refund_reason eq '商品错发/漏发'} selected="selected"{/if}>商品错发/漏发</option>
+                                    <option value="收到的商品破损" {if $refund.refund_reason eq '收到的商品破损'} selected="selected"{/if}>收到的商品破损</option>
+                                    <option value="收到的商品描述不符" {if $refund.refund_reason eq '收到的商品描述不符'} selected="selected"{/if}>收到的商品描述不符</option>
+                                    <option value="其他" {if $refund.refund_reason eq '其他'} selected="selected"{/if}>其他</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                        	<td>退款说明：</td><td><textarea name="refund_desc" class="text" cols="80" rows="5" style=" background:none;">{$refund.refund_desc}</textarea></td>
+                        </tr>
+                         <tr>
+                        	<td></td><td><input type="submit" value="{if $smarty.get.act eq 'edit'}修改{else}提交{/if}申请" class="refund_submit" /></td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+            <div class="wrap_bottom"></div>
+        </div>
+        <div class="clear"></div>
+        <div class="adorn_right1"></div>
+        <div class="adorn_right2"></div>
+        <div class="adorn_right3"></div>
+        <div class="adorn_right4"></div>
+    </div>
+    <div class="clear"></div>
+</div>
+{include file=footer.html}

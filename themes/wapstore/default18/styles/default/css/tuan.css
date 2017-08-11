@@ -1,0 +1,57 @@
+
+/* tuan */
+/* */
+.detail_con .tab{ border-bottom:#eee solid 1px; overflow:hidden; cursor:pointer;}
+.detail_con .tab li{ background:#f3f3f3; width:50%; padding:10px 0; float:left; text-align:center; border-top:#f3f3f3 solid 3px; font-size:14px;}
+.detail_con .tab li.cur{ border-top:#272C40 solid 3px; background:#fff;}
+.detail_con .tab_con{ padding:10px 10px 0; overflow:hidden;margin-bottom:10px;}
+.comments_list{ padding-bottom:20px;}
+.comments_list li{ border-bottom:#dedede solid 1px; overflow:hidden; padding:10px 0;}
+
+.tuan_con{background:#333; overflow:hidden; margin-top:0px;}
+.tuan_con .imgbox{ margin:10px;}
+.tuan_con .imgbox img{ width:100%;}
+.tuan_con .tuan_tit{ background:#fff; padding:10px; border-bottom:#ddd solid 1px;}
+.tuan_con .tuan_tit p{ margin:5px 0; font-size:14px;}
+.tuan_con .tuan_tit p.info{overflow:hidden;  text-overflow: ellipsis;    white-space: nowrap; font-size:16px;margin-bottom:10px;}
+.tuan_con .tuan_tit p .s_time{ float:right; color:#444;}
+.tuan_con .tuan_tit p.time img{ width:20px; vertical-align:bottom;}
+.tuan_con .tuan_tit p.time strong{ color:#272C40;}
+.tuan_con .tuan_info{ background:#f5f5f5; overflow:hidden; padding:10px; }
+.tuan_con .tuan_info ul{box-shadow:rgba(0,0,0,0.2) 1px 1px 2px;}
+.tuan_con .tuan_info li{overflow:hidden; background:#fff; padding:5px 10px;}
+.tuan_con .tuan_info p{ color:#666; float:left;}
+.tuan_con .tuan_info p.con b{ font-weight:bold; color:#333; margin:0 2px;}
+.tuan_con .tuan_info p.con i{ font-style:normal; margin-left:5px; color:#b20005;}
+.tuan_con .tuan_name{ background:#fff; padding:10px; color:#333; border-top:1px solid #DDD;}
+.tuan_con .tuan_name a{margin-left:5px; color:#666; line-height:22px;}
+.tuan_con .info_table { background:#fff; border-top:#ddd solid 1px; border-bottom:#ddd solid 1px;}
+.tuan_con .info_table table { border-collapse: collapse; width: 100%; font-size:14px;}
+.tuan_con .info_table th { font-weight: normal; color: #999; background: #f5f5f5; height: 32px; border-bottom:#ddd solid 1px;}
+.tuan_con .info_table td { height: 40px; text-align: center; color: #666; border-bottom: 1px solid #e6e6e6; }
+.tuan_con .info_table .nums{ border:#ccc solid 1px; text-align:center;width:50px; height:22px;}
+.tuan_con .tuan_btn{ background:#fff; overflow:hidden; padding:10px; }
+.tuan_con .tuan_btn .red_btn{ display:block; padding:10px 0; text-align:center; width:100%;}
+
+.tuan_con .tuan_user{ border:3px solid #DADADA; background:#fff; position:fixed; top:150px; left:50%; width:300px;  margin:0 0 0 -153px;box-shadow:rgba(0,0,0,0.3) 2px 2px 2px; z-index:9999;}
+.tuan_con .tuan_user h2{ padding:8px 10px; border-bottom:#dadada solid 1px; font-size:16px;}
+.tuan_con .tuan_user h2 a{ display:block; float:right;}
+.tuan_con .tuan_user h2 a img{ width:20px;}
+.tuan_con .tuan_user p{ padding:5px 20px;}
+.tuan_con .tuan_user .tit{ color:#999;}
+.tuan_con .tuan_user .tu_txt{ border:#ccc solid 1px; padding:6px 3px; width:180px;}
+
+.zx_list li{ border-bottom:#ccc dashed 1px; padding:10px 0;}
+.zx_list li p{ margin:5px 0;}
+.zx_list .user_con,.zx_list .dian_con{ overflow:hidden;}
+.zx_list .user_con .zx_tit{ color:#333; font-weight:bold;}
+.zx_list .dian_con .rp_tit{ color:#b20005; font-weight:bold;}
+.zx_list .time{ float:right; color:#999; font-size:12px;}
+.zx_list .user_con .time .username{margin-right:10px;}
+.zixun{ padding:10px 0;}
+.zixun textarea{ width:100%; height:150px; border:#ccc solid 1px; padding:10px; color:#666;}
+.zixun_btn{ float:right; padding:8px 20px; margin-top:10px;}
+.zx_list img{width:100%;}
+.detail_img .sliders .sliderlist { width:100%; padding:10px 0; }
+.detail_img .sliders .sliderlist li{ width:200px !important; float:left; margin-left:10px;}
+.detail_img .sliders .sliderlist li img{ width:100% ;}

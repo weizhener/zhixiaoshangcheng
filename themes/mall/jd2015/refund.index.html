@@ -1,0 +1,84 @@
+{include file=member.header.html}
+<style type="text/css">
+.float_right {float: right;}
+#refund-list {width:765px;}
+#refund-list a{ text-decoration:none;color:#285BCC}
+#refund-list a:hover{ color:#FF6600}
+#refund-list .thead td{border-top:1px #ddd solid;border-bottom:1px #ddd solid; background:#f1f1f1; height:25px; text-align:center}
+#refund-list .tbody td{border-bottom:1px #ddd solid; text-align:center; line-height:18px;padding-top:5px;padding-bottom:5px;}
+</style>
+<div class="content">
+    {include file=member.menu.html}
+    <div id="right">
+        {include file=member.submenu.html}
+        <div class="wrap">
+            <div class="public">
+            	<!--{if $refunds}-->
+                <table id="refund-list" border="0" cellpadding="0" cellspacing="0">
+                	<tr class="thead">
+                    	<td width="80">退款编号</td>
+                        <td width="140" class="pl10">订单编号/宝贝信息</td>
+                        <td width="110">卖家</td>
+                        <td width="80">交易金额</td>
+                        <td width="80">退款总额</td>
+                        <td width="100">申请时间</td>
+                        <td width="100">退款状态</td>
+                        <td width="75">操作</td>
+                    </tr>
+                	<!--{foreach from=$refunds item=refund}-->
+                	<tr class="tbody">
+                		<td>{$refund.refund_sn}</td>
+                        <td>{$refund.order_sn}<br /><a href="{url app=goods&id=$refund.goods_id}" target="_blank">{$refund.goods_name}</a></td>
+                        <td><a href="{url app=store&id=$refund.seller_id}" target="_blank">{$refund.store_name}</a><br />{$refund.user_name}</td>
+                        <td>{$refund.total_fee}</td>
+                        <td>{$refund.refund_fee}</td>
+                        <td style="color:gray">{$refund.created|date:Y-m-d H:i:s}</td>
+                        <td style="color:#FF4F01">
+                        	{if $refund.status=='CLOSED'}
+                        	<span style="color:gray">退款关闭</span>
+                        	{elseif $refund.status=='SUCCESS'}
+                        	<span style="color:#62B44B">退款成功</span>
+                        	{elseif $refund.status=='WAIT_SELLER_AGREE'}
+                        	买家申请退款，等待卖家同意
+                        	{elseif $refund.status=='SELLER_REFUSE_BUYER'}
+                        	卖家拒绝退款，等待买家修改中
+                            {elseif $refund.status=='WAIT_ADMIN_AGREE'}
+                            卖家同意退款，等待管理员审核
+                        	{elseif $refund.status=='WAIT_SELLER_CONFIRM'}
+                        	退款申请等待卖家确认中
+                        	{/if}	
+                            {if $refund.status!='CLOSED' && $refund.status!='SUCCESS' && $refund.status!='WAIT_ADMIN_AGREE' && $refund.ask_customer==1}<div style="color:#62B44B">（客服已介入处理）</div>{/if}
+                        </td>
+                        <td> 
+                        	<a href="{url app=refund&act=view&refund_id=$refund.refund_id}" target="_blank">查看</a> 
+                            {if $refund.status neq 'SUCCESS' && $refund.status neq 'CLOSED' && $refund.status neq 'WAIT_ADMIN_AGREE'}
+                        	| <a href="{url app=refund&act=edit&refund_id=$refund.refund_id}">修改</a>
+                            {/if}
+                        </td>
+                    </tr>
+                    <!--{/foreach}-->
+                 </table>
+                 
+                 <div class="order_form_page mt10">
+                    <div class="page">
+                        {include file=member.page.bottom.html}
+                    </div>
+                </div>
+                <!--{else}-->
+                <div class="order_form member_no_records">
+                    <span>{$lang.no_records}</span>
+                </div>
+                <!--{/if}-->
+                <div class="clear"></div>
+            </div>
+            <div class="wrap_bottom"></div>
+        </div>
+        <div class="clear"></div>
+        <div class="adorn_right1"></div>
+        <div class="adorn_right2"></div>
+        <div class="adorn_right3"></div>
+        <div class="adorn_right4"></div>
+    </div>
+    <div class="clear"></div>
+</div>
+{include file=footer.html}

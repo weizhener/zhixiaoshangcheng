@@ -1,0 +1,14 @@
+{include file=header.html}
+
+{include file=top.html}
+
+<div id="mystore" class="w auto clearfix">
+   <div class="col-sub w190">
+      {include file=left.html}
+   </div>
+   <div class="col-main w750">
+        <div class="default">{$article.content|escape:editor}</div>
+    </div>
+</div>
+
+{include file=footer.html}

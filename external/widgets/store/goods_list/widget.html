@@ -1,0 +1,26 @@
+<div class="goods_list style1 mb10">
+	<div style="background:{$widget_data.model_color}" class="title clearfix">
+    	<h3><a href="{$widget_data.link}">{$widget_data.model_name}</a></h3>
+        <p><a href="{$widget_data.link}">MORE</a></p>
+    </div>
+	<ul class="content clearfix">
+		<!--{foreach from=$widget_data.goods_list item=goods name=fe_hot_goods}-->
+        <li {if $smarty.foreach.fe_hot_goods.iteration % 4 eq 0}style="margin-right:0px;"{/if} class="item">
+           <div class="pic"><a href="{url app=goods&id=$goods.goods_id}" target="_blank" style="background:url({$goods.default_image}) no-repeat center 0;"></a></div>
+           <div class="mask"></div>
+           <div class="detail">
+               <h3><a href="{url app=goods&id=$goods.goods_id}" target="_blank">{$goods.goods_name|escape}</a></h3>
+               <p>{$goods.price|price}</p>
+               <div class="attr clearfix">
+                  <span class="sales">已售出 {$goods.sales} 件</span>
+                  <span class="collects"> {$goods.collects} 人收藏</span>
+               </div>
+           </div>
+<!--           <div class="btnbox">
+           	   <a href="javascript:collect_goods({$goods.goods_id});" class="clt"></a>
+               <a href="" class="share"></a>
+           </div>-->
+        </li>
+        <!-- {/foreach} -->
+	</ul>
+</div>

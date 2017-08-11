@@ -1,0 +1,421 @@
+{include file=member.header.html}
+
+{$editor_upload}
+{$build_editor}
+<style>
+.txt { margin-right:20px}
+.spec ul { width: 690px; overflow: hidden; }
+.spec .td { padding-bottom: 10px; }
+.spec li { float: left; margin-left: 6px; display: inline; }
+.spec li input { text-align: center; }
+.spec .th { padding: 3px 0; margin-bottom: 10px; border-top: 2px solid #e3e3e3; border-bottom: 1px solid #e3e3e3; background: #f8f8f8; }
+.floatleft{ float:left;}
+</style>
+<script type="text/javascript">
+//<!CDATA[
+function add_uploadedfile(file_data)
+{
+        $('#desc_images').append('<li file_name="'+ file_data.file_name +'" file_path="'+ file_data.file_path +'" ectype="handle_pic" file_id="'+ file_data.file_id +'"><input type="hidden" name="desc_file_id[]" value="'+ file_data.file_id +'"><div class="pic" style="z-index: 2;"><img src="{$site_url}/'+ file_data.file_path +'" width="50" height="50" alt="'+ file_data.file_name +'" /></div><div ectype="handler" class="bg" style="z-index: 3;display:none"><img src="{$site_url}/'+ file_data.file_path +'" width="50" height="50" alt="'+ file_data.file_name +'" /><p class="operation"><a href="javascript:void(0);" class="cut_in" ectype="insert_editor" ecm_title="{$lang.insert_editor}"></a><span class="delete" ectype="drop_image" ecm_title="{$lang.drop}"></span></p><p class="name">'+ file_data.file_name +'</p></div></li>');
+        trigger_uploader();
+        if(EDITOR_SWFU.getStats().files_queued == 0){
+                window.setTimeout(function(){
+                        $('#editor_uploader').hide();
+                },5000);
+        }
+}
+function drop_image(file_id)
+{
+    if (confirm(lang.uploadedfile_drop_confirm))
+        {
+            var url = SITE_URL + '/index.php?app=seller_ju&act=drop_uploadedfile';
+            $.getJSON(url, {'file_id':file_id}, function(data){
+                if (data.done)
+                {
+                    $('*[file_id="' + file_id + '"]').remove();
+                }
+                else
+                {
+                    alert(data.msg);
+                }
+            });
+        }
+}
+
+$(function(){
+<!--{if !$goods.brand_id} -->
+	jucategoryInit("jucategory");
+<!--{/if}-->
+	$("#juchannel").change(juchannelChange);
+	$("#channel_edit").click(juchannelEdit);
+    $('#group_form').validate({
+        errorPlacement: function(error, element){
+            $(element).next('.field_notice').hide();
+            $(element).after(error);
+        },
+        success       : function(label){
+            label.addClass('validate_right').text('OK!');
+        },
+        onkeyup : false,
+        rules : {
+            group_name : {
+                required   : true
+            },
+            end_time      : {
+                required     : true
+            },
+            goods_id      : {
+                required   :true,
+                min    : 1
+            },
+			gimage  : {
+                accept : 'png|jpe?g|gif'
+            },
+            min_quantity :{
+                required   :true,
+                min    :1
+            }
+        },
+        messages : {
+            group_name  : {
+                required   : '{$lang.fill_group_name}'
+            },
+            end_time       : {
+                required     : '{$lang.fill_end_time}'
+            },
+            goods_id      : {
+                required:  '{$lang.fill_goods}',
+                min   : '{$lang.fill_goods}'
+            },
+			gimage  : {
+                accept   : '{$lang.giamge_accept_error}'
+            },
+            min_quantity: {
+                required : '{$lang.fill_min_quantity}',
+                min   : '{$lang.fill_min_quantity}'
+            }
+        }
+    });
+	
+	$('#group_form').submit(function(){
+        $('label.error').remove();
+        var error = false;
+        var price_empty = false;
+
+        $('*[ectype="spec_item"]').each(function(){
+            var obj_group_price = $(this).find('input[ectype="group_price[]"]');
+			var obj_old_price   = $(this).find('input[ectype="price[]"]');
+            var group_price 	= Number(obj_group_price.val());
+			var price       	= Number(obj_old_price.val());
+			
+            if(group_price == ''){
+                price_empty = obj_group_price;
+            	return false;
+            }
+			if(group_price != '' && (group_price < 0 || (group_price >= price) || isNaN(group_price))){
+                error = obj_group_price;
+				return false;
+            }
+        })
+        if(error != false){
+            error.focus();
+            error.addClass('error');
+            error.after('<label class="error">{$lang.invalid_group_price}</label>');
+            return false;
+        }
+        if(price_empty != false){
+            price_empty.focus();
+            price_empty.addClass('error');
+            price_empty.after('<label class="error">{$lang.fill_group_price}</label>');
+            return false;
+        }
+	});
+
+});
+
+function gs_callback(){
+    query_spec($('#goods_id').val());
+}
+
+function query_spec(goods_id){
+    $.getJSON('index.php?app=seller_ju&act=query_goods_info',{'goods_id':goods_id},function(data){
+		if(data.done){
+			var goods = data.retval;
+			$('#spec_name').html(goods.spec_name);
+			$('ul[ectype="spec_item"]').remove();
+			$.each(goods._specs,function(i,item){
+				$('#group_spec').append('<ul ectype="spec_item" class="td"><li class="distance2"><input name="spec_id[]" value="'+ item.spec_id +'" type="hidden" />'+ item.spec +'</li><li class="distance1">' + item.stock + '</li><li class="distance1"><input ectype="price[]" name="price['+item.spec_id+']" type="hidden" value="'+item.price+'">'+ item.price +'</li><li><input ectype="group_price[]" name="group_price['+item.spec_id+']" type="text" class="text width2" /></li></ul>');
+			});
+		}
+	});
+}
+
+function juchannelChange()
+{
+    // 删除后面的select
+    $("#jutemplate select").remove();
+	$("#jutemplate .floatleft").remove();
+	// 计算当前选中到id和拼起来的name
+    var selects = $(this);
+    var id = 0;
+    for (i = 0; i < selects.length; i++)
+    {
+        sel = selects[i];
+        if (sel.value > 0)
+        {
+            id = sel.value;
+        }
+    }
+    $("#channel").val(id);
+    // ajax请求下级分类
+    if (this.value > 0)
+    {
+        var _self = this;
+        var url = REAL_SITE_URL + '/index.php?app=seller_ju&act=channel_json';
+        $.getJSON(url, {'pid':this.value}, function(data){
+            if (data.done)
+            {
+				
+                if (data.retval.length > 0)
+                {
+                    var data  = data.retval;
+                    for (i = 0; i < data.length; i++)
+                    {
+						$("#jutemplate").append("<select name='template_id'></select>");
+                        $("#jutemplate select").append("<option value='" + data[i].template_id + "'>" + data[i].template_name + "</option>");
+                    }
+                }
+            }
+            else
+            {
+                alert(data.msg);
+            }
+        });
+    }
+	//如果是品牌团 则选择该商品所属的品牌
+	if(id == 2)
+	{
+		$("#jucatediv").hide();
+		$("#jubranddiv").show();
+	}
+	else
+	{
+		$("#jucatediv").show();
+		$("#jubranddiv").hide();
+	}
+}
+
+function juchannelEdit()
+{
+    $(this).siblings("select").show();
+    $(this).siblings("span").andSelf().remove();
+}
+//]]>
+</script>
+<div class="content">
+  <div class="totline"></div>
+  <div class="botline"></div>
+  {include file=member.menu.html}
+  <div id="right">
+     {include file=member.submenu.html}
+        <div id="seller_groupbuy_form" class="wrap">
+            <div class="public">
+                <!--{if $groupbuy_template}-->
+                <form method="post" id="group_form" enctype="multipart/form-data">
+                    <div class="information_index">
+                        <h4>{$lang.groupbuy_basic_info}</h4>
+                        <div class="add_wrap">
+                        	<div class="assort">
+                            	<p class="txt clearfix">
+                                	<span class="floatleft">{$lang.for_channel}:</span>
+                                    <span class="select">
+                                        <!-- {if $goods} -->
+                                        <span class="floatleft">{$goods.channel_name|escape}</span>
+                                        <a class="btn" href="javascript:;" id="channel_edit">{$lang.edit}</a>
+                                        <!-- {/if} -->
+                                        <select id="juchannel" {if $goods}style="display:none"{/if}>
+                                            <option>{$lang.select_pls}</option>
+                                            {html_options options=$channel_options}
+                                        </select> 
+                                       <input type="hidden" id="channel" name="channel" value="{$goods.channel}"/>
+                                    </span>
+                                    <span class="red">*</span><span class="field_notice">{$lang.channel_desc}</span>
+                                </p>
+                            </div>
+                        	<div class="assort">
+                            	<p class="txt clearfix">
+                                	<span class="floatleft">{$lang.for_template}:</span>
+                                    <span class="select" id="jutemplate">
+                                     <!-- {if $goods} -->
+                                        <span class="floatleft">{$goods.template_name|escape}</span>
+                                        <!-- {else} -->
+                                        <select>
+                                            <option>{$lang.select_pls}</option>
+                                        </select>
+                                        <!-- {/if} -->
+                                        <input type="hidden" id="template_id" name="template_id" value="{$goods.template_id}"/>
+                                    </span>
+                                    <span class="red">*</span><span class="field_notice">{$lang.select_groupbuy_desc}</span>
+                                </p>
+                            </div>
+                            <!-- {if !$goods.brand_id} -->
+                            <div class="assort" id="jucatediv">
+                            	<p class="txt clearfix">
+                                	<span class="floatleft">{$lang.for_cate}:</span>
+                                    <span class="select" id="jucategory">
+                                        <!-- {if $goods} -->
+                                        <span class="floatleft">{$goods.ju_cate|escape}</span>
+                                        <a class="edit_gcategory btn" href="javascript:;">{$lang.edit}</a>
+                                        <select style="display:none">
+                                            <option>{$lang.select_pls}</option>
+                                            {html_options options=$categories}
+                                        </select>
+                                        <!-- {else} -->
+                                        <select>
+                                            <option>{$lang.select_pls}</option>
+                                            {html_options options=$categories}
+                                        </select>
+                                        <!-- {/if} -->
+                                       <input type="hidden" id="cate_id" name="cate_id" value="{$goods.ju_cate_id}" class="mls_id" />
+                                       <input type="hidden" name="cate_name" value="{$goods.ju_cate|escape}" class="mls_names" />
+                                    </span>
+                                    <span class="field_notice">{$lang.ju_cate_desc}</span>
+                                </p>
+                            </div>
+                            <!--{/if}-->
+                            <div class="assort" id="jubranddiv" {if !$goods.brand_id} style="display:none;" {/if}>
+                            	<p class="txt clearfix">
+                                	<span class="floatleft">{$lang.select_brand}:</span>
+                                    <span style="margin-left:5px;">
+                                        {html_radios options=$ju_brands checked=$goods.brand_id name=brand_id}
+                                    </span>
+                                    <span class="field_notice">{$lang.ju_brand_desc}</span>
+                                </p>
+                            </div>
+                            <div class="assort">
+                                <p class="txt">{$lang.group_name}:
+                                <input type="text" name="group_name" value="{$group.group_name|escape}" class="text width7" /> <span class="red">*</span></p>
+                            </div>
+                            
+                            <div class="assort">
+                                <p class="txt">{$lang.select_goods}:
+                                {if !$goods}
+                                    <input gs_id="goods_id" gs_name="goods_name" gs_callback="gs_callback" gs_title="gselector" gs_width="480" gs_type="ju" gs_store_id="{$store_id}" ectype="gselector" type="text" name="goods_name" id="goods_name" value="{$group.goods_name|escape}" class="text" /> <span class="red">*</span>
+                                {else}
+                                    {$goods.goods_name|escape}
+                                {/if}
+                                <input type="hidden" id="goods_id" name="goods_id" value="{$group.goods_id}" />
+                                </p>
+                            </div>
+                            <div class="assort">
+                                <p class="txt">{$lang.gimage}:
+                                    <input class="infoTableFile" id="gimage" type="file" name="gimage" />
+                                    {if $group.image}
+                                    <img src="{$group.image}" height="20" width="30" />
+                                    {/if}
+                                    <label class="field_notice">{$lang.gimage_desc}</label>
+                                </p>
+                            </div>
+                            <div class="assort">
+                                <p class="txt">{$lang.max_per_user}:
+                                <input type="text" name="max_per_user" value="{$group.max_per_user}" class="text width2" /><span class="field_notice">{$lang.note_max_per_user}</span></p>
+                            </div>
+                            <div class="assort">
+                                <p class="txt" style="float:left">{$lang.spec_price}:
+                                </p>
+                                    <div id="group_spec" class="spec" style="float:left">
+                                        <ul class="th">
+                                            <li id="spec_name" class="distance2">{if $goods}{$goods.spec_name}{else}{$lang.spec}{/if}</li>
+                                            <li class="distance1">{$lang.stock}</li>
+                                            <li class="distance1">{$lang.price}</li>
+                                            <li class="distance1">{$lang.group_price}</li>
+                                        </ul>
+                                        {foreach from=$goods._specs item=spec}
+                                        <ul ectype="spec_item" class="td">
+                                        <li class="distance2">{$spec.spec}</li>
+                                        <li class="distance1">{$spec.stock}</li>
+                                        <li class="distance1"><input ectype="price[]" name="price[{$spec.spec_id}]" type="hidden" value="{$spec.price}">{$spec.price}</li>
+                                        <li><input ectype="group_price[]" name="group_price[{$spec.spec_id}]" type="text" class="text width2" value="{$spec.group_price}"/></li>
+                                        </ul>
+                                        {/foreach}
+                                    </div>
+                            </div>
+                        </div>
+
+                        <div class="add_bewrite">
+                            <h5>{$lang.group_desc}</h5>
+                            <div class="add_wrap">
+                                <div class="editor">
+                                    <div>
+                                    <textarea name="group_desc" id="description"  style="width:100%; height:400px;">
+                                    {$group.group_desc|escape}
+                                    </textarea>
+                                    </div>
+                                    <div style=" position: relative; top: 10px; z-index: 5;"><a class="btn3" id="open_editor_uploader">{$lang.uploadedfile}</a>
+                                        <div class="upload_con" id="editor_uploader" style="display:none">
+                                            <div class="upload_con_top"></div>
+                                            <div class="upload_wrap">
+
+                                                <ul>
+                                                    <li>
+                                                        <div id="divSwfuploadContainer">
+                                                            <div id="divButtonContainer">
+                                                                <span id="editor_upload_button"></span>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                    <li><iframe src="index.php?app=comupload&act=view_iframe&id={$id}&belong={$belong}&instance=desc_image" width="86" height="30" scrolling="no" frameborder="0"></iframe></li>
+                                                    <li id="open_editor_remote" class="btn2">{$lang.rem_upload}</li>
+                                                </ul>
+                                                <div id="editor_remote" class="upload_file" style="display:none">
+                                                <iframe src="index.php?app=comupload&act=view_remote&id={$id}&belong={$belong}&instance=desc_image" width="272" height="39" scrolling="no" frameborder="0"></iframe>
+                                                </div>
+                                                <div id="editor_upload_progress"></div>
+                                                <div class="upload_txt">
+                                                    <span>{$lang.note_for_upload}</span>
+                                                </div>
+
+                                            </div>
+                                            <div class="upload_con_bottom"></div>
+                                        </div>
+                                    </div>
+                                    <ul id="desc_images" class="preview">
+                                        <!--{foreach from=$files_belong_store item=desc_image}-->
+                                        <li ectype="handle_pic" file_name="{$desc_image.file_name|escape}" file_path="{$desc_image.file_path}" file_id="{$desc_image.file_id}">
+                                        <input type="hidden" name="desc_file_id[]" value="{$desc_image.file_id}">
+                                            <div class="pic">
+                                            <img src="{$site_url}/{$desc_image.file_path}" width="50" height="50" alt="{$desc_image.file_name|escape}" title="{$desc_image.file_name|escape}" /></div>
+                                            <div ectype="handler" class="bg">
+                                            <img src="{$site_url}/{$desc_image.file_path}" width="50" height="50" alt="{$desc_image.file_name|escape}" title="{$desc_image.file_name|escape}" />
+                                                <p class="operation">
+                                                    <a class="cut_in" ectype="insert_editor" href="javascript:void(0);" ecm_title="{$lang.insert_editor}"></a>
+                                                    <span class="delete" ectype="drop_image" ecm_title="{$lang.drop}"></span>
+                                                </p>
+                                                <p title="{$desc_image.file_name|escape}" class="name">{$desc_image.file_name|escape}</p>
+                                            </div>
+                                        </li>
+                                        <!--{/foreach}-->
+                                    </ul>
+                                    <div class="clear"></div>
+                                </div>
+                                <div class="issuance"><input type="submit" class="btn" value="{$lang.submit}" /></div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                
+                <!--{else}-->
+                <p>{$lang.no_template}</p>
+                <!--{/if}-->
+            </div>
+            <div class="wrap_bottom"></div>
+        </div>
+
+        <div class="clear"></div>
+        <div class="adorn_right1"></div>
+        <div class="adorn_right2"></div>
+        <div class="adorn_right3"></div>
+        <div class="adorn_right4"></div>
+    </div>
+    <div class="clear"></div>
+</div>
+{include file=footer.html}

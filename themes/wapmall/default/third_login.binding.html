@@ -1,0 +1,90 @@
+{include file=header.html}
+<div class="mb-head">
+    <div class="tit">Hi,您第一次登录,请先使用账户进行绑定</div>
+</div>
+
+<style>
+    .binding .login_panel{margin:5px;padding:20px 5px;}
+    .binding-tit{}
+    .binding-tit li {width: 50%;text-align: center;background: #fff;float: left;font-size: 14px;border-bottom: #ccc solid 1px;}
+    .binding-tit li a {display: block;padding: 10px 0;}
+    .binding-tit li a.current {background: #828282;color: #fff;}
+</style>
+
+<div class="binding">
+    <ul class="binding-tit clearfix">
+        <li><a class="tab_1 current" href="javascript:void(0)" onclick="connect_switch(1);
+            this.blur();">创建新帐号</a></li>
+        <li>
+            <a class="tab_2" href="javascript:void(0)" onclick="connect_switch(2);
+            this.blur();">已有本站帐号</a>
+        </li>
+    </ul>
+
+
+    <div class="login_panel">
+        <form id="binding_form_regiest" method="post">
+            <table width="100%">
+                <tr>
+                    <td width="100">用户名:</td>
+                    <td><input type="text" id="user_name" name="user_name" class="text width10"  ></td>
+                </tr>
+                <tr>
+                    <td>您的密码:</td>
+                    <td><input type="password" id="password" name="password" class="text width10" ></td>
+                </tr>
+                <tr>
+                    <td>确认密码:</td>
+                    <td><input type="password" id="password_confirm" name="password_confirm" class="text width10" ></td>
+                </tr>
+                <tr>
+                    <td>邮箱:</td>
+                    <td><input type="text" id="email" name="email" class="text width10" ></td>
+                </tr>
+
+                <tr>
+                    <td></td>
+                    <td colspan="2"><input type="submit" name="Submit" value="立即注册" class="red_btn" title="立即注册"><input type="hidden" name="binding_type" value="register"/></td>
+                </tr>
+
+            </table>
+        </form>
+
+
+        <form id="binding_form_login" method="post" style="display:none">
+            <table width="100%">
+                <tr>
+                    <td width="100">用户名:</td>
+                    <td><input type="text" id="user_name" name="user_name" class="text width10"  ></td>
+                </tr>
+                <tr>
+                    <td>您的密码:</td>
+                    <td><input type="password" id="password" name="password" class="text width10" ></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td colspan="2"><input type="submit" name="Submit" value="登录" class="red_btn"><input type="hidden" name="binding_type" value="login"/></td>
+                </tr>
+            </table>
+        </form>
+    </div>
+
+</div>
+<script>
+        function connect_switch(op) {
+            if (op == 1) {
+                $('#binding_form_regiest').show();
+                $('#binding_form_login').hide();
+                $('.tab_1').addClass("current");
+                $('.tab_2').removeClass("current");
+            } else {
+                $('#binding_form_regiest').hide();
+                $('#binding_form_login').show();
+                $('.tab_1').removeClass("current");
+                $('.tab_2').addClass("current");
+            }
+        }
+</script>
+
+
+{include file=footer.html}

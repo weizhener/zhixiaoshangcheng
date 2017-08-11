@@ -1,0 +1,315 @@
+{include file="header.html"}
+
+
+
+<!--根据 ad 设置  1 为 手机主页轮播图-->
+
+<!--{if $wap_ads.1}-->
+
+<script type="text/javascript" src="{res file=js/swipe.js}" charset="utf-8"></script>
+
+<div id="banner_box" class="box_swipe">
+
+    <ul>
+
+        <!--{foreach from=$wap_ads.1 item=wap_ad name=fe_wap_ad}-->
+
+        <li><a href="{$wap_ad.ad_link}"><img src="{$wap_ad.ad_logo}" /></a></li>
+
+        <!--{/foreach}-->
+
+    </ul>
+
+    <ol>
+
+        <!--{foreach from=$wap_ads.1 item=wap_ad name=fe_wap_ad}-->
+
+        <li <!--{if $smarty.foreach.fe_wap_ad.first}-->class="on"<!--{/if}-->></li>
+
+        <!--{/foreach}-->
+
+    </ol>
+
+    <script>
+
+        $(function () {
+
+            new Swipe(document.getElementById('banner_box'), {
+
+                speed: 500,
+
+                auto: 3000,
+
+                callback: function () {
+
+                    var lis = $(this.element).next("ol").children();
+
+                    lis.removeClass("on").eq(this.index).addClass("on");
+
+                }
+
+            });
+
+        });
+
+    </script>
+
+</div>
+
+<!--{/if}-->
+
+
+
+<!--根据 ad 设置  2 为 手机主页轮播图-->
+
+<!--{if $wap_ads.2}-->
+
+<section id="guide">
+
+    <div id="apps">
+
+        <!--{foreach from=$wap_ads.2 item=wap_ad name=fe_wap_ad}-->
+
+        <dl>
+
+            <dt><a href="{$wap_ad.ad_link}"><img src="{$wap_ad.ad_logo}"/><span>{$wap_ad.ad_name}</span></a></dt>
+
+        </dl>
+
+        <!--{/foreach}-->
+
+    </div>
+
+</section>
+
+<!--{/if}-->
+
+
+
+<div class="jd2015_floor">
+
+   <h2 class="title">抢好货</h2>
+
+   <div class="hot-link">
+
+       <a href="{$wap_ads.3.0.ad_link}"><img src="{$wap_ads.3.0.ad_logo}" width="100%"></a>
+
+   </div>
+
+</div>
+
+<div class="jd2015_floor">
+
+    <h2 class="title">服装箱包</h2>
+
+    <div class="row1">
+
+        <div class="col1"><a href="{$wap_ads.4.0.ad_link}"><img src="{$wap_ads.4.0.ad_logo}" width="100%" ></a></div>
+
+        <div class="col2"><a href="{$wap_ads.4.1.ad_link}"><img src="{$wap_ads.4.1.ad_logo}" width="100%" ></a></div>
+
+        <div class="col3"><a href="{$wap_ads.4.2.ad_link}"><img src="{$wap_ads.4.2.ad_logo}" width="100%" ></a></div>
+
+    </div>
+
+</div>
+
+<div class="jd2015_floor">
+
+    <h2 class="title">美容化妆</h2>
+
+    <div class="row2">
+
+        <div class="col1"><a href="{$wap_ads.5.0.ad_link}"><img src="{$wap_ads.5.0.ad_logo}" width="100%" ></a></div>
+
+        <div class="col2"><a href="{$wap_ads.5.1.ad_link}"><img src="{$wap_ads.5.1.ad_logo}" width="100%" ></a></div>
+
+        <div class="col3"><a href="{$wap_ads.5.2.ad_link}"><img src="{$wap_ads.5.2.ad_logo}" width="100%" ></a></div>
+
+    </div>
+
+</div>
+
+
+
+<div class="jd2015_floor">
+
+    <h2 class="title">家用电器</h2>
+
+    <div class="row1">
+
+        <div class="col1"><a href="{$wap_ads.6.0.ad_link}"><img src="{$wap_ads.6.0.ad_logo}" width="100%" ></a></div>
+
+        <div class="col2"><a href="{$wap_ads.6.1.ad_link}"><img src="{$wap_ads.6.1.ad_logo}" width="100%" ></a></div>
+
+        <div class="col3"><a href="{$wap_ads.6.2.ad_link}"><img src="{$wap_ads.6.2.ad_logo}" width="100%" ></a></div>
+
+    </div>
+
+</div>
+
+
+
+<div class="jd2015_floor">
+
+    <h2 class="title">居家生活</h2>
+
+    <div class="row2">
+
+        <div class="col1"><a href="{$wap_ads.7.0.ad_link}"><img src="{$wap_ads.7.0.ad_logo}" width="100%" ></a></div>
+
+        <div class="col2"><a href="{$wap_ads.7.1.ad_link}"><img src="{$wap_ads.7.1.ad_logo}" width="100%" ></a></div>
+
+        <div class="col3"><a href="{$wap_ads.7.2.ad_link}"><img src="{$wap_ads.7.2.ad_logo}" width="100%" ></a></div>
+
+    </div>
+
+</div>
+
+
+
+<div class="jd2015_floor">
+
+    <h2 class="title">母婴玩具</h2>
+
+    <div class="row1">
+
+        <div class="col1"><a href="{$wap_ads.8.0.ad_link}"><img src="{$wap_ads.8.0.ad_logo}" width="100%" ></a></div>
+
+        <div class="col2"><a href="{$wap_ads.8.1.ad_link}"><img src="{$wap_ads.8.1.ad_logo}" width="100%" ></a></div>
+
+        <div class="col3"><a href="{$wap_ads.8.2.ad_link}"><img src="{$wap_ads.8.2.ad_logo}" width="100%" ></a></div>
+
+    </div>
+
+</div>
+
+
+
+<div class="jd2015_floor">
+
+    <h2 class="title">食品保健</h2>
+
+    <div class="row2">
+
+        <div class="col1"><a href="{$wap_ads.9.0.ad_link}"><img src="{$wap_ads.9.0.ad_logo}" width="100%" ></a></div>
+
+        <div class="col2"><a href="{$wap_ads.9.1.ad_link}"><img src="{$wap_ads.9.1.ad_logo}" width="100%" ></a></div>
+
+        <div class="col3"><a href="{$wap_ads.9.2.ad_link}"><img src="{$wap_ads.9.2.ad_logo}" width="100%" ></a></div>
+
+    </div>
+
+</div>
+
+
+
+<div class="jd2015_floor">
+
+    <h2 class="title">精品分类</h2>
+
+    <ul class="row3">
+
+        <!--{foreach from=$wap_ads.10 item=wap_ad name=fe_wap_ad}-->
+
+        <li>
+
+            <a href="{$wap_ad.ad_link}"><img src="{$wap_ad.ad_logo}" width="100%"></a>
+
+        </li>
+
+        <!--{/foreach}-->
+
+    </ul>
+
+    <div class="clear"></div>
+
+</div>
+
+
+
+<div class="jd2015_floor">
+
+    <h2 class="title">推荐产品</h2>
+
+    <ul class="row4">
+
+        <!--{foreach from=$wap_recommended_goods item=goods name=fe_goods}-->
+
+        <a href="{url app=goods&id=$goods.goods_id}">
+
+        <li>
+
+            <div class="p_img">
+
+                <img src="{$goods.default_image}" width="100%" height="100%">
+
+            </div>
+
+            <div class="p_title">
+
+                <span>{$goods.goods_name|escape}</span>
+
+            </div>
+
+            <div class="p_bottom">
+
+                <span class="price">{$goods.price|price}</span>
+
+                <span class="sales_info">已售：<em>{$goods.sales_info|escape}</em></span>
+
+            </div>
+
+        </li>
+
+        </a>
+
+        <!--{/foreach}-->
+
+    </ul>
+
+    <div class="clear"></div>
+
+</div>
+
+
+
+<section id="recommended_store">
+
+    <h3>推荐店铺</h3>
+
+    <div class="row">
+
+        <ul>
+
+            <!--{foreach from=$wap_recommended_stores item=store}-->
+
+            <a href="{url app=store&id=$store.store_id}">
+
+                <li>
+
+                    <img src="{$store.store_logo}" alt="{$store.store_name|escape}" width="88" height="88"/>
+
+                    <span class="store_name">{$store.store_name|escape}</span><br/>
+
+                    <span class="user_name">{$store.user_name|escape}</span><br/>
+
+                    <span class="region_name">地址：{$store.region_name|escape}</span><br/>
+
+                    <span class="credit_image"><img src="{$store.credit_image}"/></span><br/>
+
+                </li>
+
+            </a>
+
+            <!--{/foreach}-->
+
+        </ul>
+
+    </div>
+
+</section>
+
+
+
+{include file="footer.html"}

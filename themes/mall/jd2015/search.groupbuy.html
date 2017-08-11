@@ -1,0 +1,64 @@
+{include file=header.html}
+
+<script type="text/javascript" src="{lib file=search_groupbuy.js}" charset="utf-8"></script>
+
+<div id="main" class="w-full">
+	<div id="page-search-groupbuy" class="w mt10 mb20">
+		{include file=curlocal.html}
+		<div class="w ads mt10" area="ads_top" widget_type="area">
+			<!--{widgets page=groupbuy area=ads_top}-->
+		</div>
+		<div class="w mt10">
+			<div class="search-by mb10">
+				<ul>
+					<li class="state clearfix">
+						<h3>{$lang.group_state}</h3>
+                        <a href="javascript:;" ectype="state" {if $smarty.get.state eq ''}class="act"{/if} id="">{$lang.no_limit}</a>
+						<a href="javascript:;" ectype="state" {if $smarty.get.state eq 'on'}class="act"{/if} id="on">{$state.on}</a>
+						<a href="javascript:;" ectype="state" {if $smarty.get.state eq 'end'}class="act"{/if} id="end">{$state.end}</a>
+						<a href="javascript:;" ectype="state" {if $smarty.get.state eq 'finished'}class="act"{/if} id="finished">{$state.finished}</a>
+						<a href="javascript:;" ectype="state" {if $smarty.get.state eq 'canceled'}class="act"{/if} id="canceled">{$state.canceled}</a>
+                	</li>
+					<li class="admin_recomand clearfix" style="border:0px;">
+						<h3>{$lang.group_recommend}</h3>
+                        <a href="javascript:;" ectype="recommend" {if $smarty.get.recommend eq ''}class="act"{/if} id="">{$lang.no_limit}</a>
+						<a href="javascript:;" ectype="recommend" {if $smarty.get.recommend eq '1'}class="act"{/if} id="1">{$lang.yes}</a>
+						<a href="javascript:;" ectype="recommend" {if $smarty.get.recommend eq '0'}class="act"{/if} id="0">{$lang.no}</a>
+                	</li>
+				</ul>
+			</div>
+			<div class="search-type clearfix">
+				<div class="float-left btn-type">
+					<a href="{url app=search}">搜索商品</a>
+					<a href="{url app=search&act=store}" style="border-left:0px;">搜索店铺</a>
+					<a href="{url app=search&act=groupbuy}" class="current">搜索团购</a>
+				</div>
+				{include file=page.top.html}                              
+			</div>
+			<div class="group-list mt10 mb10 clearfix">
+          		<ul class="clearfix">
+                 	<!-- {foreach from=$groupbuy_list item=group name=fe_group} -->
+                 	<li class="item mb20" {if $smarty.foreach.fe_group.iteration % 4 eq 0} style="margin-right:0"{/if}>
+                 		<!--{if $group.recommended==1}--><div class="rec_ico"></div><!--{/if}-->
+                 		<div class="desc"><a target="_blank" href="{url app=groupbuy&id=$group.group_id}">{$group.group_name|escape|truncate:60}</a></div>
+                 		<div class="pic"><a target="_blank" href="{url app=groupbuy&id=$group.group_id}"><img src="{if $group.group_image}{$group.group_image}{else}{$group.default_image}{/if}" alt="{$group.group_name|escape}" /></a></div>
+                    	<div class="buy"><span class="price">{$group.group_price|price}</span><del>{$group.price}</del><a href="{url app=groupbuy&id=$group.group_id}"></a></div>
+                    	<div class="extra">
+                   			<span><strong>{$group.discount}</strong>{$lang.zhe}</span><span>{$lang.lefttime}{$lang.colon}{$group.lefttime}</span><span><b>{$group.quantity}</b>{$lang.man_join}</span>
+                        	<div class="gray-bg"></div>
+                    	</div>
+                 	</li>
+                 	<!--{foreachelse}-->
+                 	<div>{$lang.no_groupbuy}</div>
+                 	<!-- {/foreach} -->
+              	</ul>
+				{include file=page.bottom.html}
+       		</div>    
+  		</div>
+   		<div class="ads mt10 clearboth" area="ads_bottom" widget_type="area">
+			<!--{widgets page=groupbuy area=ads_bottom}-->
+    	</div>
+	</div>
+</div>
+{include file=server.html}
+{include file=footer.html}

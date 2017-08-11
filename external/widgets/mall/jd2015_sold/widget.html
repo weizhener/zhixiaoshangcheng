@@ -1,0 +1,32 @@
+<div class="jd2015_sold">
+    <div class="mc s{$widget_data.model_id}">
+        <ul class="clearfix ks-switchable-content">
+            <!-- {foreach from=$widget_data.goods_list item=goods} -->
+            <li>
+                <div class="p_img">
+                    <a href="{url app=goods&id=$goods.goods_id}" target="_blank"><img src="{$goods.goods_image}" width="60" height="60" /></a>
+                </div>
+                <div class="p_info">
+                    <div class="p_name">
+                        <a href="{url app=goods&id=$goods.goods_id}" target="_blank">{$goods.goods_name|escape}</a>
+                    </div>
+                    <div class="p-detail">
+                        {$goods.comment|truncate:20}
+                        <span class="icon-r">”</span>
+                        <span class="icon-l">“</span>
+                    </div>
+                </div>
+            </li>
+            <!--{/foreach}-->
+        </ul>
+    </div>
+   <script>
+      KISSY.use('switchable', function(S) {
+         S.Slide('.s{$widget_data.model_id}', {
+         effect: 'scrolly',
+         easing: 'easeOutStrong',
+         autoplay: true
+      });
+   });
+   </script>
+</div>

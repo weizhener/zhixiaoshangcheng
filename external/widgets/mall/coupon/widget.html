@@ -1,0 +1,34 @@
+<style>
+    .index_coupon{border: 1px solid #E5E5E5;margin-bottom: 10px;}
+    .index_coupon .mt{height: 36px;}
+    .index_coupon .mt em{font-size:20px;font-weight: bold;line-height: 36px;padding-left:20px;}
+    .index_coupon .mc{padding:10px;}
+    .index_coupon .mc li{float:left;padding:0 10px;}
+    .index_coupon .mc li .p_img{width:215px;}
+    .index_coupon .mc li .p_name{height:20px;line-height: 20px;overflow: hidden;width:215px;font-weight: bold;text-align: center;}
+    .index_coupon .mc li .p_price{color: #f76120;float: left;font-size: 18px;font-weight: bold;}
+</style>
+<div class="index_coupon clearfix w">
+    <div class="mt">
+        <em>优惠卷</em>
+    </div>
+    <div class="mc clearfix">
+        <ul>
+            <!--{foreach from=$widget_data.coupons item=coupon name=fe_coupon}-->
+            <li>
+                <a href="{url app=coupon&act=view&id=$coupon.coupon_id}" target="_blank">
+                    <div class="p_img">
+                        <img src="{$coupon.coupon_bg}" width="215" height="140"/>
+                    </div>
+                    <div class="p_name">
+                        {$coupon.coupon_name|escape}
+                    </div>
+                    <div class="p_price">
+                        {$coupon.coupon_value|escape}
+                    </div>
+                </a>
+            </li>
+            <!--{/foreach}-->
+        </ul>
+    </div>
+</div>

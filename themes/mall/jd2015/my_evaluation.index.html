@@ -1,0 +1,325 @@
+{include file=member.header.html}
+<div class="content">
+    {include file=member.menu.html}
+    <div id="right">
+{include file=member.curlocal.html}
+{include file=member.submenu.html}
+        <div class="wrap" style="border-top: 1px solid #e2e2e2;">
+            <div class="personal-rating">
+                <!--{if $evaluation && $smarty.get.type eq 'from_buyer'}-->
+                <h4>店铺动态评分</h4>
+                <table class="seller-rate-info" id="sixmonth">
+                    <tbody>
+                        <tr>
+                            <th><p>宝贝与描述相符</p>
+                    <p class="rate-star mt5"><em><i style=" width:{$evaluation.evaluation_desc.5}%;"></i></em></p></th>
+                    <td><dl class="ncs-rate-column">
+                            <dt><em style="left:{$evaluation.evaluation_desc.5}%;">{$evaluation.evaluation_desc.average_score}</em></dt>
+                            <dd>非常不满</dd>
+                            <dd>不满意</dd>
+                            <dd>一般</dd>
+                            <dd>满意</dd>
+                            <dd>非常满意</dd>
+                        </dl></td>
+                    </tr>
+                    <tr>
+                        <th><p>卖家的服务态度</p>
+                    <p class="rate-star mt5"><em><i style="width:{$evaluation.evaluation_service.5}%;"></i></em></p></th>
+                    <td><dl class="ncs-rate-column">
+                            <dt><em style="left:{$evaluation.evaluation_service.5}%;">{$evaluation.evaluation_service.average_score}</em></dt>
+                            <dd>非常不满</dd>
+                            <dd>不满意</dd>
+                            <dd>一般</dd>
+                            <dd>满意</dd>
+                            <dd>非常满意</dd>
+                        </dl></td>
+                    </tr>
+                    <tr>
+                        <th><p>卖家的发货速度</p>
+                    <p class="rate-star mt5"><em><i style="width:{$evaluation.evaluation_speed.5}%;"></i></em></p></th>
+                    <td><dl class="ncs-rate-column">
+                            <dt><em style="left:{$evaluation.evaluation_speed.5}%;">{$evaluation.evaluation_speed.average_score}</em></dt>
+                            <dd>非常不满</dd>
+                            <dd>不满意</dd>
+                            <dd>一般</dd>
+                            <dd>满意</dd>
+                            <dd>非常满意</dd>
+                        </dl></td>
+                    </tr>
+                    </tbody>
+                </table>
+                <!--{/if}-->
+
+                <!--{if $store && $smarty.get.type eq 'from_buyer'}-->
+                <h4><strong>卖家累积信用：{$store.credit_value}</strong>
+                    <img src='{$store.credit_image}' title='{$store.credit_value}'/>
+                    <span class="rate-summary">好评率：<strong>{$store.praise_rate}%</strong></span> </h4>
+                <table class="buyer-rate-info ncgeval">
+                    <thead>
+                        <tr>
+                            <th>&nbsp;</th>
+                            <th class="ncgeval-good"><span class="ico"></span>好评</th>
+                            <th class="ncgeval-normal"><span class="ico"></span>中评</th>
+                            <th class="ncgeval-bad"><span class="ico"></span>差评</th>
+                            <th>总计</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>最近1周</td>
+                            <td bgcolor="#FFFFFF">{$seller_stats.3.in_a_week}</td>
+                            <td bgcolor="#FFFFFF">{$seller_stats.2.in_a_week}</td>
+                            <td bgcolor="#FFFFFF">{$seller_stats.1.in_a_week}</td>
+                            <td bgcolor="#FFFFFF">{$seller_stats.0.in_a_week}</td>
+                        </tr>
+                        <tr>
+                            <td>最近1个月</td>
+                            <td bgcolor="#FFFFFF">{$seller_stats.3.in_a_month}</td>
+                            <td bgcolor="#FFFFFF">{$seller_stats.2.in_a_month}</td>
+                            <td bgcolor="#FFFFFF">{$seller_stats.1.in_a_month}</td>
+                            <td bgcolor="#FFFFFF">{$seller_stats.0.in_a_month}</td>
+                        </tr>
+                        <tr>
+                            <td>最近6个月</td>
+                            <td bgcolor="#FFFFFF">{$seller_stats.3.in_six_month}</td>
+                            <td bgcolor="#FFFFFF">{$seller_stats.2.in_six_month}</td>
+                            <td bgcolor="#FFFFFF">{$seller_stats.1.in_six_month}</td>
+                            <td bgcolor="#FFFFFF">{$seller_stats.0.in_six_month}</td>
+                        </tr>
+                        <tr>
+                            <td>6个月前</td>
+                            <td bgcolor="#FFFFFF">{$seller_stats.3.six_month_before}</td>
+                            <td bgcolor="#FFFFFF">{$seller_stats.2.six_month_before}</td>
+                            <td bgcolor="#FFFFFF">{$seller_stats.1.six_month_before}</td>
+                            <td bgcolor="#FFFFFF">{$seller_stats.0.six_month_before}</td>
+                        </tr>
+                        <tr>
+                            <td>总计</td>
+                            <td bgcolor="#FFFFFF">{$seller_stats.3.total}</td>
+                            <td bgcolor="#FFFFFF">{$seller_stats.2.total}</td>
+                            <td bgcolor="#FFFFFF">{$seller_stats.1.total}</td>
+                            <td bgcolor="#FFFFFF">{$seller_stats.0.total}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <!--{/if}-->
+                <!--{if $member  && $smarty.get.type eq 'from_seller'}-->
+                <h4><strong>买家累积信用：{$member.buyer_credit_value}</strong>
+                    <img src="{$member.credit_image}" title='{$member.buyer_credit_value}'/>
+                    <span class="rate-summary">好评率：<strong>{$member.buyer_praise_rate}%</strong></span> </h4>
+                <table class="buyer-rate-info ncgeval">
+                    <thead>
+                        <tr>
+                            <th>&nbsp;</th>
+                            <th class="ncgeval-good"><span class="ico"></span>好评</th>
+                            <th class="ncgeval-normal"><span class="ico"></span>中评</th>
+                            <th class="ncgeval-bad"><span class="ico"></span>差评</th>
+                            <th>总计</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>最近1周</td>
+                            <td bgcolor="#FFFFFF">{$buyer_stats.3.in_a_week}</td>
+                            <td bgcolor="#FFFFFF">{$buyer_stats.2.in_a_week}</td>
+                            <td bgcolor="#FFFFFF">{$buyer_stats.1.in_a_week}</td>
+                            <td bgcolor="#FFFFFF">{$buyer_stats.0.in_a_week}</td>
+                        </tr>
+                        <tr>
+                            <td>最近1个月</td>
+                            <td bgcolor="#FFFFFF">{$buyer_stats.3.in_a_month}</td>
+                            <td bgcolor="#FFFFFF">{$buyer_stats.2.in_a_month}</td>
+                            <td bgcolor="#FFFFFF">{$buyer_stats.1.in_a_month}</td>
+                            <td bgcolor="#FFFFFF">{$buyer_stats.0.in_a_month}</td>
+                        </tr>
+                        <tr>
+                            <td>最近6个月</td>
+                            <td bgcolor="#FFFFFF">{$buyer_stats.3.in_six_month}</td>
+                            <td bgcolor="#FFFFFF">{$buyer_stats.2.in_six_month}</td>
+                            <td bgcolor="#FFFFFF">{$buyer_stats.1.in_six_month}</td>
+                            <td bgcolor="#FFFFFF">{$buyer_stats.0.in_six_month}</td>
+                        </tr>
+                        <tr>
+                            <td>6个月前</td>
+                            <td bgcolor="#FFFFFF">{$buyer_stats.3.six_month_before}</td>
+                            <td bgcolor="#FFFFFF">{$buyer_stats.2.six_month_before}</td>
+                            <td bgcolor="#FFFFFF">{$buyer_stats.1.six_month_before}</td>
+                            <td bgcolor="#FFFFFF">{$buyer_stats.0.six_month_before}</td>
+                        </tr>
+                        <tr>
+                            <td>总计</td>
+                            <td bgcolor="#FFFFFF">{$buyer_stats.3.total}</td>
+                            <td bgcolor="#FFFFFF">{$buyer_stats.2.total}</td>
+                            <td bgcolor="#FFFFFF">{$buyer_stats.1.total}</td>
+                            <td bgcolor="#FFFFFF">{$buyer_stats.0.total}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <!--{/if}-->
+                <!-- 评分统计end --> 
+            </div>
+
+<script type="text/javascript" src="{lib file=search_goods.js}" charset="utf-8"></script>
+<script>
+    $(function() {
+        $("[ectype='evalscore']").change(function() {
+            replaceParam('evalscore', this.value);
+            return false;
+        });
+        $("[ectype='havecontent']").change(function() {
+            replaceParam('havecontent', this.value);
+            return false;
+        });
+    });
+</script>
+            <div class="goods-list-evaluation" id='list_pj'>
+                <table class="ncu-table-style">
+                    <thead>
+                        <tr>
+                            <th class="w70">
+                                <select name="evalscore" ectype="evalscore">
+                                    <option value="0">评价</option>
+                                    <option value="3" <!--{if $smarty.get.evalscore eq '3'}--> selected="selected"<!--{/if}-->>好评</option>
+                                    <option value="2" <!--{if $smarty.get.evalscore eq '2'}--> selected="selected"<!--{/if}-->>中评</option>
+                                    <option value="1" <!--{if $smarty.get.evalscore eq '1'}--> selected="selected"<!--{/if}-->>差评</option>
+                                </select>
+                            </th>
+                            <th class="w220 tl"> 
+                                <select name="havecontent" ectype="havecontent">
+                                    <option value="0">评论</option>
+                                    <option value="1" <!--{if $smarty.get.havecontent eq '1'}--> selected="selected"<!--{/if}-->>无评论内容</option>
+                                    <option value="2" <!--{if $smarty.get.havecontent eq '2'}--> selected="selected"<!--{/if}-->>有评论内容</option>
+                                </select>
+                            </th>
+                            <th class="w100">评价人</th>
+                            <th class="tl">宝贝信息</th>
+                            <th class="w90">操作</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <!--{if $smarty.get.type eq 'from_buyer'}-->
+                        <!--{foreach from=$goods_list item=goods name=fe_goods}-->
+                        <tr class="bd-line ncgeval">
+                            <td class="{if $goods.evaluation eq '3'}ncgeval-good{elseif $goods.evaluation eq '2'}ncgeval-normal{elseif $goods.evaluation eq '1'}ncgeval-bad{/if}"><span class="ico"></span></td>
+                            <td class="tl">
+                                <p>{$goods.comment}</p>
+                                <p class="date">[{$goods.evaluation_time|date:complete}]</p>
+                            </td>
+                            <td>
+                                <p>{$goods.buyer_name|escape}</p>
+                                <p><img src='{$goods.buyer_credit_image}' title='{$goods.buyer_credit_value}'/></p>
+                            </td>
+                            <td class="tl">
+                                <p><a target="_blank" href="{url app=goods&id=$goods.goods_id}">{$goods.goods_name|escape}</a></p>
+                                <p>{$goods.price|price}元</p>
+                            </td>
+                            <td>
+                            </td>
+                        </tr>
+                        <!--{foreachelse}-->
+                        <tr>
+                            <td colspan="20" class="norecord"><i>&nbsp;</i><span>暂无符合条件的数据记录</span></td>
+                        </tr>
+                        <!--{/foreach}-->
+                        <!--{/if}-->
+                        
+                        <!--{if $smarty.get.type eq 'from_seller'}-->
+                        <!--{foreach from=$goods_list item=goods name=fe_goods}-->
+                        <tr class="bd-line ncgeval">
+                            <td class="{if $goods.seller_evaluation eq '3'}ncgeval-good{elseif $goods.seller_evaluation eq '2'}ncgeval-normal{elseif $goods.seller_evaluation eq '1'}ncgeval-bad{/if}"><span class="ico"></span></td>
+                            <td class="tl">
+                                <p>{$goods.seller_comment}</p>
+                                <p class="date">[{$goods.seller_evaluation_time|date:complete}]</p>
+                            </td>
+                            <td>
+                                <p>{$goods.seller_name|escape}</p>
+                                <p><img src='{$goods.seller_credit_image}' title='{$goods.seller_credit_value}'/></p>
+                            </td>
+                            <td class="tl">
+                                <p><a target="_blank" href="{url app=goods&id=$goods.goods_id}">{$goods.goods_name|escape}</a></p>
+                                <p>{$goods.price|price}元</p>
+                            </td>
+                            <td>
+                            </td>
+                        </tr>
+                        <!--{foreachelse}-->
+                        <tr>
+                            <td colspan="20" class="norecord"><i>&nbsp;</i><span>暂无符合条件的数据记录</span></td>
+                        </tr>
+                        <!--{/foreach}-->
+                        <!--{/if}-->
+                        
+                        <!--{if $smarty.get.type eq 'to_buyer'}-->
+                        <!--{foreach from=$goods_list item=goods name=fe_goods}-->
+                        <tr class="bd-line ncgeval">
+                            <td class="{if $goods.seller_evaluation eq '3'}ncgeval-good{elseif $goods.seller_evaluation eq '2'}ncgeval-normal{elseif $goods.seller_evaluation eq '1'}ncgeval-bad{/if}"><span class="ico"></span></td>
+                            <td class="tl">
+                                <p>{$goods.seller_comment}</p>
+                                <p class="date">[{$goods.seller_evaluation_time|date:complete}]</p>
+                            </td>
+                            <td>
+                                <p>{$goods.buyer_name|escape}</p>
+                                <p><img src='{$goods.buyer_credit_image}' title='{$goods.buyer_credit_value}'/></p>
+                            </td>
+                            <td class="tl">
+                                <p><a target="_blank" href="{url app=goods&id=$goods.goods_id}">{$goods.goods_name|escape}</a></p>
+                                <p>{$goods.price|price}元</p>
+                            </td>
+                            <td>
+                                {if $goods.seller_evaluation neq '3'}<a href="{url app=my_evaluation&act=edit_buyer&rec_id=$goods.rec_id}" class="ncu-btn2 mt5">改为好评</a>{/if}
+                            </td>
+                        </tr>
+                        <!--{foreachelse}-->
+                        <tr>
+                            <td colspan="20" class="norecord"><i>&nbsp;</i><span>暂无符合条件的数据记录</span></td>
+                        </tr>
+                        <!--{/foreach}-->
+                        <!--{/if}-->
+                        
+                        <!--{if $smarty.get.type eq 'to_seller'}-->
+                        <!--{foreach from=$goods_list item=goods name=fe_goods}-->
+                        <tr class="bd-line ncgeval">
+                            <td class="{if $goods.evaluation eq '3'}ncgeval-good{elseif $goods.evaluation eq '2'}ncgeval-normal{elseif $goods.evaluation eq '1'}ncgeval-bad{/if}"><span class="ico"></span></td>
+                            <td class="tl">
+                                <p>{$goods.comment}</p>
+                                <p class="date">[{$goods.evaluation_time|date:complete}]</p>
+                            </td>
+                            <td>
+                                <p>{$goods.seller_name|escape}</p>
+                                <p><img src='{$goods.seller_credit_image}' title='{$goods.seller_credit_value}'/></p>
+                            </td>
+                            <td class="tl">
+                                <p><a target="_blank" href="{url app=goods&id=$goods.goods_id}">{$goods.goods_name|escape}</a></p>
+                                <p>{$goods.price|price}元</p>
+                            </td>
+                            <td>
+                                {if $goods.evaluation neq '3'}<a href="{url app=my_evaluation&act=edit_seller&rec_id=$goods.rec_id}" class="ncu-btn2 mt5">改为好评</a>{/if}
+                            </td>
+                        </tr>
+                        <!--{foreachelse}-->
+                        <tr>
+                            <td colspan="20" class="norecord"><i>&nbsp;</i><span>暂无符合条件的数据记录</span></td>
+                        </tr>
+                        <!--{/foreach}-->
+                        <!--{/if}-->
+
+
+
+                    </tbody>
+
+
+                </table>
+                <div style="border-top: solid 1px #C4D5E0;"></div>
+                {include file=member.page.bottom.html}
+                <div class="clear"></div>
+            </div>
+            <div class="wrap_bottom"></div>
+        </div>
+        <div class="clear"></div>
+    </div>
+    <div class="clear"></div>
+</div>
+<iframe id='iframe_post' name="iframe_post" frameborder="0" width="0" height="0">
+</iframe>
+{include file=footer.html}

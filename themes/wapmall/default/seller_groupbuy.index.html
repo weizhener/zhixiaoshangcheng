@@ -1,0 +1,80 @@
+{include file="member.header.html"}
+<script type="text/javascript" src="{lib file=timepicker.js}" charset="utf-8"></script>
+<div class="mb-head">
+    <a href="javascript:history.back(-1)" class="l_b">返回</a>
+    <div class="tit">团购管理</div>
+    <a href="javascript" class="r_b"></a>
+</div>
+<div style="overflow-x:hidden;">
+
+<!---------个人中心头部--------------->
+<div class="user_header">
+    <div class="user_photo">
+        <a href="{url app=member}"><img src="{res file=images/user.jpg}" /></a>
+    </div>
+    <span class="user_name">
+        您好,欢迎{$visitor.user_name|escape}。<a href="index.php?app=member&act=logout" style="color:#999;margin-left:5px;">退出</a>
+    </span>
+    <div class="order_panel">
+        <ul class="orders">
+            <a href="{url app=seller_groupbuy}">
+                <li  style="width:43%;">
+                    <span class="num  on"></span>
+                    <span>全部团购</span>
+                </li>
+            </a>
+            <a href="{url app=seller_groupbuy&act=add}">
+                <li  style="width:43%;">
+                    <span class="num"></span>
+                    <span>新增团购</span>
+                    <b></b>
+                </li>
+            </a>
+        </ul>
+    </div>
+</div>
+<!------------团购页--------------------------->
+<div class="u_order">
+    <!--{foreach from=$groupbuy_list item=group name=_group_f}-->
+    <div class="orderbox">
+        <div class="detail">
+            <a href="{url app=groupbuy&id=$group.group_id}"> <img src="{$site_url}/{$group.default_image}" /></a>
+            <p class="title">{$group.group_name|escape}</p>
+            <p>​{$lang.state}：{$group.state|modifier:group_state}</p>​
+            <p>{$lang.start_end_time}：{$group.start_time|date:Y-m-d}{$lang.to}{$group.end_time|date:Y-m-d}</p>
+            <p>{$lang.quantity}/{$lang.min_quantity}：{$group.quantity}/{$group.min_quantity}</p>
+        </div>
+        <p class="opr">
+            {foreach from=$group.ican item=name}
+                        {if $name eq 'drop'}
+                        <a href="javascript:drop_confirm('{$lang.drop_confirm}', 'index.php?app=seller_groupbuy&amp;act=drop&id={$group.group_id}');" class="delete">{$lang.drop}</a>
+                        {elseif $name eq 'start'}
+                        <a href="javascript:drop_confirm('{$lang.start_confirm}', 'index.php?app=seller_groupbuy&amp;act=start&id={$group.group_id}');" class="start">{$lang.start}</a>
+                        {elseif $name eq 'view_order'}
+                            {if $group.order_count eq 0}
+                                <a class="{$name}">{$lang.view_order}({$group.order_count})</a>
+                            {else}
+                                <a href="{url app=seller_order&ordertype=groupbuy&group_id=$group.group_id}" class="{$name}">{$lang.view_order}({$group.order_count})</a>
+                            {/if}
+                        {elseif $name eq 'finished'}
+                        <a href="javascript:drop_confirm('{$lang.finished_confirm}', 'index.php?app=seller_groupbuy&amp;act=finished&id={$group.group_id}');" class="finished">{$lang.finished}</a>
+                        {elseif $name eq 'log'}
+                        <a href="javascript:;" dialog_id="log" dialog_title="log" dialog_width="320" ectype="dialog" uri="index.php?app=seller_groupbuy&amp;act=log&id={$group.group_id}" class="log">{$lang.log}</a>
+                        {else}
+                        <a href="{url app=seller_groupbuy&act=$name&id=$group.group_id}" class="{$name}">{$lang.$name}</a>
+                        {/if}
+                        {/foreach}</a>
+        </p>
+    </div>
+    <!--{foreachelse}-->
+    <div class="null" style="display:none; margin-top:120px;">
+        <p>你没有添加团购商品~</p>
+    </div>
+    <!--{/foreach}-->
+</div>
+
+<div class="page">
+    {include file=member.page.bottom.html}
+</div>
+</div>
+{include file="member.footer.html"}

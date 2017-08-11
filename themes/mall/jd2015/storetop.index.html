@@ -1,0 +1,67 @@
+{include file=member.header.html}
+<script type="text/javascript">
+    $(function() {
+        $('#add_time_from').datepicker({dateFormat: 'yy-mm-dd'});
+        $('#add_time_to').datepicker({dateFormat: 'yy-mm-dd'});
+    });
+</script>
+<style type="text/css">
+    .table .line td{ border:none;}
+    .float_right {float: right;}
+    .line{ border-bottom:1px solid #E2E2E2}
+</style>
+<div class="content">
+    {include file=member.menu.html}
+    <div id="right">
+        {include file=member.submenu.html}
+        <div class="wrap">
+            <div class="public table">
+                <div class="user_search">
+                   
+                </div>		
+
+                <table>
+                    <!--{if $stores}-->
+                    <tr class="line tr_bgcolor">
+                        <th width="10%">卖家</th>
+                        <th width="10%" align="center">销售量</th>
+                        <th width="60%">销售额</th>
+                        <th width="10%">余额</th>
+                        
+                    </tr>
+                    <!--{/if}-->
+                    <!--{foreach from=$stores item=epaylog name=v}-->
+                    <!--{if $smarty.foreach.v.last}--><tr class="line_bold"><!--{else}--><tr class="line"><!--{/if}-->
+                        <td align="center">{$epaylog.store_name}</td>
+                        <td align="center">{$epaylog.quantity}</td>
+                        <td align="center">{$epaylog.goods_amount}</td>
+                        <td align="center">{$epaylog.money}</td>
+                      
+                    </tr>
+                    <!--{foreachelse}-->
+                    <tr>
+                        <td colspan="5" class="member_no_records padding6">{$lang.$smarty.get.act}{$lang.no_records}</td>
+                    </tr>
+                    <!--{/foreach}-->
+                    <!--{if $epaylog_list}-->
+                    <tr class="sep-row">
+                        <td colspan="7"></td>
+                    </tr>
+                    <tr class="operations">
+                        <th colspan="7">
+                            <p class="position2 clearfix">
+                                {include file=member.page.bottom.html}
+                            </p>
+                        </th>
+                    </tr>
+                    <!--{/if}-->
+                </table>
+            </div>
+            <div class="wrap_bottom"></div>
+        </div>
+        <div class="clear"></div>
+    </div>
+    <div class="clear"></div>
+</div>
+<div class="clear"></div>
+{include file=footer.html}

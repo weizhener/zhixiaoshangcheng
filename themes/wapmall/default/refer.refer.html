@@ -1,0 +1,60 @@
+{include file="member.header.html"}
+
+<div class="mb-head">
+
+    <a href="javascript:history.back(-1)" class="l_b">返回</a>
+
+    <div class="tit">推荐成员</div>
+
+    <a href="javascript" class="r_b"></a>
+
+</div>
+
+{include file=member.submenu.html}
+
+
+
+<div class="table">
+
+    <table>
+
+        <tbody>
+
+            <tr>
+
+                <th style="width:50%">会员名</th>
+
+                <th style="width:30%">注册时间</th>
+
+            </tr>
+
+            <!-- {foreach from=$refers item=refer name=fe_refer} -->
+
+            <tr>
+
+
+                <td>{$refer.user_name|escape}</td>
+
+                <td>{$refer.reg_time|date}</td>
+
+            </tr>
+
+            <!--{/foreach}-->
+
+        </tbody>
+
+    </table>
+
+</div>
+
+
+
+
+
+{include file=member.page.bottom.html}
+
+
+
+
+
+{include file="member.footer.html"}

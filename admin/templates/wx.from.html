@@ -1,0 +1,84 @@
+{include file="header.html"}
+<div class="main">
+	  <div id="rightTop">
+  <p>{$lang.user}</p>
+  <ul class="subnav">
+    <li><span>{$lang.manage}</span></li>
+    	<li><a class="btn1" href="index.php?app=user&amp;act=weixin">微信会员</a></li>
+    <li><a class="btn1" href="index.php?app=user&amp;act=add">{$lang.add}</a></li>
+  </ul>
+</div>
+	<div class="fixed-empty" style="height:60px !important;"></div>
+	<style>
+	.main-div {
+background: #fff;
+border: 1px solid #ccc;
+color: #666;
+margin-bottom: 10px;
+border-radius: 5px;
+padding: 2px;
+}
+	</style>
+    
+	<div class="main-div">
+  <table width="98%">
+        <tbody>
+        
+      
+       
+       <!--{foreach from=$wxmessage_list item=user}-->
+        <tr>
+        <td style="padding: 0px 20px">{$wxinfo.nickname}<span>{$user.dateline|date:Y.m.d H:i:s}</span></td>
+    </tr>
+    <tr>
+      <td style="padding: 0px 20px">
+        <h3>{$user.message}</h3>
+        
+        {if $user.w_message}
+        <h3>公众号：  {$user.w_message}  </h3>
+        {/if}
+        <hr size="1">
+      </td>
+    </tr>
+    	<!--{/foreach}-->
+    
+      </tbody></table>
+</div>
+
+
+
+<div class="main-div">
+<form method="post" action="" name="theForm" >
+<table border="0" width="98%">
+
+  <tbody><tr>
+    <td align="right">回复内容:</td>
+    <td><textarea name="msg_content" cols="50" rows="4" wrap="VIRTUAL" id="msg_content"></textarea></td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+    <tr>
+        <td align="right">openid:{$wxinfo.wxid}</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+    </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>
+      <input type="hidden" name="wxid" value="{$wxinfo.wxid}">
+      <input type="hidden" name="uid" value="{$wxinfo.uid}">
+      <input name="Submit" value=" 确定 " type="submit" class="button">
+      <input type="reset" value=" 重置 " class="button">
+    </td>
+  </tr>
+</tbody></table>
+</form>
+</div>
+
+</div>
+{include file="footer.html"}

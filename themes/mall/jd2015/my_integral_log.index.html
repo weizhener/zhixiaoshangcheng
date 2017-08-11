@@ -1,0 +1,74 @@
+{include file=member.header.html}
+<script type="text/javascript">
+    $(function() {
+        $('#add_time_from').datepicker({dateFormat: 'yy-mm-dd'});
+        $('#add_time_to').datepicker({dateFormat: 'yy-mm-dd'});
+    });
+</script>
+<style type="text/css">
+    .table .line td{ border:none;}
+    .float_right {float: right;}
+    .line{ border-bottom:1px solid #E2E2E2}
+</style>
+<div class="content">
+    {include file=member.menu.html}
+    <div id="right">
+        {include file=member.curlocal.html}
+        {include file=member.submenu.html}
+        <div class="wrap">
+            <div class="public_select table">
+                    <form method="get">
+                            <div class="user_search">
+                                
+                                <span>{$lang.add_time_from}: </span>
+                                <input type="text" class="text1 width2" name="add_time_from" id="add_time_from" value="{$query.add_time_from}"/> &#8211;
+                                <input type="text" class="text1 width2" name="add_time_to" id="add_time_to" value="{$query.add_time_to}"/>
+                                <select class="querySelect" name="integral_type">
+                                    <option value="">{$lang.search_integral_type}</option>
+                                    {html_options options=$integral_type_list selected=$query.integral_type}
+                                </select>
+                                <input type="hidden" name="app" value="my_integral_log" />
+                                <input type="hidden" name="act" value="index" />
+                                <input type="submit" class="btn" value="{$lang.so_so}" />
+                                <!--{if $filtered}-->
+                                <a class="detlink float_right" href="{url app=my_integral_log}">{$lang.cancel_query}</a>
+                                <!--{/if}-->
+                            </div>
+                    </form>
+                <table>
+
+
+
+                    <!--{if $integral_logs}-->
+                    <tr class="gray">
+                        <th align='center' width='10%'>{$lang.user_name}</th>
+                        <th align='center' width='10%'>{$lang.point}</th>
+                        <th align='center' width='20%'>{$lang.add_time}</th>
+                        <th align='center' width='20%'>{$lang.integral_type}</th>
+                        <th align='center' width='40%'>{$lang.remark}</th>
+                    </tr>
+                    <!--{/if}-->
+                    <!--{foreach from=$integral_logs item=integral_log name=v}-->
+                    <!--{if $smarty.foreach.v.last}--><tr class="line_bold"><!--{else}--><tr class="line_bold"><!--{/if}-->
+                        <td align='center'>{$integral_log.user_name}</td>
+                        <td align='center'>{$integral_log.point}</td>
+                        <td align='center'>{$integral_log.add_time|date:Y-m-d H:i:s}</td>
+                        <td align='center'><!--{foreach from=$integral_type_list item=integral_type key=key}--><!--{if $key eq $integral_log.integral_type}-->{$integral_type}<!--{/if}--><!--{/foreach}--></td>
+                        <td align='center'>{$integral_log.remark}</td>
+                    </tr>
+                    <!--{foreachelse}-->
+                    <tr>
+                        <td colspan="5" class="member_no_records padding6">{$lang.$smarty.get.act}{$lang.no_records}</td>
+                    </tr>
+                    <!--{/foreach}-->
+                </table>
+                {include file=member.page.bottom.html}
+            </div>
+            <div class="wrap_bottom"></div>
+        </div>
+        <div class="clear"></div>
+    </div>
+    <div class="clear"></div>
+</div>
+<div class="clear"></div>
+{include file=footer.html}

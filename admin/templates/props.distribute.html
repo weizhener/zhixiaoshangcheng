@@ -1,0 +1,68 @@
+{include file="header.html"}
+<div id="rightTop">
+    <p>{$lang.goods_props}</p>
+    <ul class="subnav">
+        <li><a class="btn1" href="index.php?app=props">{$lang.prop_list}</a></li>
+        <li><a class="btn1" href="index.php?app=props&amp;act=add">{$lang.add_props}</a></li>
+        <li><span>{$lang.distribute_props}</span></li>
+    </ul>
+</div>
+<style>
+.distribute .td{border:1px #ddd solid;border-bottom:0;padding-left:5px;}
+a{ text-decoration:none}
+a:hover{ text-decoration:underline}
+</style>
+<script>
+$(function(){
+	$('input[ectype="pid"]').click(function(){
+		if($(this).attr('checked')) {
+			$('input[ectype="pid'+$(this).attr("pid")+'"]').attr('checked',true);
+		}
+		else {
+			$('input[ectype="pid'+$(this).attr("pid")+'"]').attr('checked',false);
+		}
+	})
+});
+</script>
+<div class="info2 distribute">
+   <form action="" method="post">
+    <input type="hidden" name="cate_id" value="{$cate_id}" />
+    <table  class="distinction">
+        <tr style="background:none">
+           <td colspan="2" class="td" style="width:100%;background:none; height:40px;">
+            {$lang.cur_gcate}
+            {foreach from=$distribute_cate item=gcate}
+            / <a href="{url app=props&act=distribute&cate_id=$gcate.cate_id}">{$gcate.cate_name}</a>
+            {/foreach}
+           </td>
+        </tr>
+        <!--{foreach from=$prop_list item=prop}-->
+        <tr>
+            <td class="td" style="width:15%;">
+            <input type="checkbox" name="pid[]" value="{$prop.pid}" id="pid{$prop.pid}" ectype="pid" pid="{$prop.pid}" {if $prop.checked} checked="checked"{/if} /><label for="pid{$prop.pid}">{$prop.name}</label></td>
+            <td class="td" id="pvs{$prop.pid}" style="width:80%">
+            {foreach from=$prop.prop_value item=item}
+            <input type="checkbox" name="vid[]" value="{$prop.pid}:{$item.vid}" id="vid{$item.vid}" ectype="pid{$item.pid}" { if $item.checked} checked="checked"{/if} /><label for="vid{$item.vid}">{$item.prop_value}</label>
+            {/foreach}
+            </td>
+        </tr>  
+        <!--{foreachelse}-->
+        <tr class="no_data">
+            <td colspan="2">{$lang.no_data}</td>
+        </tr>
+        <!--{/foreach}-->
+        <tfoot>
+        {if $prop_list}
+        <tr class="tr_pt10">
+           <td colspan="2" id="batchAction">
+           <input class="formbtn" type="submit" value="{$lang.ok_save}" />
+           <input class="formbtn" type="reset" name="reset" value="{$lang.reset}" />
+           </td>
+        </tr>    
+        </tfoot>
+        {/if}
+    </table>
+    </form>
+</div>
+
+{include file="footer.html"}

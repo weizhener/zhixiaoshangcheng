@@ -1,0 +1,324 @@
+{include file=top.html}
+<div class="wrapper channel">
+    <!-- 导航电梯 start -->
+    <div class="ju-ele-nav">
+        <div class="top">
+             <h2>
+                <a class="logo" href="{url app=ju}"></a>
+            </h2>
+        </div>
+        <div class="ct">
+            <!--{foreach from=$cate_list item=cate name=fe_cate}-->
+             <h2 ectype="cate">
+                <a href="javascript:;" id="{$cate.id}">{$cate.value}</a>
+            </h2>
+            <ul class="jcategory" ectype="cate">
+            	<!--{foreach from=$cate.children item=child name=fe_child}-->
+                <li><a href="{url app=ju&cate_id=$child.id}"><span>{$child.value}</span></a>
+                </li>
+                <!--{/foreach}-->
+            </ul>
+            <!--{/foreach}-->
+        </div>
+        <div class="bt"></div>
+    </div>
+    <!-- 电梯 end -->
+    <div id="page">
+        <div class="ju-naver">
+            <div class="inner w">
+                <div class="top-search">
+                 <div class="top-search-box clearfix">
+                    <div class="form-fields float-right">
+                        <form method="GET" action="{url app=ju}">
+                            <input type="hidden" name="app" value="ju" />
+                            <input type="hidden" name="act" value="index" />
+                            <input type="text"   name="keyword" value="{if $smarty.get.keyword}{$smarty.get.keyword}{else}搜索其实很容易{/if}" onfocus="if (this.value=='搜索其实很容易') this.value = '';"  class="keyword"  style="color:#999;"/>
+                            <input type="submit" value="搜索" class="submit" hidefocus="true" />
+                        </form>
+                    </div>
+                 </div>
+              </div>
+                <!-- right menu -->
+                <ul class="nav-menu">
+                    <li class="menu-home"><a class="menu-link" href="{url app=ju}"><span>{$lang.index}</span></a>
+                    </li>
+                    <li class=" menu-brands">
+                        <a class="menu-link"  href="{url app=ju_brand}"> <span>{$lang.ju_brand}</span>
+     <em class="btn-dropdown"></em>
+                        </a>
+                    </li>
+                    <li class="menu-jump"><a class="menu-link"  href="{url app=ju_mingpin}"><span>{$lang.ju_mingpin}</span></a>
+                    </li>
+                    <li class=" menu-jiazhuang"><a class="menu-link"  href="{url app=ju_decoration}"><span>{$lang.ju_decoration}</span></a>
+                    </li>
+                    <li class=" menu-local">
+                        <a class="menu-link"  href="{url app=ju_life}"> <span>{$lang.ju_life}</span>
+     
+                        </a>
+                    </li>
+                    <li class=" menu-travel">
+                        <a class="menu-link"  href="{url app=ju_travel}"> <span>{$lang.ju_travel}</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="detail" id="content">
+            	<div class="ju-location">
+                	<a href="{url app=ju}" class="bd-top">{$lang.today_ju}</a>
+                    <span class="arrow"></span>
+                    <span>{$lang.groupbuy_detail}</span></div>
+                <div class="main-box avil">
+                        <div class="box-body">
+                             <h2>{$groupbuy.group_name|escape}</h2>
+                             <div class="info-box clearfix">
+                                    <div class="picbox">
+                                        <div class="pic">
+                                        	<a href="{url app=group&id=$groupbuy.goods_id&gid=$groupbuy.group_id}" target="_blank">
+                                            	<img src="{if $groupbuy.image}{$groupbuy.image}{else}{$groupbuy.default_image}{/if}" height="327" width="490" alt="{$groupbuy.goods_name|escape}">
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="meta">
+                                        <div class="it-buy">
+                                            <strong class="juPrices">{$groupbuy.group_price|price}</strong>
+                                            <span class="discount">优惠{$groupbuy.discount}%</span>
+                                            <a class="buy" href="{url app=group&id=$groupbuy.goods_id&gid=$groupbuy.group_id}" title="参团"></a>
+                                        </div>            
+                                        <div class="it-prices">
+                                              <dl>
+                                                <dt class="price">原 价</dt>                
+                                                <dt class="save">节 省</dt>
+                                                <dd class="price"><del>{$groupbuy.price|price}</del></dd>
+                                                <dd class="save">{$groupbuy.price_save|price}</dd>
+                                             </dl>
+                                        </div>
+                                        <div class="it-sold">
+                                             <p class="sold">已售：<strong>{$groupbuy.group_count}</strong></p>
+                                             <p class="desc">数量有限，赶快下单吧!</p>
+                                        </div>            
+                                        <div class="time-count J_Countdown">
+                                            <span class="flip-top J_NumDays" >{$groupbuy.lefttime.d}</span><em>:</em>
+                                            <span class="flip-top J_NumHours">{$groupbuy.lefttime.h}</span><em>:</em>
+                                            <span class="flip-top J_NumMins" >{$groupbuy.lefttime.m}</span><em>:</em>
+                                            <span class="flip-top J_NumSeconds">{$groupbuy.lefttime.s}</span>
+                                        </div>
+                                        <div class="info-bar">
+                                            <div class="it_share">
+                                                <!-- JiaThis Button BEGIN -->
+                                                <div id="ckepop">
+                                                    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt share-widget-btn" target="_blank">分享</a>
+                                                </div>
+                                                <script type="text/javascript" src="http://v3.jiathis.com/code_mini/jia.js?uid=1340070748395605" charset="utf-8"></script>
+                                                <!-- JiaThis Button END -->  
+                                            </div>
+                                            <div class="it-fav"><a href="javascript:collect_goods({$groupbuy.goods_id});" class="fav-widget-btn"></a></div>
+                            			</div>
+                                  </div><!--/meta-->
+                            </div><!-- /info-box -->
+                        </div>
+                        <div class="box-down clearfix">
+                          <div class="box-lside">   
+                              <div class="it-detail">
+                                <ul class="detail-tab">
+                                    <li class="current" id="tab1"><span>团购详情</span><s></s></li>
+                                    <li id="tab2"><span>历史评价</span><s></s></li>
+                                    <li id="tab3"><span>刚刚下单</span><s></s></li>
+                               </ul>
+                               <div class="detail-con" tabid="tab1">
+                                    <!-- 保证金 -->
+                                    <div class="ju-qc-main">
+                                        <div class="ju-qc-content">
+                                            <div class="qc-detail-box deposit">
+                                                <h5>该商家已提供团购保证金。</h5>
+                                                <div class="qc-info">买家通过聚划算参团购买商品，如在保证金有效期内，因卖家未履行消费者保障服务承诺及淘宝网规则而导致买家权益受损，聚划算将根据淘宝相应规则，要求卖家履行赔付义务并使用此保证金赔付买家。</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="infodetail">
+                                    	{$groupbuy.group_desc}
+                                    </div>
+                                    <p class="detail-link-more">
+                                       <a target="_blank" href="{url app=group&id=$groupbuy.goods_id&gid=$groupbuy.group_id}">查看更多详情</a>
+                                    </p>
+                              </div>
+                              <div class="detail-con" tabid="tab2" style="display:none">
+                                   <div class="message">
+                                        <!-- {foreach from=$goods_comments item=comment} -->
+                                        <dl>
+                                        	<dt>
+                                            	<p class="eval-txt">{$comment.comment|escape|nl2br}</p>
+                                                <p class="time">[{$comment.evaluation_time|date:complete}]</p>
+                                           </dt>
+                                            <dd>
+                                                <div class="beat">
+                                                {$lang.evaluation}:
+                                                {if $comment.evaluation gt 0}<img src="{res file=images/bit.gif}" />{/if}
+                                                {if $comment.evaluation gt 1}<img src="{res file=images/bit.gif}" />{/if}
+                                                {if $comment.evaluation gt 2}<img src="{res file=images/bit.gif}" />{/if}
+                                                {if $comment.evaluation lt 3}<img src="{res file=images/bit2.gif}" />{/if}
+                                                {if $comment.evaluation lt 2}<img src="{res file=images/bit2.gif}" />{/if}
+                                                {if $comment.evaluation lt 1}<img src="{res file=images/bit2.gif}" />{/if}
+                                            	</div>
+                                                <p>{if $comment.anonymous}***{else}{$comment.buyer_name|escape}{/if}</p>
+                                            </dd>
+                                        </dl>
+                                        <!-- {foreachelse} -->
+                                        <div class="message_text">{$lang.no_records}</div>
+                                        <!-- {/foreach} -->
+                                	</div>
+                               </div>
+                               <div class="detail-con" tabid="tab3" style="display:none">
+                                    
+                                    <!--{if $order_list}-->
+                                    <div class="buyer">
+                                            <div class="hd">
+                                                <h3>他们刚刚下单团购了! </h3>
+                                            </div>
+                                            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                                <thead>
+                                                    <tr>
+                                                        <th>买家</th>
+                                                        <th>宝贝名称</th>
+                                                        <th>出价</th>
+                                                        <th>购买数量</th>
+                                                        <th>下单时间</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <!--{foreach from=$order_list item=order}-->
+                                                     <tr>
+                                                        <td>{$order.buyer_name}</td>
+                                                        <td><a href="{url app=group&id=$order.goods_id&gid=$order.group_id}">{$groupbuy.group_name|truncate:34}</a></td>
+                                                        <td>{$order.price}</td>
+                                                        <td>{$order.quantity}</td>
+                                                        <td>{$order.add_time|date:complete}</td>
+                                                    </tr>
+                                                    <!--{/foreach}-->
+                                                </tbody>
+                                            </table> 
+                                    </div>
+                                    <!--{else}--> 
+                                    <div class="message_text">{$lang.no_records}</div>
+                                    <!--{/if}--> 
+                                </div>
+                              </div>
+                            <!--大按钮-->
+                              <div class="buy-bottom">           
+                                <!-- 购买按钮 -->
+                                <!-- 购买按钮 -->
+                                    <div class="it-buy avil">
+                                        <strong class="J_juPrices">{$groupbuy.group_price|price}</strong>
+                                        <span class="discount">优惠{$groupbuy.discount}%</span>
+                                         <a class="buy" href="{url app=group&id=$groupbuy.goods_id&gid=$groupbuy.group_id}" title="参团"></a>
+                                    </div>
+                                    <div class="it-prices">
+                                          <dl>
+                                            <dt class="price">原 价</dt>                
+                                            <dt class="save">节 省</dt>
+                                            <dd class="price"><del>{$groupbuy.price|price}</del></dd>
+                                            <dd class="save">{$groupbuy.price_save|price}</dd>
+                                         </dl>
+                                    </div>			<!-- 购买情况 -->
+                                    <div class="it-sold">
+                                         <p class="sold">已售：<strong>{$groupbuy.group_count}</strong></p>
+                                         <p class="desc">数量有限，赶快下单吧!</p>
+                                    </div> 
+                    		  </div>
+                            
+                          </div>
+                          <div class="ju-sider">		
+                                 <div class="biz-info">
+                                    <h3>商家信息</h3>
+                                    <div class="inner">
+                                         <div class="basic-inf">
+                                         		<div class="field">
+                                                        <div class="term">店&nbsp;&nbsp;铺：</div>
+                                                        <div class="con"><a href="{url app=store&id=$store.store_id}" target="_blank">{$store.store_name|escape}</a></div>
+                                                </div>
+                                                <div class="field">
+                                                    <div class="term">掌&nbsp;&nbsp;柜：</div>
+                                                    <div class="con inf-seller">
+                                                        {$store.owner_name|escape}
+                                                    </div>
+                                                </div>
+                                                <div class="field">
+                                                    <div class="term">客&nbsp;&nbsp;服：</div>
+                                                    <div class="con">
+                                                        <span class="ww-light ww-large">
+                                                            <!--{if $store.im_qq}-->
+                                                            <a href="http://wpa.qq.com/msgrd?V=1&amp;Uin={$store.im_qq|escape}&amp;Site={$store.store_name|escape}&amp;Menu=yes" target="_blank"><img src="http://wpa.qq.com/pa?p=1:{$store.im_qq|escape}:4" alt="QQ"></a>
+                                                            <!--{/if}-->
+                                                            <!--{if $store.im_ww}-->
+                                                            <a target="_blank" href="http://amos.im.alisoft.com/msg.aw?v=2&uid={$store.im_ww|escape:url}&site=cntaobao&s=2&charset={$charset}" ><img border="0" src="http://amos.im.alisoft.com/online.aw?v=2&uid={$store.im_ww|escape:url}&site=cntaobao&s=2&charset={$charset}" alt="Wang Wang" /></a>
+                                                            <!--{/if}-->
+                                                            <!--{if $store.im_msn}-->
+                                                            <a target="_blank" href="http://settings.messenger.live.com/Conversation/IMMe.aspx?invitee={$store.im_msn|escape}"><img src="http://messenger.services.live.com/users/{$store.im_msn|escape}/presenceimage/" alt="status" /></a>
+                                                            <!--{/if}-->
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                                <div class="field">
+                                                        <div class="term">所在地：</div>
+                                                        <div class="con">{$store.region_name}</div>
+                                                </div>
+                                                <div class="field">
+                                                        <div class="term">地&nbsp;&nbsp;址：</div>
+                                                        <div class="con">{$store.address}</div>
+                                                </div>
+                                                <div class="field">
+                                                        <div class="term">电&nbsp;&nbsp;话：</div>
+                                                        <div class="con">{$store.tel}</div>
+                                                </div>
+                                            </div>
+                                    </div>
+                                    <!-- 商家信息 结束 -->
+                                 </div>
+                                 <div class="ju-recommend" style="display:block;">
+                                        <h3>为您推荐</h3>
+                                        <ul>
+                                        	<!--{foreach from=$groupbuy_hot item=group}-->
+                                        	<li>
+                                            	<a target="_blank" href="{url app=ju&act=show&id=$group.group_id}" class="ju-recommend-pic">
+                                                	<img width="160" height="107" src="{$group.image}" alt="{$group.goods_name|escape}" />
+                                                    <span class="ju-recommend-discount"><b>优惠{$group.discount}</b><span>%</span>
+                                                    </span>
+                                                 </a>
+                                                 <a target="_blank" href="{url app=ju&act=show&id=group.group_id}" class="ju-recommend-title">{$group.goods_name|escape}</a>
+                                                    <p class="ju-recommend-price"><del>{$group.price|price}</del><span>{$group.group_price|price}</span></p>
+                                            </li>
+                                            <!--{/foreach}-->
+                                         </ul>
+                                 </div>
+                           </div>
+                        </div>
+               </div>
+         </div>
+    </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){
+	
+	$.each($('.J_Countdown'),function(){
+	
+		var theDaysBox  = $(this).find('.J_NumDays');
+		var theHoursBox = $(this).find('.J_NumHours');
+		var theMinsBox  = $(this).find('.J_NumMins');
+		var theSecsBox  = $(this).find('.J_NumSeconds');
+		
+		countdown(theDaysBox, theHoursBox, theMinsBox, theSecsBox);
+	});
+   
+   $(".detail-tab li").click(function(){
+	   $(".detail-tab li").each(function(){
+		   $(this).removeClass("current");
+		   $(".detail-con").hide();
+		});
+		$(this).addClass("current");
+		var id = $(this).attr("id");
+		$("[tabid="+id+"]").show();
+	})
+	
+});
+</script>
+{include file=footer.html}

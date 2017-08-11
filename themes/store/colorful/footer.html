@@ -1,0 +1,14 @@
+{include file=footer_order_notice.html}
+<div id="footer">
+    <div class="w">
+        <div class="copyright">
+            <span>{$copyright}<br> <!--{if $icp_number}-->{$icp_number}<!--{/if}--> {$statistics_code}</span>
+        </div>
+
+    </div>
+</div>
+
+{$store.statistics_url}
+{$async_sendmail}
+</body>
+</html>

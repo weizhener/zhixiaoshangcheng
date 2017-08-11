@@ -1,0 +1,181 @@
+{include file=member.header.html}
+<script type="text/javascript">
+    $(function() {
+        $('#mobile_form').validate({
+            errorPlacement: function(error, element) {
+                $(element).next('.field_notice').hide();
+                $(element).after(error);
+            },
+            success: function(label) {
+                label.addClass('validate_right').text('OK!');
+            },
+            rules: {
+                orig_password: {
+                    required: true
+                },
+                confirm_code: {
+                    required: true,
+                    number: true,
+                    byteRange: [6, 6, '{$charset}'],
+                    remote: {
+                        url: 'index.php?app=member&act=cmc&ajax=1',
+                        type: 'get',
+                        data: {
+                            confirm_code: function() {
+                                return $('#confirm_code').val();
+                            }
+                        },
+                        beforeSend: function() {
+                            var _checking = $('#checking_code');
+                            _checking.next('label').hide();
+                            $(_checking).show();
+
+                        },
+                        complete: function() {
+                            $('#checking_code').hide();
+                        }
+                    }
+                },
+                phone_mob: {
+                    required: true,
+                    number: true,
+                    byteRange: [11, 11, '{$charset}'],
+                    remote: {
+                        url: 'index.php?app=member&act=check_mobile&type=change',
+                        type: 'get',
+                        data: {
+                            phone_mob: function() {
+                                return $('#phone_mob').val();
+                            }
+                        },
+                        beforeSend: function() {
+                            var _checking = $('#checking_mobile');
+                            _checking.next('label').hide();
+                            $(_checking).show();
+
+                        },
+                        complete: function() {
+                            $('#checking_mobile').hide();
+                        }
+                    }
+                }
+            },
+            messages: {
+                orig_password: {
+                    required: '{$lang.orig_password_empty}'
+                },
+                confirm_code: {
+                    required: '{$lang.mobile_code_required}',
+                    number: '{$lang.mobile_code_must_be_number}',
+                    byteRange: '{$lang.mobile_code_limit}',
+                    remote: '{$lang.mobile_code_error}'
+                },
+                phone_mob: {
+                    required: '{$lang.phone_mob_required}',
+                    number: '{$lang.phone_mob_number}',
+                    byteRange: '{$lang.phone_mob_limit}',
+                    remote: '{$lang.mobile_already_exsit}'
+                }
+
+            }
+        });
+
+        var canSend = true;
+        var time = 60;
+        var dtime = 60;
+        $("#sendsms").bind('click', function() {
+            var btn = $(this);
+            if (!canSend)
+                return;
+            var sendaddress = $('#phone_mob').val();
+            var fhm = $("[for='phone_mob']").text();
+            if (fhm != '' && fhm != "OK!") {
+                alert("请输入正确的手机号码！");
+                return;
+            }
+            if (fhm == '' && $('#phone_mob').val() == "") {
+                alert("请输入正确的手机号码！");
+                return;
+            }
+            $.ajax({
+                type: "get",
+                url: "index.php?app=member&act=send_code&type=change",
+                data: {
+                    mobile: function() {
+                        return sendaddress;
+                    }
+                },
+                success: function(msg) {
+                    var hander = setInterval(function() {
+                        if (time <= 0) {
+                            canSend = true;
+                            clearInterval(hander);
+                            btn.val("重新发送验证码");
+                            btn.removeAttr("disabled");
+                            time = dtime;
+                        } else {
+                            canSend = false;
+                            btn.attr({
+                                "disabled": "disabled"
+                            });
+                            btn.val(time + "秒后可重新发送");
+                            time--;
+                        }
+                    },
+                            1000);
+                    if (msg) {
+                        alert("短信已发送至:" + sendaddress + " 请注意查收！");
+                    } else {
+                        alert("短信发送失败，请检查手机号码是否正确！");
+                    }
+                }
+            });
+        });
+    });
+
+
+</script>
+<style>
+    .borline td { padding:10px 0px; }
+    .ware_list th { text-align:left; }
+    .bgwhite { background: #FFFFFF;}
+</style>
+<div class="content">
+    {include file=member.menu.html}
+    <div id="right">
+        {include file=member.curlocal.html}
+        {include file=member.submenu.html}
+        <div class="wrap information">
+            <div class="eject_con bgwhite info">
+                <div class="add">
+                    <form method="post" id="mobile_form">
+                        <ul>
+                            <li><h3>{$lang.orig_password}:</h3>
+                                <p><input class="text width_normal" type="password" name="orig_password" /></p>
+                            </li>
+                            <!-- {if $user.phone_mob}-->
+                            <li><h3>{$lang.old_phone_mob}:</h3>
+                                <p><input class="text width_normal" type="text" disabled=disabled id="old_phone_mob" name="old_phone_mob" value="{$user.phone_mob|escape}"/></p>
+                            </li>
+                            <!--{/if} -->
+                            <li><h3>{$lang.new_phone_mob}:</h3>
+                                <p><input class="text width_normal" type="text" id="phone_mob" name="phone_mob" value=""/></p>
+                                <label id="checking_mobile" class="checking">{$lang.checking}</label>
+                            </li>
+                            <li><h3></h3>
+                                <p style="margin-left:100px;"><input type="button" id="sendsms" value="{$lang.send_code}"/></p>
+                            </li>
+                            <li><h3>{$lang.confirm_code}:</h3>
+                                <p ><input class="text width_normal" type="text" id="confirm_code" name="confirm_code" value=""/></p>
+                                <label id="checking_code" class="checking">{$lang.checking}</label>
+                            </li>
+                        </ul>
+                        <p style="margin-left:100px;"><input class="btn" type="submit" value="{$lang.bind}" /></p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="clear"></div>
+</div>
+{include file=footer.html}

@@ -1,0 +1,44 @@
+<div class="hot_sales_more_collect mb10">
+	<div class="title">宝贝排行榜</div>
+	<div class="tabs clearfix">
+    	<span anchor="tab_1" class="active">销售量</span>
+    	<span anchor="tab_2">收藏数</span>
+    </div>
+    <div class="content">
+    	<div class="box tab_1 active">
+        	<!--{foreach from=$widget_data.hot_saleslist item=h name=fe_h}-->
+        	<dl class="clearfix">
+            	<dt><a href="{url app=goods&id=$h.goods_id}"><img width="42" height="42" src="{$h.default_image}" /></a></dt>
+                <dd class="detail">
+                	<a href="{url app=goods&id=$h.goods_id}">{$h.goods_name}</a>
+                    <b><i>&yen;</i>{$h.price}</b>
+                    <span>已经售出&nbsp;{$h.sales}&nbsp;件</span>
+                </dd>
+            </dl>
+            <!--{/foreach}-->
+        </div>
+    	<div class="box tab_2">
+        	<!--{foreach from=$widget_data.collect_goods item=c name=fe_c}-->
+        	<dl class="clearfix">
+            	<dt><a href="{url app=goods&id=$c.goods_id}"><img width="42" height="42" src="{$c.default_image}" /></a></dt>
+                <dd class="detail">
+                	<a href="{url app=goods&id=$c.goods_id}">{$c.goods_name}</a>
+                    <b><i>&yen;</i>{$c.price}</b>
+                    <span>已经收藏&nbsp;{$c.collects}&nbsp;件</span>
+                </dd>
+            </dl>
+            <!--{/foreach}-->
+        </div>
+    </div> 
+    <script type="text/javascript">
+		$(function(){
+			$('.hot_sales_more_collect .tabs span').hover(function(){
+				$('.hot_sales_more_collect .tabs span').removeClass('active');
+				$('.hot_sales_more_collect .content .box').removeClass('active');
+				$(this).addClass('active');
+				var c=$(this).attr('anchor');
+				$('.hot_sales_more_collect .content .'+c).addClass('active');
+			});
+		});
+	</script> 
+</div>

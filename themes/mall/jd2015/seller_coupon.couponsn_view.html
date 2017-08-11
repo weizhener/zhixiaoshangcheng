@@ -1,0 +1,70 @@
+{include file=member.header.html}
+<div class="content">
+    {include file=member.menu.html}
+    <div id="right">
+        {include file=member.curlocal.html}
+        {include file=member.submenu.html}
+        <div class="wrap">
+            <div class="public table">
+                <table>
+                    <!-- {if $couponsn_list} -->
+                    <tr class="line_bold" >
+                        <th class="width1"><input id="all" type="checkbox" class="checkall" /></th>
+                        <th class="align1" colspan="6">
+                            <label for="all"> <span class="all">{$lang.checkall}</span> </label>
+                            <a href="javascript:void(0);" class="delete" ectype="batchbutton" uri="index.php?app=seller_coupon&act=couponsn_drop" name="id" presubmit="confirm('{$lang.drop_confirm}')">{$lang.drop}</a>
+                        </th>
+                    </tr>
+
+                    <tr class="gray">
+                        <th></th>
+                        <th>{$lang.coupon_sn}</th>
+                        <th>{$lang.remain_times}</th>
+                        <th>是否领取</th>
+                        <th>{$lang.handle}</th>
+                    </tr>
+                    <!-- {/if} -->
+                    <!-- {if $couponsn_list} -->
+                    <tbody>
+                        <!-- {/if} -->
+                        <!-- {foreach from=$couponsn_list item=couponsn name=v} -->
+                        <tr class="line<!--{if $smarty.foreach.v.last}--> last_line<!--{/if}-->">
+                            <td class="align2"><input type="checkbox" class="checkitem" value="{$couponsn.coupon_sn}"/></td>
+                            <td>{$couponsn.coupon_sn}</td>
+                            <td>{$couponsn.remain_times}</td>
+                            <td><!--{if $couponsn.user_id}-->已领取<!--{else}-->未领取<!--{/if}--></td>
+                            <td class="align2">
+                                <a href="index.php?app=seller_coupon&act=couponsn_drop&id={$couponsn.coupon_sn}" >删除</a>
+                            </td>
+                        </tr>
+                        <!-- {foreachelse} -->
+                        <tr>
+                            <td colspan="8" class="member_no_records padding6">{$lang.no_records}</td>
+                        </tr>
+                        <!--{/foreach}-->
+                        <!-- {if $couponsn_list} -->
+                    </tbody>
+                    <!-- {/if} -->
+                    <!-- {if $couponsn_list} -->
+                    <tr class="line_bold line_bold_bottom">
+                        <td colspan="8">&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <th><input id="all2" type="checkbox" class="checkall" /></th>
+                        <th colspan="7"><p class="position1"><label for="all2"><span class="all">{$lang.checkall}</span></label>
+                        <a href="javascript:void(0);" ectype="batchbutton" class="delete" uri="index.php?app=seller_coupon&act=couponsn_drop" name="id" presubmit="confirm('{$lang.drop_confirm}')">{$lang.drop}</a></p>
+                    <p class="position2">
+                        {include file=member.page.bottom.html}
+                    </p>
+                    </th>  
+                    </tr>
+                    <!-- {/if} -->
+                </table>
+            </div>
+            <div class="wrap_bottom"></div>
+        </div>
+        <div class="clear"></div>
+    </div>
+    <div class="clear"></div>
+</div>
+{include file=footer.html}

@@ -1,0 +1,143 @@
+<div class="channel_phone_floor1 w clearfix tab_{$widget_data.model_id}">
+    <div class="mt">
+        <div class="mt_l">
+            <h2>
+                {$widget_data.model_name}
+            </h2>
+        </div>
+        <ul class="ks-switchable-nav">
+            <li class="ks-active fore0">
+                {$widget_data.sub_title_name1}
+                <i class="arrow"></i>
+            </li>
+            <li class="fore1">
+                {$widget_data.sub_title_name2}
+                <i class="arrow"></i>
+            </li>
+            <li class="fore2">
+                {$widget_data.sub_title_name3}
+                <i class="arrow"></i>
+            </li>
+            <li class="fore3">
+                {$widget_data.sub_title_name4}
+                <i class="arrow"></i>
+            </li>
+            <li class="fore4">
+                {$widget_data.sub_title_name5}
+                <i class="arrow"></i>
+            </li>
+        </ul>
+    </div>
+    <div class="mc">
+        <div class="ks-switchable-content">
+            <ul>
+                <!-- {foreach from=$widget_data.goods_list_1 item=goods name=fe_goods} -->
+                <li>
+                    <div class="p_img">
+                        <a href="{url app=goods&id=$goods.goods_id}" target="_blank">
+                            <img src="{$goods.default_image}" width="200" height="200">
+                            <em class="tag0">{$widget_data.describe_name1}</em>
+                        </a>
+                        <i></i>
+                    </div>
+                    <p class="p_title">
+                        <a href="{url app=goods&id=$goods.goods_id}" target="_blank">{$goods.goods_name|escape}</a>
+                    </p>
+                    <p class="p_price">
+                        ￥<strong>{$goods.price}</strong>
+                    </p>
+                    <span class="sales">已售&nbsp;{$goods.sales}&nbsp;</span>
+                </li>
+                <!-- {/foreach} -->
+            </ul>
+            <ul class style="display:none">
+                <!-- {foreach from=$widget_data.goods_list_2 item=goods name=fe_goods} -->
+                <li>
+                    <div class="p_img">
+                        <a href="{url app=goods&id=$goods.goods_id}" target="_blank">
+                            <img src="{$goods.default_image}" width="200" height="200">
+                            <em class="tag1">{$widget_data.describe_name2}</em>
+                        </a>
+                        <i></i>
+                    </div>
+                    <p class="p_title">
+                        <a href="{url app=goods&id=$goods.goods_id}" target="_blank">{$goods.goods_name|escape}</a>
+                    </p>
+                    <p class="p_price">
+                        <strong>{$goods.price|price}</strong>
+                    </p>
+                    <span class="reviews">评价:{$goods.reviews}</span>
+                </li>
+                <!-- {/foreach} -->
+            </ul>
+            <ul class style="display:none">
+                <!-- {foreach from=$widget_data.goods_list_3 item=goods name=fe_goods} -->
+                <li>
+                    <div class="p_img">
+                        <a href="{url app=goods&id=$goods.goods_id}" target="_blank">
+                            <img src="{$goods.default_image}" width="200" height="200">
+                            <em class="tag2">{$widget_data.describe_name3}</em>
+                        </a>
+                        <i></i>
+                    </div>
+                    <p class="p_title">
+                        <a href="{url app=goods&id=$goods.goods_id}" target="_blank">{$goods.goods_name|escape}</a>
+                    </p>
+                    <p class="p_price">
+                        <strong>{$goods.price|price}</strong>
+                    </p>
+                   <span class="reviews">评价:{$goods.reviews}</span>
+                </li>
+                <!-- {/foreach} -->
+            </ul>
+            <ul class style="display:none">
+                <!-- {foreach from=$widget_data.goods_list_4 item=goods name=fe_goods} -->
+               <li>
+                   <div class="p_img">
+                        <a href="{url app=goods&id=$goods.goods_id}" target="_blank">
+                            <img src="{$goods.default_image}" width="200" height="200">
+                            <em class="tag3">{$widget_data.describe_name4}</em>
+                        </a>
+                        <i></i>
+                    </div>
+                    <p class="p_title">
+                        <a href="{url app=goods&id=$goods.goods_id}" target="_blank">{$goods.goods_name|escape}</a>
+                    </p>
+                    <p class="p_price">
+                        <strong>{$goods.price|price}</strong>
+                    </p>
+                    <span><del>{$goods.toprice|price}</del></span>
+                </li>
+                <!-- {/foreach} -->
+            </ul>
+            <ul class style="display:none">
+                <!-- {foreach from=$widget_data.goods_list_5 item=goods name=fe_goods} -->
+                <li>
+                    <div class="p_img">
+                        <a href="{url app=goods&id=$goods.goods_id}" target="_blank">
+                            <img src="{$goods.default_image}" width="200" height="200">
+                            <em class="tag4">{$widget_data.describe_name5}</em>
+                        </a>
+                        <i></i>
+                    </div>
+                    <p class="p_title">
+                        <a href="{url app=goods&id=$goods.goods_id}" target="_blank">{$goods.goods_name|escape}</a>
+                    </p>
+                    <p class="p_price">
+                        <strong>{$goods.price|price}</strong>
+                    </p>
+                    <span class="sales">已售&nbsp;{$goods.sales}&nbsp;</span>
+                </li>
+                <!-- {/foreach} -->
+            </ul>
+        </div>
+    </div>
+</div>
+
+<script>
+    KISSY.ready(function(S) {
+        var tabs = new S.Tabs('.tab_{$widget_data.model_id}', {
+            aria: false
+        });
+    });
+</script>

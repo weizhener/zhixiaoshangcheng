@@ -1,0 +1,44 @@
+{include file="member.header.html"}
+<div class="mb-head">
+    <a href="javascript:history.back(-1)" class="l_b">返回</a>
+    <div class="tit">我的收藏</div>
+    <a href="javascript" class="r_b"></a>
+</div>
+
+
+<body class="gray">
+<div class="w320">
+  
+    <div class="mark"> 
+     <ul class="bm_tab">
+            <li ><a href="{url app=my_favorite}">收藏商品</a></li>
+            <li class="cur"><a href="{url app=my_favorite&type=store}">收藏店铺</a></li>
+        </ul>
+           <div class="bm_con" >
+            <div class="marklist">
+                <ul>
+                 <!--{foreach from=$collect_store item=store name=v}-->
+                    <li>
+                        <a href="{url app=store&id=$store.store_id}"><img src="{$store.store_logo}" /></a>
+                        <p>店名：{$store.store_name|escape}</p>
+                        <p>掌柜：{$store.user_name|escape}</p>
+                        <p>收藏时间：{$goods.add_time|date:complete}</p>
+                        <a href="javascript:drop_confirm('{$lang.drop_confirm}', 'index.php?app=my_favorite&amp;act=drop&type=store&item_id={$store.store_id}');" class="close"><img src="{res file=images/close.jpg}" style="border:none; width:20px;height:20px;margin:0 0 5px 0;" /></a>
+                    </li>
+                    <!--{foreachelse}-->
+                    <li>{$lang.no_records}</li>
+                   <!--{/foreach}-->	
+                </ul>
+            </div>
+        </div>
+        
+    </div>
+    
+    
+    <!--------翻页-------------->
+    <div class="page">
+      {include file=member.page.bottom.html}
+    </div>
+</div>
+    
+{include file="member.footer.html"}

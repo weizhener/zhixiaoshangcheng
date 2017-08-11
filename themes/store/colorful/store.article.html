@@ -1,0 +1,24 @@
+{include file=header.html}
+<div id="page">
+<div class="w-full col-1" area="top_ad_area" widget_type="area">
+    <!--{widgets page=article area=top_ad_area}-->
+</div>
+<div id="content">
+    <div id="left">
+        <div class="" area="store_left" widget_type="area">
+            <!--{widgets page=article area=store_left}-->
+        </div>
+    </div>
+    
+    <div id="right">
+    	<div class="" area="store_right" widget_type="area">
+            <!--{widgets page=article area=store_right}-->
+        </div>
+        <div class="default">{$article.content|escape:editor}</div>
+    </div>
+    
+    <div class="clear"></div>
+</div>
+</div>
+
+{include file=footer.html}

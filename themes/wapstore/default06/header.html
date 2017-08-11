@@ -1,0 +1,15 @@
+
+<div class="header">
+	<a href="{url app=store&id=$store.store_id}" class="logo"><img src="{$store.store_logo}"></a>
+    <!---搜索框------>
+    <div class="searchBar">
+         <form   id="" name="" method="get" action="index.php">  
+         <input type="hidden" name="app" value="store" />
+             <input type="hidden" name="act" value="search" />
+             <input type="hidden" name="id" value="{$store.store_id}" />
+        <input type="text" name="keyword" placeholder="搜搜看吧" class="search_text" />
+        <div class="search_btn_img"><img src="{res file=images/search_btn.png}" style="width:30px;"></div>
+        <input type="submit" value="" class="search_btn">
+        </form>
+    </div>
+</div>

@@ -1,0 +1,16 @@
+﻿.integral_floor{}
+.integral_floor .mt{height:45px;line-height: 45px;position: relative;background-color:#F63723; }
+.integral_floor .mt h3{font-size:18px;text-align:center;line-height:46px;font-family:'微软雅黑'; color:#FFF; }
+.integral_floor .mc{}
+.integral_floor .mc ul{}
+.integral_floor .mc li {float: left;width: 48%;height: 320px;margin: 0 5px 0 0;background: #fff;overflow: hidden;}
+.integral_floor .mc li .pic img{width: 100%;}
+.integral_floor .mc li .goods_name{color: #666;font-size: 14px;height:34px;line-height: 17px;padding: 10px;text-overflow: ellipsis;border-bottom: 1px dashed #000;position: relative;}
+.integral_floor .mc li .goods_name .icon {position: absolute;width: 14px;height: 11px;bottom: -6px;right: 0;background: url(../images/integral_goods_name_ico.png) no-repeat;}
+.integral_floor .mc li .goods_price{color: #ce1c00;font-size: 16px;position: relative;height:30px;text-align: center;margin-top: 8px;}
+.integral_floor .mc li .goods_integral {line-height: 20px;height: 20px;color: #000;font-size: 14px;text-align: center;}
+.integral_floor .mc li .goods_integral .red{color:red;padding-left: 5px;font-weight: bold;}
+.integral_floor .mc li .btn{display: block;margin: 10px auto 0;cursor: pointer;width: 200px;height: 40px;line-height: 40px;background: #000;font-size: 18px;text-align: center;}
+.integral_floor .mc li .btn a{color: #fff;}
+.integral_floor .mc li:hover {outline: 4px solid #ce1c00;}
+.integral_floor .mc li:hover .btn {background: #ce1c00;}

@@ -1,0 +1,70 @@
+{include file="header.html"}
+<script type="text/javascript">
+$(function(){
+    $('#add_time_from').datepicker({dateFormat: 'yy-mm-dd'});
+    $('#add_time_to').datepicker({dateFormat: 'yy-mm-dd'});
+});
+</script>
+<div class="main">
+	<div class="fixed-bar">
+		<div class="item-title">
+			<h3><a href="index.php?act=welcome" style="text-decoration:none;">{$setting.site_name}</a> &nbsp;>&nbsp;{$lang.compile_report}&nbsp;&nbsp;>&nbsp;&nbsp; {$lang.user_order}</h3>
+		</div>
+	</div>
+	<div class="fixed-empty"></div>
+	<div class="mrightTop">
+		<div class="fontl">
+			<form method="get" name="search_form">
+				 <div class="left">
+					<input type="hidden" name="app" value="user_order" />
+					<input type="hidden" name="act" value="index" />
+
+
+				   {$lang.add_time_from}:
+					<input class="queryInput2" type="text" value="{$query.add_time_from}" id="add_time_from" name="add_time_from" class="pick_date" />
+					{$lang.add_time_to}:<input class="queryInput2" type="text" value="{$query.add_time_to}" id="add_time_to" name="add_time_to" class="pick_date" />
+
+					 <a href="JavaScript:void(0);" class="btn-search" onclick="document.search_form.submit()">{$lang.query}</a>
+				</div>
+				<!--{if $filtered}-->
+				<a class="left formbtn1" href="index.php?app=user_order">{$lang.cancel_query}</a>
+				<!--{/if}-->
+			</form>
+		</div>
+		<div class="fontr">
+			{if $orders}{include file=page.top.html}{/if}
+		</div>
+	</div>
+	<div class="tdare">
+		<table width="100%" cellspacing="0" class="dataTable">
+			<!--{if $orders}-->
+			<tr class="tatr1">
+				<td width="15%" class="firstCell"><span>{$lang.sort}</span></td>
+				<td width="10%"><span>{$lang.buyer_name}</span></td>
+				<td width="15%"><span>{$lang.order_num}</span></td>
+				<td width="15%"><span>{$lang.order_amount}</span></td>
+			</tr>
+			<!--{/if}-->
+			<!--{foreach from=$orders item=order name=val}-->
+			<tr class="tatr2">
+				<td>{$smarty.foreach.val.iteration}</td>
+				<td >{$order.buyer_name|escape}</td>
+				<td>{$order.have_order_num|escape}</td>
+
+				<td>{$order.order_all_amount|price}</td>
+			</tr>
+			<!--{foreachelse}-->
+			<tr class="no_data">
+				<td colspan="7">{$lang.no_data}</td>
+			</tr>
+			<!--{/foreach}-->
+		</table>
+		<div id="dataFuncs">
+			<div class="pageLinks">
+				{if $orders}{include file=page.bottom.html}{/if}
+			</div>
+		</div>
+		<div class="clear"></div>
+	</div>
+</div>
+{include file="footer.html"}

@@ -1,0 +1,101 @@
+Sat, 06 Aug 2016 17:31:41 +0800	[2]print_r() expects at least 1 parameter, 0 given	\app\my_goods.app.php	50
+Sat, 06 Aug 2016 18:14:10 +0800	[256]MySQL Error[1054]: Unknown column 'seller_id2' in 'where clause'
+MySQL Query:SELECT *,order_alias.order_id FROM ecm_order order_alias WHERE 1=1 and seller_id2
+Wrong File:  D:\WWW\xiaomai\729\eccore\model\mysql.php[526]	\eccore\model\mysql.php	278
+Mon, 08 Aug 2016 08:46:39 +0800	[256]MySQL Error[1146]: Table '729.ecm_delivery_template' doesn't exist
+MySQL Query:SELECT COUNT(*) as c FROM ecm_delivery_template delivery_template WHERE store_id=2
+Wrong File:  D:\WWW\xiaomai\729\eccore\model\mysql.php[450]	\eccore\model\mysql.php	278
+Mon, 08 Aug 2016 08:47:47 +0800	[256]MySQL Error[1146]: Table '729.ecm_delivery_template' doesn't exist
+MySQL Query:SELECT COUNT(*) as c FROM ecm_delivery_template delivery_template WHERE store_id=2
+Wrong File:  D:\WWW\xiaomai\729\eccore\model\mysql.php[450]	\eccore\model\mysql.php	278
+Mon, 08 Aug 2016 08:47:48 +0800	[256]MySQL Error[1146]: Table '729.ecm_delivery_template' doesn't exist
+MySQL Query:SELECT COUNT(*) as c FROM ecm_delivery_template delivery_template WHERE store_id=2
+Wrong File:  D:\WWW\xiaomai\729\eccore\model\mysql.php[450]	\eccore\model\mysql.php	278
+Mon, 08 Aug 2016 08:47:49 +0800	[256]MySQL Error[1146]: Table '729.ecm_delivery_template' doesn't exist
+MySQL Query:SELECT COUNT(*) as c FROM ecm_delivery_template delivery_template WHERE store_id=2
+Wrong File:  D:\WWW\xiaomai\729\eccore\model\mysql.php[450]	\eccore\model\mysql.php	278
+Mon, 08 Aug 2016 08:48:10 +0800	[256]MySQL Error[1146]: Table '729.ecm_delivery_template' doesn't exist
+MySQL Query:SELECT COUNT(*) as c FROM ecm_delivery_template delivery_template WHERE store_id=2
+Wrong File:  D:\WWW\xiaomai\729\eccore\model\mysql.php[450]	\eccore\model\mysql.php	278
+Mon, 08 Aug 2016 08:48:13 +0800	[256]MySQL Error[1146]: Table '729.ecm_delivery_template' doesn't exist
+MySQL Query:SELECT COUNT(*) as c FROM ecm_delivery_template delivery_template WHERE store_id=2
+Wrong File:  D:\WWW\xiaomai\729\eccore\model\mysql.php[450]	\eccore\model\mysql.php	278
+Mon, 08 Aug 2016 08:58:18 +0800	[256]MySQL Error[1054]: Unknown column 'Array' in 'where clause'
+MySQL Query:SELECT *,shipping.shipping_id FROM ecm_shipping shipping WHERE enabled=1 AND store_id=Array
+Wrong File:  D:\WWW\xiaomai\729\eccore\model\mysql.php[526]	\eccore\model\mysql.php	278
+Mon, 08 Aug 2016 09:20:06 +0800	[256]MySQL Error[1064]: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND status=11  AND seller_id=2' at line 1
+MySQL Query:SELECT *,order_alias.order_id FROM ecm_order order_alias WHERE  AND status=11  AND seller_id=2
+Wrong File:  D:\WWW\xiaomai\729\eccore\model\mysql.php[526]	\eccore\model\mysql.php	278
+Tue, 09 Aug 2016 17:22:21 +0800	[256]MySQL Error[1054]: Unknown column 'money' in 'field list'
+MySQL Query:INSERT INTO ecm_moeny_log(money,moneyxn,money_dj,moneyxn_dj,addtime,data) VALUES('13800.50','0.00','-4571.20','0.00','1470734541','2016-08-09')
+Wrong File:  D:\WWW\xiaomai\729\eccore\model\model.base.php[299]	\eccore\model\mysql.php	278
+Tue, 09 Aug 2016 17:22:28 +0800	[256]MySQL Error[1054]: Unknown column 'moneyxn' in 'field list'
+MySQL Query:INSERT INTO ecm_moeny_log(moeny,moneyxn,money_dj,moneyxn_dj,addtime,data) VALUES('13800.50','0.00','-4571.20','0.00','1470734548','2016-08-09')
+Wrong File:  D:\WWW\xiaomai\729\eccore\model\model.base.php[299]	\eccore\model\mysql.php	278
+Tue, 09 Aug 2016 17:22:33 +0800	[256]MySQL Error[1054]: Unknown column 'moneyxn' in 'field list'
+MySQL Query:INSERT INTO ecm_moeny_log(moeny,moneyxn,money_dj,moneyxn_dj,addtime,data) VALUES('13800.50','0.00','-4571.20','0.00','1470734553','2016-08-09')
+Wrong File:  D:\WWW\xiaomai\729\eccore\model\model.base.php[299]	\eccore\model\mysql.php	278
+Tue, 09 Aug 2016 17:22:34 +0800	[256]MySQL Error[1054]: Unknown column 'moneyxn' in 'field list'
+MySQL Query:INSERT INTO ecm_moeny_log(moeny,moneyxn,money_dj,moneyxn_dj,addtime,data) VALUES('13800.50','0.00','-4571.20','0.00','1470734554','2016-08-09')
+Wrong File:  D:\WWW\xiaomai\729\eccore\model\model.base.php[299]	\eccore\model\mysql.php	278
+Tue, 09 Aug 2016 17:22:40 +0800	[256]MySQL Error[1054]: Unknown column 'moneyxn' in 'field list'
+MySQL Query:INSERT INTO ecm_moeny_log(moeny,moneyxn,money_dj,moneyxn_dj,addtime,data) VALUES('13800.50','0.00','-4571.20','0.00','1470734560','2016-08-09')
+Wrong File:  D:\WWW\xiaomai\729\eccore\model\model.base.php[299]	\eccore\model\mysql.php	278
+Tue, 09 Aug 2016 17:22:50 +0800	[256]MySQL Error[1054]: Unknown column 'money_dj' in 'field list'
+MySQL Query:INSERT INTO ecm_moeny_log(moeny,moenyxn,money_dj,moneyxn_dj,addtime,data) VALUES('13800.50','0.00','-4571.20','0.00','1470734570','2016-08-09')
+Wrong File:  D:\WWW\xiaomai\729\eccore\model\model.base.php[299]	\eccore\model\mysql.php	278
+Tue, 09 Aug 2016 18:14:13 +0800	[2]filemtime() [<a href='function.filemtime'>function.filemtime</a>]: stat failed for D:\WWW\xiaomai\729/data/crond.lock	\includes\libraries\cron.lib.php	132
+Tue, 09 Aug 2016 18:43:45 +0800	[2]filemtime() [<a href='function.filemtime'>function.filemtime</a>]: stat failed for D:\WWW\xiaomai\729/data/crond.lock	\includes\libraries\cron.lib.php	132
+Wed, 10 Aug 2016 21:03:31 +0800	[2]curl_setopt() [<a href='function.curl-setopt'>function.curl-setopt</a>]: CURLOPT_FOLLOWLOCATION cannot be activated when safe_mode is enabled or an open_basedir is set	/app/mapstore.app.php	162
+Mon, 15 Aug 2016 15:57:08 +0800	[2]filemtime() [<a href='function.filemtime'>function.filemtime</a>]: stat failed for /data/home/qxu1192040223/htdocs/data/crond.lock	/includes/libraries/cron.lib.php	132
+Mon, 15 Aug 2016 16:13:02 +0800	[2]curl_setopt() [<a href='function.curl-setopt'>function.curl-setopt</a>]: CURLOPT_FOLLOWLOCATION cannot be activated when safe_mode is enabled or an open_basedir is set	/app/mapstore.app.php	162
+Mon, 15 Aug 2016 16:13:23 +0800	[2]curl_setopt() [<a href='function.curl-setopt'>function.curl-setopt</a>]: CURLOPT_FOLLOWLOCATION cannot be activated when safe_mode is enabled or an open_basedir is set	/app/mapstore.app.php	162
+Tue, 16 Aug 2016 22:31:31 +0800	[2]filemtime() [<a href='function.filemtime'>function.filemtime</a>]: stat failed for /data/home/qxu1192040223/htdocs/data/crond.lock	/includes/libraries/cron.lib.php	132
+Tue, 16 Aug 2016 22:54:10 +0800	[2]filemtime() [<a href='function.filemtime'>function.filemtime</a>]: stat failed for /data/home/qxu1192040223/htdocs/data/crond.lock	/includes/libraries/cron.lib.php	132
+Tue, 16 Aug 2016 23:28:22 +0800	[2]filemtime() [<a href='function.filemtime'>function.filemtime</a>]: stat failed for /data/home/qxu1192040223/htdocs/data/crond.lock	/includes/libraries/cron.lib.php	132
+Tue, 16 Aug 2016 23:30:50 +0800	[2]filemtime() [<a href='function.filemtime'>function.filemtime</a>]: stat failed for /data/home/qxu1192040223/htdocs/data/crond.lock	/includes/libraries/cron.lib.php	132
+Tue, 16 Aug 2016 23:37:45 +0800	[2]filemtime() [<a href='function.filemtime'>function.filemtime</a>]: stat failed for /data/home/qxu1192040223/htdocs/data/crond.lock	/includes/libraries/cron.lib.php	132
+Wed, 17 Aug 2016 16:42:21 +0800	[2]curl_setopt() [<a href='function.curl-setopt'>function.curl-setopt</a>]: CURLOPT_FOLLOWLOCATION cannot be activated when safe_mode is enabled or an open_basedir is set	/app/mapstore.app.php	162
+Wed, 17 Aug 2016 16:42:27 +0800	[2]curl_setopt() [<a href='function.curl-setopt'>function.curl-setopt</a>]: CURLOPT_FOLLOWLOCATION cannot be activated when safe_mode is enabled or an open_basedir is set	/app/mapstore.app.php	162
+Thu, 18 Aug 2016 01:21:37 +0800	[2]curl_setopt() [<a href='function.curl-setopt'>function.curl-setopt</a>]: CURLOPT_FOLLOWLOCATION cannot be activated when safe_mode is enabled or an open_basedir is set	/app/mapstore.app.php	162
+Fri, 19 Aug 2016 11:43:10 +0800	[2]session_start() [<a href='function.session-start'>function.session-start</a>]: Cannot send session cache limiter - headers already sent (output started at /data/home/qxu1192040223/htdocs/app/epay.app.php:2053)	/includes/libraries/session.lib.php	396
+Fri, 19 Aug 2016 11:43:24 +0800	[2]session_start() [<a href='function.session-start'>function.session-start</a>]: Cannot send session cache limiter - headers already sent (output started at /data/home/qxu1192040223/htdocs/app/epay.app.php:2053)	/includes/libraries/session.lib.php	396
+Fri, 19 Aug 2016 11:43:26 +0800	[2]session_start() [<a href='function.session-start'>function.session-start</a>]: Cannot send session cache limiter - headers already sent (output started at /data/home/qxu1192040223/htdocs/app/epay.app.php:2053)	/includes/libraries/session.lib.php	396
+Fri, 19 Aug 2016 11:43:36 +0800	[2]session_start() [<a href='function.session-start'>function.session-start</a>]: Cannot send session cache limiter - headers already sent (output started at /data/home/qxu1192040223/htdocs/app/epay.app.php:2053)	/includes/libraries/session.lib.php	396
+Thu, 25 Aug 2016 15:52:48 +0800	[2]file_get_contents(http://ip.taobao.com/service/getIpInfo.php?ip=39.64.113.215) [<a href='function.file-get-contents'>function.file-get-contents</a>]: failed to open stream: HTTP request failed! 	/includes/models/region.model.php	150
+Fri, 26 Aug 2016 10:13:50 +0800	[2]curl_setopt() [<a href='function.curl-setopt'>function.curl-setopt</a>]: CURLOPT_FOLLOWLOCATION cannot be activated when safe_mode is enabled or an open_basedir is set	/app/mapstore.app.php	162
+Fri, 26 Aug 2016 18:15:34 +0800	[2]file_get_contents(http://ip.taobao.com/service/getIpInfo.php?ip=27.211.38.180) [<a href='function.file-get-contents'>function.file-get-contents</a>]: failed to open stream: HTTP request failed! HTTP/1.1 500 Internal Server Error
+	/includes/models/region.model.php	150
+Fri, 26 Aug 2016 18:16:33 +0800	[2]file_get_contents(http://ip.taobao.com/service/getIpInfo.php?ip=27.211.38.180) [<a href='function.file-get-contents'>function.file-get-contents</a>]: failed to open stream: HTTP request failed! 	/includes/models/region.model.php	150
+Fri, 26 Aug 2016 18:20:09 +0800	[2]file_get_contents(http://ip.taobao.com/service/getIpInfo.php?ip=27.211.38.180) [<a href='function.file-get-contents'>function.file-get-contents</a>]: failed to open stream: HTTP request failed! 	/includes/models/region.model.php	150
+Fri, 26 Aug 2016 18:21:41 +0800	[2]file_get_contents(http://ip.taobao.com/service/getIpInfo.php?ip=27.211.38.180) [<a href='function.file-get-contents'>function.file-get-contents</a>]: failed to open stream: HTTP request failed! 	/includes/models/region.model.php	150
+Fri, 26 Aug 2016 18:22:49 +0800	[2]file_get_contents(http://ip.taobao.com/service/getIpInfo.php?ip=27.211.38.180) [<a href='function.file-get-contents'>function.file-get-contents</a>]: failed to open stream: HTTP request failed! 	/includes/models/region.model.php	150
+Fri, 26 Aug 2016 18:22:58 +0800	[2]file_get_contents(http://ip.taobao.com/service/getIpInfo.php?ip=27.211.38.180) [<a href='function.file-get-contents'>function.file-get-contents</a>]: failed to open stream: HTTP request failed! 	/includes/models/region.model.php	150
+Fri, 26 Aug 2016 18:25:38 +0800	[2]file_get_contents(http://ip.taobao.com/service/getIpInfo.php?ip=27.211.38.180) [<a href='function.file-get-contents'>function.file-get-contents</a>]: failed to open stream: HTTP request failed! 	/includes/models/region.model.php	150
+Fri, 26 Aug 2016 18:25:59 +0800	[2]file_get_contents(http://ip.taobao.com/service/getIpInfo.php?ip=27.211.38.180) [<a href='function.file-get-contents'>function.file-get-contents</a>]: failed to open stream: HTTP request failed! 	/includes/models/region.model.php	150
+Fri, 26 Aug 2016 18:31:20 +0800	[2]file_get_contents(http://ip.taobao.com/service/getIpInfo.php?ip=27.211.38.180) [<a href='function.file-get-contents'>function.file-get-contents</a>]: failed to open stream: HTTP request failed! 	/includes/models/region.model.php	150
+Fri, 26 Aug 2016 18:33:02 +0800	[2]file_get_contents(http://ip.taobao.com/service/getIpInfo.php?ip=27.211.38.180) [<a href='function.file-get-contents'>function.file-get-contents</a>]: failed to open stream: HTTP request failed! 	/includes/models/region.model.php	150
+Fri, 26 Aug 2016 18:33:44 +0800	[2]file_get_contents(http://ip.taobao.com/service/getIpInfo.php?ip=27.211.38.180) [<a href='function.file-get-contents'>function.file-get-contents</a>]: failed to open stream: HTTP request failed! 	/includes/models/region.model.php	150
+Fri, 26 Aug 2016 18:37:24 +0800	[2]file_get_contents(http://ip.taobao.com/service/getIpInfo.php?ip=27.211.38.180) [<a href='function.file-get-contents'>function.file-get-contents</a>]: failed to open stream: HTTP request failed! 	/includes/models/region.model.php	150
+Fri, 26 Aug 2016 18:37:40 +0800	[2]file_get_contents(http://ip.taobao.com/service/getIpInfo.php?ip=27.211.38.180) [<a href='function.file-get-contents'>function.file-get-contents</a>]: failed to open stream: HTTP request failed! 	/includes/models/region.model.php	150
+Fri, 26 Aug 2016 20:32:02 +0800	[2]file_get_contents(http://ip.taobao.com/service/getIpInfo.php?ip=123.120.201.188) [<a href='function.file-get-contents'>function.file-get-contents</a>]: failed to open stream: HTTP request failed! 	/includes/models/region.model.php	150
+Fri, 26 Aug 2016 21:05:35 +0800	[2]filemtime() [<a href='function.filemtime'>function.filemtime</a>]: stat failed for /data/home/qxu1192040223/htdocs/data/crond.lock	/includes/libraries/cron.lib.php	132
+Sat, 27 Aug 2016 15:07:13 +0800	[2]file_get_contents(http://ip.taobao.com/service/getIpInfo.php?ip=27.211.38.180) [<a href='function.file-get-contents'>function.file-get-contents</a>]: failed to open stream: HTTP request failed! 	/includes/models/region.model.php	150
+Sat, 27 Aug 2016 19:14:28 +0800	[256]MySQL Error[1054]: Unknown column '_widget_647' in 'where clause'
+MySQL Query:SELECT member.user_id, user_name, reg_time, last_login, last_ip, privs,member.user_id FROM ecm_member member LEFT JOIN ecm_user_priv user_priv ON member.user_id=user_priv.user_id AND  user_priv.store_id = '0' WHERE _widget_647
+Wrong File:  /data/home/qxu1192040223/htdocs/eccore/model/mysql.php[526]	/eccore/model/mysql.php	278
+Sat, 27 Aug 2016 19:14:58 +0800	[2]file_get_contents(http://ip.taobao.com/service/getIpInfo.php?ip=27.211.38.180) [<a href='function.file-get-contents'>function.file-get-contents</a>]: failed to open stream: HTTP request failed! 	/includes/models/region.model.php	150
+Sat, 27 Aug 2016 20:34:52 +0800	[2]file_get_contents(http://ip.taobao.com/service/getIpInfo.php?ip=183.166.136.200) [<a href='function.file-get-contents'>function.file-get-contents</a>]: failed to open stream: HTTP request failed! 	/includes/models/region.model.php	150
+Sun, 28 Aug 2016 16:20:28 +0800	[2]file_get_contents(http://ip.taobao.com/service/getIpInfo.php?ip=117.185.27.115) [<a href='function.file-get-contents'>function.file-get-contents</a>]: failed to open stream: HTTP request failed! 	/includes/models/region.model.php	150
+Sun, 28 Aug 2016 17:43:13 +0800	[2]file_get_contents(http://ip.taobao.com/service/getIpInfo.php?ip=27.211.37.174) [<a href='function.file-get-contents'>function.file-get-contents</a>]: failed to open stream: HTTP request failed! 	/includes/models/region.model.php	150
+Mon, 29 Aug 2016 11:56:35 +0800	[2]filemtime() [<a href='function.filemtime'>function.filemtime</a>]: stat failed for /data/home/qxu1192040223/htdocs/data/crond.lock	/includes/libraries/cron.lib.php	132
+Mon, 29 Aug 2016 13:40:30 +0800	[2]filemtime() [<a href='function.filemtime'>function.filemtime</a>]: stat failed for /data/home/qxu1192040223/htdocs/data/crond.lock	/includes/libraries/cron.lib.php	132
+Mon, 29 Aug 2016 13:41:30 +0800	[2]filemtime() [<a href='function.filemtime'>function.filemtime</a>]: stat failed for /data/home/qxu1192040223/htdocs/data/crond.lock	/includes/libraries/cron.lib.php	132
+Mon, 29 Aug 2016 13:41:55 +0800	[2]filemtime() [<a href='function.filemtime'>function.filemtime</a>]: stat failed for /data/home/qxu1192040223/htdocs/data/crond.lock	/includes/libraries/cron.lib.php	132
+Mon, 29 Aug 2016 13:42:20 +0800	[2]filemtime() [<a href='function.filemtime'>function.filemtime</a>]: stat failed for /data/home/qxu1192040223/htdocs/data/crond.lock	/includes/libraries/cron.lib.php	132
+Mon, 29 Aug 2016 13:46:45 +0800	[2]filemtime() [<a href='function.filemtime'>function.filemtime</a>]: stat failed for /data/home/qxu1192040223/htdocs/data/crond.lock	/includes/libraries/cron.lib.php	132
+Mon, 29 Aug 2016 13:52:45 +0800	[2]filemtime() [<a href='function.filemtime'>function.filemtime</a>]: stat failed for /data/home/qxu1192040223/htdocs/data/crond.lock	/includes/libraries/cron.lib.php	132
+Tue, 30 Aug 2016 09:43:39 +0800	[256]MySQL Error[1062]: Duplicate entry '0' for key 'PRIMARY'
+MySQL Query:UPDATE ecm_epay_bank SET bank_id='',user_id='2',bank_name='中国建设银行',short_name='CCB',account_name='李鸣',open_bank='6555',bank_type='debit',bank_num='66955556611222'
+Wrong File:  /data/home/qxu1192040223/htdocs/eccore/model/mysql.php[263]	/eccore/model/mysql.php	278
+Wed, 31 Aug 2016 13:20:23 +0800	[2]file_get_contents(http://ip.taobao.com/service/getIpInfo.php?ip=101.226.33.205) [<a href='function.file-get-contents'>function.file-get-contents</a>]: failed to open stream: HTTP request failed! 	/includes/models/region.model.php	150

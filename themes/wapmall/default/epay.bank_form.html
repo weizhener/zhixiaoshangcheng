@@ -1,0 +1,85 @@
+{include file=member.header.html}
+<div class="mb-head">
+    <a href="javascript:history.back(-1)" class="l_b">返回</a>
+    <div class="tit">银行卡设置</div>
+    <a href="javascript" class="r_b"></a>
+</div>
+
+{include file=member.submenu.html}
+<script>
+    $(function () {
+        $('#epay-withdraw').submit(function () {
+            if ($(this).find('input[name="tx_money"]').val() == '' || $(this).find('input[name="tx_money"]').val() <= 0) {
+                alert('{$lang.withdraw_money_error}');
+                return false;
+            }
+        });
+    })
+</script>
+
+<style>
+    .epay_bank_form{margin:10px 16px;position: relative;}
+    .epay_bank_form dl{display: block;}
+    .epay_bank_form dl dt{display: block;font-size: 14px;color: #333;font-weight: bold;margin-bottom: 10px;}
+    .epay_bank_form dl dd{margin-bottom: 10px;width:50%;float:left;}
+    .epay_bank_form dl dd input{float: left;margin-top: 10px;margin-right: 5px;}
+    .epay_bank_form dl dd label{display: inline-block;width: 140px;position: relative;}
+
+
+
+
+</style>
+
+<div class="epay_bank_form">
+    <div class="notice-word">当您申请提现时平台会向您这里设置的银行卡汇款，请确保您的银行卡是正确的。</div>
+    <form method="post">
+
+        <dl class="clearfix">
+            <dt>选择银行</dt>
+            <!--{foreach from=$bank_inc item=bank key=key name=fe_bank}-->
+            <dd>
+                <input type="radio" name="short_name" id="{$key}" value="{$key}" {if $smarty.foreach.fe_bank.first}checked="checked" {/if} {if $smarty.get.short_name eq $key} checked="checked" {/if}  />
+                       <label class="" for="{$key}" >
+                    <span class="icon-cashier icon-cashier-{$key}" title="{$bank}">&nbsp;</span>
+                </label>
+            </dd>
+            <!--{/foreach}-->
+        </dl>
+        <ul class="form_content">
+            <li>
+                <h3>卡 号</h3>
+                <p><input type="text" name="bank_num"  value="{$card.bank_num}" /></p>
+            </li>
+            <li>
+                <h3>户 名</h3>
+                <p><input type="text" name="account_name"  value="{$card.account_name}" /></p>
+            </li>
+
+
+            <li>
+                <h3>开户支行</h3>
+                <p><input type="text" name="open_bank"  value="{$card.open_bank}" /></p>
+            </li>
+            <li>
+                <h3>卡类型</h3>
+                <p><label><input type="radio" name="bank_type" value="debit" {if $smarty.get.bank_type eq 'debit' || $card.bank_type eq 'debit'} checked="checked" {/if} />储蓄卡（借记卡）</label>
+                    <label><input type="radio" name="bank_type" value="credit" {if $smarty.get.bank_type eq 'credit' || $card.bank_type eq 'credit'} checked="checked" {/if} />信用卡（贷记卡）</label>
+                </p>
+            </li>
+            <li>
+                <h3>验证码</h3>
+                <p><input type="text" name="captcha"  id="captcha1" />
+                    <a href="javascript:change_captcha($('#captcha'));" class="renewedly"><img id="captcha" src="index.php?app=captcha&amp;{$random_number}" /></a>
+                </p>
+            </li>
+
+        </ul>
+        <input class="red_btn" type="submit" value="{$lang.submit}" />
+    </form>
+</div>
+
+
+
+
+
+{include file=member.footer.html}

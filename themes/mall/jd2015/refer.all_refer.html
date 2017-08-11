@@ -1,0 +1,31 @@
+{include file=member.header.html}
+<div class="content">
+    {include file=member.menu.html}
+    <div id="right">
+        {include file=member.submenu.html}
+        <div class="wrap">
+            <div class="public">
+                <div class="information">
+                    <div class="info">
+                        <table>
+                            <tr>
+                                <td>
+                                    <!--{if $all_refers}-->
+                                    <!-- {foreach from=$all_refers item=refer name=fe_refer key=key} -->
+                                    <span style="line-height: 30px;height: 30px;display: block">{$refer}&nbsp;&nbsp;&nbsp;(ID:{$key})</span>
+                                    <!--{/foreach}-->
+                                    <!--{else}-->
+                                    <div class="align2 member_no_records padding6">没有符合条件的记录</div>
+                                    <!--{/if}-->
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="wrap_bottom"></div>
+        </div>
+    </div>
+    <div class="clear"></div>
+</div>
+{include file=footer.html}

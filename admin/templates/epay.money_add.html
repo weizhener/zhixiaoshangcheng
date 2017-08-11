@@ -1,0 +1,79 @@
+{include file="header.html"}
+
+
+<div id="rightTop">
+    <ul class="subnav" style="margin:0;">
+        <li><a class="btn1" href="index.php?app=epay">{$lang.epay_user}</a></li>
+        <li><span>{$lang.add_money}</span></li>
+        <li><a class="btn1" href="index.php?app=epay&act=money_log">{$lang.moneylog}</a></li>
+        <li><a class="btn1" href="index.php?app=epay&act=txlog">{$lang.txlog}</a></li>
+        <li><a class="btn1" href="index.php?app=epay&act=setting">{$lang.setting}</a></li>
+        <li><a class="btn1" href="index.php?app=epay&act=statistics">{$lang.statistics}</a></li>
+    </ul>
+</div>
+
+<div class="info">
+
+    <table class="infoTable">
+        <form method="post">
+            <tr>
+                <th class="paddingT15">{$lang.user_name}:</th>
+                <td class="paddingT15 wordSpacing5">
+                    <input name="user_name" type="text" value="<!--{foreach from=$index item=val}-->{$val.user_name}<!--{/foreach}-->" size="20">
+                </td>
+            </tr>
+            <tr>
+                <th class="paddingT15">{$lang.money_cz}:</th>
+                <td class="paddingT15 wordSpacing5">
+                    <input name="post_money" type="text" id="post_money" value="" size="10">
+                    {$lang.yuan}
+                </td>
+            </tr>
+            <tr>
+                <th class="paddingT15">{$lang.edit_type}:</th>
+                <td class="paddingT15 wordSpacing5"><input name="jia_or_jian" type="radio" value="jia" checked="CHECKED" /> {$lang.add} 
+                    <input type="radio" name="jia_or_jian" value="jian" /> {$lang.des}
+                </td>
+            </tr>
+            <!--{foreach from=$index item=val}-->
+            <tr>
+                <th class="paddingT15">{$lang.money_add_keyongyue}</th>
+                <td class="paddingT15 wordSpacing5">
+                    <font color="#FF0000">{$val.money}</font>
+                </td>
+            </tr>
+            <tr>
+                <th class="paddingT15">{$lang.money_add_dongjiejine}</th>
+                <td class="paddingT15 wordSpacing5">{$val.money_dj}
+                </td>
+            </tr>
+            <!--{/foreach}-->
+            <tr>
+                <th class="paddingT15">{$lang.log_txt}:</th>		
+                <td class="paddingT15 wordSpacing5">
+
+
+
+                    <input name="log_text" type="text" id="log_text" value="{$lang.administrator}{$visitor.user_name}{$lang.shougongcaozuoyonghuzijin}" size="60">
+
+
+
+                    <div id="time_from2">
+
+                    </div>
+                </td>
+            </tr>
+
+            <tr>
+                <th></th>
+                <td class="ptb20">
+                    <input class="formbtn" type="submit" name="Submit" value="{$lang.submit}" />
+                    <input class="formbtn" type="reset" name="Submit2" value="{$lang.reset}" />
+                </td>
+            </tr>
+        </form>
+
+
+    </table>	
+</div>
+{include file="footer.html"}

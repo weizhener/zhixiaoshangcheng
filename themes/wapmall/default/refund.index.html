@@ -1,0 +1,56 @@
+{include file=member.header.html}
+<div class="mb-head">
+    <a href="javascript:history.back(-1)" class="l_b">返回</a>
+    <div class="tit">{$lang.$_curmenu}</div>
+    <a href="javascript" class="r_b"></a>
+</div>
+{include file=member.submenu.html}
+
+
+
+<div class="list1">
+    <!--{foreach from=$refunds item=refund}-->
+    <div class="box">
+        <h2>退款编号：{$refund.refund_sn}</h2>
+        <div class="detail">
+            <p>{$refund.order_sn}<br /><a href="{url app=goods&id=$refund.goods_id}" target="_blank">{$refund.goods_name}</a></p>
+            <p>卖家：<a href="{url app=store&id=$refund.seller_id}" target="_blank">{$refund.store_name}</a></p>
+            <p>交易金额：{$refund.total_fee}</p>
+            <p>退款总额：{$refund.refund_fee}</p>
+            <p>申请时间：{$refund.created|date:Y-m-d H:i:s}</p>
+            <p>
+                退款状态：
+                {if $refund.status=='CLOSED'}
+                退款关闭
+                {elseif $refund.status=='SUCCESS'}
+                退款成功
+                {elseif $refund.status=='WAIT_SELLER_AGREE'}
+                买家申请退款，等待卖家同意
+                {elseif $refund.status=='SELLER_REFUSE_BUYER'}
+                卖家拒绝退款，等待买家修改中
+                {elseif $refund.status=='WAIT_ADMIN_AGREE'}
+                卖家同意退款，等待管理员审核
+                {elseif $refund.status=='WAIT_SELLER_CONFIRM'}
+                退款申请等待卖家确认中
+                {/if}	
+                {if $refund.status!='CLOSED' && $refund.status!='SUCCESS' && $refund.status!='WAIT_ADMIN_AGREE' && $refund.ask_customer==1}（客服已介入处理）{/if}
+        </p>
+        </div>
+        <div class="opr">
+            <a href="{url app=refund&act=view&refund_id=$refund.refund_id}" class="white_btn" >查看</a> 
+            {if $refund.status neq 'SUCCESS' && $refund.status neq 'CLOSED' && $refund.status neq 'WAIT_ADMIN_AGREE'}
+            | <a href="{url app=refund&act=edit&refund_id=$refund.refund_id}" class="white_btn" >修改</a>
+            {/if}
+        </div>
+    </div>
+    <!--{foreachelse}-->
+    <div class="null">
+        <p>{$lang.no_records}~</p>
+    </div>
+    <!--{/foreach}-->
+</div>
+
+
+
+{include file=member.page.bottom.html}
+{include file=footer.html}

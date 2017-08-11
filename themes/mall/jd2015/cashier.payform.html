@@ -1,0 +1,48 @@
+<!--{if $payform.online}-->
+  <h3>{$lang.connecting_pay_gateway}</h3>
+  <form action="{$payform.gateway}" id="payform" method="{$payform.method}" style="display:none">
+  <!-- {foreach from=$payform.params item=value key=_k} -->
+    <input type="hidden" name="{$_k}" value="{$value}" />
+  <!-- {/foreach} -->
+  </form>
+  <script type="text/javascript">
+      document.getElementById('payform').submit();
+  </script>
+{else}
+{include file="header.html"}
+<style type="text/css">
+.mall-nav{ display:none}
+</style>
+<div id="main" class="w-full">
+<div id="page-cashier" class="w">
+   {include file="curlocal.html"}
+   <div class="order-form payform clearfix border mt10 mb20">
+      <div class="title padding5 strong">{$lang.payment_desc}</div>
+      <div class="detail padding10">
+            {$payform.desc}
+      </div>
+      <div class="form padding10">
+         <form id="pay_message_form" action="index.php?app=cashier&act=offline_pay&order_id={$order.order_id}" method="POST">
+            <table class="table_form" width="100%" border="0" cellspacing="0" cellpadding="5">
+                <tr>
+                    <td valign="top" width="90">
+                         {$lang.input_pay_message}
+                    <span class="desc">({$lang.input_pay_message_notice})</span></td>
+                    <td>
+                    <textarea name="pay_message" cols="60" rows="5" class="border">{$order.pay_message|escape}</textarea></td>
+                </tr>
+                <tr>
+                	<td></td>
+                    <td>
+                        <input type="submit" class="btn-step fff strong fs14" value="{$lang.submit}" />
+                    </td>
+                </tr>
+            </table>
+           </form>
+        </div>
+    </div>
+</div>
+</div>
+{include file=server.html}
+{include file="footer.html"}
+<!--{/if}-->

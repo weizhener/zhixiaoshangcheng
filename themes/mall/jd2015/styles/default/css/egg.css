@@ -1,0 +1,111 @@
+/************************************************
+*	default style								*
+************************************************/
+*{ margin:0; padding:0;}
+body{margin:0 auto;	color:#ffffff; background-color:#AD1A13; font-family:microsoft yahei;	font-size: 14px;}
+div, form, img, ul, ol, li, dl, dt, dd{ margin:0; padding:0;}
+ul{ list-style:none;}
+ol{ margin-left:23px;}
+table{ border-collapse:collapse;}
+h1, h2, h3, h4, h5, h6{ margin:0; padding:0; font:12px microsoft yahei;}
+a img, img{ border:0;}
+select, input, textarea{ color:#575757; background:inherit; font:12px microsoft yahei;}
+
+
+/************************************************
+*	form style									*
+************************************************/
+input, textarea, select{ padding:1px;}
+.submit,
+.submit input{ cursor:pointer;}
+
+/************************************************
+*	links   									*
+************************************************/
+a{ color:#ffffff; text-decoration:none;}
+a:hover{ color:#ffffff; text-decoration:underline;}
+.hid{  text-indent:-999px; overflow:hidden; height:22px; width:85px; display:block; }
+
+/************************************************
+*		clearfix style							*
+************************************************/
+.clear{ clear:both;}
+
+/************************************************
+*	class style									*
+************************************************/
+.wrapper{margin-left:auto; margin-right:auto; width:986px;}
+
+/************************************************
+*	layout style								*
+************************************************/
+
+/*头部*/
+#header{width:986px; height:241px; background:url(../images/egg/index_01.jpg) no-repeat; float:left;}
+#top{width:986px; height:485px; background:url(../images/egg/bg2.png) no-repeat; float:left;}
+#top .link{ padding-left:103px; padding-top:87px; width:386px; height:47px;overflow:hidden;margin-bottom: 0px;margin-right: 0px;}
+#top .link a{ display:inline; text-indent:-999px; overflow:hidden; float:left;}
+#top .link a.t1{ width:95px; height:47px;}
+#top .link a.t2{ width:98px; height:47px;}
+#top .link a.t3{ width:92px; height:47px;}
+#top .link a.t4{ width:101px; height:47px;}
+#content{ width:986px; float:left;}
+#content .main{ margin-left:57px;width:855px;}
+
+
+/*登录*/
+#content .login{ width:855px; height:202px; background:url(../images/egg/index_03.jpg) no-repeat; float:left;}
+#content .login .side{ margin-left:60px; margin-top:15px; width:255px; height:167px;}
+#content .login .side .dl{ width:278px; height:104px;}
+#content .login .side .dl a.login{ display:block; width:244px; height:102px; background:url(../images/egg/login.jpg) no-repeat; text-indent:-999px; overflow:hidden;}
+#content .login .side .dl a.logout{display:block; width:244px; height:102px; background:url(../images/egg/logout.jpg) no-repeat; text-indent:-999px; overflow:hidden;}
+#content .login .side .cl{ margin-top:30px; width:278px; height:35px;}
+#content .login .side_right{position:relative;line-height:23px;font-size:13px;color:#000;float:right;width:410px;height:110px;margin:65px 90px 0 0;}
+#content .login .side_right .timedes{position:absolute;bottom:0px;color:#961b20;}
+
+
+
+/*积分砸蛋*/
+#content .integral{width:855px;height:425px;background:url(../images/egg/index_04.jpg) no-repeat;float:left;}
+#content .integral .zd{margin-left:38px;margin-top:114px;width:781px;height:277px;color:#000000;font-size:14px;}
+#content .integral .zd .m{border:0px solid #ff0000;margin:0 auto;width:700px;height:220px;padding-left:70px;}
+#content .integral .zd .m .d{float:left;width:33%;}
+#content .integral .zd .m .d .da:hover{/*给鼠标加图片样式， 暂时为实现*/CURSOR:url("../images/egg/cz.gif"),pointer;}
+
+
+#content .integral .zd .b{height:70;line-height:70px;width:700px;margin:0 auto;text-align:center;color:#ff0000;font-weight:700;}
+#content .integral .zd .b a{color:#ff0000;font-weight:700;}
+
+
+#content .integral img{
+width:70px;}
+
+#content .integral .zd .b1{display:none;}
+#content .integral .zd .b2{display:none;}
+#content .integral .zd .b3{display:none;}
+
+/*圣诞元旦打卡区*/
+#content .clock{width:855px;height:328px;background:url(../images/egg/index_05.jpg) no-repeat;float:left;}
+#content .clock .dk{margin-left:38px;margin-top:30px;width:781px;height:271px;background:url(../images/egg/dkbj.jpg) no-repeat;color:#FFD8AA;font-size:14px;font-weight: bold;}
+#content .clock .dk .m1{width: 150px; height:20px;position:absolute;left:65px;;top:20px;color:#961b20;font-size:16px;}
+#content .clock .dk .m2{margin-top:80px;float:left;background:url(../images/egg/ci.jpg); width: 451px; height: 165px;color:#fff;}
+#content .clock .dk .m2 table{margin:0 auto;margin-top:15px;width:90%;}
+#content .clock .dk .m2 td{line-height:23px;font-size:12px;}
+#content .clock .dk .m2 td a{color:#Ff0000;}
+#content .clock .dk .m3{margin-top:80px;float:right;width: 250px; height: 165px;color:#000;}
+
+#content .jp{width:855px;background-image: url(../images/egg/main_05.jpg);background-repeat: repeat-y;}
+#content .bj{ width:855px; background:url(../images/egg/main_03.jpg) no-repeat;}
+#content .bj .xxnr{ margin-left:70px; margin-top:95px; width:725px;}
+#content .banner{ width:855px; height:36px; background:url(../images/egg/main_07.jpg) no-repeat;}
+
+
+.examples_body {clear: both;position: relative;}
+.examples_body .bx_wrap {}
+.examples_body .bx_wrap ul img {border: 2px solid #DDD;}
+
+
+/*底部*/
+#footer{ width:986px; height:253px; background-image: url(../images/egg/index_06.jpg); float:left;}
+#footer .notes{ padding:10px 245px 0 130px; width:536px; float:left; font-size:14px; line-height:22px; float:left;}
+#footer .bj{padding:15px 125px 0 406px; width:400px; font-size:12px; line-height:14px; float:left; }

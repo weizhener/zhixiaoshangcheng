@@ -1,0 +1,52 @@
+{include file=header.html}
+<div id="main" class="w-full">
+    <div id="page-article" class="w clearfix mb20">
+        <div class="col-sub">
+            <div area="col-left-1" widget_type="area">
+                <!--{widgets page=article area=col-left-1}-->
+            </div>
+            <div class="title mt10">{$lang.acategory}</div>
+            <ul class="content mb10">
+                <!-- {foreach from=$acategories item=acategory} -->
+                <li><a href="{url app=article&cate_id=$acategory.cate_id}">{$acategory.cate_name|escape}</a></li>
+                <!-- {/foreach} -->
+            </ul>
+            <div area="col-left-2" widget_type="area">
+                <!--{widgets page=article area=col-left-2}-->
+            </div>
+            <div class="title">{$lang.new_article}</div>
+            <ul class="content">
+                <!-- {foreach from=$new_articles item=new_article} -->
+                <li><a {if $new_article.link}target="_blank"{/if} href="{url app=article&act=view&article_id=$new_article.article_id}">{$new_article.title|escape}</a></li>
+                <!-- {foreachelse} -->
+                <li>{$lang.no_new_article}</li>
+                <!-- {/foreach} -->
+            </ul>
+            <div area="col-left-3" widget_type="area">
+                <!--{widgets page=article area=col-left-3}-->
+            </div>
+        </div>
+        <div class="col-main  mt10">
+            <div class="title clearfix">{include file=curlocal.html}</div>
+            <div class="content">
+                <div class="article-info">
+                    <h1>{$article.title|escape}</h1>
+                    <h2>时间：{$article.add_time|date:Y-m-d H:i}</h2>
+                </div>
+                <div class="article-detail">
+                    <!-- {if $article.store_id} -->
+                    {$article.content|escape:editor}
+                    <!-- {else} -->
+                    {$article.content}
+                    <!-- {/if} -->
+                </div>
+                <div class="more-article mt20">
+                    <h3>{$lang.pre_article}{$lang.colon}<!--{if $pre_article}--><a target="{$pre_article.target}" href="{url app=article&act=view&article_id=$pre_article.article_id}">{$pre_article.title|escape}</a><!--{else}-->{$lang.no_records}<!--{/if}--></h3>
+                    <h3>{$lang.next_article}{$lang.colon}<!--{if $next_article}--><a target="{$next_article.target}" href="{url app=article&act=view&article_id=$next_article.article_id}">{$next_article.title|escape}</a><!--{else}-->{$lang.no_records}<!--{/if}--></h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{include file=server.html}
+{include file=footer.html}

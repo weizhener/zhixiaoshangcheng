@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <base href="{$site_url}/" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+        {$page_seo}
+        <link href="{res file=css/common.css}" rel="stylesheet" type="text/css" />
+    </head>
+    <style>
+        .shop_detail{ margin-top:50px; padding:10px 15px; color:#999; font-size:14px;}
+        .shop_detail img{
+            width:100%;  margin:0 auto;
+        }
+        .shop_detail table{border-collapse: collapse; width:100%;}
+        .shop_img_bg{ background:#333; height:200px; position:absolute; top:45px; width:100%; left:0; z-index:-1;}
+        <!--.shop_detail img:active{-webkit-transform:rotateY(180deg);-moz-transform:rotateY(180deg);-o-transform:rotateY(180deg);transform:rotateY(180deg)}-->
+    </style>
+    <body>
+
+        <div class="fixed">
+            <div class="header header2">
+                <a href="{url app=store&id=$store.store_id}" class="back2_pre"></a>
+                关于我们
+            </div>    
+        </div>
+        <div class="shop_detail">
+            {$store.description|escape:editor}
+        </div>
+
+
+    </body>
+</html>

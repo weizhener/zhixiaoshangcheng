@@ -1,0 +1,61 @@
+<!-- {if $widget_data} -->
+<div class="c-mwrap">
+     <div id="tagdata">
+     	  <!--{foreach from=$widget_data item=ju_list name=fe_list}-->
+              <a name="tag{$smarty.foreach.fe_list.iteration}" class="tag"></a>
+              <div id="tag{$smarty.foreach.fe_list.iteration}" class="c-floor clearfix">
+                   <div class="c-f-hd"><span class="cf-hd-lebal">{$ju_list.model_name}</span></div>
+                        <div class="ju-list">
+                              <ul class="clearfix">
+                              <!--{foreach from=$ju_list.goods item=ju name=fe_ju}-->
+                                  <li {if $smarty.foreach.fe_ju.iteration % 3 eq 0} style=" margin-right:0px;"{/if}>
+                                      		<div class="grts"></div>
+                                           <a target="_blank" href="{url app=ju&act=show&id=$ju.group_id}" class="link-box">
+                                                <img class="pic" {if $ju.image} src="{$ju.image}"{else} src="{$ju.default_image}"{/if} alt="{$ju.goods_name}"> <i class="soldout-mask"></i>
+                                                <i class="jmp-mask"></i> 
+                                                 <h3 title="{$ju.group_name}">{$ju.group_name|escape}</h3> 
+                                                <div class="prices"> <span class="price"><i>￥</i><em>{$ju.group_price}</em></span> 
+                                                    <div class="dock"> <span class="discount"><em>优惠{$ju.discount}</em>%</span>  <del class="orig-price">{$ju.price|price}</del> 
+                                                    </div> <span class="sold-num"><em>{if $ju.all_count} {$ju.all_count} {else} 0 {/if}</em>人已买</span> 
+                                                </div>
+                                            </a>
+                                    </li>
+                               <!--{/foreach}-->
+                               </ul>
+                        </div>
+              </div>
+          <!--{/foreach}-->
+     </div><!--tagdata end-->
+</div>             
+<ul id="cside" class="c-side" style="position:absolute; top: 480px; display: block; right: 53px;">
+	<!--{foreach from=$widget_data item=ju_list name=fe_list}-->
+    <li class="cs-it {if $smarty.foreach.fe_list.first}cs-it-on{/if}" tagid="tag{$smarty.foreach.fe_list.iteration}"><a href="index.php?app=ju_decoration#tag{$smarty.foreach.fe_list.iteration}">{$ju_list.model_name}</a></li>
+    <!--{/foreach}-->
+    <li class="cs-arr"></li>
+</ul>
+<script type="text/javascript">
+$(function(){
+	$(window).scroll(function(){
+		$.each($(".tag"),function(){
+			var offsettop = $(this).offset().top;
+			var divheight = $(this).next("div").outerHeight(true);
+			var id = $(this).next("div").attr("id");
+			if($(window).scrollTop()>offsettop && $(window).scrollTop()<offsettop+divheight)
+			{
+				$("[tagid='"+id+"']").addClass("cs-it-on");
+			}else{
+				$("[tagid='"+id+"']").removeClass("cs-it-on");
+			}
+		});
+		if($(window).scrollTop()>445){
+			$("#cside").css({"position":"fixed","top":"60px","right":"53px"});
+		}else{
+			$("#cside").css({'position':'absolute','top':'480px',"right":"53px"});
+			$("[tagid='tag1']").addClass("cs-it-on");
+		}
+	});
+})
+</script>
+<!-- {else} -->
+<div style="padding:10px; text-align:center;">请配置</div>
+<!-- {/if} -->

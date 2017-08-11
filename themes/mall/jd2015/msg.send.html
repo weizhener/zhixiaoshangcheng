@@ -1,0 +1,34 @@
+{include file=member.header.html}
+<div class="content">
+    <div class="totline"></div><div class="botline"></div>
+    {include file=member.menu.html}
+    <div id="right">
+        {include file=member.submenu.html}
+        <div class="wrap">
+            <div class="eject_wrap_msg">
+                <div class="fill_in">
+                    <div class="eject_con">
+                        <div class="msg">
+                            <form method="post" enctype="multipart/form-data" id="send_form" action="index.php?app=msg&act=send">
+                                <ul>
+                                    <li>
+                                        <h3>{$lang.to_mobile}: </h3>
+                                        <p><input type="text" class="text width_normal" name="to_mobile" value=""/><span class="field_notice">{$lang.to_mobile_text}</span></p>
+                                    </li>
+                                    <li>
+                                        <h3>{$lang.content}: </h3>
+                                        <p><textarea class="text width_long" name="msg_content" /></textarea></p>
+                                        <div class="clear"></div>
+                                    </li>
+                                </ul>
+                                <div class="submit"><input type="submit" class="btn" value="{$lang.confirm_send}" /></div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="clear"></div>
+</div>
+{include file=footer.html}

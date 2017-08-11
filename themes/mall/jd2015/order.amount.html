@@ -1,0 +1,88 @@
+<!--{if $goods_info.integral_enabled}-->
+
+<script type="text/javascript">
+
+    $(function () {
+
+        $('#use_integral_button').click(function () {
+
+            $(this).parent('p').next().toggle();
+
+        });
+
+    });
+
+</script>
+
+<div class="w price-promotion mt10 mb10 f60">
+
+    <p class="mb10 mt10">
+
+        <input id="use_integral_button" type="button" class="btn-allow-coupon center" value="使用积分" />
+
+    </p>
+
+    <p class="allow-coupon border padding10 mb10 hidden clearfix">
+
+        <span class="note">
+            &nbsp;可用积分<em style="font-weight:bold;color:red;padding: 0 5px;">{$member_integral}</em>,
+
+            本单最多可用积分<em style="font-weight:bold;color:red;padding: 0 5px;">{$total_integral_max_exchange}</em>
+        </span>
+
+        <input type="text" name="use_integral" id="use_integral" onkeyup="set_order_amount_total();" class="text" />
+
+    </p>
+
+</div>
+
+<!--{/if}-->
+
+<script type="text/javascript">
+
+    $(function () {
+
+        $('#use_coupon').click(function () {
+
+            $(this).parent('p').next().toggle();
+
+            //$(this).hide();
+
+
+
+            if ($(this).val() == '{$lang.use_coupon}') {
+
+                $(this).val('{$lang.close_coupon}');
+
+                $("select[name='coupon_sn']")[0].selectedIndex = 0;
+
+            } else {
+
+                $(this).val('{$lang.use_coupon}')
+
+            }
+
+        });
+
+    });
+
+</script>
+
+
+<div class="make_sure w mb10">
+
+    <p>
+
+        <a href="{url app=cart&store_id=$goods_info.store_id}" class="back">{$lang.backto_cart}</a>
+
+        <span class="ml20">{$lang.order_amount}{$lang.colon}</span>
+
+        <strong  id="order_amount">{$goods_info.amount|price}</strong>
+
+        <a href="javascript:void($('#order_form').submit());" class="btn-step fff center strong fs14 ml20">{$lang.shopping_step_three}</a>
+
+    </p>
+
+</div>
+
+<div class="w price-notice mt10 mb10 pt10 f60 pb10">{$lang.price_notice}</div>

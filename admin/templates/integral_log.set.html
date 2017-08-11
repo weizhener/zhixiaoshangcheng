@@ -1,0 +1,71 @@
+{include file="header.html"}
+<div id="rightTop">
+    <p>{$lang.integral_log}</p>
+    <ul class="subnav">
+        <li><a class="btn1" href="index.php?app=integral_log">{$lang.manage}</a></li>
+        <li><span>{$lang.integral_set}</span></li>
+    </ul>
+</div>
+<div class="info">
+    <form method="post" >
+        <table class="infoTable">
+            <tr>
+                <th class="paddingT15">
+                    {$lang.integral_enabled}:</th>
+                <td class="paddingT15 wordSpacing5">
+                    <input id="integral_enabled0" type="radio" name="integral_enabled" {if $setting.integral_enabled eq 0}checked{/if} value="0" /> <label for="integral_enabled0">{$lang.close}</label>
+                    <input id="integral_enabled1" type="radio" name="integral_enabled" {if $setting.integral_enabled eq 1}checked{/if} value="1" /> <label for="integral_enabled1">{$lang.open}</label>
+                </td>
+            </tr>
+            <tr>
+                <th class="paddingT15">
+                    {$lang.integral_reg}:</th>
+                <td class="paddingT15 wordSpacing5">
+                    <input class="infoTableInput" type="text" name="integral_reg" value="{$setting.integral_reg}"/>
+                    <span class="grey">{$lang.integral_reg_note}</span>
+                </td>
+            </tr>
+            <tr>
+                <th class="paddingT15">
+                    {$lang.integral_login}:</th>
+                <td class="paddingT15 wordSpacing5">
+                    <input class="infoTableInput" type="text" name="integral_login" value="{$setting.integral_login}"/>
+                    <span class="grey">{$lang.integral_login_note}</span>
+                </td>
+            </tr>
+            <tr>
+                <th class="paddingT15">
+                    {$lang.integral_recom}:</th>
+                <td class="paddingT15 wordSpacing5">
+                    <input class="infoTableInput" type="text" name="integral_recom" value="{$setting.integral_recom}"/>
+                    <span class="grey">{$lang.integral_recom_note}</span>
+                </td>
+            </tr>
+            <tr>
+                <th class="paddingT15">
+                    {$lang.integral_buy}:</th>
+                <td class="paddingT15 wordSpacing5">
+                    <input class="infoTableInput" type="text" name="integral_buy" value="{$setting.integral_buy}"/>
+                    <span class="grey">{$lang.integral_buy_note}</span>
+                </td>
+            </tr>
+            <tr>
+                <th class="paddingT15">
+                    {$lang.integral_seller}:</th>
+                <td class="paddingT15 wordSpacing5">
+                    <input class="infoTableInput" type="text" name="integral_seller" value="{$setting.integral_seller}"/>
+                    <span class="grey">{$lang.integral_seller_note}</span>
+                </td>
+            </tr>
+
+            <tr>
+                <th></th>
+                <td class="ptb20">
+                    <input class="formbtn" type="submit" name="Submit" value="{$lang.submit}" />
+                    <input class="formbtn" type="reset" name="Submit2" value="{$lang.reset}" />
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+{include file="footer.html"}

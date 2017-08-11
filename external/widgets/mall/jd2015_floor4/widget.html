@@ -1,0 +1,25 @@
+<div class="jd2015_floor4 w mb20">
+    <div class="mt">
+        <h2>
+            <i>{$widget_data.num_name}</i>
+            {$widget_data.model_name}
+        </h2>
+    </div>
+    <div class="mc">
+        <ul class="goods">
+            <!-- {foreach from=$widget_data.goods_list_1 item=goods name=fe_goods} -->
+            <li>
+                <a class="p_img" href="{url app=goods&id=$goods.goods_id}" target="_blank">
+                    <img src="{$goods.default_image}" width="100" height="100">
+                </a>
+                <div class="p_title">
+                    <a href="{url app=goods&id=$goods.goods_id}" target="_blank">
+                        {$goods.goods_name|escape}
+                    </a>
+                </div>
+                <p>{$goods.price|price}</p>
+            </li>
+            <!-- {/foreach} -->
+        </ul>
+    </div>
+</div>

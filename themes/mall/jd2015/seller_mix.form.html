@@ -1,0 +1,282 @@
+{include file=member.header.html}
+<style>
+.txt { margin-right:20px}
+.spec ul { width: 530px; overflow: hidden; }
+.spec .td { padding-bottom: 10px; }
+.spec li { float: left; margin-left: 6px; display: inline; }
+.spec li input { text-align: center; }
+.spec .th { padding: 3px 0; margin-bottom: 10px; border-top: 2px solid #e3e3e3; border-bottom: 1px solid #e3e3e3; background: #f8f8f8; }
+.assort .txt span.iestyle{*position:relative; *top:-10px;}
+.assort .txt input.w300{width:280px;}
+.assort .txt select{margin-right:5px;}
+
+#groupgoods-table {
+	width:100%;
+}
+#groupgoods-table th {
+	color:#646665;
+	padding-bottom:8px;
+}
+#groupgoods-table th.w15 {
+	font-weight:normal;
+	width:15%;
+}
+#groupgoods-table th.w38 {
+	width:38%;
+}
+#groupgoods-table th.w8 {
+	width:8%;
+}
+#groupgoods-table td {
+	color:#646665;
+	padding-bottom:8px;
+}
+#groupgoods-table td select {
+	width:290px;
+	height:315px;
+	overflow-x:hidden;
+	overflow-y:auto;
+	border:1px solid #ddd;
+	padding:8px 0;
+}
+#groupgoods-table td select option {
+	color:#646665;
+	height:18px;
+	line-height:18px;
+	text-indent:8px;
+}
+#groupgoods-table td p {
+	float:none;
+	text-align:center;
+	padding-bottom:10px;
+	width:100%;
+}
+</style>
+<script type="text/javascript">
+//<!CDATA[
+$(function(){
+    $('#mix_form').validate({
+        errorPlacement: function(error, element){
+            $(element).next('.field_notice').hide();
+            $(element).after(error);
+        },
+        success       : function(label){
+            label.addClass('validate_right').text('OK!');
+        },
+        onkeyup : false,
+        rules : {
+            mix_name : {
+                required   : true,
+                byteRange: [3,30,'{$charset}'],
+            },
+            goods_id      : {
+                required   :true,
+            }
+        },
+        messages : {
+            mix_name  : {
+                required   : '{$lang.fill_mix_name}',
+				byteRange: '{$lang.mix_name_limit}'
+            },
+            goods_id      : {
+                required:  '{$lang.fill_goods}'
+            },
+        }
+    });
+    // 商品分类
+    gcategoryInit("gcategory");
+});
+function gs_callback(){}
+
+function searchGoods(){
+	var cate_id = $("#cate_id").val() ? parseInt($("#cate_id").val()) : 0;
+	var store_id = parseInt({$store_id});
+	var mix_items = '{$mix_items}';
+    $.getJSON('index.php?app=seller_mix&act=query_goods_info',{
+        'cate_id':cate_id,
+		'store_id':store_id,
+		'mix_items':mix_items
+        },
+        function(data){
+            if(data.done){
+                var goods_list = data.retval;
+                $('select[name="selectleft"]').html('');
+                $.each(goods_list,function(i,item){
+                        $('select[name="selectleft"]').append('<option value="'+ item.goods_id +'">'+ item.goods_name +'</option>');
+                });
+            }
+    });
+}
+function select_all()
+{
+	$("#SelectRight").find("option").each(function(){
+		$(this).attr('selected', true);
+	});
+    return true;
+}
+//]]>
+</script>
+
+<div class="content">
+  <div class="totline"></div>
+  <div class="botline"></div>
+  {include file=member.menu.html}
+  <div id="right"> {include file=member.submenu.html}
+    <div id="seller_mixbuy_form" class="wrap">
+      <div class="public">
+        <form method="post" id="mix_form" onsubmit="select_all();">
+          <div class="information_index">
+            <div class="add_wrap">
+              <div class="assort">
+                <p class="txt"><span class="iestyle">{$lang.mix_name}:</span>
+                  <input type="text" name="mix_name" value="{$mix.mix_name|escape}" class="text width7" />
+                  <span class="red">*</span><span class="iestyle">{$lang.mix_name_desc}</span></p>
+              </div>
+              <div class="assort">
+                <p class="txt" id="start_time"> <span>{$lang.mix_desc}:</span>
+                  <textarea style="height: 150px; overflow-y: auto; width: 310px; vertical-align: top;" name="mix_desc" class="text">{$mix.mix_desc|escape}</textarea>
+                </p>
+              </div>
+            </div>
+            <h4>{$lang.mix_goods_select}</h4>
+            <div class="add_wrap">
+              <div class="assort">
+                <p class="txt"><span class="iestyle">{$lang.mix_main_goods}:</span>
+                  <input gs_id="goods_id" gs_name="goods_name" gs_callback="gs_callback" gs_title="gselector" gs_width="480" gs_type="store" gs_store_id="{$store_id}" ectype="gselector" type="text" name="goods_name" id="goods_name" value="{$mix.nav_goods_name|escape}" class="text w300" />
+                  <input type="hidden" id="goods_id" name="goods_id" value="{$mix.nav_goods_id}" />
+                </p>
+              </div>
+            <div class="assort">
+                <p class="txt"><span>{$lang.sgcategory}:</span>
+                  <span id="gcategory">
+                    <select name="sgcate_id[]" class="sgcategory">
+                                        <option value="0">{$lang.select_pls}</option>
+                                        {html_options options=$sgcategories}
+                                    </select>
+                  
+                  <input type="hidden" id="cate_id" name="cate_id" value="" class="mls_id" />
+                  <input type="hidden" name="cate_name" value="" class="mls_names" />
+                  </span>
+                  <input type="button" class="button" onclick="javascript:searchGoods();" value=" {$lang.search} ">
+                </p>
+              </div>
+              
+                          
+                      
+                        <!-- sku tyioocom  在编辑时，如果有分类属性设置，则加载属性列表，如果是添加商品，则是用异步js加载 -->
+                        
+              
+              
+              
+              <div class="assort">
+                <table id="groupgoods-table" align="center">
+                  <tr>
+				   <th rowspan="4" class="w15">{$lang.mix_goods}:</th>
+                    <th class="w38">{$lang.all_goods}</th>
+                    <th class="w8">{$lang.handler}</th>
+                    <th class="w38">{$lang.such_mix_goods}</th>
+                  </tr>
+                  <tr>
+                    <td><select multiple="true" name="selectleft" id="SelectLeft" ondblclick="moveOption($('#SelectLeft'), $('#SelectRight'))"></select>
+                    </td>
+                    <td align="center">
+					 <p><input type="button" value=">>" onclick="moveOption($('#SelectLeft'),$('#SelectRight'))" /></p>
+                     <p><input type="button" value="<<" onclick="moveOption($('#SelectRight'), $('#SelectLeft'))" /></p>
+					 </td>
+                    <td><select  multiple name="selectright[]" id="SelectRight" ondblclick="moveOption($('#SelectRight'), $('#SelectLeft'))">
+						  <!--{foreach from=$goods_list item=goods}-->
+						  <option value="{$goods.goods_id}">{$goods.goods_name|escape}</option>
+						  <!--{/foreach}-->
+                      </select>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td colspan="2"></td><td><center>
+                        <input type="button" value="{$lang.moveTop}" onclick="moveTop($('#SelectRight'));">
+                        <input type="button" value="{$lang.moveUp}" onclick="moveUp($('#SelectRight'));">
+                        <input type="button" value="{$lang.moveDown}" onclick="moveDown($('#SelectRight'));">
+                        <input type="button" value="{$lang.moveBottom}" onclick="moveBottom($('#SelectRight'));">
+                      </center></td>
+                  </tr>
+                </table>
+              </div>
+              <div class="issuance">
+                <input id="submit_mix" type="submit" class="btn" value="{$lang.submit}" />
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="wrap_bottom"></div>
+    </div>
+    <SCRIPT LANGUAGE="JavaScript">
+<!--
+		//上移
+	　	function moveUp(obj)
+	　　{　
+	  	  	if(!$("option:selected", obj).val()){alert('{$lang.pls_select_option}');return false;}
+			if($("option:selected", obj).length > 1){alert('{$lang.such_op_only_item}');return false;}
+			var SourceIndex = $("option:selected", obj).attr("index");
+			var TargetIndex = SourceIndex-1;
+	  		var SourceVal = $("option:selected", obj).val();
+			var SourceText = $("option:selected", obj).text();
+			var TargetVal = $("option[index='"+TargetIndex+"']", obj).val();
+			var TargetText = $("option[index='"+TargetIndex+"']", obj).text();
+			$("option:selected", obj).val(TargetVal).text(TargetText).attr('selected', false);
+			$("option[index='"+TargetIndex+"']", obj).val(SourceVal).text(SourceText).attr('selected', true);
+	　　　}
+		//下移
+		function moveDown(obj)
+　　　　{
+	  	  	if(!$("option:selected", obj).val()){alert('{$lang.pls_select_option}');return false;}
+			if($("option:selected", obj).length > 1){alert('{$lang.such_op_only_item}');return false;}
+			var SourceIndex = $("option:selected", obj).attr("index");
+			var TargetIndex = SourceIndex+1;
+	  		var SourceVal = $("option:selected", obj).val();
+			var SourceText = $("option:selected", obj).text();
+			var TargetVal = $("option[index='"+TargetIndex+"']", obj).val();
+			var TargetText = $("option[index='"+TargetIndex+"']", obj).text();
+			$("option:selected", obj).val(TargetVal).text(TargetText).attr('selected', false);
+			$("option[index='"+TargetIndex+"']", obj).val(SourceVal).text(SourceText).attr('selected', true);
+　　　　}
+		//移动
+		function moveOption(obj1, obj2)
+		{
+			$("option:selected", obj1).each(function(i){
+				var OptionVal = $(this).val();
+				var OptionText = $(this).text();
+				$("<option value='"+OptionVal+"'>"+OptionText+"</option>").appendTo($(obj2)).attr('selected', true);
+				$(this).remove();
+			});
+		}
+		//置顶
+	  function  moveTop(obj) 
+	  { 
+	  	  	if(!$("option:selected", obj).val()){alert('{$lang.pls_select_option}');return false;}
+			if($("option:selected", obj).length > 1){alert('{$lang.such_op_only_item}');return false;}
+	  		var SourceVal = $("option:selected", obj).val();
+			var SourceText = $("option:selected", obj).text();
+			var TargetVal = $("option[index='0']", obj).val();
+			var TargetText = $("option[index='0']", obj).text();
+			$("option:selected", obj).val(TargetVal).text(TargetText).attr('selected', false);
+			$("option[index='0']", obj).val(SourceVal).text(SourceText).attr('selected', true);
+		} 
+	  //置底
+	  function  moveBottom(obj) 
+	  { 
+	  		if(!$("option:selected", obj).val()){alert('{$lang.pls_select_option}');return false;}
+			if($("option:selected", obj).length > 1){alert('{$lang.such_op_only_item}');return false;}
+	  		var SourceVal = $("option:selected", obj).val();
+			var SourceText = $("option:selected", obj).text();
+			var TargetVal = $("option:last", obj).val();
+			var TargetText = $("option:last", obj).text();
+			$("option:selected", obj).val(TargetVal).text(TargetText).attr('selected', false);
+			$("option:last", obj).val(SourceVal).text(SourceText).attr('selected', true);
+		} 
+	//-->
+</SCRIPT>
+    <div class="clear"></div>
+  </div>
+  <div class="clear"></div>
+</div>
+{include file=footer.html}

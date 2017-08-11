@@ -1,0 +1,12 @@
+<div class="nav" class="w-full" {if $widget_data.color} style="background-color:{$widget_data.color}"{/if}>
+        <ul>
+            <li><a href="{url app=store&id=$widget_data.store_id}">首页</a></li>
+            <!--{foreach from=$widget_data.navs item=nav}-->
+            <li><a href="{$nav.link}">{$nav.title|escape}</a></li>
+            <!--{/foreach}-->
+            {if $store.functions.groupbuy and $store.enable_groupbuy}
+            <li><a href="{url app=store&act=groupbuy&id=$widget_data.store_id}">团购</a></li>
+            {/if}
+            <li><a href="{url app=store&act=credit&id=$widget_data.store_id}">信用评价</a></li>
+        </ul>
+</div>

@@ -1,0 +1,134 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
+{$page_seo}
+<meta name="viewport" content=" initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<link type="text/css" rel="stylesheet" href="{res file=css/css.css}">
+<script type="text/javascript" src="{res file=js/jquery-1.8.0.min.js}" charset="utf-8"></script>
+<script type="text/javascript" src="{res file=js/jquery.flexslider.js}" charset="utf-8"></script>
+<script>
+$(window).load(function(){
+	$('.flexslider').flexslider({
+    	animation: "slide"
+    });
+	$(".flex-direction-nav,.flex-control-nav").remove();
+});
+</script>
+</head>
+<body>
+	<!----------------头部---------------->
+    <div class="lay_header" style="height:45px">
+        <div class="lay_toptab mod_tab" id="lay_head">
+            <ul>
+                <li class="tab_item go_back">
+                   <a href="javascript:history.back(-1);"> <i class="qb_icon icon_goback"></i></a>
+                </li>
+                
+                <a class="tab_item tab_item_logo" href="javascript:void(0);">
+                    <img src="{$store.store_logo}" >
+                </a>
+                <a class="tab_item" href="javascript:void(0);">
+                    <i class="qb_icon icon_icenter"></i>
+                </a>
+                <a class="tab_item" href="javascript:void(0);">
+                    <i class="qb_icon icon_cart"></i>
+                    <!---------购物车数量----------->
+                    <i class="qb_icon icon_number_bubble qb_none"></i>
+                </a>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="lay_page ">
+        <div class="fn_indexad">
+            <!---轮播------>
+            <section class="sliders">
+                <div class="flexslider">
+                    <ul class="slides">
+                        <!--{foreach from=$goods_images item=goods_iamge}-->
+                        <li>
+                            <img  src="{$goods_iamge.image_url}"/>
+                        </li>
+                        <!--{/foreach}-->
+                    </ul>
+                </div>
+            </section>
+            <!---------分类------------->
+            <div class="indexad_banner animate">
+                <ul class="banner_list">
+                    <li class="list_item">
+                        <a href="javascript:void(0);">
+                            最新商品
+                        </a>
+                    </li>
+                    <li class="list_item">
+                        <a href="javascript:void(0);">
+                            推荐商品
+                        </a>
+                    </li>
+                    <li class="list_item">
+                        <a href="javascript:void(0);">
+                            热门商品
+                        </a>
+                    </li>
+                      <!--{foreach from=$store.store_gcates_image item=gcategory}-->
+                    <li class="list_item">
+                        <a href="javascript:void(0);">
+                            {$gcategory.cate_name|escape}
+                        </a>
+                    </li>
+                     <!--{/foreach}-->
+                </ul>
+            </div>
+        </div>
+        <!------------底部---------------------->
+         
+   <div class="lay_footer ">
+            <a class="flex_box" href="javascript:void(0);">
+                商铺首页
+            </a>
+            <a class="flex_box" href="javascript:void(0);" style="width:34%;">
+                会员中心
+            </a>
+            <a class="flex_box" href="javascript:void(0);">
+                关于我们
+            </a>
+         {if $store.functions.copyright}{$store.copyright|escape}{ else} Copyright &copy;2013 mall.changxiao.cn{/if}
+        </div>
+     
+    </div>
+    <!--{if $kmenus.status==0 or $kmenus.status==''}-->
+    <link type="text/css" rel="stylesheet" href="{res file=css/kmenus.css}">
+    <div class="flo_btn_<!--{if $kmenus.stypeinfo==''}-->1<!--{else}-->{$kmenus.stypeinfo}<!--{/if}-->">
+        <ul>
+            <!--{foreach from=$kmenusinfo item=info}-->
+                <li>
+                    <a style="background-color:#{$info.color};" href="<!--{if $info.title=='导航'}-->http://map.baidu.com/?newmap=1&ie=utf-8&s=s%26wd%3D{$info.loadurl}<!--{else}-->{$info.loadurl}<!--{/if}-->"><span style="background:url('{$info.imgurl}') scroll no-repeat center center transparent;background-size:60%; bottom:0; left:0;"></span></a>
+                </li>
+            <!--{/foreach}-->
+        </ul>
+    </div>
+<!--{/if}-->
+</body>
+<script>
+	$(function(){
+		publicmain();
+	});	
+	
+	$(window).resize(function(){
+		publicmain();
+	});
+	
+	function publicmain(){
+		var h = document.documentElement.clientHeight;
+		var w = document.documentElement.clientWidth;
+		$('.slides li,.slides li img').css({'width':w,'height':h});
+	}
+</script>
+</html>

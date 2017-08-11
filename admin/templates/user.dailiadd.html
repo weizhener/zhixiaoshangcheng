@@ -1,0 +1,100 @@
+{include file="header.html"}
+<script type="text/javascript">
+//<!CDATA[
+$(function(){
+	 regionInit("region");
+ $('#add_region_button').click(function(){
+        var region_id = $('#region_id').val();
+        var region_name = $('#region_name').val();
+        if(!region_id || !region_name){
+            return;
+        }
+        if($('#region_' + region_id).length == 0){
+            $('#current_cod_regions').append($('<label id="region' + region_id + '"><input type="checkbox" checked="true" name="cod_regions[' + region_id + ']" id="region_' + region_id + '" value="' + region_name + '" />&nbsp;' + region_name + '<a href="javascript:void(0);" class="delete" onclick="del_region('+region_id+')">{$lang.drop}</a></label>'));
+        }
+   });	
+});	
+
+function del_region(region_id){
+    $('#region'+region_id).remove();
+}
+	//]]>
+</script>
+<div id="rightTop">
+  <p>{$lang.user}</p>
+  <ul class="subnav">
+    <li><a class="btn1" href="index.php?app=user&daili">{$lang.manage}</a></li>
+    <li>
+      
+      <span>{$lang.add}</span>
+     
+    </li>
+  </ul>
+</div>
+<div class="info">
+  <form method="post" enctype="multipart/form-data" id="user_form">
+    <table class="infoTable">
+      <tr>
+        <th class="paddingT15"> 区域名称:</th>
+        <td class="paddingT15 wordSpacing5">
+      
+          <input class="infoTableInput2" id="title" type="text" name="title" value="{$user.title|escape}" />
+        
+              </td>
+      </tr>
+      
+      <tr>
+        <th class="paddingT15"> 会员ID:</th>
+        <td class="paddingT15 wordSpacing5">
+      
+          <input class="infoTableInput2" id="user_id" type="text" name="user_id" value="{$user.user_id|escape}" />
+        
+              </td>
+      </tr>
+      
+      
+       <tr>
+        <th class="paddingT15"> 代理区域:</th>
+        <td class="paddingT15 wordSpacing5">
+        <div class="ddd" style="width:300;float:left;">
+        
+                   <div id="region">
+                    <input type="hidden" name="region_id" id="region_id" class="mls_id" />
+                    <input type="hidden" name="region_name" id="region_name" class="mls_names" />
+                    <select>
+                      <option>{$lang.select_pls}</option>
+                      {html_options options=$regions}
+                    </select>
+                    <input class="btn" type="button" id="add_region_button" value="{$lang.add}" />
+                    </div>
+                    
+                    
+                    <div class="zone" id="current_cod_regions">
+                    <!--{foreach from=$cod_regions item=cod_r key=cod_r_id}-->
+                    <label id="region{$cod_r_id}"><input type="checkbox" checked="true" name="cod_regions[{$cod_r_id}]" id="region_{$cod_r_id}" value="{$cod_r}" />&nbsp;{$cod_r}<a href="javascript:;" class="delete" onclick="del_region({$cod_r_id})">{$lang.drop}</a></label>
+                    <!--{/foreach}-->
+
+                </div>
+                
+                </div>
+              </td>
+      </tr>
+      
+       <tr>
+        <th class="paddingT15">推荐人比例:</th>
+        <td class="paddingT15 wordSpacing5">
+      
+          <input class="infoTableInput2" id="tjbl" type="text" name="tjbl" value="{$user.tjbl|escape}" />
+         <p>如填0.2</p>
+              </td>
+      </tr>
+      
+      <tr>
+        <th></th>
+        <td class="ptb20"><input class="formbtn" type="submit" name="Submit" value="{$lang.submit}" />
+          <input class="formbtn" type="reset" name="Reset" value="{$lang.reset}" />        </td>
+      </tr>
+    </table>
+  </form>
+</div>
+{include file="footer.html"}

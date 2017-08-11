@@ -1,0 +1,30 @@
+<div class="gcategroy mb10">
+    <h2 class="title">商品分类</h2>
+    <div class="content">
+         <div class="content_header">
+         	 <p><a class="icon" href="{url app=store&id=$widget_data.store_id&act=search}">查看全部商品</a></p>
+             <div class="order_by"><a href="{url app=store&id=$widget_data.store_id&act=search&order=sales desc}">按销量</a><a href="{url app=store&id=$widget_data.store_id&act=search&order=add_time desc}">按新品</a><a href="{url app=store&id=$widget_data.store_id&act=search&order=price asc}">按价格</a></div>
+         </div>     
+             <ul class="gcategory_menu">
+                <!--{foreach from=$widget_data.store_gcates item=gcategory}-->
+                <li class="each">
+                   <h3><a  href="{url app=store&id=$widget_data.store_id&act=search&cate_id=$gcategory.id}">{$gcategory.value|escape}</a><i></i></h3>
+                   <ul class="sub_gcate">
+                       <!--{foreach from=$gcategory.children item=child_gcategory}-->
+                       <li><a href="{url app=store&id=$widget_data.store_id&act=search&cate_id=$child_gcategory.id}">{$child_gcategory.value|escape}</a></li>
+                       <!--{/foreach}-->
+                    </ul>
+                 </li>
+                 <!--{/foreach}-->
+                   <!--{if $widget_data.store_gcates}-->
+                   <script type="text/javascript">
+					   $(function(){
+					   		$('.gcategroy .content .gcategory_menu li h3 i').click(function(){
+								$(this).parent('h3').parent('li').children('.sub_gcate').toggle(700);
+							})
+					   });
+				   </script>
+                   <!--{/if}-->
+              </ul>
+    </div>
+ </div>

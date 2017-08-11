@@ -1,0 +1,44 @@
+{include file="header.html"}    
+<script type="text/javascript" src="{lib file=cart.js}" charset="utf-8"></script>
+<div class="mb-head">
+    <a href="{url app=default}" class="l_b">首页</a>
+    <div class="tit">购物车</div>
+    <a href="javascript" class="r_b"></a>
+</div>
+
+<!--{foreach from=$carts item=cart key=store_id}-->
+<section class="cart-list">
+    <div class="mt">
+        <a href="{url app=store&id=$store_id}">{$lang.store}: {$cart.store_name|escape}</a>
+    </div>
+    <div class="mc">
+        <!--{foreach from=$cart.goods item=goods}-->
+        <dl id="cart_item_{$goods.rec_id}">
+            <dt>
+                <a href="{url app=goods&id=$goods.goods_id}"> <img src="{$goods.goods_image}" /></a>
+            </dt>
+            <dd>
+                <p class="name">{$goods.goods_name|escape}<!--{if $goods.specification}-->({$goods.specification|escape})<!--{/if}--></p>
+                <p class="price">价格：<strong>{$goods.price|price}</strong></p>
+                <p class="c_oprate">
+                    <span class="white_btn" onclick="decrease_quantity({$goods.rec_id});">-</span>
+                    <input type="text" id="input_item_{$goods.rec_id}"  value="{$goods.quantity}" orig="{$goods.quantity}"  class="addtext"  id="input_item"  onkeyup="change_quantity({$store_id}, {$goods.rec_id}, {$goods.spec_id}, this);"  changed="{$goods.quantity}"/>
+                    <span class="white_btn" onclick="add_quantity({$goods.rec_id});">+</span>
+                    <a href="#" onclick="drop_cart_item({$store_id}, {$goods.rec_id});"> <span class="close"><img src="{res file=images/close.jpg}" style="border:none; width:20px;height:20px;margin:0 0 5px 0;" /></span></a>
+                </p>
+            </dd>
+        </dl>
+        <!--{/foreach}-->
+        <div class="count">
+            <a>合计(不含运费): <strong id='cart{$store_id}_amount'>{$cart.amount|price}</strong></a>
+            <a href="{url app=order&goods=cart&store_id=$store_id}" class="jie">去结算</a>
+       </div>
+    </div>
+</section>
+<!--{/foreach}-->
+
+
+
+
+{include file="footer.html"}
+

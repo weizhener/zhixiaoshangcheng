@@ -1,0 +1,106 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head><meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>
+            订单打印
+        </title>
+        <style type="text/css">
+            * {margin:0;padding:0}
+            body {font:12px/1.5  "宋体";color:#333}
+            .w{width:100%}
+            .m1 td{height:0.6cm;line-height:0.6cm;}
+            .t3,.t7,.t6{width:1.6cm}
+            .t1{width:6.8cm}
+            .t5{width:1.1cm}
+            .tb4{border-collapse:collapse;border:1px solid #000}
+            .tb4 th, .tb4 td,.d1{border:1px solid #000}
+            .tb4 td {padding:1px}
+            .tb4 th {height:0.6cm;font-weight:normal}
+            .m1,.m2,.m3{padding-top:10px}
+            .d1{padding:10px}
+            .d2{text-align:right;padding:10px 0;font-size:14px}
+            .logo{border-bottom:1px solid #ccc;padding:10px;text-align: center;}
+            .v-h{ text-align:center}
+            .m2{padding-left:1px}
+            .print{color: #fff;background-color: #ff8a00;border-color: #ea7f00;height: 28px;width: 200px;line-height: 28px;border: 0px;margin-top:10px;}
+        </style>
+        <style type="text/css" media="print">
+            .v-h {display:none;}
+        </style>
+
+    </head>
+    <body>
+        <form name="form1">
+            <div class="v-h"><input class="print" name="" type="button" value="打印" onclick="javascript:window.print();" /></div>
+            <div class="w">
+                <div class="logo"><img  height="60" src="{$site_logo}" /></div>
+                <div class="m1">
+                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                        <tr>
+                            <td class="t1"><strong>订单编号：</strong>{$order.order_sn}</td>
+                            <td class="t2"><strong>订购时间：</strong>{$order.order_add_time|date:complete}</td>
+                        </tr>
+                        <tr>
+                            <td class="t1"><strong>客户姓名：</strong>{$order_extm.consignee|escape}</td>
+                            <td class="t2"><strong>联系方式：</strong><!--{if $order_extm.phone_mob}-->, &nbsp;{$order_extm.phone_mob}<!--{/if}--><!--{if $order_extm.phone_tel}-->,&nbsp;{$order_extm.phone_tel}<!--{/if}--></td>
+                        </tr>
+                        <tr>
+                            <td class="t1"><strong>物流名称：</strong>{$order_extm.shipping_name|escape}</td>
+                            <td class="t2"><strong>{$lang.invoice_no}：</strong>{$order.invoice_no|escape}</td>
+
+                        </tr>
+                        <tr>
+                            <td class="t1"><strong>{$lang.postscript}：</strong>{$order.postscript|escape}</td>
+                            <td class="t2"><strong>备注：</strong>{$order_extm.remarks|escape}</td>
+                        </tr>
+                    </table>
+                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                        <tr>
+                            <td class="t8"><strong>客户地址：</strong>{$order_extm.region_name|escape}&nbsp;{$order_extm.address|escape}</td>
+                        </tr>
+                    </table>
+                    <br/>
+                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                        <tr>
+                            <td class="t1"><strong>{$lang.store_name}：</strong>{$order.store_name|escape}</td>
+                            <td class="t2"><strong>{$lang.phone_tel}：</strong>{$order.tel|escape|default:-}</td>
+                        </tr>
+                        <tr>
+                            <td class="t1"><strong>{$lang.region}：</strong>{$order.region_name|escape|default:-}</td>
+                            <td class="t2"><strong>{$lang.phone_mob}：</strong>{$order.phone_mob|escape|default:-}</td>
+                        </tr>
+                        <tr>
+                            <td class="t1"><strong>{$lang.msn}：</strong>{$order.im_msn|escape|default:-}</td>
+                            <td class="t2"><strong>{$lang.address}：</strong>{$order.address|escape|default:-}</td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="m2">
+                    <table width="100%" border="0" cellspacing="0" cellpadding="0" class="tb4">
+                        <tr>
+                            <th class="t3">商品编号</th>
+                            <th class="t4">商品名称</th>
+                            <th class="t5">数量</th>
+                            <th class="t7">商品金额</th>
+                        </tr>
+                        <!--{foreach from=$goods_list item=goods}-->
+                        <tr>
+                            <td>{$goods.goods_id}</td>
+                            <td><div class="p-name">{$goods.goods_name|escape}</div></td>
+                            <td>{$goods.quantity}</td>
+                            <td>{$goods.price|price}</td>
+                        </tr>
+                        <!--{/foreach}-->
+                    </table>
+                </div>
+                <div class="m3">
+                    <div class="d1">
+                        商品总金额：{$order.goods_amount|price}元 + 运费：{$order_extm.shipping_fee|price}元 - 优惠：{$order.discount|price}元 
+                    </div>
+                    <div class="d2"><strong>邀请支付金额：{$order.order_amount|price}</strong></div>
+                </div>
+            </div>
+        </form>
+
+    </body>
+</html>

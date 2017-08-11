@@ -1,0 +1,368 @@
+Thu, 10 Nov 2016 08:19:21 +0000	[2]file_get_contents(http://ip.taobao.com/service/getIpInfo.php?ip=127.0.0.1) [<a href='function.file-get-contents'>function.file-get-contents</a>]: failed to open stream: HTTP request failed! 	\includes\models\region.model.php	285
+Thu, 10 Nov 2016 08:24:11 +0000	[2]file_get_contents(http://ip.taobao.com/service/getIpInfo.php?ip=127.0.0.1) [<a href='function.file-get-contents'>function.file-get-contents</a>]: failed to open stream: HTTP request failed! 	\includes\models\region.model.php	285
+Thu, 10 Nov 2016 08:24:49 +0000	[2]file_get_contents(http://ip.taobao.com/service/getIpInfo.php?ip=127.0.0.1) [<a href='function.file-get-contents'>function.file-get-contents</a>]: failed to open stream: HTTP request failed! 	\includes\models\region.model.php	285
+Thu, 10 Nov 2016 08:25:46 +0000	[2]file_get_contents(http://ip.taobao.com/service/getIpInfo.php?ip=127.0.0.1) [<a href='function.file-get-contents'>function.file-get-contents</a>]: failed to open stream: HTTP request failed! 	\includes\models\region.model.php	285
+Thu, 10 Nov 2016 08:33:15 +0000	[2]file_get_contents(http://ip.taobao.com/service/getIpInfo.php?ip=127.0.0.1) [<a href='function.file-get-contents'>function.file-get-contents</a>]: failed to open stream: HTTP request failed! 	\includes\models\region.model.php	285
+Fri, 25 Nov 2016 10:53:40 +0000	[2]array_merge() [<a href='function.array-merge'>function.array-merge</a>]: Argument #2 is not an array	\eccore\ecmall.php	420
+Fri, 25 Nov 2016 10:53:41 +0000	[2]array_merge() [<a href='function.array-merge'>function.array-merge</a>]: Argument #2 is not an array	\eccore\ecmall.php	420
+Fri, 25 Nov 2016 10:53:41 +0000	[2]array_merge() [<a href='function.array-merge'>function.array-merge</a>]: Argument #2 is not an array	\eccore\ecmall.php	420
+Fri, 25 Nov 2016 10:53:42 +0000	[2]array_merge() [<a href='function.array-merge'>function.array-merge</a>]: Argument #2 is not an array	\eccore\ecmall.php	420
+Fri, 25 Nov 2016 10:53:42 +0000	[2]array_merge() [<a href='function.array-merge'>function.array-merge</a>]: Argument #2 is not an array	\eccore\ecmall.php	420
+Fri, 25 Nov 2016 10:53:42 +0000	[2]array_merge() [<a href='function.array-merge'>function.array-merge</a>]: Argument #2 is not an array	\eccore\ecmall.php	420
+Sun, 27 Nov 2016 07:39:01 +0000	[256]MySQL Error[1146]: Table 'ssec.ecm_my_money' doesn't exist
+MySQL Query:select * from ecm_my_money  where user_id=17
+Wrong File:  D:\DedeAMPZ\WebRoot\ecsp\eccore\model\mysql.php[1156]	\eccore\model\mysql.php	550
+Sun, 27 Nov 2016 07:39:08 +0000	[256]MySQL Error[1146]: Table 'ssec.ecm_my_money' doesn't exist
+MySQL Query:select * from ecm_my_money  where user_id=17
+Wrong File:  D:\DedeAMPZ\WebRoot\ecsp\eccore\model\mysql.php[1156]	\eccore\model\mysql.php	550
+Sun, 27 Nov 2016 07:39:31 +0000	[256]MySQL Error[1146]: Table 'ssec.ecm_my_money' doesn't exist
+MySQL Query:select * from ecm_my_money  where user_id=17
+Wrong File:  D:\DedeAMPZ\WebRoot\ecsp\eccore\model\mysql.php[1156]	\eccore\model\mysql.php	550
+Sun, 27 Nov 2016 07:39:38 +0000	[256]MySQL Error[1146]: Table 'ssec.ecm_my_money' doesn't exist
+MySQL Query:select * from ecm_my_money  where user_id=17
+Wrong File:  D:\DedeAMPZ\WebRoot\ecsp\eccore\model\mysql.php[1156]	\eccore\model\mysql.php	550
+Sun, 27 Nov 2016 07:39:39 +0000	[256]MySQL Error[1146]: Table 'ssec.ecm_my_money' doesn't exist
+MySQL Query:select * from ecm_my_money  where user_id=17
+Wrong File:  D:\DedeAMPZ\WebRoot\ecsp\eccore\model\mysql.php[1156]	\eccore\model\mysql.php	550
+Sun, 27 Nov 2016 07:39:48 +0000	[256]MySQL Error[1146]: Table 'ssec.ecm_my_money' doesn't exist
+MySQL Query:select * from ecm_my_money  where user_id=17
+Wrong File:  D:\DedeAMPZ\WebRoot\ecsp\eccore\model\mysql.php[1156]	\eccore\model\mysql.php	550
+Sun, 27 Nov 2016 07:40:12 +0000	[256]MySQL Error[1146]: Table 'ssec.ecm_my_money' doesn't exist
+MySQL Query:select * from ecm_my_money  where user_id=17
+Wrong File:  D:\DedeAMPZ\WebRoot\ecsp\eccore\model\mysql.php[1156]	\eccore\model\mysql.php	550
+Sun, 27 Nov 2016 07:40:47 +0000	[256]MySQL Error[1146]: Table 'ssec.ecm_my_money' doesn't exist
+MySQL Query:select * from ecm_my_money  where user_id=17
+Wrong File:  D:\DedeAMPZ\WebRoot\ecsp\eccore\model\mysql.php[1156]	\eccore\model\mysql.php	550
+Sun, 27 Nov 2016 07:41:06 +0000	[256]MySQL Error[1146]: Table 'ssec.ecm_my_money' doesn't exist
+MySQL Query:select * from ecm_my_money  where user_id=17
+Wrong File:  D:\DedeAMPZ\WebRoot\ecsp\eccore\model\mysql.php[1156]	\eccore\model\mysql.php	550
+Sun, 27 Nov 2016 07:41:06 +0000	[256]MySQL Error[1146]: Table 'ssec.ecm_my_money' doesn't exist
+MySQL Query:select * from ecm_my_money  where user_id=17
+Wrong File:  D:\DedeAMPZ\WebRoot\ecsp\eccore\model\mysql.php[1156]	\eccore\model\mysql.php	550
+Sun, 27 Nov 2016 07:42:09 +0000	[256]MySQL Error[1146]: Table 'ssec.ecm_my_money' doesn't exist
+MySQL Query:select * from ecm_my_money  where user_id=17
+Wrong File:  D:\DedeAMPZ\WebRoot\ecsp\eccore\model\mysql.php[1156]	\eccore\model\mysql.php	550
+Sun, 27 Nov 2016 07:42:10 +0000	[256]MySQL Error[1146]: Table 'ssec.ecm_my_money' doesn't exist
+MySQL Query:select * from ecm_my_money  where user_id=17
+Wrong File:  D:\DedeAMPZ\WebRoot\ecsp\eccore\model\mysql.php[1156]	\eccore\model\mysql.php	550
+Sun, 27 Nov 2016 07:42:38 +0000	[256]MySQL Error[1146]: Table 'ssec.ecm_my_money' doesn't exist
+MySQL Query:select * from ecm_my_money  where user_id=17
+Wrong File:  D:\DedeAMPZ\WebRoot\ecsp\eccore\model\mysql.php[1156]	\eccore\model\mysql.php	550
+Sun, 27 Nov 2016 07:42:40 +0000	[256]MySQL Error[1146]: Table 'ssec.ecm_my_money' doesn't exist
+MySQL Query:select * from ecm_my_money  where user_id=17
+Wrong File:  D:\DedeAMPZ\WebRoot\ecsp\eccore\model\mysql.php[1156]	\eccore\model\mysql.php	550
+Sun, 27 Nov 2016 07:42:41 +0000	[256]MySQL Error[1146]: Table 'ssec.ecm_my_money' doesn't exist
+MySQL Query:select * from ecm_my_money  where user_id=17
+Wrong File:  D:\DedeAMPZ\WebRoot\ecsp\eccore\model\mysql.php[1156]	\eccore\model\mysql.php	550
+Sun, 27 Nov 2016 07:42:42 +0000	[256]MySQL Error[1146]: Table 'ssec.ecm_my_money' doesn't exist
+MySQL Query:select * from ecm_my_money  where user_id=17
+Wrong File:  D:\DedeAMPZ\WebRoot\ecsp\eccore\model\mysql.php[1156]	\eccore\model\mysql.php	550
+Sun, 27 Nov 2016 07:42:42 +0000	[256]MySQL Error[1146]: Table 'ssec.ecm_my_money' doesn't exist
+MySQL Query:select * from ecm_my_money  where user_id=17
+Wrong File:  D:\DedeAMPZ\WebRoot\ecsp\eccore\model\mysql.php[1156]	\eccore\model\mysql.php	550
+Sun, 27 Nov 2016 07:42:43 +0000	[256]MySQL Error[1146]: Table 'ssec.ecm_my_money' doesn't exist
+MySQL Query:select * from ecm_my_money  where user_id=17
+Wrong File:  D:\DedeAMPZ\WebRoot\ecsp\eccore\model\mysql.php[1156]	\eccore\model\mysql.php	550
+Sun, 27 Nov 2016 07:42:43 +0000	[256]MySQL Error[1146]: Table 'ssec.ecm_my_money' doesn't exist
+MySQL Query:select * from ecm_my_money  where user_id=17
+Wrong File:  D:\DedeAMPZ\WebRoot\ecsp\eccore\model\mysql.php[1156]	\eccore\model\mysql.php	550
+Sun, 27 Nov 2016 07:42:43 +0000	[256]MySQL Error[1146]: Table 'ssec.ecm_my_money' doesn't exist
+MySQL Query:select * from ecm_my_money  where user_id=17
+Wrong File:  D:\DedeAMPZ\WebRoot\ecsp\eccore\model\mysql.php[1156]	\eccore\model\mysql.php	550
+Sun, 27 Nov 2016 07:43:58 +0000	[256]MySQL Error[1146]: Table 'ssec.ecm_my_money' doesn't exist
+MySQL Query:select * from ecm_my_money  where user_id=17
+Wrong File:  D:\DedeAMPZ\WebRoot\ecsp\eccore\model\mysql.php[1156]	\eccore\model\mysql.php	550
+Sun, 27 Nov 2016 07:44:00 +0000	[256]MySQL Error[1146]: Table 'ssec.ecm_my_money' doesn't exist
+MySQL Query:select * from ecm_my_money  where user_id=17
+Wrong File:  D:\DedeAMPZ\WebRoot\ecsp\eccore\model\mysql.php[1156]	\eccore\model\mysql.php	550
+Sun, 27 Nov 2016 07:44:01 +0000	[256]MySQL Error[1146]: Table 'ssec.ecm_my_money' doesn't exist
+MySQL Query:select * from ecm_my_money  where user_id=17
+Wrong File:  D:\DedeAMPZ\WebRoot\ecsp\eccore\model\mysql.php[1156]	\eccore\model\mysql.php	550
+Sun, 27 Nov 2016 07:44:03 +0000	[256]MySQL Error[1146]: Table 'ssec.ecm_my_money' doesn't exist
+MySQL Query:select * from ecm_my_money  where user_id=17
+Wrong File:  D:\DedeAMPZ\WebRoot\ecsp\eccore\model\mysql.php[1156]	\eccore\model\mysql.php	550
+Sun, 27 Nov 2016 07:44:03 +0000	[256]MySQL Error[1146]: Table 'ssec.ecm_my_money' doesn't exist
+MySQL Query:select * from ecm_my_money  where user_id=17
+Wrong File:  D:\DedeAMPZ\WebRoot\ecsp\eccore\model\mysql.php[1156]	\eccore\model\mysql.php	550
+Sun, 27 Nov 2016 07:44:19 +0000	[256]MySQL Error[1146]: Table 'ssec.ecm_my_money' doesn't exist
+MySQL Query:select * from ecm_my_money  where user_id=17
+Wrong File:  D:\DedeAMPZ\WebRoot\ecsp\eccore\model\mysql.php[1156]	\eccore\model\mysql.php	550
+Sun, 27 Nov 2016 07:44:22 +0000	[256]MySQL Error[1146]: Table 'ssec.ecm_my_money' doesn't exist
+MySQL Query:select * from ecm_my_money  where user_id=17
+Wrong File:  D:\DedeAMPZ\WebRoot\ecsp\eccore\model\mysql.php[1156]	\eccore\model\mysql.php	550
+Sun, 27 Nov 2016 07:44:22 +0000	[256]MySQL Error[1146]: Table 'ssec.ecm_my_money' doesn't exist
+MySQL Query:select * from ecm_my_money  where user_id=17
+Wrong File:  D:\DedeAMPZ\WebRoot\ecsp\eccore\model\mysql.php[1156]	\eccore\model\mysql.php	550
+Sun, 27 Nov 2016 07:44:22 +0000	[256]MySQL Error[1146]: Table 'ssec.ecm_my_money' doesn't exist
+MySQL Query:select * from ecm_my_money  where user_id=17
+Wrong File:  D:\DedeAMPZ\WebRoot\ecsp\eccore\model\mysql.php[1156]	\eccore\model\mysql.php	550
+Sun, 27 Nov 2016 07:44:23 +0000	[256]MySQL Error[1146]: Table 'ssec.ecm_my_money' doesn't exist
+MySQL Query:select * from ecm_my_money  where user_id=17
+Wrong File:  D:\DedeAMPZ\WebRoot\ecsp\eccore\model\mysql.php[1156]	\eccore\model\mysql.php	550
+Sun, 27 Nov 2016 07:44:23 +0000	[256]MySQL Error[1146]: Table 'ssec.ecm_my_money' doesn't exist
+MySQL Query:select * from ecm_my_money  where user_id=17
+Wrong File:  D:\DedeAMPZ\WebRoot\ecsp\eccore\model\mysql.php[1156]	\eccore\model\mysql.php	550
+Sun, 27 Nov 2016 07:44:23 +0000	[256]MySQL Error[1146]: Table 'ssec.ecm_my_money' doesn't exist
+MySQL Query:select * from ecm_my_money  where user_id=17
+Wrong File:  D:\DedeAMPZ\WebRoot\ecsp\eccore\model\mysql.php[1156]	\eccore\model\mysql.php	550
+Sun, 27 Nov 2016 07:44:23 +0000	[256]MySQL Error[1146]: Table 'ssec.ecm_my_money' doesn't exist
+MySQL Query:select * from ecm_my_money  where user_id=17
+Wrong File:  D:\DedeAMPZ\WebRoot\ecsp\eccore\model\mysql.php[1156]	\eccore\model\mysql.php	550
+Sun, 27 Nov 2016 07:44:23 +0000	[256]MySQL Error[1146]: Table 'ssec.ecm_my_money' doesn't exist
+MySQL Query:select * from ecm_my_money  where user_id=17
+Wrong File:  D:\DedeAMPZ\WebRoot\ecsp\eccore\model\mysql.php[1156]	\eccore\model\mysql.php	550
+Sun, 27 Nov 2016 07:44:24 +0000	[256]MySQL Error[1146]: Table 'ssec.ecm_my_money' doesn't exist
+MySQL Query:select * from ecm_my_money  where user_id=17
+Wrong File:  D:\DedeAMPZ\WebRoot\ecsp\eccore\model\mysql.php[1156]	\eccore\model\mysql.php	550
+Sun, 27 Nov 2016 07:45:26 +0000	[256]MySQL Error[1146]: Table 'ssec.ecm_my_money' doesn't exist
+MySQL Query:select * from ecm_my_money  where user_id=17
+Wrong File:  D:\DedeAMPZ\WebRoot\ecsp\eccore\model\mysql.php[1156]	\eccore\model\mysql.php	550
+Sun, 27 Nov 2016 07:45:27 +0000	[256]MySQL Error[1146]: Table 'ssec.ecm_my_money' doesn't exist
+MySQL Query:select * from ecm_my_money  where user_id=17
+Wrong File:  D:\DedeAMPZ\WebRoot\ecsp\eccore\model\mysql.php[1156]	\eccore\model\mysql.php	550
+Sun, 27 Nov 2016 07:45:28 +0000	[256]MySQL Error[1146]: Table 'ssec.ecm_my_money' doesn't exist
+MySQL Query:select * from ecm_my_money  where user_id=17
+Wrong File:  D:\DedeAMPZ\WebRoot\ecsp\eccore\model\mysql.php[1156]	\eccore\model\mysql.php	550
+Sun, 27 Nov 2016 07:45:29 +0000	[256]MySQL Error[1146]: Table 'ssec.ecm_my_money' doesn't exist
+MySQL Query:select * from ecm_my_money  where user_id=17
+Wrong File:  D:\DedeAMPZ\WebRoot\ecsp\eccore\model\mysql.php[1156]	\eccore\model\mysql.php	550
+Sun, 27 Nov 2016 07:47:38 +0000	[256]MySQL Error[1146]: Table 'ssec.ecm_my_money' doesn't exist
+MySQL Query:select * from ecm_my_money  where user_id=17
+Wrong File:  D:\DedeAMPZ\WebRoot\ecsp\eccore\model\mysql.php[1156]	\eccore\model\mysql.php	550
+Sun, 27 Nov 2016 07:47:43 +0000	[256]MySQL Error[1146]: Table 'ssec.ecm_my_money' doesn't exist
+MySQL Query:select * from ecm_my_money  where user_id=17
+Wrong File:  D:\DedeAMPZ\WebRoot\ecsp\eccore\model\mysql.php[1156]	\eccore\model\mysql.php	550
+Sun, 27 Nov 2016 07:48:18 +0000	[256]MySQL Error[1146]: Table 'ssec.ecm_my_money' doesn't exist
+MySQL Query:select * from ecm_my_money  where user_id=17
+Wrong File:  D:\DedeAMPZ\WebRoot\ecsp\eccore\model\mysql.php[1156]	\eccore\model\mysql.php	550
+Sun, 27 Nov 2016 07:48:19 +0000	[256]MySQL Error[1146]: Table 'ssec.ecm_my_money' doesn't exist
+MySQL Query:select * from ecm_my_money  where user_id=17
+Wrong File:  D:\DedeAMPZ\WebRoot\ecsp\eccore\model\mysql.php[1156]	\eccore\model\mysql.php	550
+Sun, 27 Nov 2016 07:48:20 +0000	[256]MySQL Error[1146]: Table 'ssec.ecm_my_money' doesn't exist
+MySQL Query:select * from ecm_my_money  where user_id=17
+Wrong File:  D:\DedeAMPZ\WebRoot\ecsp\eccore\model\mysql.php[1156]	\eccore\model\mysql.php	550
+Sun, 27 Nov 2016 07:49:30 +0000	[256]MySQL Error[1146]: Table 'ssec.ecm_my_money' doesn't exist
+MySQL Query:select * from ecm_my_money  where user_id=17
+Wrong File:  D:\DedeAMPZ\WebRoot\ecsp\eccore\model\mysql.php[1156]	\eccore\model\mysql.php	550
+Sun, 27 Nov 2016 07:49:31 +0000	[256]MySQL Error[1146]: Table 'ssec.ecm_my_money' doesn't exist
+MySQL Query:select * from ecm_my_money  where user_id=17
+Wrong File:  D:\DedeAMPZ\WebRoot\ecsp\eccore\model\mysql.php[1156]	\eccore\model\mysql.php	550
+Sun, 27 Nov 2016 07:49:32 +0000	[256]MySQL Error[1146]: Table 'ssec.ecm_my_money' doesn't exist
+MySQL Query:select * from ecm_my_money  where user_id=17
+Wrong File:  D:\DedeAMPZ\WebRoot\ecsp\eccore\model\mysql.php[1156]	\eccore\model\mysql.php	550
+Sun, 27 Nov 2016 07:49:33 +0000	[256]MySQL Error[1146]: Table 'ssec.ecm_my_money' doesn't exist
+MySQL Query:select * from ecm_my_money  where user_id=17
+Wrong File:  D:\DedeAMPZ\WebRoot\ecsp\eccore\model\mysql.php[1156]	\eccore\model\mysql.php	550
+Sun, 27 Nov 2016 09:01:09 +0000	[256]MySQL Error[1146]: Table 'ssec.ecm_my_money' doesn't exist
+MySQL Query:select * from ecm_my_money  where user_id=17
+Wrong File:  D:\DedeAMPZ\WebRoot\ecsp\eccore\model\mysql.php[1156]	\eccore\model\mysql.php	550
+Sun, 27 Nov 2016 09:01:10 +0000	[256]MySQL Error[1146]: Table 'ssec.ecm_my_money' doesn't exist
+MySQL Query:select * from ecm_my_money  where user_id=17
+Wrong File:  D:\DedeAMPZ\WebRoot\ecsp\eccore\model\mysql.php[1156]	\eccore\model\mysql.php	550
+Sun, 27 Nov 2016 09:01:12 +0000	[256]MySQL Error[1146]: Table 'ssec.ecm_my_money' doesn't exist
+MySQL Query:select * from ecm_my_money  where user_id=17
+Wrong File:  D:\DedeAMPZ\WebRoot\ecsp\eccore\model\mysql.php[1156]	\eccore\model\mysql.php	550
+Sun, 27 Nov 2016 09:01:13 +0000	[256]MySQL Error[1146]: Table 'ssec.ecm_my_money' doesn't exist
+MySQL Query:select * from ecm_my_money  where user_id=17
+Wrong File:  D:\DedeAMPZ\WebRoot\ecsp\eccore\model\mysql.php[1156]	\eccore\model\mysql.php	550
+Sun, 27 Nov 2016 09:01:28 +0000	[256]MySQL Error[1146]: Table 'ssec.ecm_my_money' doesn't exist
+MySQL Query:select * from ecm_my_money  where user_id=17
+Wrong File:  D:\DedeAMPZ\WebRoot\ecsp\eccore\model\mysql.php[1156]	\eccore\model\mysql.php	550
+Sun, 27 Nov 2016 09:01:31 +0000	[256]MySQL Error[1146]: Table 'ssec.ecm_my_money' doesn't exist
+MySQL Query:select * from ecm_my_money  where user_id=17
+Wrong File:  D:\DedeAMPZ\WebRoot\ecsp\eccore\model\mysql.php[1156]	\eccore\model\mysql.php	550
+Sun, 27 Nov 2016 09:01:33 +0000	[256]MySQL Error[1146]: Table 'ssec.ecm_my_money' doesn't exist
+MySQL Query:select * from ecm_my_money  where user_id=17
+Wrong File:  D:\DedeAMPZ\WebRoot\ecsp\eccore\model\mysql.php[1156]	\eccore\model\mysql.php	550
+Sun, 27 Nov 2016 09:01:34 +0000	[256]MySQL Error[1146]: Table 'ssec.ecm_my_money' doesn't exist
+MySQL Query:select * from ecm_my_money  where user_id=17
+Wrong File:  D:\DedeAMPZ\WebRoot\ecsp\eccore\model\mysql.php[1156]	\eccore\model\mysql.php	550
+Sun, 27 Nov 2016 09:01:34 +0000	[256]MySQL Error[1146]: Table 'ssec.ecm_my_money' doesn't exist
+MySQL Query:select * from ecm_my_money  where user_id=17
+Wrong File:  D:\DedeAMPZ\WebRoot\ecsp\eccore\model\mysql.php[1156]	\eccore\model\mysql.php	550
+Sun, 27 Nov 2016 09:01:35 +0000	[256]MySQL Error[1146]: Table 'ssec.ecm_my_money' doesn't exist
+MySQL Query:select * from ecm_my_money  where user_id=17
+Wrong File:  D:\DedeAMPZ\WebRoot\ecsp\eccore\model\mysql.php[1156]	\eccore\model\mysql.php	550
+Sun, 27 Nov 2016 09:02:11 +0000	[256]MySQL Error[1146]: Table 'ssec.ecm_my_money' doesn't exist
+MySQL Query:select * from ecm_my_money  where user_id=17
+Wrong File:  D:\DedeAMPZ\WebRoot\ecsp\eccore\model\mysql.php[1156]	\eccore\model\mysql.php	550
+Sun, 27 Nov 2016 09:02:12 +0000	[256]MySQL Error[1146]: Table 'ssec.ecm_my_money' doesn't exist
+MySQL Query:select * from ecm_my_money  where user_id=17
+Wrong File:  D:\DedeAMPZ\WebRoot\ecsp\eccore\model\mysql.php[1156]	\eccore\model\mysql.php	550
+Sun, 27 Nov 2016 09:02:25 +0000	[256]MySQL Error[1146]: Table 'ssec.ecm_my_money' doesn't exist
+MySQL Query:select * from ecm_my_money  where user_id=17
+Wrong File:  D:\DedeAMPZ\WebRoot\ecsp\eccore\model\mysql.php[1156]	\eccore\model\mysql.php	550
+Sun, 27 Nov 2016 09:02:26 +0000	[256]MySQL Error[1146]: Table 'ssec.ecm_my_money' doesn't exist
+MySQL Query:select * from ecm_my_money  where user_id=17
+Wrong File:  D:\DedeAMPZ\WebRoot\ecsp\eccore\model\mysql.php[1156]	\eccore\model\mysql.php	550
+Sun, 27 Nov 2016 09:02:26 +0000	[256]MySQL Error[1146]: Table 'ssec.ecm_my_money' doesn't exist
+MySQL Query:select * from ecm_my_money  where user_id=17
+Wrong File:  D:\DedeAMPZ\WebRoot\ecsp\eccore\model\mysql.php[1156]	\eccore\model\mysql.php	550
+Sun, 27 Nov 2016 09:02:26 +0000	[256]MySQL Error[1146]: Table 'ssec.ecm_my_money' doesn't exist
+MySQL Query:select * from ecm_my_money  where user_id=17
+Wrong File:  D:\DedeAMPZ\WebRoot\ecsp\eccore\model\mysql.php[1156]	\eccore\model\mysql.php	550
+Sun, 27 Nov 2016 09:02:40 +0000	[256]MySQL Error[1146]: Table 'ssec.ecm_my_money' doesn't exist
+MySQL Query:select * from ecm_my_money  where user_id=17
+Wrong File:  D:\DedeAMPZ\WebRoot\ecsp\eccore\model\mysql.php[1156]	\eccore\model\mysql.php	550
+Sun, 27 Nov 2016 09:02:40 +0000	[256]MySQL Error[1146]: Table 'ssec.ecm_my_money' doesn't exist
+MySQL Query:select * from ecm_my_money  where user_id=17
+Wrong File:  D:\DedeAMPZ\WebRoot\ecsp\eccore\model\mysql.php[1156]	\eccore\model\mysql.php	550
+Sun, 27 Nov 2016 09:02:40 +0000	[256]MySQL Error[1146]: Table 'ssec.ecm_my_money' doesn't exist
+MySQL Query:select * from ecm_my_money  where user_id=17
+Wrong File:  D:\DedeAMPZ\WebRoot\ecsp\eccore\model\mysql.php[1156]	\eccore\model\mysql.php	550
+Sun, 27 Nov 2016 09:02:41 +0000	[256]MySQL Error[1146]: Table 'ssec.ecm_my_money' doesn't exist
+MySQL Query:select * from ecm_my_money  where user_id=17
+Wrong File:  D:\DedeAMPZ\WebRoot\ecsp\eccore\model\mysql.php[1156]	\eccore\model\mysql.php	550
+Sun, 27 Nov 2016 09:02:42 +0000	[256]MySQL Error[1146]: Table 'ssec.ecm_my_money' doesn't exist
+MySQL Query:select * from ecm_my_money  where user_id=17
+Wrong File:  D:\DedeAMPZ\WebRoot\ecsp\eccore\model\mysql.php[1156]	\eccore\model\mysql.php	550
+Sun, 27 Nov 2016 09:02:56 +0000	[256]MySQL Error[1146]: Table 'ssec.ecm_my_money' doesn't exist
+MySQL Query:select * from ecm_my_money  where user_id=17
+Wrong File:  D:\DedeAMPZ\WebRoot\ecsp\eccore\model\mysql.php[1156]	\eccore\model\mysql.php	550
+Sun, 27 Nov 2016 09:02:56 +0000	[256]MySQL Error[1146]: Table 'ssec.ecm_my_money' doesn't exist
+MySQL Query:select * from ecm_my_money  where user_id=17
+Wrong File:  D:\DedeAMPZ\WebRoot\ecsp\eccore\model\mysql.php[1156]	\eccore\model\mysql.php	550
+Sun, 27 Nov 2016 09:04:02 +0000	[256]MySQL Error[1146]: Table 'ssec.ecm_my_money' doesn't exist
+MySQL Query:select * from ecm_my_money  where user_id=17
+Wrong File:  D:\DedeAMPZ\WebRoot\ecsp\eccore\model\mysql.php[1156]	\eccore\model\mysql.php	550
+Sun, 27 Nov 2016 09:04:04 +0000	[256]MySQL Error[1146]: Table 'ssec.ecm_my_money' doesn't exist
+MySQL Query:select * from ecm_my_money  where user_id=17
+Wrong File:  D:\DedeAMPZ\WebRoot\ecsp\eccore\model\mysql.php[1156]	\eccore\model\mysql.php	550
+Sun, 27 Nov 2016 09:04:05 +0000	[256]MySQL Error[1146]: Table 'ssec.ecm_my_money' doesn't exist
+MySQL Query:select * from ecm_my_money  where user_id=17
+Wrong File:  D:\DedeAMPZ\WebRoot\ecsp\eccore\model\mysql.php[1156]	\eccore\model\mysql.php	550
+Sun, 27 Nov 2016 09:04:06 +0000	[256]MySQL Error[1146]: Table 'ssec.ecm_my_money' doesn't exist
+MySQL Query:select * from ecm_my_money  where user_id=17
+Wrong File:  D:\DedeAMPZ\WebRoot\ecsp\eccore\model\mysql.php[1156]	\eccore\model\mysql.php	550
+Sun, 27 Nov 2016 09:04:18 +0000	[256]MySQL Error[1146]: Table 'ssec.ecm_my_money' doesn't exist
+MySQL Query:select * from ecm_my_money  where user_id=17
+Wrong File:  D:\DedeAMPZ\WebRoot\ecsp\eccore\model\mysql.php[1156]	\eccore\model\mysql.php	550
+Sun, 27 Nov 2016 09:04:27 +0000	[256]MySQL Error[1146]: Table 'ssec.ecm_my_money' doesn't exist
+MySQL Query:select * from ecm_my_money  where user_id=17
+Wrong File:  D:\DedeAMPZ\WebRoot\ecsp\eccore\model\mysql.php[1156]	\eccore\model\mysql.php	550
+Sun, 27 Nov 2016 09:04:37 +0000	[256]MySQL Error[1146]: Table 'ssec.ecm_my_money' doesn't exist
+MySQL Query:select * from ecm_my_money  where user_id=17
+Wrong File:  D:\DedeAMPZ\WebRoot\ecsp\eccore\model\mysql.php[1156]	\eccore\model\mysql.php	550
+Sun, 27 Nov 2016 09:04:38 +0000	[256]MySQL Error[1146]: Table 'ssec.ecm_my_money' doesn't exist
+MySQL Query:select * from ecm_my_money  where user_id=17
+Wrong File:  D:\DedeAMPZ\WebRoot\ecsp\eccore\model\mysql.php[1156]	\eccore\model\mysql.php	550
+Sun, 27 Nov 2016 09:04:49 +0000	[256]MySQL Error[1146]: Table 'ssec.ecm_my_money' doesn't exist
+MySQL Query:select * from ecm_my_money  where user_id=17
+Wrong File:  D:\DedeAMPZ\WebRoot\ecsp\eccore\model\mysql.php[1156]	\eccore\model\mysql.php	550
+Sun, 27 Nov 2016 09:05:24 +0000	[256]MySQL Error[1146]: Table 'ssec.ecm_my_money' doesn't exist
+MySQL Query:select * from ecm_my_money  where user_id=17
+Wrong File:  D:\DedeAMPZ\WebRoot\ecsp\eccore\model\mysql.php[1156]	\eccore\model\mysql.php	550
+Sun, 27 Nov 2016 09:05:25 +0000	[256]MySQL Error[1146]: Table 'ssec.ecm_my_money' doesn't exist
+MySQL Query:select * from ecm_my_money  where user_id=17
+Wrong File:  D:\DedeAMPZ\WebRoot\ecsp\eccore\model\mysql.php[1156]	\eccore\model\mysql.php	550
+Sun, 27 Nov 2016 09:05:25 +0000	[256]MySQL Error[1146]: Table 'ssec.ecm_my_money' doesn't exist
+MySQL Query:select * from ecm_my_money  where user_id=17
+Wrong File:  D:\DedeAMPZ\WebRoot\ecsp\eccore\model\mysql.php[1156]	\eccore\model\mysql.php	550
+Sun, 27 Nov 2016 09:05:26 +0000	[256]MySQL Error[1146]: Table 'ssec.ecm_my_money' doesn't exist
+MySQL Query:select * from ecm_my_money  where user_id=17
+Wrong File:  D:\DedeAMPZ\WebRoot\ecsp\eccore\model\mysql.php[1156]	\eccore\model\mysql.php	550
+Sun, 27 Nov 2016 09:05:26 +0000	[256]MySQL Error[1146]: Table 'ssec.ecm_my_money' doesn't exist
+MySQL Query:select * from ecm_my_money  where user_id=17
+Wrong File:  D:\DedeAMPZ\WebRoot\ecsp\eccore\model\mysql.php[1156]	\eccore\model\mysql.php	550
+Sun, 27 Nov 2016 09:05:27 +0000	[256]MySQL Error[1146]: Table 'ssec.ecm_my_money' doesn't exist
+MySQL Query:select * from ecm_my_money  where user_id=17
+Wrong File:  D:\DedeAMPZ\WebRoot\ecsp\eccore\model\mysql.php[1156]	\eccore\model\mysql.php	550
+Sun, 27 Nov 2016 09:06:16 +0000	[256]MySQL Error[1146]: Table 'ssec.ecm_my_money' doesn't exist
+MySQL Query:select * from ecm_my_money  where user_id=17
+Wrong File:  D:\DedeAMPZ\WebRoot\ecsp\eccore\model\mysql.php[1156]	\eccore\model\mysql.php	550
+Sun, 27 Nov 2016 09:10:33 +0000	[256]MySQL Error[1146]: Table 'ssec.ecm_my_money' doesn't exist
+MySQL Query:select * from ecm_my_money  where user_id=17
+Wrong File:  D:\DedeAMPZ\WebRoot\ecsp\eccore\model\mysql.php[1156]	\eccore\model\mysql.php	550
+Sun, 27 Nov 2016 09:10:34 +0000	[256]MySQL Error[1146]: Table 'ssec.ecm_my_money' doesn't exist
+MySQL Query:select * from ecm_my_money  where user_id=17
+Wrong File:  D:\DedeAMPZ\WebRoot\ecsp\eccore\model\mysql.php[1156]	\eccore\model\mysql.php	550
+Sun, 27 Nov 2016 09:10:35 +0000	[256]MySQL Error[1146]: Table 'ssec.ecm_my_money' doesn't exist
+MySQL Query:select * from ecm_my_money  where user_id=17
+Wrong File:  D:\DedeAMPZ\WebRoot\ecsp\eccore\model\mysql.php[1156]	\eccore\model\mysql.php	550
+Sun, 27 Nov 2016 09:10:37 +0000	[256]MySQL Error[1146]: Table 'ssec.ecm_my_money' doesn't exist
+MySQL Query:select * from ecm_my_money  where user_id=17
+Wrong File:  D:\DedeAMPZ\WebRoot\ecsp\eccore\model\mysql.php[1156]	\eccore\model\mysql.php	550
+Sun, 27 Nov 2016 09:11:17 +0000	[256]MySQL Error[1146]: Table 'ssec.ecm_my_money' doesn't exist
+MySQL Query:select * from ecm_my_money  where user_id=17
+Wrong File:  D:\DedeAMPZ\WebRoot\ecsp\eccore\model\mysql.php[1156]	\eccore\model\mysql.php	550
+Sun, 27 Nov 2016 09:11:19 +0000	[256]MySQL Error[1146]: Table 'ssec.ecm_my_money' doesn't exist
+MySQL Query:select * from ecm_my_money  where user_id=17
+Wrong File:  D:\DedeAMPZ\WebRoot\ecsp\eccore\model\mysql.php[1156]	\eccore\model\mysql.php	550
+Sun, 27 Nov 2016 09:12:23 +0000	[256]MySQL Error[1146]: Table 'ssec.ecm_my_money' doesn't exist
+MySQL Query:select * from ecm_my_money  where user_id=17
+Wrong File:  D:\DedeAMPZ\WebRoot\ecsp\eccore\model\mysql.php[1156]	\eccore\model\mysql.php	550
+Sun, 27 Nov 2016 09:13:01 +0000	[256]MySQL Error[1146]: Table 'ssec.ssec_my_money' doesn't exist
+MySQL Query:select * from ssec_my_money  where user_id=17
+Wrong File:  D:\DedeAMPZ\WebRoot\ecsp\eccore\model\mysql.php[1156]	\eccore\model\mysql.php	550
+Sun, 27 Nov 2016 09:13:03 +0000	[256]MySQL Error[1146]: Table 'ssec.ssec_my_money' doesn't exist
+MySQL Query:select * from ssec_my_money  where user_id=17
+Wrong File:  D:\DedeAMPZ\WebRoot\ecsp\eccore\model\mysql.php[1156]	\eccore\model\mysql.php	550
+Sun, 27 Nov 2016 09:13:19 +0000	[256]MySQL Error[1146]: Table 'ssec.my_money' doesn't exist
+MySQL Query:select * from my_money  where user_id=17
+Wrong File:  D:\DedeAMPZ\WebRoot\ecsp\eccore\model\mysql.php[1156]	\eccore\model\mysql.php	550
+Sun, 27 Nov 2016 09:13:20 +0000	[256]MySQL Error[1146]: Table 'ssec.my_money' doesn't exist
+MySQL Query:select * from my_money  where user_id=17
+Wrong File:  D:\DedeAMPZ\WebRoot\ecsp\eccore\model\mysql.php[1156]	\eccore\model\mysql.php	550
+Sun, 27 Nov 2016 09:13:56 +0000	[256]MySQL Error[1146]: Table 'ssec.my_money' doesn't exist
+MySQL Query:select * from my_money  where user_id=17
+Wrong File:  D:\DedeAMPZ\WebRoot\ecsp\eccore\model\mysql.php[1156]	\eccore\model\mysql.php	550
+Sun, 27 Nov 2016 09:14:25 +0000	[256]MySQL Error[1146]: Table 'ssec.ecs_my_money' doesn't exist
+MySQL Query:select * from ecs_my_money  where user_id=17
+Wrong File:  D:\DedeAMPZ\WebRoot\ecsp\eccore\model\mysql.php[1156]	\eccore\model\mysql.php	550
+Sun, 27 Nov 2016 09:14:27 +0000	[256]MySQL Error[1146]: Table 'ssec.ecs_my_money' doesn't exist
+MySQL Query:select * from ecs_my_money  where user_id=17
+Wrong File:  D:\DedeAMPZ\WebRoot\ecsp\eccore\model\mysql.php[1156]	\eccore\model\mysql.php	550
+Sun, 27 Nov 2016 09:14:28 +0000	[256]MySQL Error[1146]: Table 'ssec.ecs_my_money' doesn't exist
+MySQL Query:select * from ecs_my_money  where user_id=17
+Wrong File:  D:\DedeAMPZ\WebRoot\ecsp\eccore\model\mysql.php[1156]	\eccore\model\mysql.php	550
+Sun, 27 Nov 2016 09:16:01 +0000	[256]MySQL Error[1146]: Table 'ssec.ecs_my_money' doesn't exist
+MySQL Query:select * from ecs_my_money  where user_id=17
+Wrong File:  D:\DedeAMPZ\WebRoot\ecsp\eccore\model\mysql.php[1156]	\eccore\model\mysql.php	550
+Sun, 27 Nov 2016 09:16:03 +0000	[256]MySQL Error[1146]: Table 'ssec.ecs_my_money' doesn't exist
+MySQL Query:select * from ecs_my_money  where user_id=17
+Wrong File:  D:\DedeAMPZ\WebRoot\ecsp\eccore\model\mysql.php[1156]	\eccore\model\mysql.php	550
+Sun, 27 Nov 2016 09:16:23 +0000	[256]MySQL Error[1146]: Table 'ssec.ecs_my_money' doesn't exist
+MySQL Query:select * from ecs_my_money  where user_id=17
+Wrong File:  D:\DedeAMPZ\WebRoot\ecsp\eccore\model\mysql.php[1156]	\eccore\model\mysql.php	550
+Sun, 27 Nov 2016 09:16:24 +0000	[256]MySQL Error[1146]: Table 'ssec.ecs_my_money' doesn't exist
+MySQL Query:select * from ecs_my_money  where user_id=17
+Wrong File:  D:\DedeAMPZ\WebRoot\ecsp\eccore\model\mysql.php[1156]	\eccore\model\mysql.php	550
+Sun, 27 Nov 2016 09:44:48 +0000	[256]MySQL Error[1050]: Table 'ecm_dazhuanpan' already exists
+MySQL Query:CREATE TABLE ecm_dazhuanpan (
+  `id` int(10) NOT NULL auto_increment,
+  `title` varchar(100) NOT NULL,
+  `zhizhen` int(10) NOT NULL,
+  `gailv` int(10) NOT NULL,
+  `num` int(10) NOT NULL,
+  `time` int(10) NOT NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;
+Wrong File:  D:\DedeAMPZ\WebRoot\ecsp\external\modules\dazhuanpan\install.php[20]	\eccore\model\mysql.php	550
+Sun, 27 Nov 2016 09:45:26 +0000	[256]MySQL Error[1050]: Table 'ecm_dazhuanpan' already exists
+MySQL Query:CREATE TABLE ecm_dazhuanpan (
+  `id` int(10) NOT NULL auto_increment,
+  `title` varchar(100) NOT NULL,
+  `zhizhen` int(10) NOT NULL,
+  `gailv` int(10) NOT NULL,
+  `num` int(10) NOT NULL,
+  `time` int(10) NOT NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;
+Wrong File:  D:\DedeAMPZ\WebRoot\ecsp\external\modules\dazhuanpan\install.php[20]	\eccore\model\mysql.php	550
+Sun, 27 Nov 2016 09:45:52 +0000	[256]MySQL Error[1062]: Duplicate entry 'dazhuanpan' for key 1
+MySQL Query:INSERT INTO ecm_module(module_id,module_name,module_desc,module_version,enabled) VALUES('dazhuanpan','Âπ∏ËøêÂ§ßËΩ¨Áõò','ËΩ¨ÂïäËΩ¨ÂïäÂ§ßËΩ¨Áõò ','1.0','1')
+Wrong File:  D:\DedeAMPZ\WebRoot\ecsp\eccore\model\mysql.php[520]	\eccore\model\mysql.php	550
+Sun, 27 Nov 2016 09:46:30 +0000	[256]MySQL Error[1146]: Table 'ssec.ecm_my_money' doesn't exist
+MySQL Query:select * from ecm_my_money  where user_id=17
+Wrong File:  D:\DedeAMPZ\WebRoot\ecsp\eccore\model\mysql.php[1156]	\eccore\model\mysql.php	550
+Sun, 27 Nov 2016 09:46:33 +0000	[256]MySQL Error[1146]: Table 'ssec.ecm_my_money' doesn't exist
+MySQL Query:select * from ecm_my_money  where user_id=17
+Wrong File:  D:\DedeAMPZ\WebRoot\ecsp\eccore\model\mysql.php[1156]	\eccore\model\mysql.php	550
+Sun, 27 Nov 2016 17:14:30 +0000	[2]filemtime() [<a href='function.filemtime'>function.filemtime</a>]: stat failed for D:\DedeAMPZ\WebRoot\ecsp/data/crond.lock	\includes\libraries\cron.lib.php	259
+Sun, 27 Nov 2016 23:26:57 +0000	[2]fsockopen() [<a href='function.fsockopen'>function.fsockopen</a>]: unable to connect to smtp.163.com:25 (”…”⁄¡¨Ω”∑Ω‘⁄“ª∂Œ ±º‰∫Û√ª”–’˝»∑¥∏¥ªÚ¡¨Ω”µƒ÷˜ª˙√ª”–∑¥”¶£¨¡¨Ω”≥¢ ‘ ß∞‹°£
+)	\includes\libraries\class.smtp.php	161
+Sun, 27 Nov 2016 23:32:55 +0000	[2]fsockopen() [<a href='function.fsockopen'>function.fsockopen</a>]: unable to connect to smtp.163.com:25 (”…”⁄¡¨Ω”∑Ω‘⁄“ª∂Œ ±º‰∫Û√ª”–’˝»∑¥∏¥ªÚ¡¨Ω”µƒ÷˜ª˙√ª”–∑¥”¶£¨¡¨Ω”≥¢ ‘ ß∞‹°£
+)	\includes\libraries\class.smtp.php	161
+Mon, 28 Nov 2016 00:01:31 +0000	[256]MySQL Error[1064]: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ÂàùÁ∫ßÂ∫óÈì∫' at line 1
+MySQL Query:SELECT *,sgrade.grade_id FROM ecm_sgrade sgrade WHERE ÂàùÁ∫ßÂ∫óÈì∫
+Wrong File:  D:\DedeAMPZ\WebRoot\ecsp\eccore\model\mysql.php[1046]	\eccore\model\mysql.php	550

@@ -1,0 +1,100 @@
+<div class="channel_phone_floor4 w clearfix">
+    <div class="mt">
+        <h2>
+            {$widget_data.model_name}
+        </h2>
+    </div>
+    <div class="mc">
+        <div class="left">
+            <a href="{$widget_data.ad1_link_url}" target="_blank">
+                <img src="{$widget_data.ad1_image_url}" width="233" height="606">
+            </a>
+        </div>
+        <div class="mid">
+            <div class="carousel carousel-{$widget_data.model_id}">
+                <div class="ks-switchable-nav">
+                    <a href="javascript:void(0);" class="ks-active"></a>
+                    <a href="javascript:void(0);" class></a>
+                    <a href="javascript:void(0);" class></a>
+                </div>
+                <ul class="ks-switchable-content" style="position: absolute; width: 774px;">
+                    <li style="display:block;float: left;">
+                        <a href="{$widget_data.ad2_link_url}" target="_blank">
+                            <img src="{$widget_data.ad2_image_url}" width="370" height="302">
+                        </a>
+                    </li>
+                    <li style="display:block;float: left;">
+                        <a href="{$widget_data.ad3_link_url}" target="_blank">
+                            <img src="{$widget_data.ad3_image_url}" width="370" height="302">
+                        </a>
+                    </li>
+                    <li style="display:block;float: left;">
+                        <a href="{$widget_data.ad4_link_url}" target="_blank">
+                            <img src="{$widget_data.ad4_image_url}" width="370" height="302">
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <ul class="goods">
+                <li></li>
+                <li></li>
+                <!-- {foreach from=$widget_data.goods_list_1 item=goods name=fe_goods} -->
+                <li>
+                    <a href="{url app=goods&id=$goods.goods_id}" class="p_img" target="_blank">
+                        <img src="{$goods.default_image}" width="130" height="130">
+                    </a>
+                    <a href="{url app=goods&id=$goods.goods_id}" target="_blank" class="title">{$goods.goods_name|escape}</a>
+                    <div class="price">
+                        ￥<em>{$goods.price}</em>
+                    </div>
+                    <div class="sales">
+                        已售：{$goods.sales}
+                    </div>
+
+                </li>
+                <!-- {/foreach} -->
+            </ul>
+        </div>
+        <div class="right">
+            <div class="goods">
+                <h3>{$widget_data.model_name1}</h3>
+                <div class="goods_list">
+                    <ul>
+                        <!-- {foreach from=$widget_data.goods_list_2 item=goods name=fe_goods} -->
+                        <li>
+                            <a href="{url app=goods&id=$goods.goods_id}" class="p_img" target="_blank" style="float:left;">
+                                <img src="{$goods.default_image}" width="80" height="80">
+                            </a>
+                            <a href="{url app=goods&id=$goods.goods_id}" class="title" target="_blank" style="float:left;">
+                                <i>{$smarty.foreach.fe_goods.iteration}</i>
+                                {$goods.goods_name|escape}
+                            </a>
+                            <span class="price" style="float:left;">
+                                ￥<em>{$goods.price}</em>
+                            </span>
+                        </li>
+                        <!-- {/foreach} -->
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    KISSY.use("switchable", function(S) {
+        var tiny_slide = new S.Carousel('.carousel-{$widget_data.model_id}', {
+            steps: 1,
+            effect: 'scrollx',
+            easing: 'easeOutStrong',
+            circular: true,
+            prevBtnCls: 'prev',
+            nextBtnCls: 'next',
+            disableBtnCls: 'disable',
+            interval: 4,
+            aria: false,
+            autoplay: true,
+            lazyDataType: 'img-src' //延迟加载图片？
+        });
+    });
+</script>

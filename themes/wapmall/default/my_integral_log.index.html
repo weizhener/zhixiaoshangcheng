@@ -1,0 +1,40 @@
+{include file=member.header.html}
+<div class="mb-head">
+    <a href="javascript:history.back(-1)" class="l_b">返回</a>
+    <div class="tit">积分明细</div>
+    <a href="javascript" class="r_b"></a>
+</div>
+
+<div class="table">
+    <table>
+        <tbody>
+            <!--{if $integral_logs}-->
+            <tr>
+                <th style="width:20%;text-align: center">{$lang.user_name}</th>
+                <th style="width:20%">{$lang.point}</th>
+                <th style="width:20%">{$lang.add_time}</th>
+                <th style="width:20%">{$lang.integral_type}</th>
+                <th style="width:20%">{$lang.remark}</th>
+            </tr>
+            <!--{/if}-->
+            <!--{foreach from=$integral_logs item=integral_log name=v}-->
+            <tr>
+                <td>{$integral_log.user_name|escape}</td>
+                <td>{$integral_log.point}</td>
+                <td>{$integral_log.add_time|date:Y-m-d H:i:s}</td>
+                <td><!--{foreach from=$integral_type_list item=integral_type key=key}--><!--{if $key eq $integral_log.integral_type}-->{$integral_type}<!--{/if}--><!--{/foreach}--></td>
+                <td>{$integral_log.remark}</td>
+            </tr>
+            <!-- {foreachelse} -->
+            <tr>
+                <td colspan="5" style="text-align: center;padding: 20px 0;">{$lang.no_records}</td>
+            </tr>
+            <!--{/foreach}-->
+        </tbody>
+    </table>
+</div>
+{include file=member.page.bottom.html}
+
+
+
+{include file="member.footer.html"}

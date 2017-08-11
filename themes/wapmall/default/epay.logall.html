@@ -1,0 +1,65 @@
+{include file=member.header.html}
+<div class="mb-head">
+    <a href="javascript:history.back(-1)" class="l_b">返回</a>
+    <div class="tit">财务明细</div>
+    <a href="javascript" class="r_b"></a>
+</div>
+{include file=member.submenu.html}
+<style>
+    .epay_select{border-radius: 5px;position: relative;overflow: hidden;color: #6b6b6b;margin: 0px 10px 0;font-size: 14px;margin-top:10px;}
+    .epay_select select{margin-bottom: 5px;}
+</style>
+
+<div class="epay_select">
+    <form method="get">
+        <select class="querySelect" name="type">
+            <option value="">{$lang.search_types}</option>
+            {html_options options=$epay_type_list selected=$smarty.get.type}
+        </select>
+        <select class="querySelect" name="complete">
+            <option value="">{$lang.complete_list}</option>
+            {html_options options=$complete_list selected=$smarty.get.complete}
+        </select>
+        <input type="hidden" name="app" value="epay" />
+        <input type="hidden" name="act" value="logall" />
+        <input type="submit" class="white_btn" value="{$lang.so_so}" />
+        <!--{if $filtered}-->
+        <a class="red_btn" href="{url app=epay&act=logall}">{$lang.cancel_query}</a>
+        <!--{/if}-->
+    </form>
+
+</div>
+
+<div class="table">
+    <table>
+        <tbody>
+            <!--{if $epaylog_list}-->
+            <tr>
+                <th style="width:20%;text-align: center">{$lang.order_sn}</th>
+                <th style="width:10%">{$lang.time}</th>
+                <th style="width:40%">{$lang.caozuorizhi}</th>
+                <th style="width:20%">{$lang.money}</th>
+                <th style="width:10%">{$lang.zhuangtai}</th>
+            </tr>
+            <!--{/if}-->
+            <!--{foreach from=$epaylog_list item=epaylog name=fe_epaylog}-->
+            <tr>
+                <td>{$epaylog.order_sn}</td>
+                <td>{$epaylog.add_time|date:Y-m-d H:i}</td>
+                <td>{$epaylog.log_text}</td>
+                <td>{if $epaylog.money_flow eq 'income'}收入{else}支出{/if}{$epaylog.money}{$epaylog.yuan}</td>
+                <td align="center"><!--{if $epaylog.complete==0}-->未完成<!--{else}-->已完成<!--{/if}--></td>
+            </tr>
+            <!-- {foreachelse} -->
+            <tr>
+                <td colspan="5" style="text-align: center;padding: 20px 0;">{$lang.no_records}</td>
+            </tr>
+            <!--{/foreach}-->
+        </tbody>
+    </table>
+</div>
+{include file=member.page.bottom.html}
+
+
+
+{include file="member.footer.html"}

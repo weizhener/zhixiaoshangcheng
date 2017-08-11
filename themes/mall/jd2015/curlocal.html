@@ -1,0 +1,9 @@
+<div class="location mb10 clearfix">
+<!--{foreach from=$_curlocal item=lnk}-->
+<!--{if $lnk.url}-->
+<a hidefocus="true" href="{$lnk.url}">{$lnk.text|escape}</a> <span></span>
+<!--{else}-->
+{$lnk.text|escape}
+<!--{/if}-->
+<!--{/foreach}-->
+</div>

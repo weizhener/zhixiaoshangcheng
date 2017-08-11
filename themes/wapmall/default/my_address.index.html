@@ -1,0 +1,27 @@
+{include file="member.header.html"}
+<div class="mb-head">
+    <a href="javascript:history.back(-1)" class="l_b">返回</a>
+    <div class="tit">收货地址</div>
+    <a  ectype="dialog" dialog_title="{$lang.add_address}" dialog_id="my_address_add" dialog_width="100%" uri="index.php?app=my_address&act=add" class="add_address r_b">新增地址</a>
+</div>
+
+<div id="my_address_index">
+    <!------收货地址---------->
+    <div class="address_con">
+        <!--{foreach from=$addresses item=address name=v}-->
+        <div class="address_box" >
+            <div class="address_info">
+                <p>{$address.consignee|escape}（<!-- {if $address.phone_tel }-->{$address.phone_tel} <!--{else}--> {$address.phone_mob}<!--{/if}--> ）</p>
+                <p>{$address.region_name|escape}</p>
+                <p>{$address.address|escape}</p>
+            </div>
+            <p class="oprate"><a href="javascript:void(0);" ectype="dialog" dialog_id="my_address_edit" dialog_title="{$lang.edit_address}" dialog_width="100%" uri="index.php?app=my_address&act=edit&addr_id={$address.addr_id}" class="edit_address"><b></b>编辑<i></i></a><a href="javascript:drop_confirm('{$lang.drop_confirm}', 'index.php?app=my_address&amp;act=drop&addr_id={$address.addr_id}');" class="del_address"><b></b>删除</a></p>
+        </div>
+        <!--{foreachelse}-->
+        <!--{/foreach}--> 
+    </div>
+    <iframe id='iframe_post' name="iframe_post" frameborder="0" width="0" height="0">
+    <!------底部-------->
+</div>
+
+{include file="member.footer.html"}
