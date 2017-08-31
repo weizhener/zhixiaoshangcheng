@@ -64,7 +64,8 @@ demo103.ctoin.top
 
   ## 联系方式：
 
-  - **微信号**: qntt77
-  - **QQ**: 6287019
-
+- **QQ:** 6287019
+- 微信:请扫描二维码
+  - ![Alt text](./wechat.png)
+- 邮箱:`weizhener666@gmail.com`
 ​		
